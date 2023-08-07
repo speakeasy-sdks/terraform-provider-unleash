@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: e8c5da3a690549d71515de2f2ea67140
+  docVersion: 5.3.3
+  speakeasyVersion: 1.68.3
+  generationVersion: 2.81.1
 generation:
   comments:
     disableComments: false
@@ -8,6 +13,6 @@ generation:
   singleTagPerOp: false
   tagNamespacingDisabled: false
 terraform:
-  version: 0.0.1
+  version: 1.0.0
   author: Unleash
   packageName: unleash
