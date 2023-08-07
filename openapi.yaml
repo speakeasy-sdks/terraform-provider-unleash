@@ -3233,6 +3233,7 @@ paths:
       - Users
   /api/admin/user-admin/{id}:
     delete:
+      x-speakeasy-entity-operation: User#delete
       description: Deletes the user with the given userId
       operationId: deleteUser
       parameters:
@@ -3270,6 +3271,7 @@ paths:
       tags:
       - Users
     get:
+      x-speakeasy-entity-operation: User#get
       description: Will return a single user by id
       operationId: getUser
       parameters:
@@ -3310,6 +3312,7 @@ paths:
       tags:
       - Users
     put:
+      x-speakeasy-entity-operation: User#update
       description: Only the explicitly specified fields get updated.
       operationId: updateUser
       parameters:
@@ -18291,6 +18294,7 @@ components:
           type: string
       type: object
     updateUserSchema:
+      x-speakeasy-entity: User
       additionalProperties: true
       description: All fields that can be directly changed for the user
       properties:
@@ -18441,6 +18445,7 @@ components:
       - lifetimeDays
       type: object
     userSchema:
+      x-speakeasy-entity: User
       additionalProperties: false
       description: An Unleash user
       example:
@@ -20547,6 +20552,7 @@ components:
       - toggles
       type: object
     createUserSchema_rootRole:
+      x-speakeasy-entity: RootRole
       description: The role to assign to the user. Can be either the role's ID or
         its unique name.
       oneOf:
