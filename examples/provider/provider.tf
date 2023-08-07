@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     unleash = {
-      source  = "Unleash/unleash"
-      version = "0.0.1"
+      source  = "speakeasy-sdks/unleash"
+      version = "1.0.0"
     }
   }
 }

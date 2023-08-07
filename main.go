@@ -34,7 +34,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/Unleash/unleash",
+		Address: "registry.terraform.io/speakeasy-sdks/unleash",
 		Debug:   debug,
 	}
 
