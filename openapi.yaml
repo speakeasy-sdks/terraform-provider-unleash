@@ -24,7 +24,7 @@ tags:
   name: Client
 - description: "Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context)\
     \ that Unleash is aware of."
-  name: Context
+  name: uContext
 - description: Endpoints related to Unleash on the Edge.
   name: Edge
 - description: "Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments)\
@@ -1754,7 +1754,7 @@ paths:
           description: contextFieldsSchema
       summary: Gets configured context fields
       tags:
-      - Context
+      - uContext
     post:
       description: "Endpoint that allows creation of [custom context fields](https://docs.getunleash.io/reference/unleash-context#custom-context-fields)"
       operationId: createContextField
@@ -1782,7 +1782,7 @@ paths:
               style: simple
       summary: Create a context field
       tags:
-      - Context
+      - uContext
   /api/admin/context/{contextField}:
     delete:
       description: "Endpoint that allows deletion of a custom context field. Does\
@@ -1802,7 +1802,7 @@ paths:
           description: This response has no body.
       summary: Delete an existing context field
       tags:
-      - Context
+      - uContext
     get:
       description: "Returns specific [context field](https://docs.getunleash.io/reference/unleash-context)\
         \ identified by the name in the path"
@@ -1824,7 +1824,7 @@ paths:
           description: contextFieldSchema
       summary: Gets context field
       tags:
-      - Context
+      - uContext
     put:
       description: Endpoint that allows updating a custom context field. Used to toggle
         stickiness and add/remove legal values for this context field
@@ -1849,7 +1849,7 @@ paths:
           description: This response has no body.
       summary: Update an existing context field
       tags:
-      - Context
+      - uContext
   /api/admin/context/{contextField}/strategies:
     get:
       description: "Retrieves a list of all strategies that use the specified context\
@@ -1897,7 +1897,7 @@ paths:
           description: This response has no body.
       summary: Validate a context field
       tags:
-      - Context
+      - uContext
   /api/admin/state/import:
     post:
       deprecated: true
@@ -3537,6 +3537,7 @@ paths:
       - Projects
   /api/admin/projects/{projectId}/features/{featureName}/environments/{environment}:
     get:
+      x-speakeasy-entity-operation: FeatureEnvironment#get
       description: Information about the enablement status and strategies for a feature
         toggle in specified environment.
       operationId: getFeatureEnvironment
@@ -11416,6 +11417,7 @@ components:
       - "yes"
       type: object
     featureEnvironmentSchema:
+      x-speakeasy-entity: FeatureEnvironment
       additionalProperties: false
       description: A detailed description of the feature environment
       example:
