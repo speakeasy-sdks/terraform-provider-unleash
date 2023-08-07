@@ -9,5 +9,5 @@ generation:
   tagNamespacingDisabled: false
 terraform:
   version: 0.0.1
-  author: Unleash
+  author: speakeasy-sdks
   packageName: unleash
