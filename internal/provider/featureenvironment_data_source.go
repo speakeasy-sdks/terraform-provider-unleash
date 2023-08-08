@@ -118,7 +118,7 @@ func (r *FeatureEnvironmentDataSource) Schema(ctx context.Context, req datasourc
 												"SEMVER_LT",
 											),
 										},
-										MarkdownDescription: `must be one of [NOT_IN, IN, STR_ENDS_WITH, STR_STARTS_WITH, STR_CONTAINS, NUM_EQ, NUM_GT, NUM_GTE, NUM_LT, NUM_LTE, DATE_AFTER, DATE_BEFORE, SEMVER_EQ, SEMVER_GT, SEMVER_LT]` + "\n" +
+										MarkdownDescription: `must be one of ["NOT_IN", "IN", "STR_ENDS_WITH", "STR_STARTS_WITH", "STR_CONTAINS", "NUM_EQ", "NUM_GT", "NUM_GTE", "NUM_LT", "NUM_LTE", "DATE_AFTER", "DATE_BEFORE", "SEMVER_EQ", "SEMVER_GT", "SEMVER_LT"]` + "\n" +
 											`The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).`,
 									},
 									"value": schema.StringAttribute{
@@ -188,7 +188,7 @@ func (r *FeatureEnvironmentDataSource) Schema(ctx context.Context, req datasourc
 														"string",
 													),
 												},
-												MarkdownDescription: `must be one of [json, csv, string]` + "\n" +
+												MarkdownDescription: `must be one of ["json", "csv", "string"]` + "\n" +
 													`The type of the value. Commonly used types are string, json and csv.`,
 											},
 											"value": schema.StringAttribute{
@@ -214,7 +214,7 @@ func (r *FeatureEnvironmentDataSource) Schema(ctx context.Context, req datasourc
 												"fix",
 											),
 										},
-										MarkdownDescription: `must be one of [variable, fix]` + "\n" +
+										MarkdownDescription: `must be one of ["variable", "fix"]` + "\n" +
 											`Set to ` + "`" + `fix` + "`" + ` if this variant must have exactly the weight allocated to it. If the type is ` + "`" + `variable` + "`" + `, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).`,
 									},
 								},
@@ -270,7 +270,7 @@ func (r *FeatureEnvironmentDataSource) Schema(ctx context.Context, req datasourc
 											"string",
 										),
 									},
-									MarkdownDescription: `must be one of [json, csv, string]` + "\n" +
+									MarkdownDescription: `must be one of ["json", "csv", "string"]` + "\n" +
 										`The type of the value. Commonly used types are string, json and csv.`,
 								},
 								"value": schema.StringAttribute{
@@ -296,7 +296,7 @@ func (r *FeatureEnvironmentDataSource) Schema(ctx context.Context, req datasourc
 									"fix",
 								),
 							},
-							MarkdownDescription: `must be one of [variable, fix]` + "\n" +
+							MarkdownDescription: `must be one of ["variable", "fix"]` + "\n" +
 								`Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000`,
 						},
 					},

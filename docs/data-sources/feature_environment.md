@@ -16,7 +16,7 @@ FeatureEnvironment DataSource
 data "unleash_feature_environment" "my_featureenvironment" {
   environment  = "development"
   feature_name = "disable-comments"
-  project_id   = "...my_projectId..."
+  project_id   = "...my_project_id..."
 }
 ```
 
@@ -66,7 +66,7 @@ Read-Only:
 - `case_insensitive` (Boolean) Whether the operator should be case sensitive or not. Defaults to `false` (being case sensitive).
 - `context_name` (String) The name of the context field that this constraint should apply to.
 - `inverted` (Boolean) Whether the result should be negated or not. If `true`, will turn a `true` result into a `false` result and vice versa.
-- `operator` (String) must be one of [NOT_IN, IN, STR_ENDS_WITH, STR_STARTS_WITH, STR_CONTAINS, NUM_EQ, NUM_GT, NUM_GTE, NUM_LT, NUM_LTE, DATE_AFTER, DATE_BEFORE, SEMVER_EQ, SEMVER_GT, SEMVER_LT]
+- `operator` (String) must be one of ["NOT_IN", "IN", "STR_ENDS_WITH", "STR_STARTS_WITH", "STR_CONTAINS", "NUM_EQ", "NUM_GT", "NUM_GTE", "NUM_LT", "NUM_LTE", "DATE_AFTER", "DATE_BEFORE", "SEMVER_EQ", "SEMVER_GT", "SEMVER_LT"]
 The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
 - `value` (String) The context value that should be used for constraint evaluation. Use this property instead of `values` for properties that only accept single values.
 - `values` (List of String) The context values that should be used for constraint evaluation. Use this property instead of `value` for properties that accept multiple values.
@@ -81,7 +81,7 @@ Read-Only:
 - `payload` (Attributes) Extra data configured for this variant (see [below for nested schema](#nestedatt--strategies--variants--payload))
 - `stickiness` (String) The [stickiness](https://docs.getunleash.io/reference/feature-toggle-variants#variant-stickiness) to use for distribution of this variant. Stickiness is how Unleash guarantees that the same user gets the same variant every time
 - `weight` (Number) The weight is the likelihood of any one user getting this variant. It is an integer between 0 and 1000. See the section on [variant weights](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight) for more information
-- `weight_type` (String) must be one of [variable, fix]
+- `weight_type` (String) must be one of ["variable", "fix"]
 Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 
 <a id="nestedatt--strategies--variants--payload"></a>
@@ -89,7 +89,7 @@ Set to `fix` if this variant must have exactly the weight allocated to it. If th
 
 Read-Only:
 
-- `type` (String) must be one of [json, csv, string]
+- `type` (String) must be one of ["json", "csv", "string"]
 The type of the value. Commonly used types are string, json and csv.
 - `value` (String) The actual value of payload
 
@@ -106,7 +106,7 @@ Read-Only:
 - `payload` (Attributes) Extra data configured for this variant (see [below for nested schema](#nestedatt--variants--payload))
 - `stickiness` (String) [Stickiness](https://docs.getunleash.io/reference/feature-toggle-variants#variant-stickiness) is how Unleash guarantees that the same user gets the same variant every time
 - `weight` (Number) The weight is the likelihood of any one user getting this variant. It is a number between 0 and 1000. See the section on [variant weights](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight) for more information
-- `weight_type` (String) must be one of [variable, fix]
+- `weight_type` (String) must be one of ["variable", "fix"]
 Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
 
 <a id="nestedatt--variants--overrides"></a>
@@ -123,7 +123,7 @@ Read-Only:
 
 Read-Only:
 
-- `type` (String) must be one of [json, csv, string]
+- `type` (String) must be one of ["json", "csv", "string"]
 The type of the value. Commonly used types are string, json and csv.
 - `value` (String) The actual value of payload
 

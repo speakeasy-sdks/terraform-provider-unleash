@@ -25,6 +25,7 @@ internal/sdk/unstable.go
 internal/sdk/users.go
 internal/sdk/ucontext.go
 internal/sdk/sdk.go
+internal/provider/type_create_user_schema_root_role.go
 internal/provider/type_constraint_schema.go
 internal/provider/type_strategy_variant_schema_payload.go
 internal/provider/type_strategy_variant_schema.go
@@ -419,6 +420,7 @@ internal/sdk/pkg/models/shared/updatefeaturetypelifetimeschema.go
 internal/sdk/pkg/models/shared/passwordschema.go
 internal/sdk/pkg/models/shared/createuserresponseschema.go
 internal/sdk/pkg/models/shared/createuserresponseschemarootrole.go
+internal/sdk/pkg/models/shared/rolename.go
 internal/sdk/pkg/models/shared/createuserschema.go
 internal/sdk/pkg/models/shared/createuserschemarootrole.go
 internal/sdk/pkg/models/shared/admincountschema.go
@@ -438,6 +440,9 @@ internal/sdk/pkg/models/shared/security.go
 USAGE.md
 internal/provider/provider.go
 examples/provider/provider.tf
+internal/provider/user_resource.go
+internal/provider/user_resource_sdk.go
+examples/resources/unleash_user/resource.tf
 internal/provider/featureenvironment_data_source.go
 internal/provider/featureenvironment_data_source_sdk.go
 examples/data-sources/unleash_feature_environment/data-source.tf

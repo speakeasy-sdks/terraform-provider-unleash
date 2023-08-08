@@ -6,56 +6,18 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 )
-
-// CreateUserResponseSchemaRootRole2 - Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.
-type CreateUserResponseSchemaRootRole2 string
-
-const (
-	CreateUserResponseSchemaRootRole2Admin  CreateUserResponseSchemaRootRole2 = "Admin"
-	CreateUserResponseSchemaRootRole2Editor CreateUserResponseSchemaRootRole2 = "Editor"
-	CreateUserResponseSchemaRootRole2Viewer CreateUserResponseSchemaRootRole2 = "Viewer"
-	CreateUserResponseSchemaRootRole2Owner  CreateUserResponseSchemaRootRole2 = "Owner"
-	CreateUserResponseSchemaRootRole2Member CreateUserResponseSchemaRootRole2 = "Member"
-)
-
-func (e CreateUserResponseSchemaRootRole2) ToPointer() *CreateUserResponseSchemaRootRole2 {
-	return &e
-}
-
-func (e *CreateUserResponseSchemaRootRole2) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		fallthrough
-	case "Editor":
-		fallthrough
-	case "Viewer":
-		fallthrough
-	case "Owner":
-		fallthrough
-	case "Member":
-		*e = CreateUserResponseSchemaRootRole2(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateUserResponseSchemaRootRole2: %v", v)
-	}
-}
 
 type CreateUserResponseSchemaRootRoleType string
 
 const (
-	CreateUserResponseSchemaRootRoleTypeInteger                           CreateUserResponseSchemaRootRoleType = "integer"
-	CreateUserResponseSchemaRootRoleTypeCreateUserResponseSchemaRootRole2 CreateUserResponseSchemaRootRoleType = "createUserResponseSchema_rootRole_2"
+	CreateUserResponseSchemaRootRoleTypeInteger  CreateUserResponseSchemaRootRoleType = "integer"
+	CreateUserResponseSchemaRootRoleTypeRoleName CreateUserResponseSchemaRootRoleType = "roleName"
 )
 
 type CreateUserResponseSchemaRootRole struct {
-	Integer                           *int64
-	CreateUserResponseSchemaRootRole2 *CreateUserResponseSchemaRootRole2
+	Integer  *int64
+	RoleName *RoleName
 
 	Type CreateUserResponseSchemaRootRoleType
 }
@@ -69,12 +31,12 @@ func CreateCreateUserResponseSchemaRootRoleInteger(integer int64) CreateUserResp
 	}
 }
 
-func CreateCreateUserResponseSchemaRootRoleCreateUserResponseSchemaRootRole2(createUserResponseSchemaRootRole2 CreateUserResponseSchemaRootRole2) CreateUserResponseSchemaRootRole {
-	typ := CreateUserResponseSchemaRootRoleTypeCreateUserResponseSchemaRootRole2
+func CreateCreateUserResponseSchemaRootRoleRoleName(roleName RoleName) CreateUserResponseSchemaRootRole {
+	typ := CreateUserResponseSchemaRootRoleTypeRoleName
 
 	return CreateUserResponseSchemaRootRole{
-		CreateUserResponseSchemaRootRole2: &createUserResponseSchemaRootRole2,
-		Type:                              typ,
+		RoleName: &roleName,
+		Type:     typ,
 	}
 }
 
@@ -90,12 +52,12 @@ func (u *CreateUserResponseSchemaRootRole) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	createUserResponseSchemaRootRole2 := new(CreateUserResponseSchemaRootRole2)
+	roleName := new(RoleName)
 	d = json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
-	if err := d.Decode(&createUserResponseSchemaRootRole2); err == nil {
-		u.CreateUserResponseSchemaRootRole2 = createUserResponseSchemaRootRole2
-		u.Type = CreateUserResponseSchemaRootRoleTypeCreateUserResponseSchemaRootRole2
+	if err := d.Decode(&roleName); err == nil {
+		u.RoleName = roleName
+		u.Type = CreateUserResponseSchemaRootRoleTypeRoleName
 		return nil
 	}
 
@@ -107,8 +69,8 @@ func (u CreateUserResponseSchemaRootRole) MarshalJSON() ([]byte, error) {
 		return json.Marshal(u.Integer)
 	}
 
-	if u.CreateUserResponseSchemaRootRole2 != nil {
-		return json.Marshal(u.CreateUserResponseSchemaRootRole2)
+	if u.RoleName != nil {
+		return json.Marshal(u.RoleName)
 	}
 
 	return nil, nil

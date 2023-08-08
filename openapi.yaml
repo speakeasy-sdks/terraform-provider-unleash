@@ -3104,6 +3104,7 @@ paths:
     post:
       description: Creates a new user with the given root role.
       operationId: createUser
+      x-speakeasy-entity-operation: User#create
       requestBody:
         content:
           application/json:
@@ -10489,6 +10490,7 @@ components:
       type: object
     createUserSchema:
       additionalProperties: false
+      x-speakeasy-entity: User
       description: "The payload must contain at least one of the name and email properties,\
         \ though which one is up to you. For the user to be able to log in to the\
         \ system, the user must have an email."
@@ -18534,6 +18536,7 @@ components:
     createUserResponseSchema:
       additionalProperties: false
       description: An Unleash user after creation
+      x-speakeasy-entity: User
       example:
         loginAttempts: 3
         inviteLink: http://localhost:4242/invite-link/some-secret
@@ -20546,21 +20549,27 @@ components:
       - stop
       - toggles
       type: object
+    roleID:
+      description: The ID of the role
+      example: 1
+      minimum: 0
+      type: integer
+    roleName:
+      description: The name of the role
+      enum:
+      - Admin
+      - Editor
+      - Viewer
+      - Owner
+      - Member
+      example: Admin
+      type: string
     createUserSchema_rootRole:
       description: The role to assign to the user. Can be either the role's ID or
         its unique name.
       oneOf:
-      - example: 1
-        minimum: 0
-        type: integer
-      - enum:
-        - Admin
-        - Editor
-        - Viewer
-        - Owner
-        - Member
-        example: Admin
-        type: string
+      - "$ref": '#/components/schemas/roleID'
+      - "$ref": '#/components/schemas/roleName'
     exportResultSchema_segments_inner:
       additionalProperties: false
       properties:
@@ -21095,17 +21104,8 @@ components:
         \ this user is assigned. Usually a numeric role ID, but can be a string when\
         \ returning newly created user with an explicit string role."
       oneOf:
-      - example: 1
-        minimum: 0
-        type: integer
-      - enum:
-        - Admin
-        - Editor
-        - Viewer
-        - Owner
-        - Member
-        example: Admin
-        type: string
+      - "$ref": '#/components/schemas/roleID'
+      - "$ref": '#/components/schemas/roleName'
     variantSchema_payload:
       additionalProperties: false
       description: Extra data configured for this variant
