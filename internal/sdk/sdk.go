@@ -168,7 +168,7 @@ func New(opts ...SDKOption) *UnleashServerAPI {
 			Language:          "terraform",
 			OpenAPIDocVersion: "5.3.3",
 			SDKVersion:        "1.0.0",
-			GenVersion:        "internal",
+			GenVersion:        "2.83.3",
 		},
 	}
 	for _, opt := range opts {
