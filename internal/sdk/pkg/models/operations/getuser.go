@@ -8,7 +8,7 @@ import (
 )
 
 type GetUserRequest struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type GetUserResponse struct {

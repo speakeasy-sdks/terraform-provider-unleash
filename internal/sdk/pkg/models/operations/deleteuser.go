@@ -8,7 +8,7 @@ import (
 )
 
 type DeleteUserRequest struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type DeleteUserResponse struct {

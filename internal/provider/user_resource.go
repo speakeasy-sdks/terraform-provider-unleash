@@ -8,16 +8,13 @@ import (
 	"unleash/internal/sdk"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/boolplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	"unleash/internal/sdk/pkg/models/operations"
 	"unleash/internal/validators"
 )
 
@@ -36,22 +33,22 @@ type UserResource struct {
 
 // UserResourceModel describes the resource data model.
 type UserResourceModel struct {
-	AccountType   types.String              `tfsdk:"account_type"`
-	CreatedAt     types.String              `tfsdk:"created_at"`
-	Email         types.String              `tfsdk:"email"`
-	EmailSent     types.Bool                `tfsdk:"email_sent"`
-	ID            types.Int64               `tfsdk:"id"`
-	ImageURL      types.String              `tfsdk:"image_url"`
-	InviteLink    types.String              `tfsdk:"invite_link"`
-	IsAPI         types.Bool                `tfsdk:"is_api"`
-	LoginAttempts types.Int64               `tfsdk:"login_attempts"`
-	Name          types.String              `tfsdk:"name"`
-	Password      types.String              `tfsdk:"password"`
-	Permissions   []types.String            `tfsdk:"permissions"`
-	RootRole      *CreateUserSchemaRootRole `tfsdk:"root_role"`
-	SeenAt        types.String              `tfsdk:"seen_at"`
-	SendEmail     types.Bool                `tfsdk:"send_email"`
-	Username      types.String              `tfsdk:"username"`
+	AccountType   types.String             `tfsdk:"account_type"`
+	CreatedAt     types.String             `tfsdk:"created_at"`
+	Email         types.String             `tfsdk:"email"`
+	EmailSent     types.Bool               `tfsdk:"email_sent"`
+	ID            types.Int64              `tfsdk:"id"`
+	ImageURL      types.String             `tfsdk:"image_url"`
+	InviteLink    types.String             `tfsdk:"invite_link"`
+	IsAPI         types.Bool               `tfsdk:"is_api"`
+	LoginAttempts types.Int64              `tfsdk:"login_attempts"`
+	Name          types.String             `tfsdk:"name"`
+	Password      types.String             `tfsdk:"password"`
+	Permissions   []types.String           `tfsdk:"permissions"`
+	RootRole      CreateUserSchemaRootRole `tfsdk:"root_role"`
+	SeenAt        types.String             `tfsdk:"seen_at"`
+	SendEmail     types.Bool               `tfsdk:"send_email"`
+	Username      types.String             `tfsdk:"username"`
 }
 
 func (r *UserResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -75,10 +72,7 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Description: `The user was created at this time`,
 			},
 			"email": schema.StringAttribute{
-				Computed: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
+				Computed:    true,
 				Optional:    true,
 				Description: `Email of the user`,
 			},
@@ -107,17 +101,11 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Description: `How many unsuccessful attempts at logging in has the user made`,
 			},
 			"name": schema.StringAttribute{
-				Computed: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
+				Computed:    true,
 				Optional:    true,
 				Description: `Name of the user`,
 			},
 			"password": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
 				Optional:    true,
 				Description: `Password for the user`,
 			},
@@ -127,24 +115,14 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Description: `Deprecated`,
 			},
 			"root_role": schema.SingleNestedAttribute{
-				Computed: true,
-				PlanModifiers: []planmodifier.Object{
-					objectplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
+				Required: true,
 				Attributes: map[string]schema.Attribute{
 					"integer": schema.Int64Attribute{
 						Computed: true,
-						PlanModifiers: []planmodifier.Int64{
-							int64planmodifier.RequiresReplace(),
-						},
 						Optional: true,
 					},
 					"role_name": schema.StringAttribute{
 						Computed: true,
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
 						Optional: true,
 						Validators: []validator.String{
 							stringvalidator.OneOf(
@@ -172,17 +150,11 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Description: `The last time this user logged in`,
 			},
 			"send_email": schema.BoolAttribute{
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplace(),
-				},
 				Optional:    true,
 				Description: `Whether to send a welcome email with a login link to the user or not. Defaults to ` + "`" + `true` + "`" + `.`,
 			},
 			"username": schema.StringAttribute{
-				Computed: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
+				Computed:    true,
 				Optional:    true,
 				Description: `A unique username for the user`,
 			},
@@ -270,7 +242,28 @@ func (r *UserResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 		return
 	}
 
-	// Not Implemented; we rely entirely on CREATE API request response
+	id := data.ID.ValueInt64()
+	request := operations.GetUserRequest{
+		ID: id,
+	}
+	res, err := r.client.Users.GetUser(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+	if res.UserSchema == nil {
+		resp.Diagnostics.AddError("unexpected response from API. No response body", debugResponse(res.RawResponse))
+		return
+	}
+	data.RefreshFromGetResponse(res.UserSchema)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -283,7 +276,30 @@ func (r *UserResource) Update(ctx context.Context, req resource.UpdateRequest, r
 		return
 	}
 
-	// Not Implemented; all attributes marked as RequiresReplace
+	id := data.ID.ValueInt64()
+	updateUserSchema := *data.ToUpdateSDKType()
+	request := operations.UpdateUserRequest{
+		ID:               id,
+		UpdateUserSchema: updateUserSchema,
+	}
+	res, err := r.client.Users.UpdateUser(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+	if res.CreateUserResponseSchema == nil {
+		resp.Diagnostics.AddError("unexpected response from API. No response body", debugResponse(res.RawResponse))
+		return
+	}
+	data.RefreshFromUpdateResponse(res.CreateUserResponseSchema)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -307,9 +323,26 @@ func (r *UserResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 		return
 	}
 
-	// Not Implemented; entity does not have a configured DELETE operation
+	id := data.ID.ValueInt64()
+	request := operations.DeleteUserRequest{
+		ID: id,
+	}
+	res, err := r.client.Users.DeleteUser(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+
 }
 
 func (r *UserResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resp.Diagnostics.AddError("Not Implemented", "No available import state operation is available for resource user.")
+	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }

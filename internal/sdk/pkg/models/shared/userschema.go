@@ -32,8 +32,6 @@ type UserSchema struct {
 	Name *string `json:"name,omitempty"`
 	// Deprecated
 	Permissions []string `json:"permissions,omitempty"`
-	// Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned
-	RootRole *int64 `json:"rootRole,omitempty"`
 	// The last time this user logged in
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// A unique username for the user

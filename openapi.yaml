@@ -3236,13 +3236,14 @@ paths:
     delete:
       description: Deletes the user with the given userId
       operationId: deleteUser
+      x-speakeasy-entity-operation: User#delete
       parameters:
       - explode: false
         in: path
         name: id
         required: true
         schema:
-          type: string
+          type: integer
         style: simple
       responses:
         "200":
@@ -3273,13 +3274,14 @@ paths:
     get:
       description: Will return a single user by id
       operationId: getUser
+      x-speakeasy-entity-operation: User#get
       parameters:
       - explode: false
         in: path
         name: id
         required: true
         schema:
-          type: string
+          type: integer
         style: simple
       responses:
         "200":
@@ -3313,13 +3315,14 @@ paths:
     put:
       description: Only the explicitly specified fields get updated.
       operationId: updateUser
+      x-speakeasy-entity-operation: User#update
       parameters:
       - explode: false
         in: path
         name: id
         required: true
         schema:
-          type: string
+          type: integer
         style: simple
       requestBody:
         content:
@@ -18294,6 +18297,7 @@ components:
       type: object
     updateUserSchema:
       additionalProperties: true
+      x-speakeasy-entity: User
       description: All fields that can be directly changed for the user
       properties:
         email:
@@ -18445,6 +18449,7 @@ components:
     userSchema:
       additionalProperties: false
       description: An Unleash user
+      x-speakeasy-entity: User
       example:
         loginAttempts: 3
         inviteLink: http://localhost:4242/invite-link/some-secret
@@ -18505,6 +18510,7 @@ components:
           example: false
           type: boolean
         rootRole:
+          x-speakeasy-ignore: true
           description: "Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles)\
             \ this user is assigned"
           example: 1

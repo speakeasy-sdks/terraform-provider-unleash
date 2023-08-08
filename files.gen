@@ -446,3 +446,6 @@ examples/resources/unleash_user/resource.tf
 internal/provider/featureenvironment_data_source.go
 internal/provider/featureenvironment_data_source_sdk.go
 examples/data-sources/unleash_feature_environment/data-source.tf
+internal/provider/user_data_source.go
+internal/provider/user_data_source_sdk.go
+examples/data-sources/unleash_user/data-source.tf
