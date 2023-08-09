@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: a8dccd1e5b8f0ad8b9e3c79ef9474fed
+  docChecksum: 53d38d0ce7a5ede73ca9a719b0b83ecb
   docVersion: 5.3.3
-  speakeasyVersion: 1.69.1
-  generationVersion: 2.82.0
+  speakeasyVersion: 1.70.2
+  generationVersion: 2.83.3
 generation:
   comments:
     disableComments: false
@@ -21,6 +21,6 @@ features:
     ignores: 2.81.1
     includes: 2.81.1
 terraform:
-  version: 1.0.0
+  version: 1.0.1
   author: speakeasy-sdks
   packageName: unleash

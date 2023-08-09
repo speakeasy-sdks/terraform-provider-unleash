@@ -167,7 +167,7 @@ func New(opts ...SDKOption) *UnleashServerAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "5.3.3",
-			SDKVersion:        "1.0.0",
+			SDKVersion:        "1.0.1",
 			GenVersion:        "2.83.3",
 		},
 	}
