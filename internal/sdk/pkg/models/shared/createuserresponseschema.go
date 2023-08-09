@@ -32,8 +32,8 @@ type CreateUserResponseSchema struct {
 	Name *string `json:"name,omitempty"`
 	// Deprecated
 	Permissions []string `json:"permissions,omitempty"`
-	// Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.
-	RootRole *CreateUserResponseSchemaRootRole `json:"rootRole,omitempty"`
+	// The role to assign to the user. Can be either the role's ID or its unique name.
+	RootRole *CreateUserSchemaRootRole `json:"rootRole,omitempty"`
 	// The last time this user logged in
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// A unique username for the user

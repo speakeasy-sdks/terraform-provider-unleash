@@ -119,20 +119,6 @@ func (r *UserDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 					"integer": schema.Int64Attribute{
 						Optional: true,
 					},
-					"create_user_response_schema_root_role_2": schema.StringAttribute{
-						Optional: true,
-						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"Admin",
-								"Editor",
-								"Viewer",
-								"Owner",
-								"Member",
-							),
-						},
-						MarkdownDescription: `must be one of ["Admin", "Editor", "Viewer", "Owner", "Member"]` + "\n" +
-							`Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.`,
-					},
 					"create_user_schema_root_role_2": schema.StringAttribute{
 						Optional: true,
 						Validators: []validator.String{
@@ -151,7 +137,7 @@ func (r *UserDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 				Validators: []validator.Object{
 					validators.ExactlyOneChild(),
 				},
-				Description: `Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.`,
+				Description: `The role to assign to the user. Can be either the role's ID or its unique name.`,
 			},
 			"seen_at": schema.StringAttribute{
 				Computed: true,
@@ -210,7 +196,7 @@ func (r *UserDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 		return
 	}
 
-	id := data.ID.ValueString()
+	id := data.ID.ValueInt64()
 	request := operations.GetUserRequest{
 		ID: id,
 	}

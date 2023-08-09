@@ -121,21 +121,8 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 						Computed: true,
 						Optional: true,
 					},
-					"create_user_response_schema_root_role_2": schema.StringAttribute{
-						Computed: true,
-						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"Admin",
-								"Editor",
-								"Viewer",
-								"Owner",
-								"Member",
-							),
-						},
-						MarkdownDescription: `must be one of ["Admin", "Editor", "Viewer", "Owner", "Member"]` + "\n" +
-							`Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.`,
-					},
 					"create_user_schema_root_role_2": schema.StringAttribute{
+						Computed: true,
 						Optional: true,
 						Validators: []validator.String{
 							stringvalidator.OneOf(
@@ -153,7 +140,7 @@ func (r *UserResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Validators: []validator.Object{
 					validators.ExactlyOneChild(),
 				},
-				Description: `Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.`,
+				Description: `The role to assign to the user. Can be either the role's ID or its unique name.`,
 			},
 			"seen_at": schema.StringAttribute{
 				Computed: true,
@@ -255,7 +242,7 @@ func (r *UserResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 		return
 	}
 
-	id := data.ID.ValueString()
+	id := data.ID.ValueInt64()
 	request := operations.GetUserRequest{
 		ID: id,
 	}
@@ -289,7 +276,7 @@ func (r *UserResource) Update(ctx context.Context, req resource.UpdateRequest, r
 		return
 	}
 
-	id := data.ID.ValueString()
+	id := data.ID.ValueInt64()
 	updateUserSchema := *data.ToUpdateSDKType()
 	request := operations.UpdateUserRequest{
 		ID:               id,
@@ -336,7 +323,7 @@ func (r *UserResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 		return
 	}
 
-	id := data.ID.ValueString()
+	id := data.ID.ValueInt64()
 	request := operations.DeleteUserRequest{
 		ID: id,
 	}

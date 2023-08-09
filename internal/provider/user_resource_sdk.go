@@ -252,14 +252,12 @@ func (r *UserResourceModel) RefreshFromCreateResponse(resp *shared.CreateUserRes
 				r.RootRole.Integer = types.Int64Null()
 			}
 		}
-		if resp.RootRole.CreateUserResponseSchemaRootRole2 != nil {
-			if resp.RootRole.CreateUserResponseSchemaRootRole2 != nil {
-				r.RootRole.CreateUserResponseSchemaRootRole2 = types.StringValue(string(*resp.RootRole.CreateUserResponseSchemaRootRole2))
-			} else {
-				r.RootRole.CreateUserResponseSchemaRootRole2 = types.StringNull()
-			}
-		}
 		if resp.RootRole.CreateUserSchemaRootRole2 != nil {
+			if resp.RootRole.CreateUserSchemaRootRole2 != nil {
+				r.RootRole.CreateUserSchemaRootRole2 = types.StringValue(string(*resp.RootRole.CreateUserSchemaRootRole2))
+			} else {
+				r.RootRole.CreateUserSchemaRootRole2 = types.StringNull()
+			}
 		}
 	}
 	if resp.SeenAt != nil {

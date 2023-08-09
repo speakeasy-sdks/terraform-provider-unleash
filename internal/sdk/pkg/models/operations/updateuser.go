@@ -8,7 +8,7 @@ import (
 )
 
 type UpdateUserRequest struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// updateUserSchema
 	UpdateUserSchema shared.UpdateUserSchema `request:"mediaType=application/json"`
 }

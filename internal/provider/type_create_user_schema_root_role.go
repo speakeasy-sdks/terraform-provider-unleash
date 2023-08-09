@@ -5,7 +5,6 @@ package provider
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type CreateUserSchemaRootRole struct {
-	Integer                           types.Int64  `tfsdk:"integer"`
-	CreateUserResponseSchemaRootRole2 types.String `tfsdk:"create_user_response_schema_root_role_2"`
-	CreateUserSchemaRootRole2         types.String `tfsdk:"create_user_schema_root_role_2"`
+	Integer                   types.Int64  `tfsdk:"integer"`
+	CreateUserSchemaRootRole2 types.String `tfsdk:"create_user_schema_root_role_2"`
 }

@@ -527,9 +527,8 @@ internal/sdk/pkg/models/shared/rolewithversionschema.go
 internal/sdk/pkg/models/shared/createrolewithpermissionsschema.go
 internal/sdk/pkg/models/shared/createrolewithpermissionsschemapermissionsinner.go
 internal/sdk/pkg/models/shared/createuserresponseschema.go
-internal/sdk/pkg/models/shared/createuserresponseschemarootrole.go
-internal/sdk/pkg/models/shared/createuserschema.go
 internal/sdk/pkg/models/shared/createuserschemarootrole.go
+internal/sdk/pkg/models/shared/createuserschema.go
 internal/sdk/pkg/models/shared/admincountschema.go
 internal/sdk/pkg/models/shared/usersgroupsbaseschema.go
 internal/sdk/pkg/models/shared/groupsschema.go
