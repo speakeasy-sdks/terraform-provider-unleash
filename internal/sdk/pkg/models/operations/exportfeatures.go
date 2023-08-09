@@ -14,5 +14,5 @@ type ExportFeaturesResponse struct {
 	// exportResultSchema
 	ExportResultSchema *shared.ExportResultSchema
 	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
+	GetGroup404Response *shared.GetGroup404Response
 }

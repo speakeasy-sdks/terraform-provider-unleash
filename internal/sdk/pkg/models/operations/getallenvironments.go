@@ -11,10 +11,10 @@ type GetAllEnvironmentsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangePassword403Response *shared.ChangePassword403Response
 	// environmentsSchema
 	EnvironmentsSchema *shared.EnvironmentsSchema
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
 }

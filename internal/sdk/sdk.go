@@ -12,7 +12,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"/",
+	"https://app.unleash-hosted.com/hosted",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -100,6 +100,10 @@ type UnleashServerAPI struct {
 	Projects *projects
 	// PublicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
 	PublicSignupTokens *publicSignupTokens
+	// Segments - Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
+	Segments *segments
+	// ServiceAccounts - Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
+	ServiceAccounts *serviceAccounts
 	// Strategies - Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
 	Strategies *strategies
 	// Tags - Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
@@ -226,6 +230,10 @@ func New(opts ...SDKOption) *UnleashServerAPI {
 	sdk.Projects = newProjects(sdk.sdkConfiguration)
 
 	sdk.PublicSignupTokens = newPublicSignupTokens(sdk.sdkConfiguration)
+
+	sdk.Segments = newSegments(sdk.sdkConfiguration)
+
+	sdk.ServiceAccounts = newServiceAccounts(sdk.sdkConfiguration)
 
 	sdk.Strategies = newStrategies(sdk.sdkConfiguration)
 

@@ -21,5 +21,5 @@ type AddDefaultStrategyToProjectEnvironmentResponse struct {
 	// createFeatureStrategySchema
 	CreateFeatureStrategySchema *shared.CreateFeatureStrategySchema
 	// The request data does not match what we expect.
-	ValidatePublicSignupToken400Response *shared.ValidatePublicSignupToken400Response
+	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
 }

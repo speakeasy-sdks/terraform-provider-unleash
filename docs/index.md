@@ -33,4 +33,4 @@ provider "unleash" {
 ### Optional
 
 - `api_key` (String, Sensitive)
-- `server_url` (String) Server URL (defaults to /)
+- `server_url` (String) Server URL (defaults to https://app.unleash-hosted.com/hosted)

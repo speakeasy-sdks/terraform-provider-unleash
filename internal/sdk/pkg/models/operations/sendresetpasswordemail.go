@@ -11,10 +11,10 @@ type SendResetPasswordEmailResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The requested resource was not found.
+	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
-	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateToken415Response *shared.ValidateToken415Response
+	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 }

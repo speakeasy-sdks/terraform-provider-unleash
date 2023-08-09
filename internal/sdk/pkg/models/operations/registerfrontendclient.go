@@ -11,10 +11,10 @@ type RegisterFrontendClientResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The request data does not match what we expect.
+	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	// The requested resource was not found.
+	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
-	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
-	// The request data does not match what we expect.
-	ValidatePublicSignupToken400Response *shared.ValidatePublicSignupToken400Response
 }

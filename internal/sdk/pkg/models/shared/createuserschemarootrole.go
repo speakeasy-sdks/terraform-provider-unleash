@@ -6,18 +6,56 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 )
+
+// CreateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
+type CreateUserSchemaRootRole2 string
+
+const (
+	CreateUserSchemaRootRole2Admin  CreateUserSchemaRootRole2 = "Admin"
+	CreateUserSchemaRootRole2Editor CreateUserSchemaRootRole2 = "Editor"
+	CreateUserSchemaRootRole2Viewer CreateUserSchemaRootRole2 = "Viewer"
+	CreateUserSchemaRootRole2Owner  CreateUserSchemaRootRole2 = "Owner"
+	CreateUserSchemaRootRole2Member CreateUserSchemaRootRole2 = "Member"
+)
+
+func (e CreateUserSchemaRootRole2) ToPointer() *CreateUserSchemaRootRole2 {
+	return &e
+}
+
+func (e *CreateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Admin":
+		fallthrough
+	case "Editor":
+		fallthrough
+	case "Viewer":
+		fallthrough
+	case "Owner":
+		fallthrough
+	case "Member":
+		*e = CreateUserSchemaRootRole2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateUserSchemaRootRole2: %v", v)
+	}
+}
 
 type CreateUserSchemaRootRoleType string
 
 const (
-	CreateUserSchemaRootRoleTypeInteger  CreateUserSchemaRootRoleType = "integer"
-	CreateUserSchemaRootRoleTypeRoleName CreateUserSchemaRootRoleType = "roleName"
+	CreateUserSchemaRootRoleTypeInteger                   CreateUserSchemaRootRoleType = "integer"
+	CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2 CreateUserSchemaRootRoleType = "createUserSchema_rootRole_2"
 )
 
 type CreateUserSchemaRootRole struct {
-	Integer  *int64
-	RoleName *RoleName
+	Integer                   *int64
+	CreateUserSchemaRootRole2 *CreateUserSchemaRootRole2
 
 	Type CreateUserSchemaRootRoleType
 }
@@ -31,12 +69,12 @@ func CreateCreateUserSchemaRootRoleInteger(integer int64) CreateUserSchemaRootRo
 	}
 }
 
-func CreateCreateUserSchemaRootRoleRoleName(roleName RoleName) CreateUserSchemaRootRole {
-	typ := CreateUserSchemaRootRoleTypeRoleName
+func CreateCreateUserSchemaRootRoleCreateUserSchemaRootRole2(createUserSchemaRootRole2 CreateUserSchemaRootRole2) CreateUserSchemaRootRole {
+	typ := CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2
 
 	return CreateUserSchemaRootRole{
-		RoleName: &roleName,
-		Type:     typ,
+		CreateUserSchemaRootRole2: &createUserSchemaRootRole2,
+		Type:                      typ,
 	}
 }
 
@@ -52,12 +90,12 @@ func (u *CreateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	roleName := new(RoleName)
+	createUserSchemaRootRole2 := new(CreateUserSchemaRootRole2)
 	d = json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
-	if err := d.Decode(&roleName); err == nil {
-		u.RoleName = roleName
-		u.Type = CreateUserSchemaRootRoleTypeRoleName
+	if err := d.Decode(&createUserSchemaRootRole2); err == nil {
+		u.CreateUserSchemaRootRole2 = createUserSchemaRootRole2
+		u.Type = CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2
 		return nil
 	}
 
@@ -69,8 +107,8 @@ func (u CreateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
 		return json.Marshal(u.Integer)
 	}
 
-	if u.RoleName != nil {
-		return json.Marshal(u.RoleName)
+	if u.CreateUserSchemaRootRole2 != nil {
+		return json.Marshal(u.CreateUserSchemaRootRole2)
 	}
 
 	return nil, nil

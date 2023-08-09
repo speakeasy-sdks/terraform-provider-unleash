@@ -38,7 +38,7 @@ func (p *UnleashProvider) Schema(ctx context.Context, req provider.SchemaRequest
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to /)",
+				MarkdownDescription: "Server URL (defaults to https://app.unleash-hosted.com/hosted)",
 				Optional:            true,
 				Required:            false,
 			},
@@ -62,7 +62,7 @@ func (p *UnleashProvider) Configure(ctx context.Context, req provider.ConfigureR
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "/"
+		ServerURL = "https://app.unleash-hosted.com/hosted"
 	}
 
 	apiKey := data.APIKey.ValueString()
@@ -81,16 +81,11 @@ func (p *UnleashProvider) Configure(ctx context.Context, req provider.ConfigureR
 }
 
 func (p *UnleashProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewUserResource,
-	}
+	return []func() resource.Resource{}
 }
 
 func (p *UnleashProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewFeatureEnvironmentDataSource,
-		NewUserDataSource,
-	}
+	return []func() datasource.DataSource{}
 }
 
 func New(version string) func() provider.Provider {

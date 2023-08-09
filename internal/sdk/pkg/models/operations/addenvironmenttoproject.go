@@ -18,9 +18,9 @@ type AddEnvironmentToProjectResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	AddPublicSignupTokenUser409Response *shared.AddPublicSignupTokenUser409Response
+	CreateGroup409Response *shared.CreateGroup409Response
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangePassword403Response *shared.ChangePassword403Response
+	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
 }

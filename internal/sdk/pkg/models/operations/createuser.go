@@ -12,12 +12,12 @@ type CreateUserResponse struct {
 	Headers     map[string][]string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangePassword403Response *shared.ChangePassword403Response
 	// The resource was successfully created.
 	CreateUserResponseSchema *shared.CreateUserResponseSchema
+	// The request data does not match what we expect.
+	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
-	// The request data does not match what we expect.
-	ValidatePublicSignupToken400Response *shared.ValidatePublicSignupToken400Response
 }

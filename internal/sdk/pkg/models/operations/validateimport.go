@@ -11,8 +11,8 @@ type ValidateImportResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The requested resource was not found.
+	GetGroup404Response *shared.GetGroup404Response
 	// importTogglesValidateSchema
 	ImportTogglesValidateSchema *shared.ImportTogglesValidateSchema
-	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
 }

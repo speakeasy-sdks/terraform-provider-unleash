@@ -6,18 +6,44 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 )
+
+// PlaygroundStrategySchemaResultAnyOfEnabled2 - Whether this strategy resolves to `false` or if it might resolve to `true`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be `true`, but if you have failing constraints or segments, it _can_ determine that your strategy would be `false`.
+type PlaygroundStrategySchemaResultAnyOfEnabled2 string
+
+const (
+	PlaygroundStrategySchemaResultAnyOfEnabled2Unknown PlaygroundStrategySchemaResultAnyOfEnabled2 = "unknown"
+)
+
+func (e PlaygroundStrategySchemaResultAnyOfEnabled2) ToPointer() *PlaygroundStrategySchemaResultAnyOfEnabled2 {
+	return &e
+}
+
+func (e *PlaygroundStrategySchemaResultAnyOfEnabled2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unknown":
+		*e = PlaygroundStrategySchemaResultAnyOfEnabled2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PlaygroundStrategySchemaResultAnyOfEnabled2: %v", v)
+	}
+}
 
 type PlaygroundStrategySchemaResultAnyOfEnabledType string
 
 const (
-	PlaygroundStrategySchemaResultAnyOfEnabledTypeBoolean PlaygroundStrategySchemaResultAnyOfEnabledType = "boolean"
-	PlaygroundStrategySchemaResultAnyOfEnabledTypeStr     PlaygroundStrategySchemaResultAnyOfEnabledType = "str"
+	PlaygroundStrategySchemaResultAnyOfEnabledTypeBoolean                                     PlaygroundStrategySchemaResultAnyOfEnabledType = "boolean"
+	PlaygroundStrategySchemaResultAnyOfEnabledTypePlaygroundStrategySchemaResultAnyOfEnabled2 PlaygroundStrategySchemaResultAnyOfEnabledType = "playgroundStrategySchema_result_anyOf_enabled_2"
 )
 
 type PlaygroundStrategySchemaResultAnyOfEnabled struct {
-	Boolean *bool
-	Str     *string
+	Boolean                                     *bool
+	PlaygroundStrategySchemaResultAnyOfEnabled2 *PlaygroundStrategySchemaResultAnyOfEnabled2
 
 	Type PlaygroundStrategySchemaResultAnyOfEnabledType
 }
@@ -31,11 +57,11 @@ func CreatePlaygroundStrategySchemaResultAnyOfEnabledBoolean(boolean bool) Playg
 	}
 }
 
-func CreatePlaygroundStrategySchemaResultAnyOfEnabledStr(str string) PlaygroundStrategySchemaResultAnyOfEnabled {
-	typ := PlaygroundStrategySchemaResultAnyOfEnabledTypeStr
+func CreatePlaygroundStrategySchemaResultAnyOfEnabledPlaygroundStrategySchemaResultAnyOfEnabled2(playgroundStrategySchemaResultAnyOfEnabled2 PlaygroundStrategySchemaResultAnyOfEnabled2) PlaygroundStrategySchemaResultAnyOfEnabled {
+	typ := PlaygroundStrategySchemaResultAnyOfEnabledTypePlaygroundStrategySchemaResultAnyOfEnabled2
 
 	return PlaygroundStrategySchemaResultAnyOfEnabled{
-		Str:  &str,
+		PlaygroundStrategySchemaResultAnyOfEnabled2: &playgroundStrategySchemaResultAnyOfEnabled2,
 		Type: typ,
 	}
 }
@@ -52,12 +78,12 @@ func (u *PlaygroundStrategySchemaResultAnyOfEnabled) UnmarshalJSON(data []byte) 
 		return nil
 	}
 
-	str := new(string)
+	playgroundStrategySchemaResultAnyOfEnabled2 := new(PlaygroundStrategySchemaResultAnyOfEnabled2)
 	d = json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
-	if err := d.Decode(&str); err == nil {
-		u.Str = str
-		u.Type = PlaygroundStrategySchemaResultAnyOfEnabledTypeStr
+	if err := d.Decode(&playgroundStrategySchemaResultAnyOfEnabled2); err == nil {
+		u.PlaygroundStrategySchemaResultAnyOfEnabled2 = playgroundStrategySchemaResultAnyOfEnabled2
+		u.Type = PlaygroundStrategySchemaResultAnyOfEnabledTypePlaygroundStrategySchemaResultAnyOfEnabled2
 		return nil
 	}
 
@@ -69,8 +95,8 @@ func (u PlaygroundStrategySchemaResultAnyOfEnabled) MarshalJSON() ([]byte, error
 		return json.Marshal(u.Boolean)
 	}
 
-	if u.Str != nil {
-		return json.Marshal(u.Str)
+	if u.PlaygroundStrategySchemaResultAnyOfEnabled2 != nil {
+		return json.Marshal(u.PlaygroundStrategySchemaResultAnyOfEnabled2)
 	}
 
 	return nil, nil

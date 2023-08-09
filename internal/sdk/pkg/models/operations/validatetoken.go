@@ -13,8 +13,8 @@ type ValidateTokenResponse struct {
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 	// tokenUserSchema
 	TokenUserSchema *shared.TokenUserSchema
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateToken415Response *shared.ValidateToken415Response
 }
