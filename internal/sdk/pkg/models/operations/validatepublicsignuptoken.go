@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type ValidatePublicSignupTokenRequest struct {
@@ -16,5 +16,5 @@ type ValidatePublicSignupTokenResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	ValidatePublicSignupToken400Response *shared.ValidatePublicSignupToken400Response
+	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
 }

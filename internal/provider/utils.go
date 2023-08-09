@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"reflect"
-	tfReflect "unleash/internal/provider/reflect"
+	tfReflect "terraform/internal/provider/reflect"
 )
 
 func debugResponse(response *http.Response) string {

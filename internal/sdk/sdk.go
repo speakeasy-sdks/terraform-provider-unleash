@@ -5,14 +5,14 @@ package sdk
 import (
 	"fmt"
 	"net/http"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
 )
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"/",
+	"https://app.unleash-hosted.com/hosted",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -58,8 +58,8 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// UnleashServerAPI
-type UnleashServerAPI struct {
+// SDK
+type SDK struct {
 	// APITokens - Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
 	APITokens *apiTokens
 	// Addons - Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
@@ -100,6 +100,10 @@ type UnleashServerAPI struct {
 	Projects *projects
 	// PublicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
 	PublicSignupTokens *publicSignupTokens
+	// Segments - Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
+	Segments *segments
+	// ServiceAccounts - Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
+	ServiceAccounts *serviceAccounts
 	// Strategies - Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
 	Strategies *strategies
 	// Tags - Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
@@ -116,18 +120,18 @@ type UnleashServerAPI struct {
 	sdkConfiguration sdkConfiguration
 }
 
-type SDKOption func(*UnleashServerAPI)
+type SDKOption func(*SDK)
 
 // WithServerURL allows the overriding of the default server URL
 func WithServerURL(serverURL string) SDKOption {
-	return func(sdk *UnleashServerAPI) {
+	return func(sdk *SDK) {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 }
 
 // WithTemplatedServerURL allows the overriding of the default server URL with a templated URL populated with the provided parameters
 func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
-	return func(sdk *UnleashServerAPI) {
+	return func(sdk *SDK) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
 		}
@@ -138,7 +142,7 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 
 // WithServerIndex allows the overriding of the default server by index
 func WithServerIndex(serverIndex int) SDKOption {
-	return func(sdk *UnleashServerAPI) {
+	return func(sdk *SDK) {
 		if serverIndex < 0 || serverIndex >= len(ServerList) {
 			panic(fmt.Errorf("server index %d out of range", serverIndex))
 		}
@@ -149,25 +153,25 @@ func WithServerIndex(serverIndex int) SDKOption {
 
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
-	return func(sdk *UnleashServerAPI) {
+	return func(sdk *SDK) {
 		sdk.sdkConfiguration.DefaultClient = client
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
-	return func(sdk *UnleashServerAPI) {
+	return func(sdk *SDK) {
 		sdk.sdkConfiguration.Security = &security
 	}
 }
 
 // New creates a new instance of the SDK with the provided options
-func New(opts ...SDKOption) *UnleashServerAPI {
-	sdk := &UnleashServerAPI{
+func New(opts ...SDKOption) *SDK {
+	sdk := &SDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "5.3.3",
-			SDKVersion:        "1.0.1",
+			SDKVersion:        "0.0.1",
 			GenVersion:        "2.83.3",
 		},
 	}
@@ -226,6 +230,10 @@ func New(opts ...SDKOption) *UnleashServerAPI {
 	sdk.Projects = newProjects(sdk.sdkConfiguration)
 
 	sdk.PublicSignupTokens = newPublicSignupTokens(sdk.sdkConfiguration)
+
+	sdk.Segments = newSegments(sdk.sdkConfiguration)
+
+	sdk.ServiceAccounts = newServiceAccounts(sdk.sdkConfiguration)
 
 	sdk.Strategies = newStrategies(sdk.sdkConfiguration)
 

@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // frontendAPI - API for connecting client-side (frontend) applications to Unleash.
@@ -86,12 +86,12 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 
@@ -150,12 +150,12 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
@@ -170,12 +170,12 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 
@@ -234,12 +234,12 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
@@ -254,12 +254,12 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 

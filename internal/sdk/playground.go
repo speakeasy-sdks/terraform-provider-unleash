@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // playground - Evaluate an Unleash context against your feature toggles.
@@ -86,12 +86,12 @@ func (s *playground) GetPlayground(ctx context.Context, request shared.Playgroun
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {

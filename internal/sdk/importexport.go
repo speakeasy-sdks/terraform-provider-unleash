@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // importExport - [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
@@ -145,12 +145,12 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 
@@ -265,12 +265,12 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 
@@ -338,12 +338,12 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SendResetPasswordEmail404Response
+			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404Response = out
+			res.GetGroup404Response = out
 		}
 	}
 

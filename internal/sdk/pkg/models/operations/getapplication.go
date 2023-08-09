@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type GetApplicationRequest struct {
@@ -18,5 +18,5 @@ type GetApplicationResponse struct {
 	// applicationSchema
 	ApplicationSchema *shared.ApplicationSchema
 	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
+	GetGroup404Response *shared.GetGroup404Response
 }

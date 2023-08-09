@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type RemoveFavoriteProjectRequest struct {
@@ -15,8 +15,8 @@ type RemoveFavoriteProjectResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The requested resource was not found.
+	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
-	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
 }

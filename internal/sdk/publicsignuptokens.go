@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // publicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
@@ -89,22 +89,22 @@ func (s *publicSignupTokens) AddPublicSignupTokenUser(ctx context.Context, reque
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AddPublicSignupTokenUser409Response
+			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AddPublicSignupTokenUser409Response = out
+			res.CreateGroup409Response = out
 		}
 	}
 
@@ -174,12 +174,12 @@ func (s *publicSignupTokens) CreatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
@@ -194,12 +194,12 @@ func (s *publicSignupTokens) CreatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ChangePassword403Response
+			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword403Response = out
+			res.GetGoogleSettings403Response = out
 		}
 	}
 
@@ -322,12 +322,12 @@ func (s *publicSignupTokens) GetPublicSignupToken(ctx context.Context, request o
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ChangePassword403Response
+			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword403Response = out
+			res.GetGoogleSettings403Response = out
 		}
 	}
 
@@ -398,12 +398,12 @@ func (s *publicSignupTokens) UpdatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
@@ -418,12 +418,12 @@ func (s *publicSignupTokens) UpdatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ChangePassword403Response
+			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword403Response = out
+			res.GetGoogleSettings403Response = out
 		}
 	}
 
@@ -474,12 +474,12 @@ func (s *publicSignupTokens) ValidatePublicSignupToken(ctx context.Context, requ
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidatePublicSignupToken400Response
+			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400Response = out
+			res.GetGoogleSettings400Response = out
 		}
 	}
 

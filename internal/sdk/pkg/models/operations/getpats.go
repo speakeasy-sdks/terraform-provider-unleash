@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type GetPatsResponse struct {
@@ -12,11 +12,11 @@ type GetPatsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangePassword403Response *shared.ChangePassword403Response
+	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	// The requested resource was not found.
+	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	Login401Response *shared.Login401Response
 	// patsSchema
 	PatsSchema *shared.PatsSchema
-	// The requested resource was not found.
-	SendResetPasswordEmail404Response *shared.SendResetPasswordEmail404Response
 }

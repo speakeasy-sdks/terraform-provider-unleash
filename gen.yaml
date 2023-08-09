@@ -1,27 +1,14 @@
 configVersion: 1.0.0
-management:
-  docChecksum: 53d38d0ce7a5ede73ca9a719b0b83ecb
-  docVersion: 5.3.3
-  speakeasyVersion: 1.70.2
-  generationVersion: 2.83.3
 generation:
-  comments:
-    disableComments: false
-    omitDescriptionIfSummaryPresent: false
-  baseServerURL: ""
-  sdkClassName: unleash-server-api
+  sdkClassName: SDK
   singleTagPerOp: false
-  tagNamespacingDisabled: false
 features:
-  version: ""
   terraform:
     core: 2.83.0
     deprecations: 2.81.1
     globalSecurity: 2.81.1
     globalServerURLs: 2.81.1
-    ignores: 2.81.1
-    includes: 2.81.1
 terraform:
-  version: 1.0.1
-  author: speakeasy-sdks
-  packageName: unleash
+  version: 0.0.1
+  author: speakeasy
+  packageName: terraform
