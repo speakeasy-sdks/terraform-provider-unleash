@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type GetContextFieldsResponse struct {

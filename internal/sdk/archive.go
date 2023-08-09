@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // archive - Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).

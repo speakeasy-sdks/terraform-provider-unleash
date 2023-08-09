@@ -4,8 +4,8 @@ package provider
 
 import (
 	"context"
-	"unleash/internal/sdk"
-	"unleash/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk"
+	"terraform/internal/sdk/pkg/models/shared"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
@@ -14,27 +14,27 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-var _ provider.Provider = &UnleashProvider{}
+var _ provider.Provider = &TerraformProvider{}
 
-type UnleashProvider struct {
+type TerraformProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
 }
 
-// UnleashProviderModel describes the provider data model.
-type UnleashProviderModel struct {
+// TerraformProviderModel describes the provider data model.
+type TerraformProviderModel struct {
 	ServerURL types.String `tfsdk:"server_url"`
 	APIKey    types.String `tfsdk:"api_key"`
 }
 
-func (p *UnleashProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "unleash"
+func (p *TerraformProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "terraform"
 	resp.Version = p.version
 }
 
-func (p *UnleashProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *TerraformProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
@@ -50,8 +50,8 @@ func (p *UnleashProvider) Schema(ctx context.Context, req provider.SchemaRequest
 	}
 }
 
-func (p *UnleashProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data UnleashProviderModel
+func (p *TerraformProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data TerraformProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 
@@ -80,17 +80,17 @@ func (p *UnleashProvider) Configure(ctx context.Context, req provider.ConfigureR
 	resp.ResourceData = client
 }
 
-func (p *UnleashProvider) Resources(ctx context.Context) []func() resource.Resource {
+func (p *TerraformProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{}
 }
 
-func (p *UnleashProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
+func (p *TerraformProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{}
 }
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &UnleashProvider{
+		return &TerraformProvider{
 			version: version,
 		}
 	}

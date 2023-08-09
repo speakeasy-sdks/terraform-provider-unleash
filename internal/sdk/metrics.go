@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // metrics - Register, read, or delete metrics recorded by Unleash.

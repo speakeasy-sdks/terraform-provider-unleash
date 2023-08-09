@@ -1,4 +1,4 @@
-module unleash
+module terraform
 
 go 1.18
 

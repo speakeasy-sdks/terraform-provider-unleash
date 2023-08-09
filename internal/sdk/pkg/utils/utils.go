@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"unleash/internal/sdk/pkg/types"
+	"terraform/internal/sdk/pkg/types"
 )
 
 const (

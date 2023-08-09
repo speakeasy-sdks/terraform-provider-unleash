@@ -9,9 +9,9 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"unleash/internal/sdk/pkg/models/operations"
-	"unleash/internal/sdk/pkg/models/shared"
-	"unleash/internal/sdk/pkg/utils"
+	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/shared"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // uContext - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.

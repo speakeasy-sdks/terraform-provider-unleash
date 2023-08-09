@@ -15,14 +15,14 @@ description: |-
 ```terraform
 terraform {
   required_providers {
-    unleash = {
-      source  = "speakeasy-sdks/unleash"
-      version = "1.0.1"
+    terraform = {
+      source  = "speakeasy/terraform"
+      version = "0.0.1"
     }
   }
 }
 
-provider "unleash" {
+provider "terraform" {
   # Configuration options
 }
 ```
