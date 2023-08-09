@@ -5287,6 +5287,7 @@ paths:
     post:
       description: Creates a new user with the given root role.
       operationId: createUser
+      x-speakeasy-entity-operation: User#create
       requestBody:
         content:
           application/json:
@@ -5418,6 +5419,7 @@ paths:
     delete:
       description: Deletes the user with the given userId
       operationId: deleteUser
+      x-speakeasy-entity-operation: User#delete
       parameters:
       - explode: false
         in: path
@@ -5455,6 +5457,7 @@ paths:
     get:
       description: Will return a single user by id
       operationId: getUser
+      x-speakeasy-entity-operation: User#get
       parameters:
       - explode: false
         in: path
@@ -5495,6 +5498,7 @@ paths:
     put:
       description: Only the explicitly specified fields get updated.
       operationId: updateUser
+      x-speakeasy-entity-operation: User#update
       parameters:
       - explode: false
         in: path
@@ -5647,6 +5651,7 @@ paths:
       - Admin UI
   /api/admin/projects/{projectId}/features/{featureName}/environments/{environment}:
     get:
+      x-speakeasy-entity-operation: FeatureEnvironment#get
       description: Information about the enablement status and strategies for a feature
         toggle in specified environment.
       operationId: getFeatureEnvironment
@@ -12527,6 +12532,7 @@ components:
       type: object
     createUserSchema:
       additionalProperties: false
+      x-speakeasy-entity: User
       description: "The payload must contain at least one of the name and email properties,\
         \ though which one is up to you. For the user to be able to log in to the\
         \ system, the user must have an email."
@@ -12549,6 +12555,7 @@ components:
           example: k!5As3HquUrQ
           type: string
         rootRole:
+          x-speakeasy-ignore: true
           $ref: '#/components/schemas/createUserSchema_rootRole'
         sendEmail:
           description: Whether to send a welcome email with a login link to the user
@@ -13455,6 +13462,7 @@ components:
       - "yes"
       type: object
     featureEnvironmentSchema:
+      x-speakeasy-entity: FeatureEnvironment
       additionalProperties: false
       description: A detailed description of the feature environment
       example:
@@ -20497,6 +20505,7 @@ components:
       type: object
     updateUserSchema:
       additionalProperties: true
+      x-speakeasy-entity: User
       description: All fields that can be directly changed for the user
       properties:
         email:
@@ -20631,6 +20640,7 @@ components:
     userSchema:
       additionalProperties: false
       description: An Unleash user
+      x-speakeasy-entity: User
       example:
         loginAttempts: 3
         inviteLink: http://localhost:4242/invite-link/some-secret
@@ -20691,6 +20701,7 @@ components:
           example: false
           type: boolean
         rootRole:
+          x-speakeasy-ignore: true
           description: "Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles)\
             \ this user is assigned"
           example: 1
@@ -20722,6 +20733,7 @@ components:
     createUserResponseSchema:
       additionalProperties: false
       description: An Unleash user after creation
+      x-speakeasy-entity: User
       example:
         loginAttempts: 3
         inviteLink: http://localhost:4242/invite-link/some-secret

@@ -81,11 +81,16 @@ func (p *TerraformProvider) Configure(ctx context.Context, req provider.Configur
 }
 
 func (p *TerraformProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return []func() resource.Resource{}
+	return []func() resource.Resource{
+		NewUserResource,
+	}
 }
 
 func (p *TerraformProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return []func() datasource.DataSource{
+		NewFeatureEnvironmentDataSource,
+		NewUserDataSource,
+	}
 }
 
 func New(version string) func() provider.Provider {

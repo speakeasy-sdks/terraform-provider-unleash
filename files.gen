@@ -27,6 +27,13 @@ internal/sdk/unstable.go
 internal/sdk/users.go
 internal/sdk/ucontext.go
 internal/sdk/sdk.go
+internal/provider/type_create_user_schema_root_role.go
+internal/provider/type_constraint_schema.go
+internal/provider/type_strategy_variant_schema_payload.go
+internal/provider/type_strategy_variant_schema.go
+internal/provider/type_feature_strategy_schema.go
+internal/provider/type_override_schema.go
+internal/provider/type_variant_schema.go
 examples/README.md
 go.mod
 go.sum
@@ -540,3 +547,12 @@ internal/sdk/pkg/models/shared/security.go
 USAGE.md
 internal/provider/provider.go
 examples/provider/provider.tf
+internal/provider/user_resource.go
+internal/provider/user_resource_sdk.go
+examples/resources/terraform_user/resource.tf
+internal/provider/featureenvironment_data_source.go
+internal/provider/featureenvironment_data_source_sdk.go
+examples/data-sources/terraform_feature_environment/data-source.tf
+internal/provider/user_data_source.go
+internal/provider/user_data_source_sdk.go
+examples/data-sources/terraform_user/data-source.tf
