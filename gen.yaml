@@ -1,8 +1,14 @@
 configVersion: 1.0.0
 generation:
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
   sdkClassName: SDK
   singleTagPerOp: false
+  tagNamespacingDisabled: false
 features:
+  version: ""
   terraform:
     core: 2.83.0
     deprecations: 2.81.1
