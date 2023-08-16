@@ -39,7 +39,10 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -79,7 +83,7 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -89,7 +93,7 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateAddon413Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateAddon413Response = out
@@ -99,7 +103,7 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -123,7 +127,10 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -146,6 +153,7 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -162,7 +170,7 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidatedEdgeTokensSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ValidatedEdgeTokensSchema = out
@@ -172,7 +180,7 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -182,7 +190,7 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateAddon413Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateAddon413Response = out
@@ -192,7 +200,7 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

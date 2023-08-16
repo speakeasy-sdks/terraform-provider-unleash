@@ -39,7 +39,10 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -80,7 +84,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ServiceAccountSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ServiceAccountSchema = out
@@ -90,7 +94,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -100,7 +104,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -110,7 +114,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -120,7 +124,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -130,7 +134,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -157,7 +161,10 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -180,6 +187,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -198,7 +206,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PatSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.PatSchema = out
@@ -208,7 +216,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -218,7 +226,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -228,7 +236,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -238,7 +246,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -248,7 +256,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -305,7 +313,7 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -315,7 +323,7 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -325,7 +333,7 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -382,7 +390,7 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -392,7 +400,7 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -402,7 +410,7 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -458,7 +466,7 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PatsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.PatsSchema = out
@@ -468,7 +476,7 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -478,7 +486,7 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -488,7 +496,7 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -541,7 +549,7 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ServiceAccountsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ServiceAccountsSchema = out
@@ -551,7 +559,7 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -561,7 +569,7 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -588,7 +596,10 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -611,6 +622,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -627,7 +639,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ServiceAccountSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ServiceAccountSchema = out
@@ -637,7 +649,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -647,7 +659,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -657,7 +669,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -667,7 +679,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -677,7 +689,7 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

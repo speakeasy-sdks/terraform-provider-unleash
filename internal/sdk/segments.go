@@ -39,7 +39,10 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -80,7 +84,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AdminSegmentSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AdminSegmentSchema = out
@@ -90,7 +94,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -100,7 +104,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -110,7 +114,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -120,7 +124,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -130,7 +134,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -186,7 +190,7 @@ func (s *segments) GetSegment(ctx context.Context, request operations.GetSegment
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AdminSegmentSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AdminSegmentSchema = out
@@ -196,7 +200,7 @@ func (s *segments) GetSegment(ctx context.Context, request operations.GetSegment
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -249,7 +253,7 @@ func (s *segments) GetSegments(ctx context.Context) (*operations.GetSegmentsResp
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SegmentsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SegmentsSchema = out
@@ -305,7 +309,7 @@ func (s *segments) GetSegmentsByStrategyID(ctx context.Context, request operatio
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SegmentsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SegmentsSchema = out
@@ -361,7 +365,7 @@ func (s *segments) GetStrategiesBySegmentID(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AdminStrategiesSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AdminStrategiesSchema = out
@@ -418,7 +422,7 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -428,7 +432,7 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -438,7 +442,7 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -495,7 +499,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -505,7 +509,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -515,7 +519,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -525,7 +529,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -535,7 +539,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -559,7 +563,10 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -582,6 +589,7 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -599,7 +607,7 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -609,7 +617,7 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -619,7 +627,7 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -629,7 +637,7 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

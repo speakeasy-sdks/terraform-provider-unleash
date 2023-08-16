@@ -72,7 +72,7 @@ func (s *archive) DeleteFeature(ctx context.Context, request operations.DeleteFe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -82,7 +82,7 @@ func (s *archive) DeleteFeature(ctx context.Context, request operations.DeleteFe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -109,7 +109,10 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -132,6 +135,7 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -149,7 +153,7 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -159,7 +163,7 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -169,7 +173,7 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -223,7 +227,7 @@ func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchi
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeaturesSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeaturesSchema = out
@@ -233,7 +237,7 @@ func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchi
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -243,7 +247,7 @@ func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchi
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -300,7 +304,7 @@ func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request op
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeaturesSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeaturesSchema = out
@@ -310,7 +314,7 @@ func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request op
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -320,7 +324,7 @@ func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request op
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -377,7 +381,7 @@ func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -387,7 +391,7 @@ func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -397,7 +401,7 @@ func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -424,7 +428,10 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -447,6 +454,7 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -464,7 +472,7 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -474,7 +482,7 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -484,7 +492,7 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out

@@ -68,7 +68,7 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ProxyFeaturesSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ProxyFeaturesSchema = out
@@ -78,7 +78,7 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -88,7 +88,7 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -112,7 +112,10 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -135,6 +138,7 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -152,7 +156,7 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -162,7 +166,7 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -172,7 +176,7 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -196,7 +200,10 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -219,6 +226,7 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -236,7 +244,7 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -246,7 +254,7 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -256,7 +264,7 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out

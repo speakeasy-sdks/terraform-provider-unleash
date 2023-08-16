@@ -42,7 +42,10 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -65,6 +68,7 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -82,7 +86,7 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -92,7 +96,7 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -102,7 +106,7 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -159,7 +163,7 @@ func (s *metrics) DeleteApplication(ctx context.Context, request operations.Dele
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -169,7 +173,7 @@ func (s *metrics) DeleteApplication(ctx context.Context, request operations.Dele
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -225,7 +229,7 @@ func (s *metrics) GetApplication(ctx context.Context, request operations.GetAppl
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ApplicationSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ApplicationSchema = out
@@ -235,7 +239,7 @@ func (s *metrics) GetApplication(ctx context.Context, request operations.GetAppl
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -288,7 +292,7 @@ func (s *metrics) GetApplications(ctx context.Context) (*operations.GetApplicati
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ApplicationsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ApplicationsSchema = out
@@ -344,7 +348,7 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeatureUsageSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeatureUsageSchema = out
@@ -354,7 +358,7 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -364,7 +368,7 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -374,7 +378,7 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -429,7 +433,7 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeatureMetricsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeatureMetricsSchema = out
@@ -439,7 +443,7 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -449,7 +453,7 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -459,7 +463,7 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -512,7 +516,7 @@ func (s *metrics) GetRequestsPerSecond(ctx context.Context) (*operations.GetRequ
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.RequestsPerSecondSegmentedSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.RequestsPerSecondSegmentedSchema = out

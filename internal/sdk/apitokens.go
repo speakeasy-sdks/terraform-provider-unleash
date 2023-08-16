@@ -39,7 +39,10 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -80,7 +84,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.APITokenSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.APITokenSchema = out
@@ -90,7 +94,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -100,7 +104,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -110,7 +114,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -167,7 +171,7 @@ func (s *apiTokens) DeleteAPIToken(ctx context.Context, request operations.Delet
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -177,7 +181,7 @@ func (s *apiTokens) DeleteAPIToken(ctx context.Context, request operations.Delet
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -230,7 +234,7 @@ func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPIT
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.APITokensSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.APITokensSchema = out
@@ -240,7 +244,7 @@ func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPIT
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -250,7 +254,7 @@ func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPIT
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -277,7 +281,10 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -300,6 +307,7 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -317,7 +325,7 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -327,7 +335,7 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -337,7 +345,7 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

@@ -74,7 +74,7 @@ func (s *importExport) Export(ctx context.Context, request operations.ExportRequ
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.StateSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.StateSchema = out
@@ -98,7 +98,10 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -121,6 +124,7 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -137,7 +141,7 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ExportResultSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ExportResultSchema = out
@@ -147,7 +151,7 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -173,7 +177,10 @@ func (s *importExport) Import(ctx context.Context, request shared.StateSchema) (
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -196,6 +203,7 @@ func (s *importExport) Import(ctx context.Context, request shared.StateSchema) (
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -227,7 +235,10 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -250,6 +261,7 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -267,7 +279,7 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -291,7 +303,10 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -314,6 +329,7 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -330,7 +346,7 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ImportTogglesValidateSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ImportTogglesValidateSchema = out
@@ -340,7 +356,7 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out

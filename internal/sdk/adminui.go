@@ -39,7 +39,10 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -78,7 +82,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeedbackResponseSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeedbackResponseSchema = out
@@ -88,7 +92,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -98,7 +102,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -108,7 +112,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -161,7 +165,7 @@ func (s *adminUI) GetUIConfig(ctx context.Context) (*operations.GetUIConfigRespo
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.UIConfigSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.UIConfigSchema = out
@@ -185,7 +189,10 @@ func (s *adminUI) SetUIConfig(ctx context.Context, request shared.SetUIConfigSch
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -208,6 +215,7 @@ func (s *adminUI) SetUIConfig(ctx context.Context, request shared.SetUIConfigSch
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -242,7 +250,10 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -265,6 +276,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -281,7 +293,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeedbackResponseSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeedbackResponseSchema = out
@@ -291,7 +303,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -301,7 +313,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -311,7 +323,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -367,7 +379,7 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SplashResponseSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SplashResponseSchema = out
@@ -377,7 +389,7 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -387,7 +399,7 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -397,7 +409,7 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -407,7 +419,7 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

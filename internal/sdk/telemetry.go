@@ -68,7 +68,7 @@ func (s *telemetry) GetTelemetrySettings(ctx context.Context) (*operations.GetTe
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TelemetrySettingsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.TelemetrySettingsSchema = out

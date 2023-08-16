@@ -68,7 +68,7 @@ func (s *client) GetAllClientFeatures(ctx context.Context) (*operations.GetAllCl
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ClientFeaturesSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ClientFeaturesSchema = out
@@ -124,7 +124,7 @@ func (s *client) GetClientFeature(ctx context.Context, request operations.GetCli
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ClientFeatureSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ClientFeatureSchema = out
@@ -148,7 +148,10 @@ func (s *client) RegisterClientApplication(ctx context.Context, request shared.C
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -171,6 +174,7 @@ func (s *client) RegisterClientApplication(ctx context.Context, request shared.C
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -202,7 +206,10 @@ func (s *client) RegisterClientMetrics(ctx context.Context, request shared.Clien
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -225,6 +232,7 @@ func (s *client) RegisterClientMetrics(ctx context.Context, request shared.Clien
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -242,7 +250,7 @@ func (s *client) RegisterClientMetrics(ctx context.Context, request shared.Clien
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out

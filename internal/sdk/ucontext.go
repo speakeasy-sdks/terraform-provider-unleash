@@ -39,7 +39,10 @@ func (s *uContext) CreateContextField(ctx context.Context, request shared.Upsert
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *uContext) CreateContextField(ctx context.Context, request shared.Upsert
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -80,7 +84,7 @@ func (s *uContext) CreateContextField(ctx context.Context, request shared.Upsert
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ContextFieldSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ContextFieldSchema = out
@@ -183,7 +187,7 @@ func (s *uContext) GetContextField(ctx context.Context, request operations.GetCo
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ContextFieldSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ContextFieldSchema = out
@@ -236,7 +240,7 @@ func (s *uContext) GetContextFields(ctx context.Context) (*operations.GetContext
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.ContextFieldSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.ContextFieldsSchema = out
@@ -263,7 +267,10 @@ func (s *uContext) UpdateContextField(ctx context.Context, request operations.Up
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -286,6 +293,7 @@ func (s *uContext) UpdateContextField(ctx context.Context, request operations.Up
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -317,7 +325,10 @@ func (s *uContext) Validate(ctx context.Context, request shared.NameSchema) (*op
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -340,6 +351,7 @@ func (s *uContext) Validate(ctx context.Context, request shared.NameSchema) (*op
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 

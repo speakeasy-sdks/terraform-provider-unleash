@@ -39,7 +39,10 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -78,7 +82,7 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AdvancedPlaygroundResponseSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AdvancedPlaygroundResponseSchema = out
@@ -88,7 +92,7 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -98,7 +102,7 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -151,7 +155,7 @@ func (s *unstable) GetLoginHistory(ctx context.Context) (*operations.GetLoginHis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.LoginHistorySchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.LoginHistorySchema = out
@@ -165,7 +169,7 @@ func (s *unstable) GetLoginHistory(ctx context.Context) (*operations.GetLoginHis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -175,7 +179,7 @@ func (s *unstable) GetLoginHistory(ctx context.Context) (*operations.GetLoginHis
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -228,7 +232,7 @@ func (s *unstable) GetNotifications(ctx context.Context) (*operations.GetNotific
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.NotificationsSchemaInner
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.NotificationsSchema = out
@@ -252,7 +256,10 @@ func (s *unstable) MarkNotificationsAsRead(ctx context.Context, request shared.M
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -275,6 +282,7 @@ func (s *unstable) MarkNotificationsAsRead(ctx context.Context, request shared.M
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -311,7 +319,10 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -334,6 +345,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -350,7 +362,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.FeatureTypeSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.FeatureTypeSchema = out
@@ -360,7 +372,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -370,7 +382,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -380,7 +392,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -390,7 +402,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -400,7 +412,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateGroup409Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateGroup409Response = out
@@ -410,7 +422,7 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

@@ -39,7 +39,10 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -62,6 +65,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -78,7 +82,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AddonSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AddonSchema = out
@@ -88,7 +92,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -98,7 +102,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -108,7 +112,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -118,7 +122,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateAddon413Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateAddon413Response = out
@@ -128,7 +132,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out
@@ -185,7 +189,7 @@ func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -195,7 +199,7 @@ func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -205,7 +209,7 @@ func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -261,7 +265,7 @@ func (s *addons) GetAddon(ctx context.Context, request operations.GetAddonReques
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AddonSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AddonSchema = out
@@ -271,7 +275,7 @@ func (s *addons) GetAddon(ctx context.Context, request operations.GetAddonReques
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -324,7 +328,7 @@ func (s *addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, 
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AddonsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AddonsSchema = out
@@ -334,7 +338,7 @@ func (s *addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, 
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -363,7 +367,10 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		return nil, fmt.Errorf("request body is required")
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -386,6 +393,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -402,7 +410,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.AddonSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.AddonSchema = out
@@ -412,7 +420,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings400Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings400Response = out
@@ -422,7 +430,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Login401Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Login401Response = out
@@ -432,7 +440,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGoogleSettings403Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGoogleSettings403Response = out
@@ -442,7 +450,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.GetGroup404Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.GetGroup404Response = out
@@ -452,7 +460,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateAddon413Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.CreateAddon413Response = out
@@ -462,7 +470,7 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.SetGoogleSettings415Response
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.SetGoogleSettings415Response = out

@@ -204,6 +204,9 @@ func (r *UserResource) Create(ctx context.Context, req resource.CreateRequest, r
 	res, err := r.client.Users.CreateUser(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
 		return
 	}
 	if res == nil {
@@ -249,6 +252,9 @@ func (r *UserResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 	res, err := r.client.Users.GetUser(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
 		return
 	}
 	if res == nil {
@@ -285,6 +291,9 @@ func (r *UserResource) Update(ctx context.Context, req resource.UpdateRequest, r
 	res, err := r.client.Users.UpdateUser(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
 		return
 	}
 	if res == nil {
@@ -330,6 +339,9 @@ func (r *UserResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 	res, err := r.client.Users.DeleteUser(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
 		return
 	}
 	if res == nil {

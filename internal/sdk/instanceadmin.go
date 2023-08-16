@@ -70,7 +70,7 @@ func (s *instanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InstanceAdminStatsSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.InstanceAdminStatsSchema = out
