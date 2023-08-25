@@ -10,7 +10,7 @@ terraform {
   required_providers {
     terraform = {
       source  = "speakeasy/terraform"
-      version = "0.2.2"
+      version = "0.2.3"
     }
   }
 }
