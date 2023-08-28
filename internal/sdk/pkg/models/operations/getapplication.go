@@ -11,6 +11,16 @@ type GetApplicationRequest struct {
 	AppName string `pathParam:"style=simple,explode=false,name=appName"`
 }
 
+// GetApplication404ApplicationJSON - The requested resource was not found.
+type GetApplication404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetApplicationResponse struct {
 	ContentType string
 	StatusCode  int
@@ -18,5 +28,5 @@ type GetApplicationResponse struct {
 	// applicationSchema
 	ApplicationSchema *shared.ApplicationSchema
 	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	GetApplication404ApplicationJSONObject *GetApplication404ApplicationJSON
 }

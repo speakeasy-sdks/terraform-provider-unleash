@@ -2,8 +2,8 @@
 
 package shared
 
-// SetStrategySortOrderSchemaInner - A strategy with its new sort order
-type SetStrategySortOrderSchemaInner struct {
+// SetStrategySortOrderSchema - A strategy with its new sort order
+type SetStrategySortOrderSchema struct {
 	// The ID of the strategy
 	ID string `json:"id"`
 	// The new sort order of the strategy

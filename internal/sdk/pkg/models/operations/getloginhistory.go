@@ -7,16 +7,36 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetLoginHistory404ApplicationJSON - The requested resource was not found.
+type GetLoginHistory404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetLoginHistory401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetLoginHistory401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetLoginHistoryResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// loginHistorySchema
 	GetLoginHistory200TextCsvString *string
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	GetLoginHistory401ApplicationJSONObject *GetLoginHistory401ApplicationJSON
+	// The requested resource was not found.
+	GetLoginHistory404ApplicationJSONObject *GetLoginHistory404ApplicationJSON
 	// loginHistorySchema
 	LoginHistorySchema *shared.LoginHistorySchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
 }

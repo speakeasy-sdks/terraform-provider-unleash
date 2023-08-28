@@ -13,6 +13,36 @@ type UpdateFeedbackRequest struct {
 	ID                   string                      `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// UpdateFeedback415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateFeedback415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeedback401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateFeedback401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeedback400ApplicationJSON - The request data does not match what we expect.
+type UpdateFeedback400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateFeedbackResponse struct {
 	ContentType string
 	StatusCode  int
@@ -20,9 +50,9 @@ type UpdateFeedbackResponse struct {
 	// feedbackResponseSchema
 	FeedbackResponseSchema *shared.FeedbackResponseSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	UpdateFeedback400ApplicationJSONObject *UpdateFeedback400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateFeedback401ApplicationJSONObject *UpdateFeedback401ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	UpdateFeedback415ApplicationJSONObject *UpdateFeedback415ApplicationJSON
 }

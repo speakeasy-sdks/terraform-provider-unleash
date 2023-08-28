@@ -3,8 +3,116 @@
 package shared
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
+	"fmt"
 )
+
+// UpdateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
+type UpdateUserSchemaRootRole2 string
+
+const (
+	UpdateUserSchemaRootRole2Admin  UpdateUserSchemaRootRole2 = "Admin"
+	UpdateUserSchemaRootRole2Editor UpdateUserSchemaRootRole2 = "Editor"
+	UpdateUserSchemaRootRole2Viewer UpdateUserSchemaRootRole2 = "Viewer"
+	UpdateUserSchemaRootRole2Owner  UpdateUserSchemaRootRole2 = "Owner"
+	UpdateUserSchemaRootRole2Member UpdateUserSchemaRootRole2 = "Member"
+)
+
+func (e UpdateUserSchemaRootRole2) ToPointer() *UpdateUserSchemaRootRole2 {
+	return &e
+}
+
+func (e *UpdateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Admin":
+		fallthrough
+	case "Editor":
+		fallthrough
+	case "Viewer":
+		fallthrough
+	case "Owner":
+		fallthrough
+	case "Member":
+		*e = UpdateUserSchemaRootRole2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateUserSchemaRootRole2: %v", v)
+	}
+}
+
+type UpdateUserSchemaRootRoleType string
+
+const (
+	UpdateUserSchemaRootRoleTypeInteger                   UpdateUserSchemaRootRoleType = "integer"
+	UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2 UpdateUserSchemaRootRoleType = "updateUserSchema_rootRole_2"
+)
+
+type UpdateUserSchemaRootRole struct {
+	Integer                   *int64
+	UpdateUserSchemaRootRole2 *UpdateUserSchemaRootRole2
+
+	Type UpdateUserSchemaRootRoleType
+}
+
+func CreateUpdateUserSchemaRootRoleInteger(integer int64) UpdateUserSchemaRootRole {
+	typ := UpdateUserSchemaRootRoleTypeInteger
+
+	return UpdateUserSchemaRootRole{
+		Integer: &integer,
+		Type:    typ,
+	}
+}
+
+func CreateUpdateUserSchemaRootRoleUpdateUserSchemaRootRole2(updateUserSchemaRootRole2 UpdateUserSchemaRootRole2) UpdateUserSchemaRootRole {
+	typ := UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2
+
+	return UpdateUserSchemaRootRole{
+		UpdateUserSchemaRootRole2: &updateUserSchemaRootRole2,
+		Type:                      typ,
+	}
+}
+
+func (u *UpdateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	integer := new(int64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&integer); err == nil {
+		u.Integer = integer
+		u.Type = UpdateUserSchemaRootRoleTypeInteger
+		return nil
+	}
+
+	updateUserSchemaRootRole2 := new(UpdateUserSchemaRootRole2)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&updateUserSchemaRootRole2); err == nil {
+		u.UpdateUserSchemaRootRole2 = updateUserSchemaRootRole2
+		u.Type = UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u UpdateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
+	if u.Integer != nil {
+		return json.Marshal(u.Integer)
+	}
+
+	if u.UpdateUserSchemaRootRole2 != nil {
+		return json.Marshal(u.UpdateUserSchemaRootRole2)
+	}
+
+	return nil, nil
+}
 
 // UpdateUserSchema - All fields that can be directly changed for the user
 type UpdateUserSchema struct {
@@ -13,7 +121,7 @@ type UpdateUserSchema struct {
 	// The user's name (not the user's username).
 	Name *string `json:"name,omitempty"`
 	// The role to assign to the user. Can be either the role's ID or its unique name.
-	RootRole *CreateUserSchemaRootRole `json:"rootRole,omitempty"`
+	RootRole *UpdateUserSchemaRootRole `json:"rootRole,omitempty"`
 
 	AdditionalProperties interface{} `json:"-"`
 }

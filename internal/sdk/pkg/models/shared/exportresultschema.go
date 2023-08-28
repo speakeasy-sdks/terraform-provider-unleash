@@ -2,6 +2,11 @@
 
 package shared
 
+type ExportResultSchemaSegments struct {
+	ID   float64 `json:"id"`
+	Name *string `json:"name,omitempty"`
+}
+
 // ExportResultSchema - The result of the export operation, providing you with the feature toggle definitions, strategy definitions and the rest of the elements relevant to the features (tags, environments etc.)
 type ExportResultSchema struct {
 	// A list of all the context fields that are in use by any of the strategies in the `featureStrategies` list.
@@ -15,7 +20,7 @@ type ExportResultSchema struct {
 	// All the exported features.
 	Features []FeatureSchema `json:"features"`
 	// A list of all the segments that are used by the strategies in the `featureStrategies` list.
-	Segments []ExportResultSchemaSegmentsInner `json:"segments,omitempty"`
+	Segments []ExportResultSchemaSegments `json:"segments,omitempty"`
 	// A list of all of the tag types that are used in the `featureTags` list.
 	TagTypes []TagTypeSchema `json:"tagTypes"`
 }

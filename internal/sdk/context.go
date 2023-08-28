@@ -14,20 +14,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// uContext - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
-type uContext struct {
+// context - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
+type context struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUContext(sdkConfig sdkConfiguration) *uContext {
-	return &uContext{
+func newContext(sdkConfig sdkConfiguration) *context {
+	return &context{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateContextField - Create a context field
 // Endpoint that allows creation of [custom context fields](https://docs.getunleash.io/reference/unleash-context#custom-context-fields)
-func (s *uContext) CreateContextField(ctx context.Context, request shared.UpsertContextFieldSchema) (*operations.CreateContextFieldResponse, error) {
+func (s *context) CreateContextField(ctx context.Context, request shared.UpsertContextFieldSchema) (*operations.CreateContextFieldResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/context"
 
@@ -96,7 +96,7 @@ func (s *uContext) CreateContextField(ctx context.Context, request shared.Upsert
 
 // DeleteContextField - Delete an existing context field
 // Endpoint that allows deletion of a custom context field. Does not validate that context field is not in use, but since context field configuration is stored in a json blob for the strategy, existing strategies are safe.
-func (s *uContext) DeleteContextField(ctx context.Context, request operations.DeleteContextFieldRequest) (*operations.DeleteContextFieldResponse, error) {
+func (s *context) DeleteContextField(ctx context.Context, request operations.DeleteContextFieldRequest) (*operations.DeleteContextFieldResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/context/{contextField}", request, nil)
 	if err != nil {
@@ -143,7 +143,7 @@ func (s *uContext) DeleteContextField(ctx context.Context, request operations.De
 
 // GetContextField - Gets context field
 // Returns specific [context field](https://docs.getunleash.io/reference/unleash-context) identified by the name in the path
-func (s *uContext) GetContextField(ctx context.Context, request operations.GetContextFieldRequest) (*operations.GetContextFieldResponse, error) {
+func (s *context) GetContextField(ctx context.Context, request operations.GetContextFieldRequest) (*operations.GetContextFieldResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/context/{contextField}", request, nil)
 	if err != nil {
@@ -199,7 +199,7 @@ func (s *uContext) GetContextField(ctx context.Context, request operations.GetCo
 
 // GetContextFields - Gets configured context fields
 // Returns all configured [Context fields](https://docs.getunleash.io/how-to/how-to-define-custom-context-fields) that have been created.
-func (s *uContext) GetContextFields(ctx context.Context) (*operations.GetContextFieldsResponse, error) {
+func (s *context) GetContextFields(ctx context.Context) (*operations.GetContextFieldsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/context"
 
@@ -252,7 +252,7 @@ func (s *uContext) GetContextFields(ctx context.Context) (*operations.GetContext
 
 // UpdateContextField - Update an existing context field
 // Endpoint that allows updating a custom context field. Used to toggle stickiness and add/remove legal values for this context field
-func (s *uContext) UpdateContextField(ctx context.Context, request operations.UpdateContextFieldRequest) (*operations.UpdateContextFieldResponse, error) {
+func (s *context) UpdateContextField(ctx context.Context, request operations.UpdateContextFieldRequest) (*operations.UpdateContextFieldResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/context/{contextField}", request, nil)
 	if err != nil {
@@ -313,7 +313,7 @@ func (s *uContext) UpdateContextField(ctx context.Context, request operations.Up
 
 // Validate - Validate a context field
 // Check whether the provided data can be used to create a context field. If the data is not valid, ...?
-func (s *uContext) Validate(ctx context.Context, request shared.NameSchema) (*operations.ValidateResponse, error) {
+func (s *context) Validate(ctx context.Context, request shared.NameSchema) (*operations.ValidateResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/context/validate"
 

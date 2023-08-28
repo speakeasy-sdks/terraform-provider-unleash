@@ -7,12 +7,22 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetProfile401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetProfile401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetProfileResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetProfile401ApplicationJSONObject *GetProfile401ApplicationJSON
 	// profileSchema
 	ProfileSchema *shared.ProfileSchema
 }

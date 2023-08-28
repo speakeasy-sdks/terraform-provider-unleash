@@ -2,6 +2,106 @@
 
 package shared
 
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"fmt"
+)
+
+// AdvancedPlaygroundRequestSchemaProjects2 - Check toggles in all projects.
+type AdvancedPlaygroundRequestSchemaProjects2 string
+
+const (
+	AdvancedPlaygroundRequestSchemaProjects2Wildcard AdvancedPlaygroundRequestSchemaProjects2 = "*"
+)
+
+func (e AdvancedPlaygroundRequestSchemaProjects2) ToPointer() *AdvancedPlaygroundRequestSchemaProjects2 {
+	return &e
+}
+
+func (e *AdvancedPlaygroundRequestSchemaProjects2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "*":
+		*e = AdvancedPlaygroundRequestSchemaProjects2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AdvancedPlaygroundRequestSchemaProjects2: %v", v)
+	}
+}
+
+type AdvancedPlaygroundRequestSchemaProjectsType string
+
+const (
+	AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr                               AdvancedPlaygroundRequestSchemaProjectsType = "arrayOfstr"
+	AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2 AdvancedPlaygroundRequestSchemaProjectsType = "advancedPlaygroundRequestSchema_projects_2"
+)
+
+type AdvancedPlaygroundRequestSchemaProjects struct {
+	ArrayOfstr                               []string
+	AdvancedPlaygroundRequestSchemaProjects2 *AdvancedPlaygroundRequestSchemaProjects2
+
+	Type AdvancedPlaygroundRequestSchemaProjectsType
+}
+
+func CreateAdvancedPlaygroundRequestSchemaProjectsArrayOfstr(arrayOfstr []string) AdvancedPlaygroundRequestSchemaProjects {
+	typ := AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr
+
+	return AdvancedPlaygroundRequestSchemaProjects{
+		ArrayOfstr: arrayOfstr,
+		Type:       typ,
+	}
+}
+
+func CreateAdvancedPlaygroundRequestSchemaProjectsAdvancedPlaygroundRequestSchemaProjects2(advancedPlaygroundRequestSchemaProjects2 AdvancedPlaygroundRequestSchemaProjects2) AdvancedPlaygroundRequestSchemaProjects {
+	typ := AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2
+
+	return AdvancedPlaygroundRequestSchemaProjects{
+		AdvancedPlaygroundRequestSchemaProjects2: &advancedPlaygroundRequestSchemaProjects2,
+		Type:                                     typ,
+	}
+}
+
+func (u *AdvancedPlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	arrayOfstr := []string{}
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&arrayOfstr); err == nil {
+		u.ArrayOfstr = arrayOfstr
+		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr
+		return nil
+	}
+
+	advancedPlaygroundRequestSchemaProjects2 := new(AdvancedPlaygroundRequestSchemaProjects2)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&advancedPlaygroundRequestSchemaProjects2); err == nil {
+		u.AdvancedPlaygroundRequestSchemaProjects2 = advancedPlaygroundRequestSchemaProjects2
+		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u AdvancedPlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
+	if u.ArrayOfstr != nil {
+		return json.Marshal(u.ArrayOfstr)
+	}
+
+	if u.AdvancedPlaygroundRequestSchemaProjects2 != nil {
+		return json.Marshal(u.AdvancedPlaygroundRequestSchemaProjects2)
+	}
+
+	return nil, nil
+}
+
 // AdvancedPlaygroundRequestSchema - Data for the playground API to evaluate toggles in advanced mode with environment and context multi selection
 type AdvancedPlaygroundRequestSchema struct {
 	// The Unleash context as modeled in client SDKs

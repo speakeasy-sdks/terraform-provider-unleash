@@ -8,7 +8,37 @@ import (
 )
 
 type GetUserRequest struct {
-	ID int64 `pathParam:"style=simple,explode=false,name=id"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+// GetUser404ApplicationJSON - The requested resource was not found.
+type GetUser404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetUser401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetUser401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetUser400ApplicationJSON - The request data does not match what we expect.
+type GetUser400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
 }
 
 type GetUserResponse struct {
@@ -16,11 +46,11 @@ type GetUserResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	GetUser400ApplicationJSONObject *GetUser400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetUser401ApplicationJSONObject *GetUser401ApplicationJSON
+	// The requested resource was not found.
+	GetUser404ApplicationJSONObject *GetUser404ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
 }

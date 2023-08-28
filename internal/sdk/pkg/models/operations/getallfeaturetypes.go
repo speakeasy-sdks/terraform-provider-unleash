@@ -7,6 +7,16 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetAllFeatureTypes401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllFeatureTypes401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetAllFeatureTypesResponse struct {
 	ContentType string
 	StatusCode  int
@@ -14,5 +24,5 @@ type GetAllFeatureTypesResponse struct {
 	// featureTypesSchema
 	FeatureTypesSchema *shared.FeatureTypesSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetAllFeatureTypes401ApplicationJSONObject *GetAllFeatureTypes401ApplicationJSON
 }

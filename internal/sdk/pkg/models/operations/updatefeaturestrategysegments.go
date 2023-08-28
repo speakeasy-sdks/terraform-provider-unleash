@@ -7,19 +7,59 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// UpdateFeatureStrategySegments415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateFeatureStrategySegments415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategySegments403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateFeatureStrategySegments403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategySegments401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateFeatureStrategySegments401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategySegments400ApplicationJSON - The request data does not match what we expect.
+type UpdateFeatureStrategySegments400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateFeatureStrategySegmentsResponse struct {
 	ContentType string
 	Headers     map[string][]string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 	// The resource was successfully created.
 	UpdateFeatureStrategySegmentsSchema *shared.UpdateFeatureStrategySegmentsSchema
+	// The request data does not match what we expect.
+	UpdateFeatureStrategySegments400ApplicationJSONObject *UpdateFeatureStrategySegments400ApplicationJSON
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	UpdateFeatureStrategySegments401ApplicationJSONObject *UpdateFeatureStrategySegments401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateFeatureStrategySegments403ApplicationJSONObject *UpdateFeatureStrategySegments403ApplicationJSON
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	UpdateFeatureStrategySegments415ApplicationJSONObject *UpdateFeatureStrategySegments415ApplicationJSON
 }

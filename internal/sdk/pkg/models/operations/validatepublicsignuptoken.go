@@ -4,11 +4,20 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type ValidatePublicSignupTokenRequest struct {
 	Token string `pathParam:"style=simple,explode=false,name=token"`
+}
+
+// ValidatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
+type ValidatePublicSignupToken400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
 }
 
 type ValidatePublicSignupTokenResponse struct {
@@ -16,5 +25,5 @@ type ValidatePublicSignupTokenResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	ValidatePublicSignupToken400ApplicationJSONObject *ValidatePublicSignupToken400ApplicationJSON
 }

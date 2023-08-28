@@ -4,17 +4,46 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
+
+// BulkMetrics415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type BulkMetrics415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkMetrics413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type BulkMetrics413ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkMetrics400ApplicationJSON - The request data does not match what we expect.
+type BulkMetrics400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
 
 type BulkMetricsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413Response *shared.CreateAddon413Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	BulkMetrics400ApplicationJSONObject *BulkMetrics400ApplicationJSON
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	BulkMetrics413ApplicationJSONObject *BulkMetrics413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	BulkMetrics415ApplicationJSONObject *BulkMetrics415ApplicationJSON
 }

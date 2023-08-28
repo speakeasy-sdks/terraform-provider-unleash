@@ -7,15 +7,35 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// CreateEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateEnvironment401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateEnvironment400ApplicationJSON - The request data does not match what we expect.
+type CreateEnvironment400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateEnvironmentResponse struct {
 	ContentType string
 	Headers     map[string][]string
 	StatusCode  int
 	RawResponse *http.Response
+	// The request data does not match what we expect.
+	CreateEnvironment400ApplicationJSONObject *CreateEnvironment400ApplicationJSON
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	CreateEnvironment401ApplicationJSONObject *CreateEnvironment401ApplicationJSON
 	// The resource was successfully created.
 	EnvironmentSchema *shared.EnvironmentSchema
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
 }

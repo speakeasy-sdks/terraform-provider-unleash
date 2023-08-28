@@ -16,6 +16,56 @@ type UpdateFeatureStrategyRequest struct {
 	UpdateFeatureStrategySchema shared.UpdateFeatureStrategySchema `request:"mediaType=application/json"`
 }
 
+// UpdateFeatureStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateFeatureStrategy415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategy404ApplicationJSON - The requested resource was not found.
+type UpdateFeatureStrategy404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateFeatureStrategy403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateFeatureStrategy401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateFeatureStrategy400ApplicationJSON - The request data does not match what we expect.
+type UpdateFeatureStrategy400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateFeatureStrategyResponse struct {
 	ContentType string
 	StatusCode  int
@@ -23,13 +73,13 @@ type UpdateFeatureStrategyResponse struct {
 	// featureStrategySchema
 	FeatureStrategySchema *shared.FeatureStrategySchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	UpdateFeatureStrategy400ApplicationJSONObject *UpdateFeatureStrategy400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateFeatureStrategy401ApplicationJSONObject *UpdateFeatureStrategy401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateFeatureStrategy403ApplicationJSONObject *UpdateFeatureStrategy403ApplicationJSON
+	// The requested resource was not found.
+	UpdateFeatureStrategy404ApplicationJSONObject *UpdateFeatureStrategy404ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	UpdateFeatureStrategy415ApplicationJSONObject *UpdateFeatureStrategy415ApplicationJSON
 }

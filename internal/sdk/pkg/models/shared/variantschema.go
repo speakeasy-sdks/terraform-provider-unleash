@@ -7,6 +7,45 @@ import (
 	"fmt"
 )
 
+// VariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
+type VariantSchemaPayloadType string
+
+const (
+	VariantSchemaPayloadTypeJSON   VariantSchemaPayloadType = "json"
+	VariantSchemaPayloadTypeCsv    VariantSchemaPayloadType = "csv"
+	VariantSchemaPayloadTypeString VariantSchemaPayloadType = "string"
+)
+
+func (e VariantSchemaPayloadType) ToPointer() *VariantSchemaPayloadType {
+	return &e
+}
+
+func (e *VariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "json":
+		fallthrough
+	case "csv":
+		fallthrough
+	case "string":
+		*e = VariantSchemaPayloadType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for VariantSchemaPayloadType: %v", v)
+	}
+}
+
+// VariantSchemaPayload - Extra data configured for this variant
+type VariantSchemaPayload struct {
+	// The type of the value. Commonly used types are string, json and csv.
+	Type VariantSchemaPayloadType `json:"type"`
+	// The actual value of payload
+	Value string `json:"value"`
+}
+
 // VariantSchemaWeightType - Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
 type VariantSchemaWeightType string
 

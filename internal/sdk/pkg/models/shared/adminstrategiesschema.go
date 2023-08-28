@@ -2,8 +2,21 @@
 
 package shared
 
+type AdminStrategiesSchemaStrategies struct {
+	// The ID of the environment that the strategy belongs to.
+	Environment string `json:"environment"`
+	// The ID of the strategy
+	FeatureName string `json:"featureName"`
+	// The ID of the strategy
+	ID string `json:"id"`
+	// The ID of the project that the strategy belongs to.
+	ProjectID string `json:"projectId"`
+	// The name of the strategy's type.
+	StrategyName string `json:"strategyName"`
+}
+
 // AdminStrategiesSchema - A collection of strategies belonging to a specified segment.
 type AdminStrategiesSchema struct {
 	// The list of strategies
-	Strategies []AdminStrategiesSchemaStrategiesInner `json:"strategies"`
+	Strategies []AdminStrategiesSchemaStrategies `json:"strategies"`
 }

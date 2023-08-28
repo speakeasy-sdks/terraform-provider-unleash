@@ -4,11 +4,30 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type RemoveEnvironmentRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
+}
+
+// RemoveEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveEnvironment401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// RemoveEnvironment400ApplicationJSON - The request data does not match what we expect.
+type RemoveEnvironment400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
 }
 
 type RemoveEnvironmentResponse struct {
@@ -16,7 +35,7 @@ type RemoveEnvironmentResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	RemoveEnvironment400ApplicationJSONObject *RemoveEnvironment400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	RemoveEnvironment401ApplicationJSONObject *RemoveEnvironment401ApplicationJSON
 }

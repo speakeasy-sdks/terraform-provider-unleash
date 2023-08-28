@@ -7,14 +7,34 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetFrontendFeatures404ApplicationJSON - The requested resource was not found.
+type GetFrontendFeatures404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetFrontendFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFrontendFeatures401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetFrontendFeaturesResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetFrontendFeatures401ApplicationJSONObject *GetFrontendFeatures401ApplicationJSON
+	// The requested resource was not found.
+	GetFrontendFeatures404ApplicationJSONObject *GetFrontendFeatures404ApplicationJSON
 	// proxyFeaturesSchema
 	ProxyFeaturesSchema *shared.ProxyFeaturesSchema
 }

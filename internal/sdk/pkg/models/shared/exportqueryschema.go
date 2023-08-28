@@ -3,27 +3,31 @@
 package shared
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 )
 
-// ExportQuerySchema - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
-type ExportQuerySchema struct {
+// ExportQuerySchema2 - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
+type ExportQuerySchema2 struct {
 	// Whether to return a downloadable file
 	DownloadFile *bool `json:"downloadFile,omitempty"`
 	// The environment to export from
 	Environment string `json:"environment"`
+	// Selects features to export by tag. Takes precedence over the features field.
+	Tag string `json:"tag"`
 
 	AdditionalProperties interface{} `json:"-"`
 }
-type _ExportQuerySchema ExportQuerySchema
+type _ExportQuerySchema2 ExportQuerySchema2
 
-func (c *ExportQuerySchema) UnmarshalJSON(bs []byte) error {
-	data := _ExportQuerySchema{}
+func (c *ExportQuerySchema2) UnmarshalJSON(bs []byte) error {
+	data := _ExportQuerySchema2{}
 
 	if err := json.Unmarshal(bs, &data); err != nil {
 		return err
 	}
-	*c = ExportQuerySchema(data)
+	*c = ExportQuerySchema2(data)
 
 	additionalFields := make(map[string]interface{})
 
@@ -32,15 +36,16 @@ func (c *ExportQuerySchema) UnmarshalJSON(bs []byte) error {
 	}
 	delete(additionalFields, "downloadFile")
 	delete(additionalFields, "environment")
+	delete(additionalFields, "tag")
 
 	c.AdditionalProperties = additionalFields
 
 	return nil
 }
 
-func (c ExportQuerySchema) MarshalJSON() ([]byte, error) {
+func (c ExportQuerySchema2) MarshalJSON() ([]byte, error) {
 	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ExportQuerySchema(c))
+	bs, err := json.Marshal(_ExportQuerySchema2(c))
 	if err != nil {
 		return nil, err
 	}
@@ -59,4 +64,130 @@ func (c ExportQuerySchema) MarshalJSON() ([]byte, error) {
 	}
 
 	return json.Marshal(out)
+}
+
+// ExportQuerySchema1 - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
+type ExportQuerySchema1 struct {
+	// Whether to return a downloadable file
+	DownloadFile *bool `json:"downloadFile,omitempty"`
+	// The environment to export from
+	Environment string `json:"environment"`
+	// Selects features to export by name.
+	Features []string `json:"features"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ExportQuerySchema1 ExportQuerySchema1
+
+func (c *ExportQuerySchema1) UnmarshalJSON(bs []byte) error {
+	data := _ExportQuerySchema1{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ExportQuerySchema1(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "downloadFile")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "features")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ExportQuerySchema1) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ExportQuerySchema1(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
+}
+
+type ExportQuerySchemaType string
+
+const (
+	ExportQuerySchemaTypeExportQuerySchema1 ExportQuerySchemaType = "exportQuerySchema_1"
+	ExportQuerySchemaTypeExportQuerySchema2 ExportQuerySchemaType = "exportQuerySchema_2"
+)
+
+type ExportQuerySchema struct {
+	ExportQuerySchema1 *ExportQuerySchema1
+	ExportQuerySchema2 *ExportQuerySchema2
+
+	Type ExportQuerySchemaType
+}
+
+func CreateExportQuerySchemaExportQuerySchema1(exportQuerySchema1 ExportQuerySchema1) ExportQuerySchema {
+	typ := ExportQuerySchemaTypeExportQuerySchema1
+
+	return ExportQuerySchema{
+		ExportQuerySchema1: &exportQuerySchema1,
+		Type:               typ,
+	}
+}
+
+func CreateExportQuerySchemaExportQuerySchema2(exportQuerySchema2 ExportQuerySchema2) ExportQuerySchema {
+	typ := ExportQuerySchemaTypeExportQuerySchema2
+
+	return ExportQuerySchema{
+		ExportQuerySchema2: &exportQuerySchema2,
+		Type:               typ,
+	}
+}
+
+func (u *ExportQuerySchema) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	exportQuerySchema1 := new(ExportQuerySchema1)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&exportQuerySchema1); err == nil {
+		u.ExportQuerySchema1 = exportQuerySchema1
+		u.Type = ExportQuerySchemaTypeExportQuerySchema1
+		return nil
+	}
+
+	exportQuerySchema2 := new(ExportQuerySchema2)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&exportQuerySchema2); err == nil {
+		u.ExportQuerySchema2 = exportQuerySchema2
+		u.Type = ExportQuerySchemaTypeExportQuerySchema2
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportQuerySchema) MarshalJSON() ([]byte, error) {
+	if u.ExportQuerySchema1 != nil {
+		return json.Marshal(u.ExportQuerySchema1)
+	}
+
+	if u.ExportQuerySchema2 != nil {
+		return json.Marshal(u.ExportQuerySchema2)
+	}
+
+	return nil, nil
 }

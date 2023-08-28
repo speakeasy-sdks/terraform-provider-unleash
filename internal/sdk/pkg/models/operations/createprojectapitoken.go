@@ -13,6 +13,36 @@ type CreateProjectAPITokenRequest struct {
 	ProjectID            string                      `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// CreateProjectAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateProjectAPIToken403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateProjectAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateProjectAPIToken401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateProjectAPIToken400ApplicationJSON - The request data does not match what we expect.
+type CreateProjectAPIToken400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateProjectAPITokenResponse struct {
 	ContentType string
 	Headers     map[string][]string
@@ -21,9 +51,9 @@ type CreateProjectAPITokenResponse struct {
 	// The resource was successfully created.
 	APITokenSchema *shared.APITokenSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	CreateProjectAPIToken400ApplicationJSONObject *CreateProjectAPIToken400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	CreateProjectAPIToken401ApplicationJSONObject *CreateProjectAPIToken401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	CreateProjectAPIToken403ApplicationJSONObject *CreateProjectAPIToken403ApplicationJSON
 }

@@ -82,12 +82,12 @@ func (s *events) GetEvents(ctx context.Context, request operations.GetEventsRequ
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetEvents401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetEvents401ApplicationJSONObject = out
 		}
 	}
 
@@ -148,12 +148,12 @@ func (s *events) GetEventsForToggle(ctx context.Context, request operations.GetE
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetEventsForToggle401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetEventsForToggle401ApplicationJSONObject = out
 		}
 	}
 

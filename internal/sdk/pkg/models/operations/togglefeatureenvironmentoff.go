@@ -13,6 +13,46 @@ type ToggleFeatureEnvironmentOffRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// ToggleFeatureEnvironmentOff404ApplicationJSON - The requested resource was not found.
+type ToggleFeatureEnvironmentOff404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ToggleFeatureEnvironmentOff403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ToggleFeatureEnvironmentOff403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ToggleFeatureEnvironmentOff401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ToggleFeatureEnvironmentOff401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ToggleFeatureEnvironmentOff400ApplicationJSON - The request data does not match what we expect.
+type ToggleFeatureEnvironmentOff400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type ToggleFeatureEnvironmentOffResponse struct {
 	ContentType string
 	StatusCode  int
@@ -20,11 +60,11 @@ type ToggleFeatureEnvironmentOffResponse struct {
 	// featureSchema
 	FeatureSchema *shared.FeatureSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	ToggleFeatureEnvironmentOff400ApplicationJSONObject *ToggleFeatureEnvironmentOff400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	ToggleFeatureEnvironmentOff401ApplicationJSONObject *ToggleFeatureEnvironmentOff401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	ToggleFeatureEnvironmentOff403ApplicationJSONObject *ToggleFeatureEnvironmentOff403ApplicationJSON
+	// The requested resource was not found.
+	ToggleFeatureEnvironmentOff404ApplicationJSONObject *ToggleFeatureEnvironmentOff404ApplicationJSON
 }

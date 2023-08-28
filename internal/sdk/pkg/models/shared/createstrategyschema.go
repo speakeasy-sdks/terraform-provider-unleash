@@ -2,6 +2,59 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// CreateStrategySchemaParametersType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+type CreateStrategySchemaParametersType string
+
+const (
+	CreateStrategySchemaParametersTypeString     CreateStrategySchemaParametersType = "string"
+	CreateStrategySchemaParametersTypePercentage CreateStrategySchemaParametersType = "percentage"
+	CreateStrategySchemaParametersTypeList       CreateStrategySchemaParametersType = "list"
+	CreateStrategySchemaParametersTypeNumber     CreateStrategySchemaParametersType = "number"
+	CreateStrategySchemaParametersTypeBoolean    CreateStrategySchemaParametersType = "boolean"
+)
+
+func (e CreateStrategySchemaParametersType) ToPointer() *CreateStrategySchemaParametersType {
+	return &e
+}
+
+func (e *CreateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "string":
+		fallthrough
+	case "percentage":
+		fallthrough
+	case "list":
+		fallthrough
+	case "number":
+		fallthrough
+	case "boolean":
+		*e = CreateStrategySchemaParametersType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateStrategySchemaParametersType: %v", v)
+	}
+}
+
+type CreateStrategySchemaParameters struct {
+	// A description of this strategy parameter. Use this to indicate to the users what the parameter does.
+	Description *string `json:"description,omitempty"`
+	// The name of the parameter
+	Name string `json:"name"`
+	// Whether this parameter must be configured when using the strategy. Defaults to `false`
+	Required *bool `json:"required,omitempty"`
+	// The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+	Type CreateStrategySchemaParametersType `json:"type"`
+}
+
 // CreateStrategySchema - The data required to create a strategy type. Refer to the docs on [custom strategy types](https://docs.getunleash.io/reference/custom-activation-strategies) for more information.
 type CreateStrategySchema struct {
 	// A description of the strategy type.
@@ -9,5 +62,5 @@ type CreateStrategySchema struct {
 	// The name of the strategy type. Must be unique.
 	Name string `json:"name"`
 	// The parameter list lets you pass arguments to your custom activation strategy. These will be made available to your custom strategy implementation.
-	Parameters []CreateStrategySchemaParametersInner `json:"parameters"`
+	Parameters []CreateStrategySchemaParameters `json:"parameters"`
 }

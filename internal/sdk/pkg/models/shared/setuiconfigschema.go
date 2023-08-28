@@ -2,6 +2,12 @@
 
 package shared
 
+// SetUIConfigSchemaFrontendSettings - Settings related to the front-end API.
+type SetUIConfigSchemaFrontendSettings struct {
+	// The list of origins that the front-end API should accept requests from.
+	FrontendAPIOrigins []string `json:"frontendApiOrigins"`
+}
+
 // SetUIConfigSchema - Unleash configuration settings affect the admin UI.
 type SetUIConfigSchema struct {
 	// Settings related to the front-end API.

@@ -4,11 +4,20 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type DeleteRoleRequest struct {
 	RoleID string `pathParam:"style=simple,explode=false,name=roleId"`
+}
+
+// DeleteRole409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type DeleteRole409ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
 }
 
 type DeleteRoleResponse struct {
@@ -16,5 +25,5 @@ type DeleteRoleResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409Response *shared.CreateGroup409Response
+	DeleteRole409ApplicationJSONObject *DeleteRole409ApplicationJSON
 }

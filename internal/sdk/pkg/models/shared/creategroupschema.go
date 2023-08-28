@@ -6,6 +6,18 @@ import (
 	"encoding/json"
 )
 
+// CreateGroupSchemaUsersUser - A minimal user object
+type CreateGroupSchemaUsersUser struct {
+	// The user id
+	ID int64 `json:"id"`
+}
+
+// CreateGroupSchemaUsers - A minimal user object
+type CreateGroupSchemaUsers struct {
+	// A minimal user object
+	User CreateGroupSchemaUsersUser `json:"user"`
+}
+
 // CreateGroupSchema - A detailed information about a user group
 type CreateGroupSchema struct {
 	// A custom description of the group
@@ -17,7 +29,7 @@ type CreateGroupSchema struct {
 	// A role id that is used as the root role for all users in this group. This can be either the id of the Viewer, Editor or Admin role.
 	RootRole *float64 `json:"rootRole,omitempty"`
 	// A list of users belonging to this group
-	Users []CreateGroupSchemaUsersInner `json:"users,omitempty"`
+	Users []CreateGroupSchemaUsers `json:"users,omitempty"`
 
 	AdditionalProperties interface{} `json:"-"`
 }

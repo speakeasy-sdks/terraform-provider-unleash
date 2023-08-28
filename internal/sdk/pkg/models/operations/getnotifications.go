@@ -12,5 +12,5 @@ type GetNotificationsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// notificationsSchema
-	NotificationsSchema []shared.NotificationsSchemaInner
+	NotificationsSchema []shared.NotificationsSchema
 }

@@ -4,17 +4,46 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
+
+// RegisterFrontendClient404ApplicationJSON - The requested resource was not found.
+type RegisterFrontendClient404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// RegisterFrontendClient401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RegisterFrontendClient401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// RegisterFrontendClient400ApplicationJSON - The request data does not match what we expect.
+type RegisterFrontendClient400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
 
 type RegisterFrontendClientResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	RegisterFrontendClient400ApplicationJSONObject *RegisterFrontendClient400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	RegisterFrontendClient401ApplicationJSONObject *RegisterFrontendClient401ApplicationJSON
+	// The requested resource was not found.
+	RegisterFrontendClient404ApplicationJSONObject *RegisterFrontendClient404ApplicationJSON
 }

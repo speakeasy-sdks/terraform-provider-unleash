@@ -72,6 +72,8 @@ type SDK struct {
 	Auth *auth
 	// Client - Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
 	Client *client
+	// Context - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
+	Context *context
 	// Edge - Endpoints related to Unleash on the Edge.
 	Edge *edge
 	// Environments - Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
@@ -114,8 +116,6 @@ type SDK struct {
 	Unstable *unstable
 	// Users - Manage users and passwords.
 	Users *users
-	// UContext - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
-	UContext *uContext
 
 	sdkConfiguration sdkConfiguration
 }
@@ -171,7 +171,7 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "5.3.3",
-			SDKVersion:        "0.3.0",
+			SDKVersion:        "0.3.1",
 			GenVersion:        "2.88.2",
 		},
 	}
@@ -202,6 +202,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Auth = newAuth(sdk.sdkConfiguration)
 
 	sdk.Client = newClient(sdk.sdkConfiguration)
+
+	sdk.Context = newContext(sdk.sdkConfiguration)
 
 	sdk.Edge = newEdge(sdk.sdkConfiguration)
 
@@ -244,8 +246,6 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Unstable = newUnstable(sdk.sdkConfiguration)
 
 	sdk.Users = newUsers(sdk.sdkConfiguration)
-
-	sdk.UContext = newUContext(sdk.sdkConfiguration)
 
 	return sdk
 }

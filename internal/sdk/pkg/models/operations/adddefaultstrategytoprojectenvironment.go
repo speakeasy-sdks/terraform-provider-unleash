@@ -14,12 +14,22 @@ type AddDefaultStrategyToProjectEnvironmentRequest struct {
 	ProjectID                   string                             `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// AddDefaultStrategyToProjectEnvironment400ApplicationJSON - The request data does not match what we expect.
+type AddDefaultStrategyToProjectEnvironment400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type AddDefaultStrategyToProjectEnvironmentResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// The request data does not match what we expect.
+	AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject *AddDefaultStrategyToProjectEnvironment400ApplicationJSON
 	// createFeatureStrategySchema
 	CreateFeatureStrategySchema *shared.CreateFeatureStrategySchema
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
 }

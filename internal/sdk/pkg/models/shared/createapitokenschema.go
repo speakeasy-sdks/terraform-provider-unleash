@@ -3,11 +3,180 @@
 package shared
 
 import (
+	"bytes"
+	"encoding/json"
+	"errors"
 	"time"
 )
 
-// CreateAPITokenSchema - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
-type CreateAPITokenSchema struct {
+// CreateAPITokenSchema4 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type CreateAPITokenSchema4 struct {
+	// The environment that the token should be valid for. Defaults to "default"
+	Environment *string `json:"environment,omitempty"`
 	// The time when this token should expire.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+	// The project that the token should be valid for. Defaults to "*" meaning every project. This property is mutually incompatible with the `projects` property. If you specify one, you cannot specify the other.
+	Project *string `json:"project,omitempty"`
+	// A list of projects that the token should be valid for. This property is mutually incompatible with the `project` property. If you specify one, you cannot specify the other.
+	Projects []string `json:"projects,omitempty"`
+	// A client or frontend token. Must be one of the strings "client" or "frontend" (not case sensitive).
+	Type string `json:"type"`
+	// The name of the token. This property is deprecated. Use `tokenName` instead.
+	//
+	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	Username string `json:"username"`
+}
+
+// CreateAPITokenSchema3 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type CreateAPITokenSchema3 struct {
+	// The environment that the token should be valid for. Defaults to "default"
+	Environment *string `json:"environment,omitempty"`
+	// The time when this token should expire.
+	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+	// The project that the token should be valid for. Defaults to "*" meaning every project. This property is mutually incompatible with the `projects` property. If you specify one, you cannot specify the other.
+	Project *string `json:"project,omitempty"`
+	// A list of projects that the token should be valid for. This property is mutually incompatible with the `project` property. If you specify one, you cannot specify the other.
+	Projects []string `json:"projects,omitempty"`
+	// The name of the token.
+	TokenName string `json:"tokenName"`
+	// A client or frontend token. Must be one of the strings "client" or "frontend" (not case sensitive).
+	Type string `json:"type"`
+}
+
+// CreateAPITokenSchema2 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type CreateAPITokenSchema2 struct {
+	// The time when this token should expire.
+	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+	// An admin token. Must be the string "admin" (not case sensitive).
+	Type string `json:"type"`
+	// The name of the token. This property is deprecated. Use `tokenName` instead.
+	//
+	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	Username string `json:"username"`
+}
+
+// CreateAPITokenSchema1 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type CreateAPITokenSchema1 struct {
+	// The time when this token should expire.
+	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+	// The name of the token.
+	TokenName string `json:"tokenName"`
+	// An admin token. Must be the string "admin" (not case sensitive).
+	Type string `json:"type"`
+}
+
+type CreateAPITokenSchemaType string
+
+const (
+	CreateAPITokenSchemaTypeCreateAPITokenSchema1 CreateAPITokenSchemaType = "createApiTokenSchema_1"
+	CreateAPITokenSchemaTypeCreateAPITokenSchema2 CreateAPITokenSchemaType = "createApiTokenSchema_2"
+	CreateAPITokenSchemaTypeCreateAPITokenSchema3 CreateAPITokenSchemaType = "createApiTokenSchema_3"
+	CreateAPITokenSchemaTypeCreateAPITokenSchema4 CreateAPITokenSchemaType = "createApiTokenSchema_4"
+)
+
+type CreateAPITokenSchema struct {
+	CreateAPITokenSchema1 *CreateAPITokenSchema1
+	CreateAPITokenSchema2 *CreateAPITokenSchema2
+	CreateAPITokenSchema3 *CreateAPITokenSchema3
+	CreateAPITokenSchema4 *CreateAPITokenSchema4
+
+	Type CreateAPITokenSchemaType
+}
+
+func CreateCreateAPITokenSchemaCreateAPITokenSchema1(createAPITokenSchema1 CreateAPITokenSchema1) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema1
+
+	return CreateAPITokenSchema{
+		CreateAPITokenSchema1: &createAPITokenSchema1,
+		Type:                  typ,
+	}
+}
+
+func CreateCreateAPITokenSchemaCreateAPITokenSchema2(createAPITokenSchema2 CreateAPITokenSchema2) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema2
+
+	return CreateAPITokenSchema{
+		CreateAPITokenSchema2: &createAPITokenSchema2,
+		Type:                  typ,
+	}
+}
+
+func CreateCreateAPITokenSchemaCreateAPITokenSchema3(createAPITokenSchema3 CreateAPITokenSchema3) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema3
+
+	return CreateAPITokenSchema{
+		CreateAPITokenSchema3: &createAPITokenSchema3,
+		Type:                  typ,
+	}
+}
+
+func CreateCreateAPITokenSchemaCreateAPITokenSchema4(createAPITokenSchema4 CreateAPITokenSchema4) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema4
+
+	return CreateAPITokenSchema{
+		CreateAPITokenSchema4: &createAPITokenSchema4,
+		Type:                  typ,
+	}
+}
+
+func (u *CreateAPITokenSchema) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	createAPITokenSchema1 := new(CreateAPITokenSchema1)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createAPITokenSchema1); err == nil {
+		u.CreateAPITokenSchema1 = createAPITokenSchema1
+		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema1
+		return nil
+	}
+
+	createAPITokenSchema2 := new(CreateAPITokenSchema2)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createAPITokenSchema2); err == nil {
+		u.CreateAPITokenSchema2 = createAPITokenSchema2
+		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema2
+		return nil
+	}
+
+	createAPITokenSchema3 := new(CreateAPITokenSchema3)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createAPITokenSchema3); err == nil {
+		u.CreateAPITokenSchema3 = createAPITokenSchema3
+		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema3
+		return nil
+	}
+
+	createAPITokenSchema4 := new(CreateAPITokenSchema4)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createAPITokenSchema4); err == nil {
+		u.CreateAPITokenSchema4 = createAPITokenSchema4
+		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema4
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u CreateAPITokenSchema) MarshalJSON() ([]byte, error) {
+	if u.CreateAPITokenSchema1 != nil {
+		return json.Marshal(u.CreateAPITokenSchema1)
+	}
+
+	if u.CreateAPITokenSchema2 != nil {
+		return json.Marshal(u.CreateAPITokenSchema2)
+	}
+
+	if u.CreateAPITokenSchema3 != nil {
+		return json.Marshal(u.CreateAPITokenSchema3)
+	}
+
+	if u.CreateAPITokenSchema4 != nil {
+		return json.Marshal(u.CreateAPITokenSchema4)
+	}
+
+	return nil, nil
 }

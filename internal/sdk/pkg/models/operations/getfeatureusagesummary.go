@@ -11,16 +11,46 @@ type GetFeatureUsageSummaryRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// GetFeatureUsageSummary404ApplicationJSON - The requested resource was not found.
+type GetFeatureUsageSummary404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetFeatureUsageSummary403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeatureUsageSummary403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetFeatureUsageSummary401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeatureUsageSummary401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetFeatureUsageSummaryResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// featureUsageSchema
 	FeatureUsageSchema *shared.FeatureUsageSchema
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetFeatureUsageSummary401ApplicationJSONObject *GetFeatureUsageSummary401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetFeatureUsageSummary403ApplicationJSONObject *GetFeatureUsageSummary403ApplicationJSON
+	// The requested resource was not found.
+	GetFeatureUsageSummary404ApplicationJSONObject *GetFeatureUsageSummary404ApplicationJSON
 }

@@ -11,16 +11,46 @@ type GetServiceAccountTokensRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// GetServiceAccountTokens404ApplicationJSON - The requested resource was not found.
+type GetServiceAccountTokens404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetServiceAccountTokens403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetServiceAccountTokens403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetServiceAccountTokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetServiceAccountTokens401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetServiceAccountTokensResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetServiceAccountTokens401ApplicationJSONObject *GetServiceAccountTokens401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetServiceAccountTokens403ApplicationJSONObject *GetServiceAccountTokens403ApplicationJSON
+	// The requested resource was not found.
+	GetServiceAccountTokens404ApplicationJSONObject *GetServiceAccountTokens404ApplicationJSON
 	// patsSchema
 	PatsSchema *shared.PatsSchema
 }

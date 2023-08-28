@@ -7,6 +7,45 @@ import (
 	"fmt"
 )
 
+// CreateStrategyVariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
+type CreateStrategyVariantSchemaPayloadType string
+
+const (
+	CreateStrategyVariantSchemaPayloadTypeJSON   CreateStrategyVariantSchemaPayloadType = "json"
+	CreateStrategyVariantSchemaPayloadTypeCsv    CreateStrategyVariantSchemaPayloadType = "csv"
+	CreateStrategyVariantSchemaPayloadTypeString CreateStrategyVariantSchemaPayloadType = "string"
+)
+
+func (e CreateStrategyVariantSchemaPayloadType) ToPointer() *CreateStrategyVariantSchemaPayloadType {
+	return &e
+}
+
+func (e *CreateStrategyVariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "json":
+		fallthrough
+	case "csv":
+		fallthrough
+	case "string":
+		*e = CreateStrategyVariantSchemaPayloadType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateStrategyVariantSchemaPayloadType: %v", v)
+	}
+}
+
+// CreateStrategyVariantSchemaPayload - Extra data configured for this variant
+type CreateStrategyVariantSchemaPayload struct {
+	// The type of the value. Commonly used types are string, json and csv.
+	Type CreateStrategyVariantSchemaPayloadType `json:"type"`
+	// The actual value of payload
+	Value string `json:"value"`
+}
+
 // CreateStrategyVariantSchemaWeightType - Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 type CreateStrategyVariantSchemaWeightType string
 
@@ -40,7 +79,7 @@ type CreateStrategyVariantSchema struct {
 	// The variant name. Must be unique for this feature toggle
 	Name string `json:"name"`
 	// Extra data configured for this variant
-	Payload *StrategyVariantSchemaPayload `json:"payload,omitempty"`
+	Payload *CreateStrategyVariantSchemaPayload `json:"payload,omitempty"`
 	// The [stickiness](https://docs.getunleash.io/reference/feature-toggle-variants#variant-stickiness) to use for distribution of this variant. Stickiness is how Unleash guarantees that the same user gets the same variant every time
 	Stickiness string `json:"stickiness"`
 	// The weight is the likelihood of any one user getting this variant. It is an integer between 0 and 1000. See the section on [variant weights](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight) for more information

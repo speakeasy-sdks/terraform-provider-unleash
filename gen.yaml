@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 479e7cf778703724ae19c08bc2bc7374
+  docChecksum: 09bdd1d0f8f228ec77060f8f3187a5ab
   docVersion: 5.3.3
   speakeasyVersion: 1.74.16
   generationVersion: 2.88.2
@@ -18,9 +18,7 @@ features:
     deprecations: 2.81.1
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
-    ignores: 2.81.1
-    includes: 2.81.1
 terraform:
-  version: 0.3.0
+  version: 0.3.1
   author: speakeasy
   packageName: terraform

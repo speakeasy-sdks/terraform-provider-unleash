@@ -14,20 +14,80 @@ type BulkToggleFeaturesEnvironmentOnRequest struct {
 	ProjectID                string                          `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// BulkToggleFeaturesEnvironmentOn415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type BulkToggleFeaturesEnvironmentOn415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkToggleFeaturesEnvironmentOn413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type BulkToggleFeaturesEnvironmentOn413ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkToggleFeaturesEnvironmentOn404ApplicationJSON - The requested resource was not found.
+type BulkToggleFeaturesEnvironmentOn404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkToggleFeaturesEnvironmentOn403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type BulkToggleFeaturesEnvironmentOn403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkToggleFeaturesEnvironmentOn401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type BulkToggleFeaturesEnvironmentOn401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// BulkToggleFeaturesEnvironmentOn400ApplicationJSON - The request data does not match what we expect.
+type BulkToggleFeaturesEnvironmentOn400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type BulkToggleFeaturesEnvironmentOnResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413Response *shared.CreateAddon413Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	BulkToggleFeaturesEnvironmentOn400ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	BulkToggleFeaturesEnvironmentOn401ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	BulkToggleFeaturesEnvironmentOn403ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn403ApplicationJSON
+	// The requested resource was not found.
+	BulkToggleFeaturesEnvironmentOn404ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn404ApplicationJSON
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	BulkToggleFeaturesEnvironmentOn413ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	BulkToggleFeaturesEnvironmentOn415ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn415ApplicationJSON
 }

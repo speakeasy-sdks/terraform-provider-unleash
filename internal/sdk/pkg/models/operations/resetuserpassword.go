@@ -7,18 +7,58 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// ResetUserPassword404ApplicationJSON - The requested resource was not found.
+type ResetUserPassword404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ResetUserPassword403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ResetUserPassword403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ResetUserPassword401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ResetUserPassword401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ResetUserPassword400ApplicationJSON - The request data does not match what we expect.
+type ResetUserPassword400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type ResetUserPasswordResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
 	// resetPasswordSchema
 	ResetPasswordSchema *shared.ResetPasswordSchema
+	// The request data does not match what we expect.
+	ResetUserPassword400ApplicationJSONObject *ResetUserPassword400ApplicationJSON
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	ResetUserPassword401ApplicationJSONObject *ResetUserPassword401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	ResetUserPassword403ApplicationJSONObject *ResetUserPassword403ApplicationJSON
+	// The requested resource was not found.
+	ResetUserPassword404ApplicationJSONObject *ResetUserPassword404ApplicationJSON
 }
