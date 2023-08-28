@@ -4,19 +4,38 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type DeleteTagTypeRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// DeleteTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteTagType403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// DeleteTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteTagType401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type DeleteTagTypeResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	DeleteTagType401ApplicationJSONObject *DeleteTagType401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	DeleteTagType403ApplicationJSONObject *DeleteTagType403ApplicationJSON
 }

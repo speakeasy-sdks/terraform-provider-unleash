@@ -149,12 +149,12 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.ExportFeatures404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.ExportFeatures404ApplicationJSONObject = out
 		}
 	}
 
@@ -277,12 +277,12 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.ImportToggles404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.ImportToggles404ApplicationJSONObject = out
 		}
 	}
 
@@ -354,12 +354,12 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.ValidateImport404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.ValidateImport404ApplicationJSONObject = out
 		}
 	}
 

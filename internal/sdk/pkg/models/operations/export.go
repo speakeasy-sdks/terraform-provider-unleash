@@ -3,11 +3,289 @@
 package operations
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"terraform/internal/sdk/pkg/models/shared"
 )
+
+type ExportDownloadType string
+
+const (
+	ExportDownloadTypeBoolean ExportDownloadType = "boolean"
+	ExportDownloadTypeStr     ExportDownloadType = "str"
+	ExportDownloadTypeNumber  ExportDownloadType = "number"
+)
+
+type ExportDownload struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportDownloadType
+}
+
+func CreateExportDownloadBoolean(boolean bool) ExportDownload {
+	typ := ExportDownloadTypeBoolean
+
+	return ExportDownload{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportDownloadStr(str string) ExportDownload {
+	typ := ExportDownloadTypeStr
+
+	return ExportDownload{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportDownloadNumber(number float64) ExportDownload {
+	typ := ExportDownloadTypeNumber
+
+	return ExportDownload{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportDownload) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportDownloadTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportDownloadTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportDownloadTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportDownload) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
+type ExportEnvironmentsType string
+
+const (
+	ExportEnvironmentsTypeBoolean ExportEnvironmentsType = "boolean"
+	ExportEnvironmentsTypeStr     ExportEnvironmentsType = "str"
+	ExportEnvironmentsTypeNumber  ExportEnvironmentsType = "number"
+)
+
+type ExportEnvironments struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportEnvironmentsType
+}
+
+func CreateExportEnvironmentsBoolean(boolean bool) ExportEnvironments {
+	typ := ExportEnvironmentsTypeBoolean
+
+	return ExportEnvironments{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportEnvironmentsStr(str string) ExportEnvironments {
+	typ := ExportEnvironmentsTypeStr
+
+	return ExportEnvironments{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportEnvironmentsNumber(number float64) ExportEnvironments {
+	typ := ExportEnvironmentsTypeNumber
+
+	return ExportEnvironments{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportEnvironments) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportEnvironmentsTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportEnvironmentsTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportEnvironmentsTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportEnvironments) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
+type ExportFeatureTogglesType string
+
+const (
+	ExportFeatureTogglesTypeBoolean ExportFeatureTogglesType = "boolean"
+	ExportFeatureTogglesTypeStr     ExportFeatureTogglesType = "str"
+	ExportFeatureTogglesTypeNumber  ExportFeatureTogglesType = "number"
+)
+
+type ExportFeatureToggles struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportFeatureTogglesType
+}
+
+func CreateExportFeatureTogglesBoolean(boolean bool) ExportFeatureToggles {
+	typ := ExportFeatureTogglesTypeBoolean
+
+	return ExportFeatureToggles{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportFeatureTogglesStr(str string) ExportFeatureToggles {
+	typ := ExportFeatureTogglesTypeStr
+
+	return ExportFeatureToggles{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportFeatureTogglesNumber(number float64) ExportFeatureToggles {
+	typ := ExportFeatureTogglesTypeNumber
+
+	return ExportFeatureToggles{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportFeatureToggles) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportFeatureTogglesTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportFeatureTogglesTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportFeatureTogglesTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportFeatureToggles) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
 
 // ExportFormat - Desired export format. Must be either `json` or `yaml`.
 type ExportFormat string
@@ -37,21 +315,297 @@ func (e *ExportFormat) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type ExportProjectsType string
+
+const (
+	ExportProjectsTypeBoolean ExportProjectsType = "boolean"
+	ExportProjectsTypeStr     ExportProjectsType = "str"
+	ExportProjectsTypeNumber  ExportProjectsType = "number"
+)
+
+type ExportProjects struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportProjectsType
+}
+
+func CreateExportProjectsBoolean(boolean bool) ExportProjects {
+	typ := ExportProjectsTypeBoolean
+
+	return ExportProjects{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportProjectsStr(str string) ExportProjects {
+	typ := ExportProjectsTypeStr
+
+	return ExportProjects{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportProjectsNumber(number float64) ExportProjects {
+	typ := ExportProjectsTypeNumber
+
+	return ExportProjects{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportProjects) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportProjectsTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportProjectsTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportProjectsTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportProjects) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
+type ExportStrategiesType string
+
+const (
+	ExportStrategiesTypeBoolean ExportStrategiesType = "boolean"
+	ExportStrategiesTypeStr     ExportStrategiesType = "str"
+	ExportStrategiesTypeNumber  ExportStrategiesType = "number"
+)
+
+type ExportStrategies struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportStrategiesType
+}
+
+func CreateExportStrategiesBoolean(boolean bool) ExportStrategies {
+	typ := ExportStrategiesTypeBoolean
+
+	return ExportStrategies{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportStrategiesStr(str string) ExportStrategies {
+	typ := ExportStrategiesTypeStr
+
+	return ExportStrategies{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportStrategiesNumber(number float64) ExportStrategies {
+	typ := ExportStrategiesTypeNumber
+
+	return ExportStrategies{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportStrategies) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportStrategiesTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportStrategiesTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportStrategiesTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportStrategies) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
+type ExportTagsType string
+
+const (
+	ExportTagsTypeBoolean ExportTagsType = "boolean"
+	ExportTagsTypeStr     ExportTagsType = "str"
+	ExportTagsTypeNumber  ExportTagsType = "number"
+)
+
+type ExportTags struct {
+	Boolean *bool
+	Str     *string
+	Number  *float64
+
+	Type ExportTagsType
+}
+
+func CreateExportTagsBoolean(boolean bool) ExportTags {
+	typ := ExportTagsTypeBoolean
+
+	return ExportTags{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateExportTagsStr(str string) ExportTags {
+	typ := ExportTagsTypeStr
+
+	return ExportTags{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateExportTagsNumber(number float64) ExportTags {
+	typ := ExportTagsTypeNumber
+
+	return ExportTags{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *ExportTags) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = ExportTagsTypeBoolean
+		return nil
+	}
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = ExportTagsTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = ExportTagsTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u ExportTags) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
 type ExportRequest struct {
 	// Whether exported data should be downloaded as a file.
-	Download *shared.ExportDownloadParameter `queryParam:"style=form,explode=true,name=download"`
+	Download *ExportDownload `queryParam:"style=form,explode=true,name=download"`
 	// Whether environments should be included in the exported data.
-	Environments *shared.ExportStrategiesParameter `queryParam:"style=form,explode=true,name=environments"`
+	Environments *ExportEnvironments `queryParam:"style=form,explode=true,name=environments"`
 	// Whether feature toggles should be included in the exported data.
-	FeatureToggles *shared.ExportStrategiesParameter `queryParam:"style=form,explode=true,name=featureToggles"`
+	FeatureToggles *ExportFeatureToggles `queryParam:"style=form,explode=true,name=featureToggles"`
 	// Desired export format. Must be either `json` or `yaml`.
 	Format *ExportFormat `queryParam:"style=form,explode=true,name=format"`
 	// Whether projects should be included in the exported data.
-	Projects *shared.ExportStrategiesParameter `queryParam:"style=form,explode=true,name=projects"`
+	Projects *ExportProjects `queryParam:"style=form,explode=true,name=projects"`
 	// Whether strategies should be included in the exported data.
-	Strategies *shared.ExportStrategiesParameter `queryParam:"style=form,explode=true,name=strategies"`
+	Strategies *ExportStrategies `queryParam:"style=form,explode=true,name=strategies"`
 	// Whether tag types, tags, and feature_tags should be included in the exported data.
-	Tags *shared.ExportStrategiesParameter `queryParam:"style=form,explode=true,name=tags"`
+	Tags *ExportTags `queryParam:"style=form,explode=true,name=tags"`
 }
 
 type ExportResponse struct {

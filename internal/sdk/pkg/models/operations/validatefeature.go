@@ -4,19 +4,58 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
+
+// ValidateFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateFeature415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ValidateFeature409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type ValidateFeature409ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ValidateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateFeature401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ValidateFeature400ApplicationJSON - The request data does not match what we expect.
+type ValidateFeature400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
 
 type ValidateFeatureResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409Response *shared.CreateGroup409Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	ValidateFeature400ApplicationJSONObject *ValidateFeature400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	ValidateFeature401ApplicationJSONObject *ValidateFeature401ApplicationJSON
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	ValidateFeature409ApplicationJSONObject *ValidateFeature409ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	ValidateFeature415ApplicationJSONObject *ValidateFeature415ApplicationJSON
 }

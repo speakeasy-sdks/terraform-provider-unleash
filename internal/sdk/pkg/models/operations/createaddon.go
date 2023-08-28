@@ -7,20 +7,70 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// CreateAddon415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateAddon415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateAddon413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type CreateAddon413ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateAddon403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateAddon403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateAddon401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateAddon400ApplicationJSON - The request data does not match what we expect.
+type CreateAddon400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateAddonResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// addonSchema
 	AddonSchema *shared.AddonSchema
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413Response *shared.CreateAddon413Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	CreateAddon400ApplicationJSONObject *CreateAddon400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	CreateAddon401ApplicationJSONObject *CreateAddon401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	CreateAddon403ApplicationJSONObject *CreateAddon403ApplicationJSON
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	CreateAddon413ApplicationJSONObject *CreateAddon413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	CreateAddon415ApplicationJSONObject *CreateAddon415ApplicationJSON
 }

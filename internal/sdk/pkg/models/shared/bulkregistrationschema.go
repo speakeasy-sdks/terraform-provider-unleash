@@ -2,13 +2,18 @@
 
 package shared
 
+type BulkRegistrationSchemaConnectVia struct {
+	AppName    string `json:"appName"`
+	InstanceID string `json:"instanceId"`
+}
+
 // BulkRegistrationSchema - An application registration. Defines the format POSTed by our server-side SDKs when they're starting up
 type BulkRegistrationSchema struct {
 	// The name of the application that is evaluating toggles
 	AppName string `json:"appName"`
 	// A list of applications this app registration has been registered through. If connected directly to Unleash, this is an empty list.
 	//  This can be used in later visualizations to tell how many levels of proxy or Edge instances our SDKs have connected through
-	ConnectVia []BulkRegistrationSchemaConnectViaInner `json:"connectVia,omitempty"`
+	ConnectVia []BulkRegistrationSchemaConnectVia `json:"connectVia,omitempty"`
 	// Which environment the application is running in
 	Environment string `json:"environment"`
 	// A [(somewhat) unique identifier](https://docs.getunleash.io/reference/sdks/node#advanced-usage) for the application

@@ -2,6 +2,106 @@
 
 package shared
 
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"fmt"
+)
+
+// PlaygroundRequestSchemaProjects2 - Check toggles in all projects.
+type PlaygroundRequestSchemaProjects2 string
+
+const (
+	PlaygroundRequestSchemaProjects2Wildcard PlaygroundRequestSchemaProjects2 = "*"
+)
+
+func (e PlaygroundRequestSchemaProjects2) ToPointer() *PlaygroundRequestSchemaProjects2 {
+	return &e
+}
+
+func (e *PlaygroundRequestSchemaProjects2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "*":
+		*e = PlaygroundRequestSchemaProjects2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PlaygroundRequestSchemaProjects2: %v", v)
+	}
+}
+
+type PlaygroundRequestSchemaProjectsType string
+
+const (
+	PlaygroundRequestSchemaProjectsTypeArrayOfstr                       PlaygroundRequestSchemaProjectsType = "arrayOfstr"
+	PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2 PlaygroundRequestSchemaProjectsType = "playgroundRequestSchema_projects_2"
+)
+
+type PlaygroundRequestSchemaProjects struct {
+	ArrayOfstr                       []string
+	PlaygroundRequestSchemaProjects2 *PlaygroundRequestSchemaProjects2
+
+	Type PlaygroundRequestSchemaProjectsType
+}
+
+func CreatePlaygroundRequestSchemaProjectsArrayOfstr(arrayOfstr []string) PlaygroundRequestSchemaProjects {
+	typ := PlaygroundRequestSchemaProjectsTypeArrayOfstr
+
+	return PlaygroundRequestSchemaProjects{
+		ArrayOfstr: arrayOfstr,
+		Type:       typ,
+	}
+}
+
+func CreatePlaygroundRequestSchemaProjectsPlaygroundRequestSchemaProjects2(playgroundRequestSchemaProjects2 PlaygroundRequestSchemaProjects2) PlaygroundRequestSchemaProjects {
+	typ := PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2
+
+	return PlaygroundRequestSchemaProjects{
+		PlaygroundRequestSchemaProjects2: &playgroundRequestSchemaProjects2,
+		Type:                             typ,
+	}
+}
+
+func (u *PlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	arrayOfstr := []string{}
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&arrayOfstr); err == nil {
+		u.ArrayOfstr = arrayOfstr
+		u.Type = PlaygroundRequestSchemaProjectsTypeArrayOfstr
+		return nil
+	}
+
+	playgroundRequestSchemaProjects2 := new(PlaygroundRequestSchemaProjects2)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&playgroundRequestSchemaProjects2); err == nil {
+		u.PlaygroundRequestSchemaProjects2 = playgroundRequestSchemaProjects2
+		u.Type = PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u PlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
+	if u.ArrayOfstr != nil {
+		return json.Marshal(u.ArrayOfstr)
+	}
+
+	if u.PlaygroundRequestSchemaProjects2 != nil {
+		return json.Marshal(u.PlaygroundRequestSchemaProjects2)
+	}
+
+	return nil, nil
+}
+
 // PlaygroundRequestSchema - Data for the playground API to evaluate toggles
 type PlaygroundRequestSchema struct {
 	// The Unleash context as modeled in client SDKs
@@ -9,5 +109,5 @@ type PlaygroundRequestSchema struct {
 	// The environment to evaluate toggles in.
 	Environment string `json:"environment"`
 	// A list of projects to check for toggles in.
-	Projects *AdvancedPlaygroundRequestSchemaProjects `json:"projects,omitempty"`
+	Projects *PlaygroundRequestSchemaProjects `json:"projects,omitempty"`
 }

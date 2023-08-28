@@ -3,9 +3,137 @@
 package shared
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 )
+
+// RequestsPerSecondSchemaDataResultMetric - A key value set representing the metric
+type RequestsPerSecondSchemaDataResultMetric struct {
+	// Name of the application this metric relates to
+	AppName *string `json:"appName,omitempty"`
+	// Which endpoint has been accessed
+	Endpoint *string `json:"endpoint,omitempty"`
+}
+
+type RequestsPerSecondSchemaDataResultValuesType string
+
+const (
+	RequestsPerSecondSchemaDataResultValuesTypeStr    RequestsPerSecondSchemaDataResultValuesType = "str"
+	RequestsPerSecondSchemaDataResultValuesTypeNumber RequestsPerSecondSchemaDataResultValuesType = "number"
+)
+
+type RequestsPerSecondSchemaDataResultValues struct {
+	Str    *string
+	Number *float64
+
+	Type RequestsPerSecondSchemaDataResultValuesType
+}
+
+func CreateRequestsPerSecondSchemaDataResultValuesStr(str string) RequestsPerSecondSchemaDataResultValues {
+	typ := RequestsPerSecondSchemaDataResultValuesTypeStr
+
+	return RequestsPerSecondSchemaDataResultValues{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateRequestsPerSecondSchemaDataResultValuesNumber(number float64) RequestsPerSecondSchemaDataResultValues {
+	typ := RequestsPerSecondSchemaDataResultValuesTypeNumber
+
+	return RequestsPerSecondSchemaDataResultValues{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *RequestsPerSecondSchemaDataResultValues) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	str := new(string)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&str); err == nil {
+		u.Str = str
+		u.Type = RequestsPerSecondSchemaDataResultValuesTypeStr
+		return nil
+	}
+
+	number := new(float64)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&number); err == nil {
+		u.Number = number
+		u.Type = RequestsPerSecondSchemaDataResultValuesTypeNumber
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u RequestsPerSecondSchemaDataResultValues) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return json.Marshal(u.Str)
+	}
+
+	if u.Number != nil {
+		return json.Marshal(u.Number)
+	}
+
+	return nil, nil
+}
+
+// RequestsPerSecondSchemaDataResult - A representation of a single metric to build a line in a graph
+type RequestsPerSecondSchemaDataResult struct {
+	// A key value set representing the metric
+	Metric *RequestsPerSecondSchemaDataResultMetric `json:"metric,omitempty"`
+	// An array of arrays. Each element of the array is an array of size 2 consisting of the 2 axis for the graph: in position zero the x axis represented as a number and position one the y axis represented as string
+	Values [][]RequestsPerSecondSchemaDataResultValues `json:"values,omitempty"`
+}
+
+// RequestsPerSecondSchemaDataResultType - Prometheus compatible result type.
+type RequestsPerSecondSchemaDataResultType string
+
+const (
+	RequestsPerSecondSchemaDataResultTypeMatrix RequestsPerSecondSchemaDataResultType = "matrix"
+	RequestsPerSecondSchemaDataResultTypeVector RequestsPerSecondSchemaDataResultType = "vector"
+	RequestsPerSecondSchemaDataResultTypeScalar RequestsPerSecondSchemaDataResultType = "scalar"
+	RequestsPerSecondSchemaDataResultTypeString RequestsPerSecondSchemaDataResultType = "string"
+)
+
+func (e RequestsPerSecondSchemaDataResultType) ToPointer() *RequestsPerSecondSchemaDataResultType {
+	return &e
+}
+
+func (e *RequestsPerSecondSchemaDataResultType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "matrix":
+		fallthrough
+	case "vector":
+		fallthrough
+	case "scalar":
+		fallthrough
+	case "string":
+		*e = RequestsPerSecondSchemaDataResultType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RequestsPerSecondSchemaDataResultType: %v", v)
+	}
+}
+
+// RequestsPerSecondSchemaData - The query result from prometheus
+type RequestsPerSecondSchemaData struct {
+	// An array of values per metric. Each one represents a line in the graph labeled by its metric name
+	Result []RequestsPerSecondSchemaDataResult `json:"result,omitempty"`
+	// Prometheus compatible result type.
+	ResultType *RequestsPerSecondSchemaDataResultType `json:"resultType,omitempty"`
+}
 
 // RequestsPerSecondSchemaStatus - Whether the query against prometheus succeeded or failed
 type RequestsPerSecondSchemaStatus string

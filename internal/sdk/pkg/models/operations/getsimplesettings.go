@@ -7,14 +7,34 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetSimpleSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetSimpleSettings403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetSimpleSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetSimpleSettings401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetSimpleSettingsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetSimpleSettings401ApplicationJSONObject *GetSimpleSettings401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetSimpleSettings403ApplicationJSONObject *GetSimpleSettings403ApplicationJSON
 	// passwordAuthSchema
 	PasswordAuthSchema *shared.PasswordAuthSchema
 }

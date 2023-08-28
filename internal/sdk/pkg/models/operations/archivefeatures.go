@@ -13,16 +13,56 @@ type ArchiveFeaturesRequest struct {
 	ProjectID           string                     `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// ArchiveFeatures415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ArchiveFeatures415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ArchiveFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ArchiveFeatures403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ArchiveFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ArchiveFeatures401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ArchiveFeatures400ApplicationJSON - The request data does not match what we expect.
+type ArchiveFeatures400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type ArchiveFeaturesResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	ArchiveFeatures400ApplicationJSONObject *ArchiveFeatures400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	ArchiveFeatures401ApplicationJSONObject *ArchiveFeatures401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	ArchiveFeatures403ApplicationJSONObject *ArchiveFeatures403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	ArchiveFeatures415ApplicationJSONObject *ArchiveFeatures415ApplicationJSON
 }

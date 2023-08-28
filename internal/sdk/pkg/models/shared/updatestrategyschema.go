@@ -2,10 +2,63 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// UpdateStrategySchemaParametersType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+type UpdateStrategySchemaParametersType string
+
+const (
+	UpdateStrategySchemaParametersTypeString     UpdateStrategySchemaParametersType = "string"
+	UpdateStrategySchemaParametersTypePercentage UpdateStrategySchemaParametersType = "percentage"
+	UpdateStrategySchemaParametersTypeList       UpdateStrategySchemaParametersType = "list"
+	UpdateStrategySchemaParametersTypeNumber     UpdateStrategySchemaParametersType = "number"
+	UpdateStrategySchemaParametersTypeBoolean    UpdateStrategySchemaParametersType = "boolean"
+)
+
+func (e UpdateStrategySchemaParametersType) ToPointer() *UpdateStrategySchemaParametersType {
+	return &e
+}
+
+func (e *UpdateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "string":
+		fallthrough
+	case "percentage":
+		fallthrough
+	case "list":
+		fallthrough
+	case "number":
+		fallthrough
+	case "boolean":
+		*e = UpdateStrategySchemaParametersType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateStrategySchemaParametersType: %v", v)
+	}
+}
+
+type UpdateStrategySchemaParameters struct {
+	// A description of this strategy parameter. Use this to indicate to the users what the parameter does.
+	Description *string `json:"description,omitempty"`
+	// The name of the parameter
+	Name string `json:"name"`
+	// Whether this parameter must be configured when using the strategy. Defaults to `false`
+	Required *bool `json:"required,omitempty"`
+	// The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+	Type UpdateStrategySchemaParametersType `json:"type"`
+}
+
 // UpdateStrategySchema - The data required to update a strategy type.
 type UpdateStrategySchema struct {
 	// A description of the strategy type.
 	Description *string `json:"description,omitempty"`
 	// The parameter list lets you pass arguments to your custom activation strategy. These will be made available to your custom strategy implementation.
-	Parameters []CreateStrategySchemaParametersInner `json:"parameters"`
+	Parameters []UpdateStrategySchemaParameters `json:"parameters"`
 }

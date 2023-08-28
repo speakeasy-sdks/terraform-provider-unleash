@@ -2,8 +2,21 @@
 
 package shared
 
+type ContextFieldStrategiesSchemaStrategies struct {
+	// The ID of the environment where this strategy is in.
+	Environment string `json:"environment"`
+	// The name of the feature that contains this strategy.
+	FeatureName string `json:"featureName"`
+	// The ID of the strategy.
+	ID string `json:"id"`
+	// The ID of the project that contains this feature.
+	ProjectID string `json:"projectId"`
+	// The name of the strategy.
+	StrategyName string `json:"strategyName"`
+}
+
 // ContextFieldStrategiesSchema - A wrapper object containing all strategies that use a specific context field
 type ContextFieldStrategiesSchema struct {
 	// List of strategies using the context field
-	Strategies []ContextFieldStrategiesSchemaStrategiesInner `json:"strategies"`
+	Strategies []ContextFieldStrategiesSchemaStrategies `json:"strategies"`
 }

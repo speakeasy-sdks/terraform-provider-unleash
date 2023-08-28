@@ -13,14 +13,34 @@ type AddPublicSignupTokenUserRequest struct {
 	Token                   string                         `pathParam:"style=simple,explode=false,name=token"`
 }
 
+// AddPublicSignupTokenUser409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type AddPublicSignupTokenUser409ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// AddPublicSignupTokenUser400ApplicationJSON - The request data does not match what we expect.
+type AddPublicSignupTokenUser400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type AddPublicSignupTokenUserResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409Response *shared.CreateGroup409Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	AddPublicSignupTokenUser400ApplicationJSONObject *AddPublicSignupTokenUser400ApplicationJSON
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	AddPublicSignupTokenUser409ApplicationJSONObject *AddPublicSignupTokenUser409ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
 }

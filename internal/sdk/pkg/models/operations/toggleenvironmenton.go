@@ -4,21 +4,50 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type ToggleEnvironmentOnRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// ToggleEnvironmentOn404ApplicationJSON - The requested resource was not found.
+type ToggleEnvironmentOn404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ToggleEnvironmentOn403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ToggleEnvironmentOn403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ToggleEnvironmentOn401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ToggleEnvironmentOn401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type ToggleEnvironmentOnResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	ToggleEnvironmentOn401ApplicationJSONObject *ToggleEnvironmentOn401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	ToggleEnvironmentOn403ApplicationJSONObject *ToggleEnvironmentOn403ApplicationJSON
+	// The requested resource was not found.
+	ToggleEnvironmentOn404ApplicationJSONObject *ToggleEnvironmentOn404ApplicationJSON
 }

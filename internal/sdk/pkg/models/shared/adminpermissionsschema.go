@@ -7,6 +7,23 @@ import (
 	"fmt"
 )
 
+type AdminPermissionsSchemaPermissionsEnvironments struct {
+	// The name of the environment
+	Name string `json:"name"`
+	// Permissions available for this environment
+	Permissions []AdminPermissionSchema `json:"permissions"`
+}
+
+// AdminPermissionsSchemaPermissions - Returns permissions available at all three levels (root|project|environment)
+type AdminPermissionsSchemaPermissions struct {
+	// A list of environments with available permissions per environment
+	Environments []AdminPermissionsSchemaPermissionsEnvironments `json:"environments"`
+	// Permissions available at the project level
+	Project []AdminPermissionSchema `json:"project"`
+	// Permissions available at the root level, i.e. not connected to any specific project or environment
+	Root []AdminPermissionSchema `json:"root,omitempty"`
+}
+
 // AdminPermissionsSchemaVersion - The api version of this response. A natural increasing number. Only increases if format changes
 type AdminPermissionsSchemaVersion int64
 

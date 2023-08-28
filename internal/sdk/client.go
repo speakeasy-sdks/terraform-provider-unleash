@@ -248,12 +248,12 @@ func (s *client) RegisterClientMetrics(ctx context.Context, request shared.Clien
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.RegisterClientMetrics400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.RegisterClientMetrics400ApplicationJSONObject = out
 		}
 	}
 

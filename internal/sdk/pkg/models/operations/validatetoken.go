@@ -7,14 +7,34 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// ValidateToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateToken415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// ValidateToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateToken401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type ValidateTokenResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 	// tokenUserSchema
 	TokenUserSchema *shared.TokenUserSchema
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	ValidateToken401ApplicationJSONObject *ValidateToken401ApplicationJSON
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	ValidateToken415ApplicationJSONObject *ValidateToken415ApplicationJSON
 }

@@ -137,12 +137,12 @@ func (s *projects) AddDefaultStrategyToProjectEnvironment(ctx context.Context, r
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.AddDefaultStrategyToProjectEnvironment400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject = out
 		}
 	}
 
@@ -208,32 +208,32 @@ func (s *projects) AddEnvironmentToProject(ctx context.Context, request operatio
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.AddEnvironmentToProject401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.AddEnvironmentToProject401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.AddEnvironmentToProject403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.AddEnvironmentToProject403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.AddEnvironmentToProject409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.AddEnvironmentToProject409ApplicationJSONObject = out
 		}
 	}
 
@@ -440,22 +440,22 @@ func (s *projects) CreateProject(ctx context.Context, request shared.CreateProje
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.CreateProject400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.CreateProject400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.CreateProject401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.CreateProject401ApplicationJSONObject = out
 		}
 	}
 
@@ -532,32 +532,32 @@ func (s *projects) CreateProjectAPIToken(ctx context.Context, request operations
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.CreateProjectAPIToken400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.CreateProjectAPIToken400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.CreateProjectAPIToken401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.CreateProjectAPIToken401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.CreateProjectAPIToken403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.CreateProjectAPIToken403ApplicationJSONObject = out
 		}
 	}
 
@@ -654,22 +654,22 @@ func (s *projects) DeleteProjectAPIToken(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.DeleteProjectAPIToken401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.DeleteProjectAPIToken401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.DeleteProjectAPIToken403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.DeleteProjectAPIToken403ApplicationJSONObject = out
 		}
 	}
 
@@ -784,32 +784,32 @@ func (s *projects) GetProjectAPITokens(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetProjectAPITokens401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetProjectAPITokens401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetProjectAPITokens403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetProjectAPITokens403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.GetProjectAPITokens404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.GetProjectAPITokens404ApplicationJSONObject = out
 		}
 	}
 
@@ -870,32 +870,32 @@ func (s *projects) GetProjectHealthReport(ctx context.Context, request operation
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetProjectHealthReport401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetProjectHealthReport401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetProjectHealthReport403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetProjectHealthReport403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.GetProjectHealthReport404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.GetProjectHealthReport404ApplicationJSONObject = out
 		}
 	}
 
@@ -956,32 +956,32 @@ func (s *projects) GetProjectOverview(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetProjectOverview401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetProjectOverview401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetProjectOverview403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetProjectOverview403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.GetProjectOverview404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.GetProjectOverview404ApplicationJSONObject = out
 		}
 	}
 
@@ -1096,22 +1096,22 @@ func (s *projects) GetProjects(ctx context.Context) (*operations.GetProjectsResp
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetProjects401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetProjects401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetProjects403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetProjects403ApplicationJSONObject = out
 		}
 	}
 
@@ -1163,32 +1163,32 @@ func (s *projects) RemoveEnvironmentFromProject(ctx context.Context, request ope
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.RemoveEnvironmentFromProject400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.RemoveEnvironmentFromProject400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.RemoveEnvironmentFromProject401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.RemoveEnvironmentFromProject401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.RemoveEnvironmentFromProject403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.RemoveEnvironmentFromProject403ApplicationJSONObject = out
 		}
 	}
 

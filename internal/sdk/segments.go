@@ -92,52 +92,52 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.CreateSegment400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.CreateSegment400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.CreateSegment401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.CreateSegment401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.CreateSegment403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.CreateSegment403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.CreateSegment409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.CreateSegment409ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.CreateSegment415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.CreateSegment415ApplicationJSONObject = out
 		}
 	}
 
@@ -198,12 +198,12 @@ func (s *segments) GetSegment(ctx context.Context, request operations.GetSegment
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.GetSegment404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.GetSegment404ApplicationJSONObject = out
 		}
 	}
 
@@ -420,32 +420,32 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.RemoveSegment401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.RemoveSegment401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.RemoveSegment403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.RemoveSegment403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.RemoveSegment409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.RemoveSegment409ApplicationJSONObject = out
 		}
 	}
 
@@ -497,52 +497,52 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.UpdateSegment400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.UpdateSegment400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.UpdateSegment401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.UpdateSegment401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.UpdateSegment403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.UpdateSegment403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.UpdateSegment409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.UpdateSegment409ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.UpdateSegment415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.UpdateSegment415ApplicationJSONObject = out
 		}
 	}
 
@@ -605,42 +605,42 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.ValidateSegment400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.ValidateSegment400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.ValidateSegment401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.ValidateSegment401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.ValidateSegment409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.ValidateSegment409ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.ValidateSegment415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.ValidateSegment415ApplicationJSONObject = out
 		}
 	}
 

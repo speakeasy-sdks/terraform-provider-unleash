@@ -4,13 +4,22 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
+
+// ValidateRole400ApplicationJSON - The request data does not match what we expect.
+type ValidateRole400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
 
 type ValidateRoleResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	ValidateRole400ApplicationJSONObject *ValidateRole400ApplicationJSON
 }

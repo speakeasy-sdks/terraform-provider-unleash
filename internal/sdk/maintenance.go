@@ -76,22 +76,22 @@ func (s *maintenance) GetMaintenance(ctx context.Context) (*operations.GetMainte
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetMaintenance401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetMaintenance401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetMaintenance403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetMaintenance403ApplicationJSONObject = out
 		}
 	}
 
@@ -154,32 +154,32 @@ func (s *maintenance) ToggleMaintenance(ctx context.Context, request shared.Togg
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.ToggleMaintenance400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.ToggleMaintenance400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.ToggleMaintenance401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.ToggleMaintenance401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.ToggleMaintenance403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.ToggleMaintenance403ApplicationJSONObject = out
 		}
 	}
 

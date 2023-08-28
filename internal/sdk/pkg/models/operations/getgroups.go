@@ -7,14 +7,34 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetGroups403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetGroups403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetGroups401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetGroups401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetGroupsResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	GetGroups401ApplicationJSONObject *GetGroups401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	GetGroups403ApplicationJSONObject *GetGroups403ApplicationJSON
 	// groupsSchema
 	GroupsSchema *shared.GroupsSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
 }

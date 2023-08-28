@@ -13,18 +13,58 @@ type CreateFeatureRequest struct {
 	ProjectID           string                     `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// CreateFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateFeature415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateFeature404ApplicationJSON - The requested resource was not found.
+type CreateFeature404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateFeature403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateFeature401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateFeatureResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	CreateFeature401ApplicationJSONObject *CreateFeature401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	CreateFeature403ApplicationJSONObject *CreateFeature403ApplicationJSON
+	// The requested resource was not found.
+	CreateFeature404ApplicationJSONObject *CreateFeature404ApplicationJSON
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	CreateFeature415ApplicationJSONObject *CreateFeature415ApplicationJSON
 	// featureSchema
 	FeatureSchema *shared.FeatureSchema
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 }

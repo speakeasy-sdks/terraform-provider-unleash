@@ -13,12 +13,22 @@ type UpdateRoleRequest struct {
 	RoleID                          string                                 `pathParam:"style=simple,explode=false,name=roleId"`
 }
 
+// UpdateRole400ApplicationJSON - The request data does not match what we expect.
+type UpdateRole400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateRoleResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
 	// roleWithVersionSchema
 	RoleWithVersionSchema *shared.RoleWithVersionSchema
+	// The request data does not match what we expect.
+	UpdateRole400ApplicationJSONObject *UpdateRole400ApplicationJSON
 }

@@ -92,52 +92,52 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.CreateServiceAccount400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.CreateServiceAccount400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.CreateServiceAccount401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.CreateServiceAccount401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.CreateServiceAccount403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.CreateServiceAccount403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.CreateServiceAccount409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.CreateServiceAccount409ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.CreateServiceAccount415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.CreateServiceAccount415ApplicationJSONObject = out
 		}
 	}
 
@@ -214,52 +214,52 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.CreateServiceAccountToken401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.CreateServiceAccountToken401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.CreateServiceAccountToken403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.CreateServiceAccountToken403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.CreateServiceAccountToken404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.CreateServiceAccountToken404ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateGroup409Response
+			var out *operations.CreateServiceAccountToken409ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateGroup409Response = out
+			res.CreateServiceAccountToken409ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.CreateServiceAccountToken415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.CreateServiceAccountToken415ApplicationJSONObject = out
 		}
 	}
 
@@ -311,32 +311,32 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.DeleteServiceAccount401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.DeleteServiceAccount401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.DeleteServiceAccount403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.DeleteServiceAccount403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.DeleteServiceAccount404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.DeleteServiceAccount404ApplicationJSONObject = out
 		}
 	}
 
@@ -388,32 +388,32 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.DeleteServiceAccountToken401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.DeleteServiceAccountToken401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.DeleteServiceAccountToken403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.DeleteServiceAccountToken403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.DeleteServiceAccountToken404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.DeleteServiceAccountToken404ApplicationJSONObject = out
 		}
 	}
 
@@ -474,32 +474,32 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetServiceAccountTokens401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetServiceAccountTokens401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetServiceAccountTokens403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetServiceAccountTokens403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.GetServiceAccountTokens404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.GetServiceAccountTokens404ApplicationJSONObject = out
 		}
 	}
 
@@ -557,22 +557,22 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.GetServiceAccounts401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.GetServiceAccounts401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.GetServiceAccounts403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.GetServiceAccounts403ApplicationJSONObject = out
 		}
 	}
 
@@ -647,52 +647,52 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.UpdateServiceAccount400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.UpdateServiceAccount400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Login401Response
+			var out *operations.UpdateServiceAccount401ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.Login401Response = out
+			res.UpdateServiceAccount401ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings403Response
+			var out *operations.UpdateServiceAccount403ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings403Response = out
+			res.UpdateServiceAccount403ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGroup404Response
+			var out *operations.UpdateServiceAccount404ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGroup404Response = out
+			res.UpdateServiceAccount404ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.UpdateServiceAccount415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.UpdateServiceAccount415ApplicationJSONObject = out
 		}
 	}
 

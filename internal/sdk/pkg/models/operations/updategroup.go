@@ -13,20 +13,70 @@ type UpdateGroupRequest struct {
 	GroupID           string                   `pathParam:"style=simple,explode=false,name=groupId"`
 }
 
+// UpdateGroup409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type UpdateGroup409ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateGroup404ApplicationJSON - The requested resource was not found.
+type UpdateGroup404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateGroup403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateGroup401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateGroup400ApplicationJSON - The request data does not match what we expect.
+type UpdateGroup400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateGroupResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409Response *shared.CreateGroup409Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// groupSchema
 	GroupSchema *shared.GroupSchema
+	// The request data does not match what we expect.
+	UpdateGroup400ApplicationJSONObject *UpdateGroup400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateGroup401ApplicationJSONObject *UpdateGroup401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateGroup403ApplicationJSONObject *UpdateGroup403ApplicationJSON
+	// The requested resource was not found.
+	UpdateGroup404ApplicationJSONObject *UpdateGroup404ApplicationJSON
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	UpdateGroup409ApplicationJSONObject *UpdateGroup409ApplicationJSON
 }

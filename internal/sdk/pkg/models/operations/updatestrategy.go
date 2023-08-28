@@ -13,16 +13,56 @@ type UpdateStrategyRequest struct {
 	UpdateStrategySchema shared.UpdateStrategySchema `request:"mediaType=application/json"`
 }
 
+// UpdateStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateStrategy415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateStrategy404ApplicationJSON - The requested resource was not found.
+type UpdateStrategy404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateStrategy403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateStrategy401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateStrategyResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateStrategy401ApplicationJSONObject *UpdateStrategy401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateStrategy403ApplicationJSONObject *UpdateStrategy403ApplicationJSON
+	// The requested resource was not found.
+	UpdateStrategy404ApplicationJSONObject *UpdateStrategy404ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	UpdateStrategy415ApplicationJSONObject *UpdateStrategy415ApplicationJSON
 }

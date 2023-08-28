@@ -12,16 +12,46 @@ type GetTagRequest struct {
 	Value string `pathParam:"style=simple,explode=false,name=value"`
 }
 
+// GetTag404ApplicationJSON - The requested resource was not found.
+type GetTag404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetTag403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetTag403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetTag401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetTag401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetTagResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetTag401ApplicationJSONObject *GetTag401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetTag403ApplicationJSONObject *GetTag403ApplicationJSON
+	// The requested resource was not found.
+	GetTag404ApplicationJSONObject *GetTag404ApplicationJSON
 	// tagWithVersionSchema
 	TagWithVersionSchema *shared.TagWithVersionSchema
 }

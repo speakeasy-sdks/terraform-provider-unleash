@@ -16,6 +16,56 @@ type PatchFeatureStrategyRequest struct {
 	StrategyID  string               `pathParam:"style=simple,explode=false,name=strategyId"`
 }
 
+// PatchFeatureStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type PatchFeatureStrategy415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// PatchFeatureStrategy404ApplicationJSON - The requested resource was not found.
+type PatchFeatureStrategy404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// PatchFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type PatchFeatureStrategy403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// PatchFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type PatchFeatureStrategy401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// PatchFeatureStrategy400ApplicationJSON - The request data does not match what we expect.
+type PatchFeatureStrategy400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type PatchFeatureStrategyResponse struct {
 	ContentType string
 	StatusCode  int
@@ -23,13 +73,13 @@ type PatchFeatureStrategyResponse struct {
 	// featureStrategySchema
 	FeatureStrategySchema *shared.FeatureStrategySchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	PatchFeatureStrategy400ApplicationJSONObject *PatchFeatureStrategy400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	PatchFeatureStrategy401ApplicationJSONObject *PatchFeatureStrategy401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	PatchFeatureStrategy403ApplicationJSONObject *PatchFeatureStrategy403ApplicationJSON
+	// The requested resource was not found.
+	PatchFeatureStrategy404ApplicationJSONObject *PatchFeatureStrategy404ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	PatchFeatureStrategy415ApplicationJSONObject *PatchFeatureStrategy415ApplicationJSON
 }

@@ -7,12 +7,22 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// CreateRole400ApplicationJSON - The request data does not match what we expect.
+type CreateRole400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateRoleResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	CreateRole400ApplicationJSONObject *CreateRole400ApplicationJSON
 	// roleWithVersionSchema
 	RoleWithVersionSchema *shared.RoleWithVersionSchema
 }

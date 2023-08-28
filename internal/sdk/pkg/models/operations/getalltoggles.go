@@ -7,14 +7,34 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetAllToggles403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetAllToggles403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetAllToggles401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllToggles401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetAllTogglesResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// featuresSchema
 	FeaturesSchema *shared.FeaturesSchema
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetAllToggles401ApplicationJSONObject *GetAllToggles401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetAllToggles403ApplicationJSONObject *GetAllToggles403ApplicationJSON
 }

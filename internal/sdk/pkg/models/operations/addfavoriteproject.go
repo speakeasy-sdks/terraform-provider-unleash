@@ -4,19 +4,38 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type AddFavoriteProjectRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// AddFavoriteProject404ApplicationJSON - The requested resource was not found.
+type AddFavoriteProject404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// AddFavoriteProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type AddFavoriteProject401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type AddFavoriteProjectResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	AddFavoriteProject401ApplicationJSONObject *AddFavoriteProject401ApplicationJSON
+	// The requested resource was not found.
+	AddFavoriteProject404ApplicationJSONObject *AddFavoriteProject404ApplicationJSON
 }

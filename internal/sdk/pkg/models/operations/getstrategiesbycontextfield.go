@@ -11,6 +11,16 @@ type GetStrategiesByContextFieldRequest struct {
 	ContextField string `pathParam:"style=simple,explode=false,name=contextField"`
 }
 
+// GetStrategiesByContextField401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetStrategiesByContextField401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetStrategiesByContextFieldResponse struct {
 	ContentType string
 	StatusCode  int
@@ -18,5 +28,5 @@ type GetStrategiesByContextFieldResponse struct {
 	// contextFieldStrategiesSchema
 	ContextFieldStrategiesSchema *shared.ContextFieldStrategiesSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetStrategiesByContextField401ApplicationJSONObject *GetStrategiesByContextField401ApplicationJSON
 }

@@ -2,6 +2,23 @@
 
 package shared
 
+type ClientMetricsSchemaBucketToggles struct {
+	// How many times the toggle evaluated to false
+	No *int64 `json:"no,omitempty"`
+	// An object describing how many times each variant was returned. Variant names are used as properties, and the number of times they were exposed is the corresponding value (i.e. `{ [variantName]: number }`).
+	Variants map[string]int64 `json:"variants,omitempty"`
+	// How many times the toggle evaluated to true
+	Yes *float64 `json:"yes,omitempty"`
+}
+
+// ClientMetricsSchemaBucket - Holds all metrics gathered over a window of time. Typically 1 hour wide
+type ClientMetricsSchemaBucket struct {
+	Start DateSchema `json:"start"`
+	Stop  DateSchema `json:"stop"`
+	// an object containing feature names with yes/no plus variant usage
+	Toggles map[string]ClientMetricsSchemaBucketToggles `json:"toggles"`
+}
+
 // ClientMetricsSchema - Client usage metrics, accumulated in buckets of hour by hour by default
 type ClientMetricsSchema struct {
 	// The name of the application that is evaluating toggles

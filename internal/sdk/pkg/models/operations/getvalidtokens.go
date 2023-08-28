@@ -7,16 +7,46 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetValidTokens415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type GetValidTokens415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetValidTokens413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type GetValidTokens413ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetValidTokens400ApplicationJSON - The request data does not match what we expect.
+type GetValidTokens400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetValidTokensResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413Response *shared.CreateAddon413Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	GetValidTokens400ApplicationJSONObject *GetValidTokens400ApplicationJSON
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	GetValidTokens413ApplicationJSONObject *GetValidTokens413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	GetValidTokens415ApplicationJSONObject *GetValidTokens415ApplicationJSON
 	// validatedEdgeTokensSchema
 	ValidatedEdgeTokensSchema *shared.ValidatedEdgeTokensSchema
 }

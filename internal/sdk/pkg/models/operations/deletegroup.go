@@ -4,11 +4,40 @@ package operations
 
 import (
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 type DeleteGroupRequest struct {
 	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
+}
+
+// DeleteGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteGroup403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// DeleteGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteGroup401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// DeleteGroup400ApplicationJSON - The request data does not match what we expect.
+type DeleteGroup400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
 }
 
 type DeleteGroupResponse struct {
@@ -16,9 +45,9 @@ type DeleteGroupResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	DeleteGroup400ApplicationJSONObject *DeleteGroup400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	DeleteGroup401ApplicationJSONObject *DeleteGroup401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	DeleteGroup403ApplicationJSONObject *DeleteGroup403ApplicationJSON
 }

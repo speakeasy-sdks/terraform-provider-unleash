@@ -13,6 +13,26 @@ type UpdateEnvironmentRequest struct {
 	UpdateEnvironmentSchema shared.UpdateEnvironmentSchema `request:"mediaType=application/json"`
 }
 
+// UpdateEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateEnvironment401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateEnvironment400ApplicationJSON - The request data does not match what we expect.
+type UpdateEnvironment400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateEnvironmentResponse struct {
 	ContentType string
 	StatusCode  int
@@ -20,7 +40,7 @@ type UpdateEnvironmentResponse struct {
 	// environmentSchema
 	EnvironmentSchema *shared.EnvironmentSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	UpdateEnvironment400ApplicationJSONObject *UpdateEnvironment400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateEnvironment401ApplicationJSONObject *UpdateEnvironment401ApplicationJSON
 }

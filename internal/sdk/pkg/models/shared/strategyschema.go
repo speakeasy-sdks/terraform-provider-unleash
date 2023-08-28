@@ -2,6 +2,13 @@
 
 package shared
 
+type StrategySchemaParameters struct {
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Required    *bool   `json:"required,omitempty"`
+	Type        *string `json:"type,omitempty"`
+}
+
 // StrategySchema - The [activation strategy](https://docs.getunleash.io/reference/activation-strategies) schema
 type StrategySchema struct {
 	Deprecated bool `json:"deprecated"`
@@ -14,7 +21,7 @@ type StrategySchema struct {
 	// The name (type) of the strategy
 	Name string `json:"name"`
 	// A list of relevant parameters for each strategy
-	Parameters []StrategySchemaParametersInner `json:"parameters"`
+	Parameters []StrategySchemaParameters `json:"parameters"`
 	// An optional title for the strategy
 	Title *string `json:"title,omitempty"`
 }

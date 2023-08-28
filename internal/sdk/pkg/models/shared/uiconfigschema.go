@@ -63,7 +63,7 @@ type UIConfigSchema struct {
 	// What kind of Unleash instance it is: Enterprise, Pro, or Open source
 	Environment *string `json:"environment,omitempty"`
 	// Additional (largely experimental) features that are enabled in this Unleash instance.
-	Flags map[string]UIConfigSchemaFlagsValue `json:"flags,omitempty"`
+	Flags map[string]interface{} `json:"flags,omitempty"`
 	// The list of origins that the front-end API should accept requests from.
 	FrontendAPIOrigins []string `json:"frontendApiOrigins,omitempty"`
 	// Relevant links to use in the UI.

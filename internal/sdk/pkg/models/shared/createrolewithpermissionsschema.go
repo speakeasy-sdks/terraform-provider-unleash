@@ -7,6 +7,11 @@ import (
 	"fmt"
 )
 
+type CreateRoleWithPermissionsSchemaPermissions struct {
+	Environment *string `json:"environment,omitempty"`
+	ID          float64 `json:"id"`
+}
+
 type CreateRoleWithPermissionsSchemaType string
 
 const (
@@ -36,8 +41,8 @@ func (e *CreateRoleWithPermissionsSchemaType) UnmarshalJSON(data []byte) error {
 
 // CreateRoleWithPermissionsSchema - createRoleWithPermissionsSchema
 type CreateRoleWithPermissionsSchema struct {
-	Description *string                                           `json:"description,omitempty"`
-	Name        string                                            `json:"name"`
-	Permissions []CreateRoleWithPermissionsSchemaPermissionsInner `json:"permissions,omitempty"`
-	Type        *CreateRoleWithPermissionsSchemaType              `json:"type,omitempty"`
+	Description *string                                      `json:"description,omitempty"`
+	Name        string                                       `json:"name"`
+	Permissions []CreateRoleWithPermissionsSchemaPermissions `json:"permissions,omitempty"`
+	Type        *CreateRoleWithPermissionsSchemaType         `json:"type,omitempty"`
 }

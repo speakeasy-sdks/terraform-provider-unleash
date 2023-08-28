@@ -13,19 +13,59 @@ type UpdateTagsRequest struct {
 	UpdateTagsSchema shared.UpdateTagsSchema `request:"mediaType=application/json"`
 }
 
+// UpdateTags404ApplicationJSON - The requested resource was not found.
+type UpdateTags404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateTags403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateTags403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateTags401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateTags401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateTags400ApplicationJSON - The request data does not match what we expect.
+type UpdateTags400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateTagsResponse struct {
 	ContentType string
 	Headers     map[string][]string
 	StatusCode  int
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
 	// The resource was successfully created.
 	TagsSchema *shared.TagsSchema
+	// The request data does not match what we expect.
+	UpdateTags400ApplicationJSONObject *UpdateTags400ApplicationJSON
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	UpdateTags401ApplicationJSONObject *UpdateTags401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateTags403ApplicationJSONObject *UpdateTags403ApplicationJSON
+	// The requested resource was not found.
+	UpdateTags404ApplicationJSONObject *UpdateTags404ApplicationJSON
 }

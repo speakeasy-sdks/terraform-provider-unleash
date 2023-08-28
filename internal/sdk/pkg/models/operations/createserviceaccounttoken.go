@@ -13,21 +13,71 @@ type CreateServiceAccountTokenRequest struct {
 	PatSchema shared.PatSchema `request:"mediaType=application/json"`
 }
 
+// CreateServiceAccountToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateServiceAccountToken415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateServiceAccountToken409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type CreateServiceAccountToken409ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateServiceAccountToken404ApplicationJSON - The requested resource was not found.
+type CreateServiceAccountToken404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateServiceAccountToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateServiceAccountToken403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateServiceAccountToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateServiceAccountToken401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type CreateServiceAccountTokenResponse struct {
 	ContentType string
 	Headers     map[string][]string
 	StatusCode  int
 	RawResponse *http.Response
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409Response *shared.CreateGroup409Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	CreateServiceAccountToken401ApplicationJSONObject *CreateServiceAccountToken401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	CreateServiceAccountToken403ApplicationJSONObject *CreateServiceAccountToken403ApplicationJSON
+	// The requested resource was not found.
+	CreateServiceAccountToken404ApplicationJSONObject *CreateServiceAccountToken404ApplicationJSON
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	CreateServiceAccountToken409ApplicationJSONObject *CreateServiceAccountToken409ApplicationJSON
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	CreateServiceAccountToken415ApplicationJSONObject *CreateServiceAccountToken415ApplicationJSON
 	// The resource was successfully created.
 	PatSchema *shared.PatSchema
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
 }

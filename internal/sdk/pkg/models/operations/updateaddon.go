@@ -13,22 +13,82 @@ type UpdateAddonRequest struct {
 	ID                      string                         `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// UpdateAddon415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateAddon415ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateAddon413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type UpdateAddon413ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateAddon404ApplicationJSON - The requested resource was not found.
+type UpdateAddon404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateAddon403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateAddon403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateAddon401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// UpdateAddon400ApplicationJSON - The request data does not match what we expect.
+type UpdateAddon400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type UpdateAddonResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// addonSchema
 	AddonSchema *shared.AddonSchema
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413Response *shared.CreateAddon413Response
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
+	UpdateAddon400ApplicationJSONObject *UpdateAddon400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	UpdateAddon401ApplicationJSONObject *UpdateAddon401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	UpdateAddon403ApplicationJSONObject *UpdateAddon403ApplicationJSON
+	// The requested resource was not found.
+	UpdateAddon404ApplicationJSONObject *UpdateAddon404ApplicationJSON
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	UpdateAddon413ApplicationJSONObject *UpdateAddon413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SetGoogleSettings415Response *shared.SetGoogleSettings415Response
+	UpdateAddon415ApplicationJSONObject *UpdateAddon415ApplicationJSON
 }

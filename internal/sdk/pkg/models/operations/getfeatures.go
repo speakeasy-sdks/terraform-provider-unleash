@@ -11,6 +11,36 @@ type GetFeaturesRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// GetFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeatures403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeatures401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetFeatures400ApplicationJSON - The request data does not match what we expect.
+type GetFeatures400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetFeaturesResponse struct {
 	ContentType string
 	StatusCode  int
@@ -18,9 +48,9 @@ type GetFeaturesResponse struct {
 	// featuresSchema
 	FeaturesSchema *shared.FeaturesSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	GetFeatures400ApplicationJSONObject *GetFeatures400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetFeatures401ApplicationJSONObject *GetFeatures401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	GetFeatures403ApplicationJSONObject *GetFeatures403ApplicationJSON
 }

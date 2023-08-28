@@ -3,8 +3,49 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"time"
 )
+
+// InstanceAdminStatsSchemaClientAppsRange - A description of a time range
+type InstanceAdminStatsSchemaClientAppsRange string
+
+const (
+	InstanceAdminStatsSchemaClientAppsRangeAllTime InstanceAdminStatsSchemaClientAppsRange = "allTime"
+	InstanceAdminStatsSchemaClientAppsRangeThirtyd InstanceAdminStatsSchemaClientAppsRange = "30d"
+	InstanceAdminStatsSchemaClientAppsRangeSevend  InstanceAdminStatsSchemaClientAppsRange = "7d"
+)
+
+func (e InstanceAdminStatsSchemaClientAppsRange) ToPointer() *InstanceAdminStatsSchemaClientAppsRange {
+	return &e
+}
+
+func (e *InstanceAdminStatsSchemaClientAppsRange) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "allTime":
+		fallthrough
+	case "30d":
+		fallthrough
+	case "7d":
+		*e = InstanceAdminStatsSchemaClientAppsRange(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InstanceAdminStatsSchemaClientAppsRange: %v", v)
+	}
+}
+
+// InstanceAdminStatsSchemaClientApps - An entry describing how many client applications has been observed over the defined range
+type InstanceAdminStatsSchemaClientApps struct {
+	// The number of client applications that have been observed in this period
+	Count *float64 `json:"count,omitempty"`
+	// A description of a time range
+	Range *InstanceAdminStatsSchemaClientAppsRange `json:"range,omitempty"`
+}
 
 // InstanceAdminStatsSchema - Information about an instance and statistics about usage of various features of Unleash
 type InstanceAdminStatsSchema struct {
@@ -13,7 +54,7 @@ type InstanceAdminStatsSchema struct {
 	// Whether or not SAML authentication is enabled for this instance
 	SAMLenabled *bool `json:"SAMLenabled,omitempty"`
 	// A count of connected applications in the last week, last month and all time since last restart
-	ClientApps []InstanceAdminStatsSchemaClientAppsInner `json:"clientApps,omitempty"`
+	ClientApps []InstanceAdminStatsSchemaClientApps `json:"clientApps,omitempty"`
 	// The number of context fields defined in this instance.
 	ContextFields *float64 `json:"contextFields,omitempty"`
 	// The number of environments defined in this instance

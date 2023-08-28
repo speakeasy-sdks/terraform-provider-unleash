@@ -11,14 +11,34 @@ type GetStrategyRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// GetStrategy404ApplicationJSON - The requested resource was not found.
+type GetStrategy404ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetStrategy401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetStrategyResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
-	// The requested resource was not found.
-	GetGroup404Response *shared.GetGroup404Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetStrategy401ApplicationJSONObject *GetStrategy401ApplicationJSON
+	// The requested resource was not found.
+	GetStrategy404ApplicationJSONObject *GetStrategy404ApplicationJSON
 	// strategySchema
 	StrategySchema *shared.StrategySchema
 }

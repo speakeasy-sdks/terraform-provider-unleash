@@ -81,32 +81,32 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.BulkMetrics400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.BulkMetrics400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateAddon413Response
+			var out *operations.BulkMetrics413ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateAddon413Response = out
+			res.BulkMetrics413ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.BulkMetrics415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.BulkMetrics415ApplicationJSONObject = out
 		}
 	}
 
@@ -178,32 +178,32 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.GetGoogleSettings400Response
+			var out *operations.GetValidTokens400ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.GetGoogleSettings400Response = out
+			res.GetValidTokens400ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.CreateAddon413Response
+			var out *operations.GetValidTokens413ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.CreateAddon413Response = out
+			res.GetValidTokens413ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.SetGoogleSettings415Response
+			var out *operations.GetValidTokens415ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.SetGoogleSettings415Response = out
+			res.GetValidTokens415ApplicationJSONObject = out
 		}
 	}
 

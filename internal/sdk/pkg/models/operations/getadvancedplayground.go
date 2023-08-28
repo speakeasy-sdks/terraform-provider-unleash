@@ -7,6 +7,26 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
+// GetAdvancedPlayground401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAdvancedPlayground401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// GetAdvancedPlayground400ApplicationJSON - The request data does not match what we expect.
+type GetAdvancedPlayground400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type GetAdvancedPlaygroundResponse struct {
 	ContentType string
 	StatusCode  int
@@ -14,7 +34,7 @@ type GetAdvancedPlaygroundResponse struct {
 	// advancedPlaygroundResponseSchema
 	AdvancedPlaygroundResponseSchema *shared.AdvancedPlaygroundResponseSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
+	GetAdvancedPlayground400ApplicationJSONObject *GetAdvancedPlayground400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	GetAdvancedPlayground401ApplicationJSONObject *GetAdvancedPlayground401ApplicationJSON
 }

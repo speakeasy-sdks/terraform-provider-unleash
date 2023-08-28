@@ -15,6 +15,36 @@ type OverwriteEnvironmentFeatureVariantsRequest struct {
 	ProjectID   string                 `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+// OverwriteEnvironmentFeatureVariants403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type OverwriteEnvironmentFeatureVariants403ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// OverwriteEnvironmentFeatureVariants401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type OverwriteEnvironmentFeatureVariants401ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
+// OverwriteEnvironmentFeatureVariants400ApplicationJSON - The request data does not match what we expect.
+type OverwriteEnvironmentFeatureVariants400ApplicationJSON struct {
+	// The ID of the error instance
+	ID *string `json:"id,omitempty"`
+	// A description of what went wrong.
+	Message *string `json:"message,omitempty"`
+	// The name of the error kind
+	Name *string `json:"name,omitempty"`
+}
+
 type OverwriteEnvironmentFeatureVariantsResponse struct {
 	ContentType string
 	StatusCode  int
@@ -22,9 +52,9 @@ type OverwriteEnvironmentFeatureVariantsResponse struct {
 	// featureVariantsSchema
 	FeatureVariantsSchema *shared.FeatureVariantsSchema
 	// The request data does not match what we expect.
-	GetGoogleSettings400Response *shared.GetGoogleSettings400Response
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403Response *shared.GetGoogleSettings403Response
+	OverwriteEnvironmentFeatureVariants400ApplicationJSONObject *OverwriteEnvironmentFeatureVariants400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401Response *shared.Login401Response
+	OverwriteEnvironmentFeatureVariants401ApplicationJSONObject *OverwriteEnvironmentFeatureVariants401ApplicationJSON
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	OverwriteEnvironmentFeatureVariants403ApplicationJSONObject *OverwriteEnvironmentFeatureVariants403ApplicationJSON
 }
