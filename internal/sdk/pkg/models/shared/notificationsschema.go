@@ -56,5 +56,5 @@ type NotificationsSchema struct {
 	// The type of the notification used e.g. for the graphical hints
 	NotificationType NotificationsSchemaNotificationType `json:"notificationType"`
 	// The date and time when the notification was read or marked as read, otherwise `null`
-	ReadAt time.Time `json:"readAt"`
+	ReadAt *time.Time `json:"readAt"`
 }

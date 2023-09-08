@@ -2,7 +2,6 @@
 
 package shared
 
-// ResetPasswordSchema - resetPasswordSchema
 type ResetPasswordSchema struct {
 	ResetPasswordURL string `json:"resetPasswordUrl"`
 }

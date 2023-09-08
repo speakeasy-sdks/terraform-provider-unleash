@@ -11,7 +11,7 @@ type PublicSignupTokenSchema struct {
 	// When the token was created.
 	CreatedAt time.Time `json:"createdAt"`
 	// The creator's email or username
-	CreatedBy string `json:"createdBy"`
+	CreatedBy *string `json:"createdBy"`
 	// Whether the token is active. This property will always be `false` for a token that has expired.
 	Enabled bool `json:"enabled"`
 	// The time when the token will expire.

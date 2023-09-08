@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// AdminSegmentSchema - The resource was successfully created.
 type AdminSegmentSchema struct {
 	// The list of constraints that are used in this segment
 	Constraints []ConstraintSchema `json:"constraints"`

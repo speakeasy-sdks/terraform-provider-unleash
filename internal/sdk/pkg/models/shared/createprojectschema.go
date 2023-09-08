@@ -35,7 +35,6 @@ func (e *CreateProjectSchemaMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreateProjectSchema - createProjectSchema
 type CreateProjectSchema struct {
 	// A default stickiness for the project affecting the default stickiness value for variants and Gradual Rollout strategy
 	DefaultStickiness *string `json:"defaultStickiness,omitempty"`

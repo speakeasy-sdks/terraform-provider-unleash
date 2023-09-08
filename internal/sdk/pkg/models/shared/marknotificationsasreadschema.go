@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 )
 
-// MarkNotificationsAsReadSchema - markNotificationsAsReadSchema
 type MarkNotificationsAsReadSchema struct {
 	Notifications []float64 `json:"notifications"`
 

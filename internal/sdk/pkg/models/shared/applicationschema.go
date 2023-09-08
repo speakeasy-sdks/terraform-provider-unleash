@@ -2,7 +2,6 @@
 
 package shared
 
-// ApplicationSchema - applicationSchema
 type ApplicationSchema struct {
 	// Name of the application
 	AppName string `json:"appName"`

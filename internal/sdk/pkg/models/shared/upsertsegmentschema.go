@@ -2,7 +2,6 @@
 
 package shared
 
-// UpsertSegmentSchema - upsertSegmentSchema
 type UpsertSegmentSchema struct {
 	Constraints []ConstraintSchema `json:"constraints"`
 	Description *string            `json:"description,omitempty"`

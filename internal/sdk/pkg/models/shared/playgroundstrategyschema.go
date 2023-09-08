@@ -305,7 +305,7 @@ type PlaygroundStrategySchema struct {
 	// The strategy's constraints and their evaluation results.
 	Constraints []PlaygroundConstraintSchema `json:"constraints"`
 	// The strategy's status. Disabled strategies are not evaluated
-	Disabled bool `json:"disabled"`
+	Disabled *bool `json:"disabled"`
 	// The strategy's id.
 	ID string `json:"id"`
 	// A set of links to actions you can perform on this strategy

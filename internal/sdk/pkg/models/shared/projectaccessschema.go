@@ -2,7 +2,6 @@
 
 package shared
 
-// ProjectAccessSchema - projectAccessSchema
 type ProjectAccessSchema struct {
 	Groups []GroupSchema               `json:"groups"`
 	Roles  []RoleSchema                `json:"roles"`

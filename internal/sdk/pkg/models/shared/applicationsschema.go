@@ -2,7 +2,6 @@
 
 package shared
 
-// ApplicationsSchema - applicationsSchema
 type ApplicationsSchema struct {
 	// Contains a list of applications that have connected via an SDK
 	Applications []ApplicationSchema `json:"applications,omitempty"`

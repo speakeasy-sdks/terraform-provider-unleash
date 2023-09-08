@@ -2,7 +2,6 @@
 
 package shared
 
-// SegmentsSchema - segmentsSchema
 type SegmentsSchema struct {
 	Segments []AdminSegmentSchema `json:"segments,omitempty"`
 }

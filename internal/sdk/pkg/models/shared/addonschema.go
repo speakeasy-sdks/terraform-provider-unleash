@@ -5,7 +5,7 @@ package shared
 // AddonSchema - An [addon](https://docs.getunleash.io/reference/addons) instance description. Contains data about what kind of provider it uses, whether it's enabled or not, what events it listens for, and more.
 type AddonSchema struct {
 	// A description of the addon. `null` if no description exists.
-	Description string `json:"description"`
+	Description *string `json:"description"`
 	// Whether the addon is enabled or not.
 	Enabled bool `json:"enabled"`
 	// The list of environments that this addon listens to events from. An empty list means it listens to events from **all** environments.

@@ -39,7 +39,6 @@ func (e *CreateRoleWithPermissionsSchemaType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreateRoleWithPermissionsSchema - createRoleWithPermissionsSchema
 type CreateRoleWithPermissionsSchema struct {
 	Description *string                                      `json:"description,omitempty"`
 	Name        string                                       `json:"name"`

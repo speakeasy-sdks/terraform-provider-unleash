@@ -159,7 +159,7 @@ type PlaygroundFeatureSchema struct {
 	//                           variant_. If a feature is disabled or doesn't have any
 	//                           variants, you would get the _disabled variant_.
 	//                           Otherwise, you'll get one of thefeature's defined variants.
-	Variant PlaygroundFeatureSchemaVariant `json:"variant"`
+	Variant *PlaygroundFeatureSchemaVariant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
 }

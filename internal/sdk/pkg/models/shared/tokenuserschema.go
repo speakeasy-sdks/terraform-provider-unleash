@@ -5,7 +5,7 @@ package shared
 // TokenUserSchema - A user identified by a token
 type TokenUserSchema struct {
 	// A username or email identifying which user created this token
-	CreatedBy string `json:"createdBy"`
+	CreatedBy *string `json:"createdBy"`
 	// The email of the user
 	Email string `json:"email"`
 	// The user id

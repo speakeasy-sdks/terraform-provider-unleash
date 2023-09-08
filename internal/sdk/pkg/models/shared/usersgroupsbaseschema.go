@@ -2,7 +2,6 @@
 
 package shared
 
-// UsersGroupsBaseSchema - usersGroupsBaseSchema
 type UsersGroupsBaseSchema struct {
 	Groups []GroupSchema `json:"groups,omitempty"`
 	Users  []UserSchema  `json:"users,omitempty"`

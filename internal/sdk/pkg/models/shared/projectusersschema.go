@@ -2,7 +2,6 @@
 
 package shared
 
-// ProjectUsersSchema - projectUsersSchema
 type ProjectUsersSchema struct {
 	Roles []RoleSchema                `json:"roles"`
 	Users []UserWithProjectRoleSchema `json:"users"`

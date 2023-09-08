@@ -2,7 +2,6 @@
 
 package shared
 
-// CreateFeatureSchema - createFeatureSchema
 type CreateFeatureSchema struct {
 	// Detailed description of the feature
 	Description *string `json:"description,omitempty"`

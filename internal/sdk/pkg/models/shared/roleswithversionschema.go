@@ -2,7 +2,6 @@
 
 package shared
 
-// RolesWithVersionSchema - rolesWithVersionSchema
 type RolesWithVersionSchema struct {
 	Roles   []RoleSchema `json:"roles"`
 	Version float64      `json:"version"`

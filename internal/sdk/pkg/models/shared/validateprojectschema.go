@@ -2,7 +2,6 @@
 
 package shared
 
-// ValidateProjectSchema - validateProjectSchema
 type ValidateProjectSchema struct {
 	ID string `json:"id"`
 }

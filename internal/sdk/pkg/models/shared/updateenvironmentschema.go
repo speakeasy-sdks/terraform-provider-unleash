@@ -2,7 +2,6 @@
 
 package shared
 
-// UpdateEnvironmentSchema - updateEnvironmentSchema
 type UpdateEnvironmentSchema struct {
 	// Changes the sort order of this environment.
 	SortOrder *int64 `json:"sortOrder,omitempty"`

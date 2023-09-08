@@ -9,7 +9,7 @@ type FeatureTypeSchema struct {
 	// The identifier of this feature toggle type.
 	ID string `json:"id"`
 	// How many days it takes before a feature toggle of this typed is flagged as [potentially stale](https://docs.getunleash.io/reference/technical-debt#stale-and-potentially-stale-toggles) by Unleash. If this value is `null`, Unleash will never mark it as potentially stale.
-	LifetimeDays int64 `json:"lifetimeDays"`
+	LifetimeDays *int64 `json:"lifetimeDays"`
 	// The display name of this feature toggle type.
 	Name string `json:"name"`
 }

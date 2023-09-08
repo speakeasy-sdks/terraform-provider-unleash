@@ -2,7 +2,6 @@
 
 package shared
 
-// UpsertContextFieldSchema - upsertContextFieldSchema
 type UpsertContextFieldSchema struct {
 	Description *string            `json:"description,omitempty"`
 	LegalValues []LegalValueSchema `json:"legalValues,omitempty"`

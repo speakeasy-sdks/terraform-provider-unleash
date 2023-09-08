@@ -2,7 +2,6 @@
 
 package shared
 
-// RoleWithVersionSchema - roleWithVersionSchema
 type RoleWithVersionSchema struct {
 	// A role holds permissions to allow Unleash to decide what actions a role holder is allowed to perform
 	Roles   RoleSchema `json:"roles"`

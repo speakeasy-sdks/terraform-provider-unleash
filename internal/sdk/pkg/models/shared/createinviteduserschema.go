@@ -2,7 +2,6 @@
 
 package shared
 
-// CreateInvitedUserSchema - createInvitedUserSchema
 type CreateInvitedUserSchema struct {
 	Email    string  `json:"email"`
 	Name     string  `json:"name"`

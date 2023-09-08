@@ -13,9 +13,9 @@ type StrategySchemaParameters struct {
 type StrategySchema struct {
 	Deprecated bool `json:"deprecated"`
 	// A short description of the strategy
-	Description string `json:"description"`
+	Description *string `json:"description"`
 	// A human friendly name for the strategy
-	DisplayName string `json:"displayName"`
+	DisplayName *string `json:"displayName"`
 	// Whether the strategy can be edited or not. Strategies bundled with Unleash cannot be edited.
 	Editable bool `json:"editable"`
 	// The name (type) of the strategy

@@ -2,7 +2,6 @@
 
 package shared
 
-// ToggleMaintenanceSchema - toggleMaintenanceSchema
 type ToggleMaintenanceSchema struct {
 	Enabled bool `json:"enabled"`
 }

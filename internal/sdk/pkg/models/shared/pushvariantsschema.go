@@ -2,7 +2,6 @@
 
 package shared
 
-// PushVariantsSchema - pushVariantsSchema
 type PushVariantsSchema struct {
 	Environments []string        `json:"environments,omitempty"`
 	Variants     []VariantSchema `json:"variants,omitempty"`

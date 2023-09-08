@@ -2,7 +2,6 @@
 
 package shared
 
-// RoleWithPermissionsSchema - roleWithPermissionsSchema
 type RoleWithPermissionsSchema struct {
 	Description *string                 `json:"description,omitempty"`
 	ID          float64                 `json:"id"`

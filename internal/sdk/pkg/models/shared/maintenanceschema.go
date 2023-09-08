@@ -2,7 +2,6 @@
 
 package shared
 
-// MaintenanceSchema - maintenanceSchema
 type MaintenanceSchema struct {
 	Enabled bool `json:"enabled"`
 }
