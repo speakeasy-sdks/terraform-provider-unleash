@@ -5,7 +5,7 @@ package shared
 // TagSchema - Representation of a [tag](https://docs.getunleash.io/reference/tags)
 type TagSchema struct {
 	// The [type](https://docs.getunleash.io/reference/tags#tag-types) of the tag
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// The value of the tag
 	Value string `json:"value"`
 }
