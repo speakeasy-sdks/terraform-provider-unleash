@@ -54,8 +54,11 @@ type ArchiveFeatures400ApplicationJSON struct {
 }
 
 type ArchiveFeaturesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
 	ArchiveFeatures400ApplicationJSONObject *ArchiveFeatures400ApplicationJSON
