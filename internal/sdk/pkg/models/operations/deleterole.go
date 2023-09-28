@@ -21,8 +21,11 @@ type DeleteRole409ApplicationJSON struct {
 }
 
 type DeleteRoleResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 	DeleteRole409ApplicationJSONObject *DeleteRole409ApplicationJSON
