@@ -44,8 +44,11 @@ type UpdatePublicSignupToken400ApplicationJSON struct {
 }
 
 type UpdatePublicSignupTokenResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// publicSignupTokenSchema
 	PublicSignupTokenSchema *shared.PublicSignupTokenSchema

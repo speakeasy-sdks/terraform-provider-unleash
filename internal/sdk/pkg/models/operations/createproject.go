@@ -28,9 +28,12 @@ type CreateProject400ApplicationJSON struct {
 }
 
 type CreateProjectResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
 	CreateProject400ApplicationJSONObject *CreateProject400ApplicationJSON
