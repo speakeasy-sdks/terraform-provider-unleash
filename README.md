@@ -10,7 +10,7 @@ terraform {
   required_providers {
     terraform = {
       source  = "speakeasy/terraform"
-      version = "0.7.0"
+      version = "0.7.1"
     }
   }
 }
@@ -45,8 +45,6 @@ TF_REATTACH_PROVIDERS=... terraform apply
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 
