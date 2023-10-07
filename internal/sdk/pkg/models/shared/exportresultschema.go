@@ -2,9 +2,60 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type ExportResultSchemaSegments struct {
 	ID   float64 `json:"id"`
 	Name *string `json:"name,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ExportResultSchemaSegments ExportResultSchemaSegments
+
+func (c *ExportResultSchemaSegments) UnmarshalJSON(bs []byte) error {
+	data := _ExportResultSchemaSegments{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ExportResultSchemaSegments(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "id")
+	delete(additionalFields, "name")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ExportResultSchemaSegments) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ExportResultSchemaSegments(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // ExportResultSchema - The result of the export operation, providing you with the feature toggle definitions, strategy definitions and the rest of the elements relevant to the features (tags, environments etc.)
@@ -23,4 +74,56 @@ type ExportResultSchema struct {
 	Segments []ExportResultSchemaSegments `json:"segments,omitempty"`
 	// A list of all of the tag types that are used in the `featureTags` list.
 	TagTypes []TagTypeSchema `json:"tagTypes"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ExportResultSchema ExportResultSchema
+
+func (c *ExportResultSchema) UnmarshalJSON(bs []byte) error {
+	data := _ExportResultSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ExportResultSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "contextFields")
+	delete(additionalFields, "featureEnvironments")
+	delete(additionalFields, "featureStrategies")
+	delete(additionalFields, "featureTags")
+	delete(additionalFields, "features")
+	delete(additionalFields, "segments")
+	delete(additionalFields, "tagTypes")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ExportResultSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ExportResultSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

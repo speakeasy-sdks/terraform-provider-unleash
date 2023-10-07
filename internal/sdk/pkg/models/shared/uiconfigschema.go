@@ -3,7 +3,9 @@
 package shared
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 )
 
@@ -47,6 +49,74 @@ func (e *UIConfigSchemaAuthenticationType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type UIConfigSchemaFlagsType string
+
+const (
+	UIConfigSchemaFlagsTypeBoolean           UIConfigSchemaFlagsType = "boolean"
+	UIConfigSchemaFlagsTypeVariantFlagSchema UIConfigSchemaFlagsType = "variantFlagSchema"
+)
+
+type UIConfigSchemaFlags struct {
+	Boolean           *bool
+	VariantFlagSchema *VariantFlagSchema
+
+	Type UIConfigSchemaFlagsType
+}
+
+func CreateUIConfigSchemaFlagsBoolean(boolean bool) UIConfigSchemaFlags {
+	typ := UIConfigSchemaFlagsTypeBoolean
+
+	return UIConfigSchemaFlags{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateUIConfigSchemaFlagsVariantFlagSchema(variantFlagSchema VariantFlagSchema) UIConfigSchemaFlags {
+	typ := UIConfigSchemaFlagsTypeVariantFlagSchema
+
+	return UIConfigSchemaFlags{
+		VariantFlagSchema: &variantFlagSchema,
+		Type:              typ,
+	}
+}
+
+func (u *UIConfigSchemaFlags) UnmarshalJSON(data []byte) error {
+	var d *json.Decoder
+
+	boolean := new(bool)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&boolean); err == nil {
+		u.Boolean = boolean
+		u.Type = UIConfigSchemaFlagsTypeBoolean
+		return nil
+	}
+
+	variantFlagSchema := new(VariantFlagSchema)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&variantFlagSchema); err == nil {
+		u.VariantFlagSchema = variantFlagSchema
+		u.Type = UIConfigSchemaFlagsTypeVariantFlagSchema
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u UIConfigSchemaFlags) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return json.Marshal(u.Boolean)
+	}
+
+	if u.VariantFlagSchema != nil {
+		return json.Marshal(u.VariantFlagSchema)
+	}
+
+	return nil, nil
+}
+
 type UIConfigSchemaLinks struct {
 }
 
@@ -63,7 +133,7 @@ type UIConfigSchema struct {
 	// What kind of Unleash instance it is: Enterprise, Pro, or Open source
 	Environment *string `json:"environment,omitempty"`
 	// Additional (largely experimental) features that are enabled in this Unleash instance.
-	Flags map[string]interface{} `json:"flags,omitempty"`
+	Flags map[string]UIConfigSchemaFlags `json:"flags,omitempty"`
 	// The list of origins that the front-end API should accept requests from.
 	FrontendAPIOrigins []string `json:"frontendApiOrigins,omitempty"`
 	// Relevant links to use in the UI.
@@ -86,4 +156,66 @@ type UIConfigSchema struct {
 	Version string `json:"version"`
 	// Detailed information about an Unleash version
 	VersionInfo VersionSchema `json:"versionInfo"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _UIConfigSchema UIConfigSchema
+
+func (c *UIConfigSchema) UnmarshalJSON(bs []byte) error {
+	data := _UIConfigSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = UIConfigSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "authenticationType")
+	delete(additionalFields, "baseUriPath")
+	delete(additionalFields, "disablePasswordAuth")
+	delete(additionalFields, "emailEnabled")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "flags")
+	delete(additionalFields, "frontendApiOrigins")
+	delete(additionalFields, "links")
+	delete(additionalFields, "maintenanceMode")
+	delete(additionalFields, "name")
+	delete(additionalFields, "networkViewEnabled")
+	delete(additionalFields, "segmentValuesLimit")
+	delete(additionalFields, "slogan")
+	delete(additionalFields, "strategySegmentsLimit")
+	delete(additionalFields, "unleashUrl")
+	delete(additionalFields, "version")
+	delete(additionalFields, "versionInfo")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c UIConfigSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_UIConfigSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

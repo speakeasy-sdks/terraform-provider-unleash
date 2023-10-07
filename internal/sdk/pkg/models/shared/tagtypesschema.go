@@ -2,10 +2,61 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // TagTypesSchema - A list of tag types with a version number representing the schema used to model the tag types.
 type TagTypesSchema struct {
 	// The list of tag types.
 	TagTypes []TagTypeSchema `json:"tagTypes"`
 	// The version of the schema used to model the tag types.
 	Version int64 `json:"version"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _TagTypesSchema TagTypesSchema
+
+func (c *TagTypesSchema) UnmarshalJSON(bs []byte) error {
+	data := _TagTypesSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = TagTypesSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "tagTypes")
+	delete(additionalFields, "version")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c TagTypesSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_TagTypesSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

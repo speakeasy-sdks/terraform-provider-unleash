@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // FeatureTagSchema - Describes a tag applied to a feature
 type FeatureTagSchema struct {
 	// The name of the feature this tag is applied to
@@ -18,4 +22,54 @@ type FeatureTagSchema struct {
 	//
 	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Value *string `json:"value,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureTagSchema FeatureTagSchema
+
+func (c *FeatureTagSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureTagSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureTagSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "featureName")
+	delete(additionalFields, "tagType")
+	delete(additionalFields, "tagValue")
+	delete(additionalFields, "type")
+	delete(additionalFields, "value")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureTagSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureTagSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

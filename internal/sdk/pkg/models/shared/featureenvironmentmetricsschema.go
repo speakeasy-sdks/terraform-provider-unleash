@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // FeatureEnvironmentMetricsSchema - How many times `feautreName` was evaluated to `true` (yes) and `false` (no) for `appName` in `environmnet`
 type FeatureEnvironmentMetricsSchema struct {
 	// The name of the application the SDK is being used in
@@ -17,4 +21,56 @@ type FeatureEnvironmentMetricsSchema struct {
 	Variants map[string]int64 `json:"variants,omitempty"`
 	// How many times the toggle evaluated to true
 	Yes int64 `json:"yes"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureEnvironmentMetricsSchema FeatureEnvironmentMetricsSchema
+
+func (c *FeatureEnvironmentMetricsSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureEnvironmentMetricsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureEnvironmentMetricsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "appName")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "featureName")
+	delete(additionalFields, "no")
+	delete(additionalFields, "timestamp")
+	delete(additionalFields, "variants")
+	delete(additionalFields, "yes")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureEnvironmentMetricsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureEnvironmentMetricsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

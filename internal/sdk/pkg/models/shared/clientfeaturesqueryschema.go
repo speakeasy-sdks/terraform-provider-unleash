@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ClientFeaturesQuerySchema - Query parameters active for a client features request
 type ClientFeaturesQuerySchema struct {
 	// Strategies for the feature toggle configured for this environment are included. (DEPRECATED) - Handled by API tokens
@@ -18,4 +22,54 @@ type ClientFeaturesQuerySchema struct {
 	Project []string `json:"project,omitempty"`
 	// Features tagged with one of these tags are included
 	Tag [][]string `json:"tag,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ClientFeaturesQuerySchema ClientFeaturesQuerySchema
+
+func (c *ClientFeaturesQuerySchema) UnmarshalJSON(bs []byte) error {
+	data := _ClientFeaturesQuerySchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ClientFeaturesQuerySchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "environment")
+	delete(additionalFields, "inlineSegmentConstraints")
+	delete(additionalFields, "namePrefix")
+	delete(additionalFields, "project")
+	delete(additionalFields, "tag")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ClientFeaturesQuerySchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ClientFeaturesQuerySchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

@@ -46,4 +46,52 @@ type EdgeTokenSchema struct {
 	Token string `json:"token"`
 	// The [API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys#api-tokens)'s **type**. Unleash supports three different types of API tokens ([ADMIN](https://docs.getunleash.io/reference/api-tokens-and-client-keys#admin-tokens), [CLIENT](https://docs.getunleash.io/reference/api-tokens-and-client-keys#client-tokens), [FRONTEND](https://docs.getunleash.io/reference/api-tokens-and-client-keys#front-end-tokens)). They all have varying access, so when validating a token it's important to know what kind you're dealing with
 	Type EdgeTokenSchemaType `json:"type"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _EdgeTokenSchema EdgeTokenSchema
+
+func (c *EdgeTokenSchema) UnmarshalJSON(bs []byte) error {
+	data := _EdgeTokenSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = EdgeTokenSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "projects")
+	delete(additionalFields, "token")
+	delete(additionalFields, "type")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c EdgeTokenSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_EdgeTokenSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

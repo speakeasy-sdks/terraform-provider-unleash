@@ -90,4 +90,56 @@ type PlaygroundConstraintSchema struct {
 	Value *string `json:"value,omitempty"`
 	// The context values that should be used for constraint evaluation. Use this property instead of `value` for properties that accept multiple values.
 	Values []string `json:"values,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundConstraintSchema PlaygroundConstraintSchema
+
+func (c *PlaygroundConstraintSchema) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundConstraintSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundConstraintSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "caseInsensitive")
+	delete(additionalFields, "contextName")
+	delete(additionalFields, "inverted")
+	delete(additionalFields, "operator")
+	delete(additionalFields, "result")
+	delete(additionalFields, "value")
+	delete(additionalFields, "values")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundConstraintSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundConstraintSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

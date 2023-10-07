@@ -2,7 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type RolesWithVersionSchema struct {
 	Roles   []RoleSchema `json:"roles"`
 	Version float64      `json:"version"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _RolesWithVersionSchema RolesWithVersionSchema
+
+func (c *RolesWithVersionSchema) UnmarshalJSON(bs []byte) error {
+	data := _RolesWithVersionSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = RolesWithVersionSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "roles")
+	delete(additionalFields, "version")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c RolesWithVersionSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_RolesWithVersionSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ProxyFeaturesSchema - Frontend SDK features list
 type ProxyFeaturesSchema struct {
 	// The actual features returned to the Frontend SDK
 	Toggles []ProxyFeatureSchema `json:"toggles"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ProxyFeaturesSchema ProxyFeaturesSchema
+
+func (c *ProxyFeaturesSchema) UnmarshalJSON(bs []byte) error {
+	data := _ProxyFeaturesSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ProxyFeaturesSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "toggles")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ProxyFeaturesSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ProxyFeaturesSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

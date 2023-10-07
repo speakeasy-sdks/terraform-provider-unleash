@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ValidatePasswordSchema - Used to validate passwords obeying [Unleash password guidelines](https://docs.getunleash.io/reference/deploy/securing-unleash#password-requirements)
 type ValidatePasswordSchema struct {
 	// The password to validate
 	Password string `json:"password"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ValidatePasswordSchema ValidatePasswordSchema
+
+func (c *ValidatePasswordSchema) UnmarshalJSON(bs []byte) error {
+	data := _ValidatePasswordSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ValidatePasswordSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "password")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ValidatePasswordSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ValidatePasswordSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

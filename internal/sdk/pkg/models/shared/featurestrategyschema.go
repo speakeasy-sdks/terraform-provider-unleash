@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // FeatureStrategySchema - A single activation strategy configuration schema for a feature
 type FeatureStrategySchema struct {
 	// A list of the constraints attached to the strategy. See https://docs.getunleash.io/reference/strategy-constraints
@@ -24,4 +28,59 @@ type FeatureStrategySchema struct {
 	Title *string `json:"title,omitempty"`
 	// Strategy level variants
 	Variants []StrategyVariantSchema `json:"variants,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureStrategySchema FeatureStrategySchema
+
+func (c *FeatureStrategySchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureStrategySchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureStrategySchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "constraints")
+	delete(additionalFields, "disabled")
+	delete(additionalFields, "featureName")
+	delete(additionalFields, "id")
+	delete(additionalFields, "name")
+	delete(additionalFields, "parameters")
+	delete(additionalFields, "segments")
+	delete(additionalFields, "sortOrder")
+	delete(additionalFields, "title")
+	delete(additionalFields, "variants")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureStrategySchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureStrategySchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

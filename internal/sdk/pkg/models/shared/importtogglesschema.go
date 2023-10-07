@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ImportTogglesSchema - The result of the export operation for a project and environment, used at import
 type ImportTogglesSchema struct {
 	// The result of the export operation, providing you with the feature toggle definitions, strategy definitions and the rest of the elements relevant to the features (tags, environments etc.)
@@ -10,4 +14,52 @@ type ImportTogglesSchema struct {
 	Environment string `json:"environment"`
 	// The exported [project](https://docs.getunleash.io/reference/projects)
 	Project string `json:"project"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ImportTogglesSchema ImportTogglesSchema
+
+func (c *ImportTogglesSchema) UnmarshalJSON(bs []byte) error {
+	data := _ImportTogglesSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ImportTogglesSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "data")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "project")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ImportTogglesSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ImportTogglesSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

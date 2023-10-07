@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ValidatedEdgeTokensSchema - A object containing a list of valid Unleash tokens.
 type ValidatedEdgeTokensSchema struct {
 	// The list of Unleash token objects. Each object contains the token itself and some additional metadata.
 	Tokens []EdgeTokenSchema `json:"tokens"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ValidatedEdgeTokensSchema ValidatedEdgeTokensSchema
+
+func (c *ValidatedEdgeTokensSchema) UnmarshalJSON(bs []byte) error {
+	data := _ValidatedEdgeTokensSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ValidatedEdgeTokensSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "tokens")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ValidatedEdgeTokensSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ValidatedEdgeTokensSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

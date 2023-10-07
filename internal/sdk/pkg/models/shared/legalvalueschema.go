@@ -2,10 +2,61 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // LegalValueSchema - Describes a legal value. Typically used to limit possible values for contextFields or strategy properties
 type LegalValueSchema struct {
 	// Describes this specific legal value
 	Description *string `json:"description,omitempty"`
 	// The valid value
 	Value string `json:"value"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _LegalValueSchema LegalValueSchema
+
+func (c *LegalValueSchema) UnmarshalJSON(bs []byte) error {
+	data := _LegalValueSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = LegalValueSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "description")
+	delete(additionalFields, "value")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c LegalValueSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_LegalValueSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

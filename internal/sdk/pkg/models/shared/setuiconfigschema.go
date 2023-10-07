@@ -2,14 +2,110 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // SetUIConfigSchemaFrontendSettings - Settings related to the front-end API.
 type SetUIConfigSchemaFrontendSettings struct {
 	// The list of origins that the front-end API should accept requests from.
 	FrontendAPIOrigins []string `json:"frontendApiOrigins"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _SetUIConfigSchemaFrontendSettings SetUIConfigSchemaFrontendSettings
+
+func (c *SetUIConfigSchemaFrontendSettings) UnmarshalJSON(bs []byte) error {
+	data := _SetUIConfigSchemaFrontendSettings{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = SetUIConfigSchemaFrontendSettings(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "frontendApiOrigins")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c SetUIConfigSchemaFrontendSettings) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_SetUIConfigSchemaFrontendSettings(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // SetUIConfigSchema - Unleash configuration settings affect the admin UI.
 type SetUIConfigSchema struct {
 	// Settings related to the front-end API.
 	FrontendSettings *SetUIConfigSchemaFrontendSettings `json:"frontendSettings,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _SetUIConfigSchema SetUIConfigSchema
+
+func (c *SetUIConfigSchema) UnmarshalJSON(bs []byte) error {
+	data := _SetUIConfigSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = SetUIConfigSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "frontendSettings")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c SetUIConfigSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_SetUIConfigSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

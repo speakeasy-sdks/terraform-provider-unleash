@@ -2,7 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type FeatureStrategySegmentSchema struct {
 	FeatureStrategyID string `json:"featureStrategyId"`
 	SegmentID         int64  `json:"segmentId"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureStrategySegmentSchema FeatureStrategySegmentSchema
+
+func (c *FeatureStrategySegmentSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureStrategySegmentSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureStrategySegmentSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "featureStrategyId")
+	delete(additionalFields, "segmentId")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureStrategySegmentSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureStrategySegmentSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

@@ -117,6 +117,53 @@ type PlaygroundFeatureSchemaStrategies struct {
 	//                                   if one or more of the strategies can't be fully evaluated and the rest of the strategies
 	//                                   all resolve to `false`.
 	Result PlaygroundFeatureSchemaStrategiesResult `json:"result"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundFeatureSchemaStrategies PlaygroundFeatureSchemaStrategies
+
+func (c *PlaygroundFeatureSchemaStrategies) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundFeatureSchemaStrategies{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundFeatureSchemaStrategies(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "data")
+	delete(additionalFields, "result")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundFeatureSchemaStrategies) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundFeatureSchemaStrategies(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // PlaygroundFeatureSchemaVariantPayload - An optional payload attached to the variant.
@@ -125,6 +172,53 @@ type PlaygroundFeatureSchemaVariantPayload struct {
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundFeatureSchemaVariantPayload PlaygroundFeatureSchemaVariantPayload
+
+func (c *PlaygroundFeatureSchemaVariantPayload) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundFeatureSchemaVariantPayload{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundFeatureSchemaVariantPayload(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "type")
+	delete(additionalFields, "value")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundFeatureSchemaVariantPayload) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundFeatureSchemaVariantPayload(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // PlaygroundFeatureSchemaVariant - The feature variant you receive based on the provided context or the _disabled
@@ -139,6 +233,54 @@ type PlaygroundFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
 	Payload *PlaygroundFeatureSchemaVariantPayload `json:"payload,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundFeatureSchemaVariant PlaygroundFeatureSchemaVariant
+
+func (c *PlaygroundFeatureSchemaVariant) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundFeatureSchemaVariant{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundFeatureSchemaVariant(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "name")
+	delete(additionalFields, "payload")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundFeatureSchemaVariant) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundFeatureSchemaVariant(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // PlaygroundFeatureSchema - A simplified feature toggle model intended for the Unleash playground.
@@ -162,4 +304,56 @@ type PlaygroundFeatureSchema struct {
 	Variant *PlaygroundFeatureSchemaVariant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundFeatureSchema PlaygroundFeatureSchema
+
+func (c *PlaygroundFeatureSchema) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundFeatureSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundFeatureSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "isEnabled")
+	delete(additionalFields, "isEnabledInCurrentEnvironment")
+	delete(additionalFields, "name")
+	delete(additionalFields, "projectId")
+	delete(additionalFields, "strategies")
+	delete(additionalFields, "variant")
+	delete(additionalFields, "variants")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundFeatureSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundFeatureSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

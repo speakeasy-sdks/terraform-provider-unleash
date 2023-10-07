@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type ApplicationSchema struct {
 	// Name of the application
 	AppName string `json:"appName"`
@@ -17,4 +21,56 @@ type ApplicationSchema struct {
 	Strategies []string `json:"strategies,omitempty"`
 	// A link to reference the application reporting the metrics. Could for instance be a GitHub link to the repository of the application
 	URL *string `json:"url,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ApplicationSchema ApplicationSchema
+
+func (c *ApplicationSchema) UnmarshalJSON(bs []byte) error {
+	data := _ApplicationSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ApplicationSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "appName")
+	delete(additionalFields, "color")
+	delete(additionalFields, "description")
+	delete(additionalFields, "icon")
+	delete(additionalFields, "sdkVersion")
+	delete(additionalFields, "strategies")
+	delete(additionalFields, "url")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ApplicationSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ApplicationSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

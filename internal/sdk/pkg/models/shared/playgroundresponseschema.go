@@ -2,10 +2,61 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // PlaygroundResponseSchema - The state of all features given the provided input.
 type PlaygroundResponseSchema struct {
 	// The list of features that have been evaluated.
 	Features []PlaygroundFeatureSchema `json:"features"`
 	// Data for the playground API to evaluate toggles
 	Input PlaygroundRequestSchema `json:"input"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PlaygroundResponseSchema PlaygroundResponseSchema
+
+func (c *PlaygroundResponseSchema) UnmarshalJSON(bs []byte) error {
+	data := _PlaygroundResponseSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PlaygroundResponseSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "features")
+	delete(additionalFields, "input")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PlaygroundResponseSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PlaygroundResponseSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // APITokensSchema - An object with [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys)
 type APITokensSchema struct {
 	// A list of Unleash API tokens.
 	Tokens []APITokenSchema `json:"tokens"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _APITokensSchema APITokensSchema
+
+func (c *APITokensSchema) UnmarshalJSON(bs []byte) error {
+	data := _APITokensSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = APITokensSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "tokens")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c APITokensSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_APITokensSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

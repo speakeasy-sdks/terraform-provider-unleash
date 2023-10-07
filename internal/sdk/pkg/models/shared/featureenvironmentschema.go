@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // FeatureEnvironmentSchema - A detailed description of the feature environment
 type FeatureEnvironmentSchema struct {
 	// `true` if the feature is enabled for the environment, otherwise `false`.
@@ -22,4 +26,58 @@ type FeatureEnvironmentSchema struct {
 	VariantCount *float64 `json:"variantCount,omitempty"`
 	// A list of variants for the feature environment
 	Variants []VariantSchema `json:"variants,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureEnvironmentSchema FeatureEnvironmentSchema
+
+func (c *FeatureEnvironmentSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureEnvironmentSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureEnvironmentSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "featureName")
+	delete(additionalFields, "name")
+	delete(additionalFields, "sortOrder")
+	delete(additionalFields, "strategies")
+	delete(additionalFields, "type")
+	delete(additionalFields, "variantCount")
+	delete(additionalFields, "variants")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureEnvironmentSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureEnvironmentSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

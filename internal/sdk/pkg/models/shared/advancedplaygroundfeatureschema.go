@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // AdvancedPlaygroundFeatureSchema - A simplified feature toggle model intended for the Unleash playground.
 type AdvancedPlaygroundFeatureSchema struct {
 	// The lists of features that have been evaluated grouped by environment.
@@ -10,4 +14,52 @@ type AdvancedPlaygroundFeatureSchema struct {
 	Name string `json:"name"`
 	// The ID of the project that contains this feature.
 	ProjectID string `json:"projectId"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _AdvancedPlaygroundFeatureSchema AdvancedPlaygroundFeatureSchema
+
+func (c *AdvancedPlaygroundFeatureSchema) UnmarshalJSON(bs []byte) error {
+	data := _AdvancedPlaygroundFeatureSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = AdvancedPlaygroundFeatureSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "environments")
+	delete(additionalFields, "name")
+	delete(additionalFields, "projectId")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c AdvancedPlaygroundFeatureSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_AdvancedPlaygroundFeatureSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

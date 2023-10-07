@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // PermissionSchema - Project and environment permissions
 type PermissionSchema struct {
 	// The environment this permission applies to
@@ -10,4 +14,52 @@ type PermissionSchema struct {
 	Permission string `json:"permission"`
 	// The project this permission applies to
 	Project *string `json:"project,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PermissionSchema PermissionSchema
+
+func (c *PermissionSchema) UnmarshalJSON(bs []byte) error {
+	data := _PermissionSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PermissionSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "environment")
+	delete(additionalFields, "permission")
+	delete(additionalFields, "project")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PermissionSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PermissionSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

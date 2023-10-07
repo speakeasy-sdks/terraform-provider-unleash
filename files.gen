@@ -307,6 +307,7 @@ internal/sdk/pkg/models/shared/feedbackresponseschema.go
 internal/sdk/pkg/models/shared/feedbackcreateschema.go
 internal/sdk/pkg/models/shared/uiconfigschema.go
 internal/sdk/pkg/models/shared/versionschema.go
+internal/sdk/pkg/models/shared/variantflagschema.go
 internal/sdk/pkg/models/shared/setuiconfigschema.go
 internal/sdk/pkg/models/shared/feedbackupdateschema.go
 internal/sdk/pkg/models/shared/splashresponseschema.go

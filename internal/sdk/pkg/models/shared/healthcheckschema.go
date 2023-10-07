@@ -39,4 +39,50 @@ func (e *HealthCheckSchemaHealth) UnmarshalJSON(data []byte) error {
 type HealthCheckSchema struct {
 	// The state this Unleash instance is in. GOOD if everything is ok, BAD if the instance should be restarted
 	Health HealthCheckSchemaHealth `json:"health"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _HealthCheckSchema HealthCheckSchema
+
+func (c *HealthCheckSchema) UnmarshalJSON(bs []byte) error {
+	data := _HealthCheckSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = HealthCheckSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "health")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c HealthCheckSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_HealthCheckSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

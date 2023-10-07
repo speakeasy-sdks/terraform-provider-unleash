@@ -13,6 +13,53 @@ type NotificationsSchemaCreatedBy struct {
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// The name of the user who triggered the notification
 	Username *string `json:"username,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _NotificationsSchemaCreatedBy NotificationsSchemaCreatedBy
+
+func (c *NotificationsSchemaCreatedBy) UnmarshalJSON(bs []byte) error {
+	data := _NotificationsSchemaCreatedBy{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = NotificationsSchemaCreatedBy(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "imageUrl")
+	delete(additionalFields, "username")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c NotificationsSchemaCreatedBy) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_NotificationsSchemaCreatedBy(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // NotificationsSchemaNotificationType - The type of the notification used e.g. for the graphical hints
@@ -57,4 +104,56 @@ type NotificationsSchema struct {
 	NotificationType NotificationsSchemaNotificationType `json:"notificationType"`
 	// The date and time when the notification was read or marked as read, otherwise `null`
 	ReadAt *time.Time `json:"readAt"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _NotificationsSchema NotificationsSchema
+
+func (c *NotificationsSchema) UnmarshalJSON(bs []byte) error {
+	data := _NotificationsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = NotificationsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "createdBy")
+	delete(additionalFields, "id")
+	delete(additionalFields, "link")
+	delete(additionalFields, "message")
+	delete(additionalFields, "notificationType")
+	delete(additionalFields, "readAt")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c NotificationsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_NotificationsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

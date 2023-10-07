@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ProjectStatsSchema - Statistics for a project, including the average time to production, number of features created, the project activity and more.
 //
 // Stats are divided into current and previous **windows**.
@@ -24,4 +28,57 @@ type ProjectStatsSchema struct {
 	ProjectActivityPastWindow float64 `json:"projectActivityPastWindow"`
 	// The number of members that were added to the project during the current window
 	ProjectMembersAddedCurrentWindow float64 `json:"projectMembersAddedCurrentWindow"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ProjectStatsSchema ProjectStatsSchema
+
+func (c *ProjectStatsSchema) UnmarshalJSON(bs []byte) error {
+	data := _ProjectStatsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ProjectStatsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "archivedCurrentWindow")
+	delete(additionalFields, "archivedPastWindow")
+	delete(additionalFields, "avgTimeToProdCurrentWindow")
+	delete(additionalFields, "createdCurrentWindow")
+	delete(additionalFields, "createdPastWindow")
+	delete(additionalFields, "projectActivityCurrentWindow")
+	delete(additionalFields, "projectActivityPastWindow")
+	delete(additionalFields, "projectMembersAddedCurrentWindow")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ProjectStatsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ProjectStatsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

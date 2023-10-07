@@ -58,4 +58,60 @@ type ProjectSchema struct {
 	// The name of this project
 	Name      string     `json:"name"`
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ProjectSchema ProjectSchema
+
+func (c *ProjectSchema) UnmarshalJSON(bs []byte) error {
+	data := _ProjectSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ProjectSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "defaultStickiness")
+	delete(additionalFields, "description")
+	delete(additionalFields, "favorite")
+	delete(additionalFields, "featureCount")
+	delete(additionalFields, "health")
+	delete(additionalFields, "id")
+	delete(additionalFields, "memberCount")
+	delete(additionalFields, "mode")
+	delete(additionalFields, "name")
+	delete(additionalFields, "updatedAt")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ProjectSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ProjectSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

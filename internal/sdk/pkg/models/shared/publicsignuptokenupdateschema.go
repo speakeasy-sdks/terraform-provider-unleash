@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -12,4 +13,51 @@ type PublicSignupTokenUpdateSchema struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// The token's expiration date.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PublicSignupTokenUpdateSchema PublicSignupTokenUpdateSchema
+
+func (c *PublicSignupTokenUpdateSchema) UnmarshalJSON(bs []byte) error {
+	data := _PublicSignupTokenUpdateSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PublicSignupTokenUpdateSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "expiresAt")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PublicSignupTokenUpdateSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PublicSignupTokenUpdateSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

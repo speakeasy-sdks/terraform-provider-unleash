@@ -2,10 +2,61 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // TagSchema - Representation of a [tag](https://docs.getunleash.io/reference/tags)
 type TagSchema struct {
 	// The [type](https://docs.getunleash.io/reference/tags#tag-types) of the tag
 	Type *string `json:"type,omitempty"`
 	// The value of the tag
 	Value string `json:"value"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _TagSchema TagSchema
+
+func (c *TagSchema) UnmarshalJSON(bs []byte) error {
+	data := _TagSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = TagSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "type")
+	delete(additionalFields, "value")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c TagSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_TagSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

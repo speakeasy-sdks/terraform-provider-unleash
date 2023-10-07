@@ -2,9 +2,62 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type CreateInvitedUserSchema struct {
 	Email    string  `json:"email"`
 	Name     string  `json:"name"`
 	Password string  `json:"password"`
 	Username *string `json:"username,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _CreateInvitedUserSchema CreateInvitedUserSchema
+
+func (c *CreateInvitedUserSchema) UnmarshalJSON(bs []byte) error {
+	data := _CreateInvitedUserSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = CreateInvitedUserSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "email")
+	delete(additionalFields, "name")
+	delete(additionalFields, "password")
+	delete(additionalFields, "username")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c CreateInvitedUserSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_CreateInvitedUserSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

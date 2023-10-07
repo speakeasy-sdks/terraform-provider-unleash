@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // AdminPermissionSchema - Describes a single permission
 type AdminPermissionSchema struct {
 	// The name to display in listings of permissions
@@ -14,4 +18,54 @@ type AdminPermissionSchema struct {
 	Name string `json:"name"`
 	// What level this permission applies to. Either root, project or the name of the environment it applies to
 	Type string `json:"type"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _AdminPermissionSchema AdminPermissionSchema
+
+func (c *AdminPermissionSchema) UnmarshalJSON(bs []byte) error {
+	data := _AdminPermissionSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = AdminPermissionSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "displayName")
+	delete(additionalFields, "environment")
+	delete(additionalFields, "id")
+	delete(additionalFields, "name")
+	delete(additionalFields, "type")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c AdminPermissionSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_AdminPermissionSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

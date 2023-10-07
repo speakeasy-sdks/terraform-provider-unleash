@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ProfileSchema - User profile overview
 type ProfileSchema struct {
 	// Deprecated, always returns empty array
@@ -10,4 +14,52 @@ type ProfileSchema struct {
 	Projects []string `json:"projects"`
 	// A role holds permissions to allow Unleash to decide what actions a role holder is allowed to perform
 	RootRole RoleSchema `json:"rootRole"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ProfileSchema ProfileSchema
+
+func (c *ProfileSchema) UnmarshalJSON(bs []byte) error {
+	data := _ProfileSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ProfileSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "features")
+	delete(additionalFields, "projects")
+	delete(additionalFields, "rootRole")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ProfileSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ProfileSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

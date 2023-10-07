@@ -83,4 +83,66 @@ type InstanceAdminStatsSchema struct {
 	VersionEnterprise *string `json:"versionEnterprise,omitempty"`
 	// The version of Unleash OSS that is bundled in this instance
 	VersionOSS *string `json:"versionOSS,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _InstanceAdminStatsSchema InstanceAdminStatsSchema
+
+func (c *InstanceAdminStatsSchema) UnmarshalJSON(bs []byte) error {
+	data := _InstanceAdminStatsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = InstanceAdminStatsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "OIDCenabled")
+	delete(additionalFields, "SAMLenabled")
+	delete(additionalFields, "clientApps")
+	delete(additionalFields, "contextFields")
+	delete(additionalFields, "environments")
+	delete(additionalFields, "featureToggles")
+	delete(additionalFields, "groups")
+	delete(additionalFields, "instanceId")
+	delete(additionalFields, "projects")
+	delete(additionalFields, "roles")
+	delete(additionalFields, "segments")
+	delete(additionalFields, "strategies")
+	delete(additionalFields, "sum")
+	delete(additionalFields, "timestamp")
+	delete(additionalFields, "users")
+	delete(additionalFields, "versionEnterprise")
+	delete(additionalFields, "versionOSS")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c InstanceAdminStatsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_InstanceAdminStatsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

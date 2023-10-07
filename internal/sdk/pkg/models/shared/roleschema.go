@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // RoleSchema - A role holds permissions to allow Unleash to decide what actions a role holder is allowed to perform
 type RoleSchema struct {
 	// A more detailed description of the role and what use it's intended for
@@ -12,4 +16,53 @@ type RoleSchema struct {
 	Name string `json:"name"`
 	// A role can either be a global root role (applies to all projects) or a project role
 	Type string `json:"type"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _RoleSchema RoleSchema
+
+func (c *RoleSchema) UnmarshalJSON(bs []byte) error {
+	data := _RoleSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = RoleSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "description")
+	delete(additionalFields, "id")
+	delete(additionalFields, "name")
+	delete(additionalFields, "type")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c RoleSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_RoleSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

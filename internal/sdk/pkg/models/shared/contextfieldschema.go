@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -24,4 +25,57 @@ type ContextFieldSchema struct {
 	UsedInFeatures *int64 `json:"usedInFeatures,omitempty"`
 	// Number of projects where this context field is used in
 	UsedInProjects *int64 `json:"usedInProjects,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ContextFieldSchema ContextFieldSchema
+
+func (c *ContextFieldSchema) UnmarshalJSON(bs []byte) error {
+	data := _ContextFieldSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ContextFieldSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "description")
+	delete(additionalFields, "legalValues")
+	delete(additionalFields, "name")
+	delete(additionalFields, "sortOrder")
+	delete(additionalFields, "stickiness")
+	delete(additionalFields, "usedInFeatures")
+	delete(additionalFields, "usedInProjects")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ContextFieldSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ContextFieldSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

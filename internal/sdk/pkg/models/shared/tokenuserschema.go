@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // TokenUserSchema - A user identified by a token
 type TokenUserSchema struct {
 	// A username or email identifying which user created this token
@@ -16,4 +20,55 @@ type TokenUserSchema struct {
 	Role RoleSchema `json:"role"`
 	// A token uniquely identifying a user
 	Token string `json:"token"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _TokenUserSchema TokenUserSchema
+
+func (c *TokenUserSchema) UnmarshalJSON(bs []byte) error {
+	data := _TokenUserSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = TokenUserSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdBy")
+	delete(additionalFields, "email")
+	delete(additionalFields, "id")
+	delete(additionalFields, "name")
+	delete(additionalFields, "role")
+	delete(additionalFields, "token")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c TokenUserSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_TokenUserSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

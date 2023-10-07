@@ -2,12 +2,63 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // VersionSchemaCurrent - The current version of Unleash.
 type VersionSchemaCurrent struct {
 	// The Enterpris version of Unleash used to build this instance, represented as a git revision belonging to the [Unleash Enterprise](https://github.com/ivarconr/unleash-enterprise) repository. Will be an empty string if no enterprise version was used,
 	Enterprise *string `json:"enterprise,omitempty"`
 	// The OSS version used when building this Unleash instance, represented as a git revision belonging to the [main Unleash git repo](https://github.com/Unleash/unleash/)
 	Oss *string `json:"oss,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _VersionSchemaCurrent VersionSchemaCurrent
+
+func (c *VersionSchemaCurrent) UnmarshalJSON(bs []byte) error {
+	data := _VersionSchemaCurrent{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = VersionSchemaCurrent(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "enterprise")
+	delete(additionalFields, "oss")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c VersionSchemaCurrent) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_VersionSchemaCurrent(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // VersionSchemaLatest - Information about the latest available Unleash releases. Will be an empty object if no data is available.
@@ -16,6 +67,53 @@ type VersionSchemaLatest struct {
 	Enterprise *string `json:"enterprise,omitempty"`
 	// The latest available OSS version of Unleash
 	Oss *string `json:"oss,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _VersionSchemaLatest VersionSchemaLatest
+
+func (c *VersionSchemaLatest) UnmarshalJSON(bs []byte) error {
+	data := _VersionSchemaLatest{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = VersionSchemaLatest(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "enterprise")
+	delete(additionalFields, "oss")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c VersionSchemaLatest) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_VersionSchemaLatest(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // VersionSchema - Detailed information about an Unleash version
@@ -28,4 +126,53 @@ type VersionSchema struct {
 	IsLatest bool `json:"isLatest"`
 	// Information about the latest available Unleash releases. Will be an empty object if no data is available.
 	Latest VersionSchemaLatest `json:"latest"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _VersionSchema VersionSchema
+
+func (c *VersionSchema) UnmarshalJSON(bs []byte) error {
+	data := _VersionSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = VersionSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "current")
+	delete(additionalFields, "instanceId")
+	delete(additionalFields, "isLatest")
+	delete(additionalFields, "latest")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c VersionSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_VersionSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

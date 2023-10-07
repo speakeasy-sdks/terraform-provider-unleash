@@ -2,7 +2,57 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // LoginHistorySchema - A response model with a list of login events.
 type LoginHistorySchema struct {
 	Events []LoginEventSchema `json:"events"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _LoginHistorySchema LoginHistorySchema
+
+func (c *LoginHistorySchema) UnmarshalJSON(bs []byte) error {
+	data := _LoginHistorySchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = LoginHistorySchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "events")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c LoginHistorySchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_LoginHistorySchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

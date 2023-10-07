@@ -147,4 +147,63 @@ type CreateUserResponseSchema struct {
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// A unique username for the user
 	Username *string `json:"username,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _CreateUserResponseSchema CreateUserResponseSchema
+
+func (c *CreateUserResponseSchema) UnmarshalJSON(bs []byte) error {
+	data := _CreateUserResponseSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = CreateUserResponseSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "accountType")
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "email")
+	delete(additionalFields, "emailSent")
+	delete(additionalFields, "id")
+	delete(additionalFields, "imageUrl")
+	delete(additionalFields, "inviteLink")
+	delete(additionalFields, "isAPI")
+	delete(additionalFields, "loginAttempts")
+	delete(additionalFields, "name")
+	delete(additionalFields, "permissions")
+	delete(additionalFields, "rootRole")
+	delete(additionalFields, "seenAt")
+	delete(additionalFields, "username")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c CreateUserResponseSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_CreateUserResponseSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

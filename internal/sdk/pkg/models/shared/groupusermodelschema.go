@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -14,4 +15,52 @@ type GroupUserModelSchema struct {
 	JoinedAt *time.Time `json:"joinedAt,omitempty"`
 	// An Unleash user
 	User UserSchema `json:"user"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _GroupUserModelSchema GroupUserModelSchema
+
+func (c *GroupUserModelSchema) UnmarshalJSON(bs []byte) error {
+	data := _GroupUserModelSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = GroupUserModelSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdBy")
+	delete(additionalFields, "joinedAt")
+	delete(additionalFields, "user")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c GroupUserModelSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_GroupUserModelSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

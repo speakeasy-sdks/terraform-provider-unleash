@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // EnvironmentSchema - A definition of the project environment
 type EnvironmentSchema struct {
 	// The number of API tokens for the project environment
@@ -20,4 +24,57 @@ type EnvironmentSchema struct {
 	SortOrder int64 `json:"sortOrder"`
 	// The [type of environment](https://docs.getunleash.io/reference/environments#environment-types).
 	Type string `json:"type"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _EnvironmentSchema EnvironmentSchema
+
+func (c *EnvironmentSchema) UnmarshalJSON(bs []byte) error {
+	data := _EnvironmentSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = EnvironmentSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "apiTokenCount")
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "enabledToggleCount")
+	delete(additionalFields, "name")
+	delete(additionalFields, "projectCount")
+	delete(additionalFields, "protected")
+	delete(additionalFields, "sortOrder")
+	delete(additionalFields, "type")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c EnvironmentSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_EnvironmentSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

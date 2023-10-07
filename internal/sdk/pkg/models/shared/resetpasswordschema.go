@@ -2,6 +2,56 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 type ResetPasswordSchema struct {
 	ResetPasswordURL string `json:"resetPasswordUrl"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ResetPasswordSchema ResetPasswordSchema
+
+func (c *ResetPasswordSchema) UnmarshalJSON(bs []byte) error {
+	data := _ResetPasswordSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ResetPasswordSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "resetPasswordUrl")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ResetPasswordSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ResetPasswordSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

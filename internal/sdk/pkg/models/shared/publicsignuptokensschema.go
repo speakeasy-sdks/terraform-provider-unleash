@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // PublicSignupTokensSchema - A wrapper object containing all the public signup tokens
 type PublicSignupTokensSchema struct {
 	// An array of all the public signup tokens
 	Tokens []PublicSignupTokenSchema `json:"tokens"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PublicSignupTokensSchema PublicSignupTokensSchema
+
+func (c *PublicSignupTokensSchema) UnmarshalJSON(bs []byte) error {
+	data := _PublicSignupTokensSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PublicSignupTokensSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "tokens")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PublicSignupTokensSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PublicSignupTokensSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

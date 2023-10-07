@@ -38,4 +38,51 @@ type FeatureTypesSchema struct {
 	Types []FeatureTypeSchema `json:"types"`
 	// The schema version used to describe the feature toggle types listed in the `types` property.
 	Version FeatureTypesSchemaVersion `json:"version"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureTypesSchema FeatureTypesSchema
+
+func (c *FeatureTypesSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureTypesSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureTypesSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "types")
+	delete(additionalFields, "version")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureTypesSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureTypesSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

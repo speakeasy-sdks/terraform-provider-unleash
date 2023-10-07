@@ -2,10 +2,61 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // UpdateTagsSchema - Represents a set of changes to a feature's tags, such as adding or removing tags.
 type UpdateTagsSchema struct {
 	// Tags to add to the feature.
 	AddedTags []TagSchema `json:"addedTags"`
 	// Tags to remove from the feature.
 	RemovedTags []TagSchema `json:"removedTags"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _UpdateTagsSchema UpdateTagsSchema
+
+func (c *UpdateTagsSchema) UnmarshalJSON(bs []byte) error {
+	data := _UpdateTagsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = UpdateTagsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "addedTags")
+	delete(additionalFields, "removedTags")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c UpdateTagsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_UpdateTagsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

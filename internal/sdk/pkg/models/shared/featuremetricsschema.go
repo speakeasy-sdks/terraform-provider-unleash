@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // FeatureMetricsSchema - A batch of feature metrics
 type FeatureMetricsSchema struct {
 	// Metrics gathered per environment
@@ -10,4 +14,52 @@ type FeatureMetricsSchema struct {
 	Maturity string `json:"maturity"`
 	// The version of this schema
 	Version int64 `json:"version"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureMetricsSchema FeatureMetricsSchema
+
+func (c *FeatureMetricsSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureMetricsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureMetricsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "data")
+	delete(additionalFields, "maturity")
+	delete(additionalFields, "version")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureMetricsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureMetricsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

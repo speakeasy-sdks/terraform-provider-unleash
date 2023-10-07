@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // ProjectEnvironmentSchema - Add an environment to a project, optionally also sets if change requests are enabled for this environment on the project
 type ProjectEnvironmentSchema struct {
 	// Whether change requests should be enabled or for this environment on the project or not
@@ -10,4 +14,52 @@ type ProjectEnvironmentSchema struct {
 	DefaultStrategy *CreateFeatureStrategySchema `json:"defaultStrategy,omitempty"`
 	// The environment to add to the project
 	Environment string `json:"environment"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _ProjectEnvironmentSchema ProjectEnvironmentSchema
+
+func (c *ProjectEnvironmentSchema) UnmarshalJSON(bs []byte) error {
+	data := _ProjectEnvironmentSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = ProjectEnvironmentSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "changeRequestsEnabled")
+	delete(additionalFields, "defaultStrategy")
+	delete(additionalFields, "environment")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c ProjectEnvironmentSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_ProjectEnvironmentSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

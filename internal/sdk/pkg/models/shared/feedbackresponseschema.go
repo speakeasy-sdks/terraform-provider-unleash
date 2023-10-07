@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -16,4 +17,53 @@ type FeedbackResponseSchema struct {
 	NeverShow *bool `json:"neverShow,omitempty"`
 	// The ID of the user that gave the feedback.
 	UserID *int64 `json:"userId,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeedbackResponseSchema FeedbackResponseSchema
+
+func (c *FeedbackResponseSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeedbackResponseSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeedbackResponseSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "feedbackId")
+	delete(additionalFields, "given")
+	delete(additionalFields, "neverShow")
+	delete(additionalFields, "userId")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeedbackResponseSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeedbackResponseSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

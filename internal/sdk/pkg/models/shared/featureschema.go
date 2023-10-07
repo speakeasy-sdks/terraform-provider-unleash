@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -47,4 +48,65 @@ type FeatureSchema struct {
 	//
 	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Variants []VariantSchema `json:"variants,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _FeatureSchema FeatureSchema
+
+func (c *FeatureSchema) UnmarshalJSON(bs []byte) error {
+	data := _FeatureSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = FeatureSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "archived")
+	delete(additionalFields, "archivedAt")
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "description")
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "environments")
+	delete(additionalFields, "favorite")
+	delete(additionalFields, "impressionData")
+	delete(additionalFields, "lastSeenAt")
+	delete(additionalFields, "name")
+	delete(additionalFields, "project")
+	delete(additionalFields, "stale")
+	delete(additionalFields, "strategies")
+	delete(additionalFields, "tags")
+	delete(additionalFields, "type")
+	delete(additionalFields, "variants")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c FeatureSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_FeatureSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

@@ -2,8 +2,58 @@
 
 package shared
 
+import (
+	"encoding/json"
+)
+
 // EmailSchema - Represents the email of a user. Used to send email communication (reset password, welcome mail etc)
 type EmailSchema struct {
 	// The email address
 	Email string `json:"email"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _EmailSchema EmailSchema
+
+func (c *EmailSchema) UnmarshalJSON(bs []byte) error {
+	data := _EmailSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = EmailSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "email")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c EmailSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_EmailSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

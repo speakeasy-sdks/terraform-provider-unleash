@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -26,4 +27,58 @@ type PublicSignupTokenSchema struct {
 	URL string `json:"url"`
 	// Array of users that have signed up using the token.
 	Users []UserSchema `json:"users,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _PublicSignupTokenSchema PublicSignupTokenSchema
+
+func (c *PublicSignupTokenSchema) UnmarshalJSON(bs []byte) error {
+	data := _PublicSignupTokenSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = PublicSignupTokenSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "createdAt")
+	delete(additionalFields, "createdBy")
+	delete(additionalFields, "enabled")
+	delete(additionalFields, "expiresAt")
+	delete(additionalFields, "name")
+	delete(additionalFields, "role")
+	delete(additionalFields, "secret")
+	delete(additionalFields, "url")
+	delete(additionalFields, "users")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c PublicSignupTokenSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_PublicSignupTokenSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }

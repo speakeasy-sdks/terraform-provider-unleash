@@ -12,6 +12,53 @@ type AdminPermissionsSchemaPermissionsEnvironments struct {
 	Name string `json:"name"`
 	// Permissions available for this environment
 	Permissions []AdminPermissionSchema `json:"permissions"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _AdminPermissionsSchemaPermissionsEnvironments AdminPermissionsSchemaPermissionsEnvironments
+
+func (c *AdminPermissionsSchemaPermissionsEnvironments) UnmarshalJSON(bs []byte) error {
+	data := _AdminPermissionsSchemaPermissionsEnvironments{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = AdminPermissionsSchemaPermissionsEnvironments(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "name")
+	delete(additionalFields, "permissions")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c AdminPermissionsSchemaPermissionsEnvironments) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_AdminPermissionsSchemaPermissionsEnvironments(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // AdminPermissionsSchemaPermissions - Returns permissions available at all three levels (root|project|environment)
@@ -22,6 +69,54 @@ type AdminPermissionsSchemaPermissions struct {
 	Project []AdminPermissionSchema `json:"project"`
 	// Permissions available at the root level, i.e. not connected to any specific project or environment
 	Root []AdminPermissionSchema `json:"root,omitempty"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _AdminPermissionsSchemaPermissions AdminPermissionsSchemaPermissions
+
+func (c *AdminPermissionsSchemaPermissions) UnmarshalJSON(bs []byte) error {
+	data := _AdminPermissionsSchemaPermissions{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = AdminPermissionsSchemaPermissions(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "environments")
+	delete(additionalFields, "project")
+	delete(additionalFields, "root")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c AdminPermissionsSchemaPermissions) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_AdminPermissionsSchemaPermissions(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
 
 // AdminPermissionsSchemaVersion - The api version of this response. A natural increasing number. Only increases if format changes
@@ -58,4 +153,51 @@ type AdminPermissionsSchema struct {
 	Permissions AdminPermissionsSchemaPermissions `json:"permissions"`
 	// The api version of this response. A natural increasing number. Only increases if format changes
 	Version AdminPermissionsSchemaVersion `json:"version"`
+
+	AdditionalProperties interface{} `json:"-"`
+}
+type _AdminPermissionsSchema AdminPermissionsSchema
+
+func (c *AdminPermissionsSchema) UnmarshalJSON(bs []byte) error {
+	data := _AdminPermissionsSchema{}
+
+	if err := json.Unmarshal(bs, &data); err != nil {
+		return err
+	}
+	*c = AdminPermissionsSchema(data)
+
+	additionalFields := make(map[string]interface{})
+
+	if err := json.Unmarshal(bs, &additionalFields); err != nil {
+		return err
+	}
+	delete(additionalFields, "permissions")
+	delete(additionalFields, "version")
+
+	c.AdditionalProperties = additionalFields
+
+	return nil
+}
+
+func (c AdminPermissionsSchema) MarshalJSON() ([]byte, error) {
+	out := map[string]interface{}{}
+	bs, err := json.Marshal(_AdminPermissionsSchema(c))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	bs, err = json.Marshal(c.AdditionalProperties)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal([]byte(bs), &out); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(out)
 }
