@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // TagWithVersionSchema - A tag with a version number representing the schema used to model the tag.
 type TagWithVersionSchema struct {
 	// Representation of a [tag](https://docs.getunleash.io/reference/tags)
 	Tag TagSchema `json:"tag"`
 	// The version of the schema used to model the tag.
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _TagWithVersionSchema TagWithVersionSchema
-
-func (c *TagWithVersionSchema) UnmarshalJSON(bs []byte) error {
-	data := _TagWithVersionSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = TagWithVersionSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "tag")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c TagWithVersionSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_TagWithVersionSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

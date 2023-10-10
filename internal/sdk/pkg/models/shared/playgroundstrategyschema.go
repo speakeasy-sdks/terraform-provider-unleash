@@ -76,53 +76,6 @@ type PlaygroundStrategySchemaResult2VariantPayload struct {
 	Type PlaygroundStrategySchemaResult2VariantPayloadType `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PlaygroundStrategySchemaResult2VariantPayload PlaygroundStrategySchemaResult2VariantPayload
-
-func (c *PlaygroundStrategySchemaResult2VariantPayload) UnmarshalJSON(bs []byte) error {
-	data := _PlaygroundStrategySchemaResult2VariantPayload{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PlaygroundStrategySchemaResult2VariantPayload(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "type")
-	delete(additionalFields, "value")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PlaygroundStrategySchemaResult2VariantPayload) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PlaygroundStrategySchemaResult2VariantPayload(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // PlaygroundStrategySchemaResult2Variant - The feature variant you receive based on the provided context or the _disabled
@@ -137,54 +90,6 @@ type PlaygroundStrategySchemaResult2Variant struct {
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
 	Payload *PlaygroundStrategySchemaResult2VariantPayload `json:"payload,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PlaygroundStrategySchemaResult2Variant PlaygroundStrategySchemaResult2Variant
-
-func (c *PlaygroundStrategySchemaResult2Variant) UnmarshalJSON(bs []byte) error {
-	data := _PlaygroundStrategySchemaResult2Variant{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PlaygroundStrategySchemaResult2Variant(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "name")
-	delete(additionalFields, "payload")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PlaygroundStrategySchemaResult2Variant) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PlaygroundStrategySchemaResult2Variant(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // PlaygroundStrategySchemaResult2 - The strategy's evaluation result. If the strategy is a custom strategy that Unleash can't evaluate, `evaluationStatus` will be `unknown`. Otherwise, it will be `true` or `false`
@@ -200,55 +105,6 @@ type PlaygroundStrategySchemaResult2 struct {
 	Variant *PlaygroundStrategySchemaResult2Variant `json:"variant,omitempty"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PlaygroundStrategySchemaResult2 PlaygroundStrategySchemaResult2
-
-func (c *PlaygroundStrategySchemaResult2) UnmarshalJSON(bs []byte) error {
-	data := _PlaygroundStrategySchemaResult2{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PlaygroundStrategySchemaResult2(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "evaluationStatus")
-	delete(additionalFields, "variant")
-	delete(additionalFields, "variants")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PlaygroundStrategySchemaResult2) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PlaygroundStrategySchemaResult2(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // PlaygroundStrategySchemaResult1Enabled2 - Whether this strategy resolves to `false` or if it might resolve to `true`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be `true`, but if you have failing constraints or segments, it _can_ determine that your strategy would be `false`.
@@ -375,53 +231,6 @@ type PlaygroundStrategySchemaResult1 struct {
 	Enabled PlaygroundStrategySchemaResult1Enabled `json:"enabled"`
 	// Signals that this strategy could not be evaluated. This is most likely because you're using a custom strategy that Unleash doesn't know about.
 	EvaluationStatus PlaygroundStrategySchemaResult1EvaluationStatus `json:"evaluationStatus"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PlaygroundStrategySchemaResult1 PlaygroundStrategySchemaResult1
-
-func (c *PlaygroundStrategySchemaResult1) UnmarshalJSON(bs []byte) error {
-	data := _PlaygroundStrategySchemaResult1{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PlaygroundStrategySchemaResult1(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "evaluationStatus")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PlaygroundStrategySchemaResult1) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PlaygroundStrategySchemaResult1(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 type PlaygroundStrategySchemaResultType string
@@ -511,58 +320,4 @@ type PlaygroundStrategySchema struct {
 	Segments []PlaygroundSegmentSchema `json:"segments"`
 	// Description of the feature's purpose.
 	Title *string `json:"title,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PlaygroundStrategySchema PlaygroundStrategySchema
-
-func (c *PlaygroundStrategySchema) UnmarshalJSON(bs []byte) error {
-	data := _PlaygroundStrategySchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PlaygroundStrategySchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "constraints")
-	delete(additionalFields, "disabled")
-	delete(additionalFields, "id")
-	delete(additionalFields, "links")
-	delete(additionalFields, "name")
-	delete(additionalFields, "parameters")
-	delete(additionalFields, "result")
-	delete(additionalFields, "segments")
-	delete(additionalFields, "title")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PlaygroundStrategySchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PlaygroundStrategySchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

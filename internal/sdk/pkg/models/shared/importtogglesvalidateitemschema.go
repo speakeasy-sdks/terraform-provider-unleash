@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ImportTogglesValidateItemSchema - A description of an error or warning pertaining to a feature toggle import job.
 type ImportTogglesValidateItemSchema struct {
 	// The items affected by this error message
 	AffectedItems []string `json:"affectedItems"`
 	// The validation error message
 	Message string `json:"message"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ImportTogglesValidateItemSchema ImportTogglesValidateItemSchema
-
-func (c *ImportTogglesValidateItemSchema) UnmarshalJSON(bs []byte) error {
-	data := _ImportTogglesValidateItemSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ImportTogglesValidateItemSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "affectedItems")
-	delete(additionalFields, "message")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ImportTogglesValidateItemSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ImportTogglesValidateItemSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

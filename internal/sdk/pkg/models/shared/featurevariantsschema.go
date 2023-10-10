@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // FeatureVariantsSchema - A versioned collection of feature toggle variants.
 type FeatureVariantsSchema struct {
 	// All variants defined for a specific feature toggle.
 	Variants []VariantSchema `json:"variants"`
 	// The version of the feature variants schema.
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _FeatureVariantsSchema FeatureVariantsSchema
-
-func (c *FeatureVariantsSchema) UnmarshalJSON(bs []byte) error {
-	data := _FeatureVariantsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = FeatureVariantsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "variants")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c FeatureVariantsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_FeatureVariantsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

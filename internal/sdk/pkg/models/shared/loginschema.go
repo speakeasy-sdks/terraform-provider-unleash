@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // LoginSchema - A username/password login request
 type LoginSchema struct {
 	// The password of the user trying to log in
 	Password string `json:"password"`
 	// The username trying to log in
 	Username string `json:"username"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _LoginSchema LoginSchema
-
-func (c *LoginSchema) UnmarshalJSON(bs []byte) error {
-	data := _LoginSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = LoginSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "password")
-	delete(additionalFields, "username")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c LoginSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_LoginSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

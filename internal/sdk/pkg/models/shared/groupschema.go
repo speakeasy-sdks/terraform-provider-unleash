@@ -3,7 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -27,58 +26,4 @@ type GroupSchema struct {
 	RootRole *float64 `json:"rootRole,omitempty"`
 	// A list of users belonging to this group
 	Users []GroupUserModelSchema `json:"users,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _GroupSchema GroupSchema
-
-func (c *GroupSchema) UnmarshalJSON(bs []byte) error {
-	data := _GroupSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = GroupSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "createdAt")
-	delete(additionalFields, "createdBy")
-	delete(additionalFields, "description")
-	delete(additionalFields, "id")
-	delete(additionalFields, "mappingsSSO")
-	delete(additionalFields, "name")
-	delete(additionalFields, "projects")
-	delete(additionalFields, "rootRole")
-	delete(additionalFields, "users")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c GroupSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_GroupSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

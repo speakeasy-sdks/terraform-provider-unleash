@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ImportTogglesValidateSchema - An object containing [feature import](https://docs.getunleash.io/reference/deploy/environment-import-export) validation results.
 type ImportTogglesValidateSchema struct {
 	// A list of errors that prevent the provided data from being successfully imported.
@@ -14,52 +10,4 @@ type ImportTogglesValidateSchema struct {
 	Permissions []ImportTogglesValidateItemSchema `json:"permissions,omitempty"`
 	// A list of warnings related to the provided data.
 	Warnings []ImportTogglesValidateItemSchema `json:"warnings"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ImportTogglesValidateSchema ImportTogglesValidateSchema
-
-func (c *ImportTogglesValidateSchema) UnmarshalJSON(bs []byte) error {
-	data := _ImportTogglesValidateSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ImportTogglesValidateSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "errors")
-	delete(additionalFields, "permissions")
-	delete(additionalFields, "warnings")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ImportTogglesValidateSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ImportTogglesValidateSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

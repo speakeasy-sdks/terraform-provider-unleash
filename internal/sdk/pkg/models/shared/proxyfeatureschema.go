@@ -44,53 +44,6 @@ type ProxyFeatureSchemaVariantPayload struct {
 	Type ProxyFeatureSchemaVariantPayloadType `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ProxyFeatureSchemaVariantPayload ProxyFeatureSchemaVariantPayload
-
-func (c *ProxyFeatureSchemaVariantPayload) UnmarshalJSON(bs []byte) error {
-	data := _ProxyFeatureSchemaVariantPayload{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ProxyFeatureSchemaVariantPayload(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "type")
-	delete(additionalFields, "value")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ProxyFeatureSchemaVariantPayload) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ProxyFeatureSchemaVariantPayload(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // ProxyFeatureSchemaVariant - Variant details
@@ -101,54 +54,6 @@ type ProxyFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// Extra data configured for this variant
 	Payload *ProxyFeatureSchemaVariantPayload `json:"payload,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ProxyFeatureSchemaVariant ProxyFeatureSchemaVariant
-
-func (c *ProxyFeatureSchemaVariant) UnmarshalJSON(bs []byte) error {
-	data := _ProxyFeatureSchemaVariant{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ProxyFeatureSchemaVariant(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "name")
-	delete(additionalFields, "payload")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ProxyFeatureSchemaVariant) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ProxyFeatureSchemaVariant(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // ProxyFeatureSchema - Frontend API feature
@@ -161,53 +66,4 @@ type ProxyFeatureSchema struct {
 	Name string `json:"name"`
 	// Variant details
 	Variant *ProxyFeatureSchemaVariant `json:"variant,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ProxyFeatureSchema ProxyFeatureSchema
-
-func (c *ProxyFeatureSchema) UnmarshalJSON(bs []byte) error {
-	data := _ProxyFeatureSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ProxyFeatureSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "impressionData")
-	delete(additionalFields, "name")
-	delete(additionalFields, "variant")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ProxyFeatureSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ProxyFeatureSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

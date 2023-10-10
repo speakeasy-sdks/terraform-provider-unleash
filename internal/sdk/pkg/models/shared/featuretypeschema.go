@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // FeatureTypeSchema - A [feature toggle type](https://docs.getunleash.io/reference/feature-toggle-types).
 type FeatureTypeSchema struct {
 	// A description of what this feature toggle type is intended to be used for.
@@ -16,53 +12,4 @@ type FeatureTypeSchema struct {
 	LifetimeDays *int64 `json:"lifetimeDays"`
 	// The display name of this feature toggle type.
 	Name string `json:"name"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _FeatureTypeSchema FeatureTypeSchema
-
-func (c *FeatureTypeSchema) UnmarshalJSON(bs []byte) error {
-	data := _FeatureTypeSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = FeatureTypeSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "id")
-	delete(additionalFields, "lifetimeDays")
-	delete(additionalFields, "name")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c FeatureTypeSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_FeatureTypeSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

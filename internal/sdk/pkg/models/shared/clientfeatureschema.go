@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ClientFeatureSchema - Feature toggle configuration used by SDKs to evaluate state of a toggle
 type ClientFeatureSchema struct {
 	// A description of the toggle
@@ -26,58 +22,4 @@ type ClientFeatureSchema struct {
 	Type *string `json:"type,omitempty"`
 	// [Variants](https://docs.getunleash.io/reference/feature-toggle-variants#what-are-variants) configured for this toggle
 	Variants []VariantSchema `json:"variants,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ClientFeatureSchema ClientFeatureSchema
-
-func (c *ClientFeatureSchema) UnmarshalJSON(bs []byte) error {
-	data := _ClientFeatureSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ClientFeatureSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "impressionData")
-	delete(additionalFields, "name")
-	delete(additionalFields, "project")
-	delete(additionalFields, "stale")
-	delete(additionalFields, "strategies")
-	delete(additionalFields, "type")
-	delete(additionalFields, "variants")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ClientFeatureSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ClientFeatureSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

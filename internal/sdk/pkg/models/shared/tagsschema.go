@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // TagsSchema - A list of tags with a version number
 type TagsSchema struct {
 	// A list of tags.
 	Tags []TagSchema `json:"tags"`
 	// The version of the schema used to model the tags.
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _TagsSchema TagsSchema
-
-func (c *TagsSchema) UnmarshalJSON(bs []byte) error {
-	data := _TagsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = TagsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "tags")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c TagsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_TagsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

@@ -2,58 +2,7 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type ProjectUsersSchema struct {
 	Roles []RoleSchema                `json:"roles"`
 	Users []UserWithProjectRoleSchema `json:"users"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ProjectUsersSchema ProjectUsersSchema
-
-func (c *ProjectUsersSchema) UnmarshalJSON(bs []byte) error {
-	data := _ProjectUsersSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ProjectUsersSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "roles")
-	delete(additionalFields, "users")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ProjectUsersSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ProjectUsersSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

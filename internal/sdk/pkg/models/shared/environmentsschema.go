@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // EnvironmentsSchema - A versioned list of environments
 type EnvironmentsSchema struct {
 	// List of environments
 	Environments []EnvironmentSchema `json:"environments"`
 	// Version of the environments schema
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _EnvironmentsSchema EnvironmentsSchema
-
-func (c *EnvironmentsSchema) UnmarshalJSON(bs []byte) error {
-	data := _EnvironmentsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = EnvironmentsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "environments")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c EnvironmentsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_EnvironmentsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // AddonParameterSchema - An addon parameter definition.
 type AddonParameterSchema struct {
 	// A description of the parameter. This should explain to the end user what the parameter is used for.
@@ -22,56 +18,4 @@ type AddonParameterSchema struct {
 	Sensitive bool `json:"sensitive"`
 	// The type of the parameter. Corresponds roughly to [HTML `input` field types](https://developer.mozilla.org/docs/Web/HTML/Element/Input#input_types). Multi-line inut fields are indicated as `textfield` (equivalent to the HTML `textarea` tag).
 	Type string `json:"type"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AddonParameterSchema AddonParameterSchema
-
-func (c *AddonParameterSchema) UnmarshalJSON(bs []byte) error {
-	data := _AddonParameterSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AddonParameterSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "displayName")
-	delete(additionalFields, "name")
-	delete(additionalFields, "placeholder")
-	delete(additionalFields, "required")
-	delete(additionalFields, "sensitive")
-	delete(additionalFields, "type")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AddonParameterSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AddonParameterSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

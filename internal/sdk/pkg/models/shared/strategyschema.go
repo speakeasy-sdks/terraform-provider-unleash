@@ -2,64 +2,11 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type StrategySchemaParameters struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
 	Required    *bool   `json:"required,omitempty"`
 	Type        *string `json:"type,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _StrategySchemaParameters StrategySchemaParameters
-
-func (c *StrategySchemaParameters) UnmarshalJSON(bs []byte) error {
-	data := _StrategySchemaParameters{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = StrategySchemaParameters(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "name")
-	delete(additionalFields, "required")
-	delete(additionalFields, "type")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c StrategySchemaParameters) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_StrategySchemaParameters(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // StrategySchema - The [activation strategy](https://docs.getunleash.io/reference/activation-strategies) schema
@@ -77,56 +24,4 @@ type StrategySchema struct {
 	Parameters []StrategySchemaParameters `json:"parameters"`
 	// An optional title for the strategy
 	Title *string `json:"title,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _StrategySchema StrategySchema
-
-func (c *StrategySchema) UnmarshalJSON(bs []byte) error {
-	data := _StrategySchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = StrategySchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "deprecated")
-	delete(additionalFields, "description")
-	delete(additionalFields, "displayName")
-	delete(additionalFields, "editable")
-	delete(additionalFields, "name")
-	delete(additionalFields, "parameters")
-	delete(additionalFields, "title")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c StrategySchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_StrategySchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

@@ -2,57 +2,7 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type ApplicationsSchema struct {
 	// Contains a list of applications that have connected via an SDK
 	Applications []ApplicationSchema `json:"applications,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ApplicationsSchema ApplicationsSchema
-
-func (c *ApplicationsSchema) UnmarshalJSON(bs []byte) error {
-	data := _ApplicationsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ApplicationsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "applications")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ApplicationsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ApplicationsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

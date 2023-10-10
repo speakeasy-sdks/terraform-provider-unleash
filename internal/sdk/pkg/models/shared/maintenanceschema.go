@@ -2,56 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type MaintenanceSchema struct {
 	Enabled bool `json:"enabled"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _MaintenanceSchema MaintenanceSchema
-
-func (c *MaintenanceSchema) UnmarshalJSON(bs []byte) error {
-	data := _MaintenanceSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = MaintenanceSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c MaintenanceSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_MaintenanceSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

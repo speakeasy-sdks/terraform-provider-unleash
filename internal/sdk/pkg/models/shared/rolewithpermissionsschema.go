@@ -2,64 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type RoleWithPermissionsSchema struct {
 	Description *string                 `json:"description,omitempty"`
 	ID          float64                 `json:"id"`
 	Name        string                  `json:"name"`
 	Permissions []AdminPermissionSchema `json:"permissions"`
 	Type        string                  `json:"type"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _RoleWithPermissionsSchema RoleWithPermissionsSchema
-
-func (c *RoleWithPermissionsSchema) UnmarshalJSON(bs []byte) error {
-	data := _RoleWithPermissionsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = RoleWithPermissionsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "id")
-	delete(additionalFields, "name")
-	delete(additionalFields, "permissions")
-	delete(additionalFields, "type")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c RoleWithPermissionsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_RoleWithPermissionsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

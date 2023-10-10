@@ -2,58 +2,8 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // NameSchema - An object with a name
 type NameSchema struct {
 	// The name of the represented object.
 	Name string `json:"name"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _NameSchema NameSchema
-
-func (c *NameSchema) UnmarshalJSON(bs []byte) error {
-	data := _NameSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = NameSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "name")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c NameSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_NameSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

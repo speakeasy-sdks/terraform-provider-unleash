@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // PasswordSchema - Fields used to create new password or update old password
 type PasswordSchema struct {
 	// The confirmation of the new password. This field is for the non-admin users changing their own password.
@@ -14,52 +10,4 @@ type PasswordSchema struct {
 	OldPassword *string `json:"oldPassword,omitempty"`
 	// The new password to change or validate.
 	Password string `json:"password"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PasswordSchema PasswordSchema
-
-func (c *PasswordSchema) UnmarshalJSON(bs []byte) error {
-	data := _PasswordSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PasswordSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "confirmPassword")
-	delete(additionalFields, "oldPassword")
-	delete(additionalFields, "password")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PasswordSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PasswordSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

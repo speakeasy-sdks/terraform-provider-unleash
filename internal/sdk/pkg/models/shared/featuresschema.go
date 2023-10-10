@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // FeaturesSchema - A list of features
 //
 // @deprecated null: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -14,51 +10,4 @@ type FeaturesSchema struct {
 	Features []FeatureSchema `json:"features"`
 	// The version of the feature's schema
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _FeaturesSchema FeaturesSchema
-
-func (c *FeaturesSchema) UnmarshalJSON(bs []byte) error {
-	data := _FeaturesSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = FeaturesSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "features")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c FeaturesSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_FeaturesSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

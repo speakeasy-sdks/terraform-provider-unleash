@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // CreateServiceAccountSchema - Describes the properties required to create a new service account
 type CreateServiceAccountSchema struct {
 	// The name of the service account
@@ -14,52 +10,4 @@ type CreateServiceAccountSchema struct {
 	RootRole int64 `json:"rootRole"`
 	// The username of the service account
 	Username *string `json:"username,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _CreateServiceAccountSchema CreateServiceAccountSchema
-
-func (c *CreateServiceAccountSchema) UnmarshalJSON(bs []byte) error {
-	data := _CreateServiceAccountSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = CreateServiceAccountSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "name")
-	delete(additionalFields, "rootRole")
-	delete(additionalFields, "username")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c CreateServiceAccountSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_CreateServiceAccountSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

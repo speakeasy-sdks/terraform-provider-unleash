@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // UsersSchema - Users and root roles
 type UsersSchema struct {
 	// A list of [root roles](https://docs.getunleash.io/reference/rbac#standard-roles) in the Unleash instance.
 	RootRoles []RoleSchema `json:"rootRoles,omitempty"`
 	// A list of users in the Unleash instance.
 	Users []UserSchema `json:"users"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _UsersSchema UsersSchema
-
-func (c *UsersSchema) UnmarshalJSON(bs []byte) error {
-	data := _UsersSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = UsersSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "rootRoles")
-	delete(additionalFields, "users")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c UsersSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_UsersSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

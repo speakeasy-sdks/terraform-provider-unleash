@@ -2,58 +2,8 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // GroupsSchema - A list of [user groups](https://docs.getunleash.io/reference/rbac#user-groups)
 type GroupsSchema struct {
 	// A list of groups
 	Groups []GroupSchema `json:"groups,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _GroupsSchema GroupsSchema
-
-func (c *GroupsSchema) UnmarshalJSON(bs []byte) error {
-	data := _GroupsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = GroupsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "groups")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c GroupsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_GroupsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

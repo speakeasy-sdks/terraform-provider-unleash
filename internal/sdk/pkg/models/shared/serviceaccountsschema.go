@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ServiceAccountsSchema - Represents a list of service accounts, and includes a list of root roles they reference
 type ServiceAccountsSchema struct {
 	// A list of root roles that are referenced from service account objects in the `serviceAccounts` list
 	RootRoles []RoleSchema `json:"rootRoles,omitempty"`
 	// A list of service accounts
 	ServiceAccounts []ServiceAccountSchema `json:"serviceAccounts"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ServiceAccountsSchema ServiceAccountsSchema
-
-func (c *ServiceAccountsSchema) UnmarshalJSON(bs []byte) error {
-	data := _ServiceAccountsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ServiceAccountsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "rootRoles")
-	delete(additionalFields, "serviceAccounts")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ServiceAccountsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ServiceAccountsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

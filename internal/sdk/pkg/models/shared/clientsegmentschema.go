@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ClientSegmentSchema - Represents a client API segment of users defined by a set of constraints.
 type ClientSegmentSchema struct {
 	// List of constraints that determine which users are part of the segment
@@ -14,52 +10,4 @@ type ClientSegmentSchema struct {
 	ID float64 `json:"id"`
 	// The name of the segment.
 	Name *string `json:"name,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ClientSegmentSchema ClientSegmentSchema
-
-func (c *ClientSegmentSchema) UnmarshalJSON(bs []byte) error {
-	data := _ClientSegmentSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ClientSegmentSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "constraints")
-	delete(additionalFields, "id")
-	delete(additionalFields, "name")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ClientSegmentSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ClientSegmentSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

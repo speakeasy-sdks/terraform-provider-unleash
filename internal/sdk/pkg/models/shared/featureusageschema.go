@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // FeatureUsageSchema - How many applications have seen this feature toggle, as well as how this feature was evaluated the last hour
 type FeatureUsageSchema struct {
 	// The name of the feature
@@ -18,54 +14,4 @@ type FeatureUsageSchema struct {
 	SeenApplications []string `json:"seenApplications"`
 	// The version of this schema
 	Version int64 `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _FeatureUsageSchema FeatureUsageSchema
-
-func (c *FeatureUsageSchema) UnmarshalJSON(bs []byte) error {
-	data := _FeatureUsageSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = FeatureUsageSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "featureName")
-	delete(additionalFields, "lastHourUsage")
-	delete(additionalFields, "maturity")
-	delete(additionalFields, "seenApplications")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c FeatureUsageSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_FeatureUsageSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

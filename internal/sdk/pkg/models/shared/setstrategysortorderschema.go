@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // SetStrategySortOrderSchema - A strategy with its new sort order
 type SetStrategySortOrderSchema struct {
 	// The ID of the strategy
 	ID string `json:"id"`
 	// The new sort order of the strategy
 	SortOrder float64 `json:"sortOrder"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _SetStrategySortOrderSchema SetStrategySortOrderSchema
-
-func (c *SetStrategySortOrderSchema) UnmarshalJSON(bs []byte) error {
-	data := _SetStrategySortOrderSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = SetStrategySortOrderSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "id")
-	delete(additionalFields, "sortOrder")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c SetStrategySortOrderSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_SetStrategySortOrderSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

@@ -2,60 +2,9 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ProjectsSchema - An overview of all the projects in the Unleash instance
 type ProjectsSchema struct {
 	// A list of projects in the Unleash instance
 	Projects []ProjectSchema `json:"projects"`
 	Version  int64           `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ProjectsSchema ProjectsSchema
-
-func (c *ProjectsSchema) UnmarshalJSON(bs []byte) error {
-	data := _ProjectsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ProjectsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "projects")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ProjectsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ProjectsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

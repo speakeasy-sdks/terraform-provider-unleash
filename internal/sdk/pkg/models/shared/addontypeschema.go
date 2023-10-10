@@ -46,53 +46,6 @@ type AddonTypeSchemaAlerts struct {
 	Text string `json:"text"`
 	// The type of alert. This determines the color of the alert.
 	Type AddonTypeSchemaAlertsType `json:"type"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AddonTypeSchemaAlerts AddonTypeSchemaAlerts
-
-func (c *AddonTypeSchemaAlerts) UnmarshalJSON(bs []byte) error {
-	data := _AddonTypeSchemaAlerts{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AddonTypeSchemaAlerts(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "text")
-	delete(additionalFields, "type")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AddonTypeSchemaAlerts) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AddonTypeSchemaAlerts(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // AddonTypeSchemaInstallation - The installation configuration for this addon type.
@@ -103,54 +56,6 @@ type AddonTypeSchemaInstallation struct {
 	Title *string `json:"title,omitempty"`
 	// A URL to where the addon configuration should redirect to install addons of this type.
 	URL string `json:"url"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AddonTypeSchemaInstallation AddonTypeSchemaInstallation
-
-func (c *AddonTypeSchemaInstallation) UnmarshalJSON(bs []byte) error {
-	data := _AddonTypeSchemaInstallation{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AddonTypeSchemaInstallation(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "helpText")
-	delete(additionalFields, "title")
-	delete(additionalFields, "url")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AddonTypeSchemaInstallation) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AddonTypeSchemaInstallation(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // AddonTypeSchema - An addon provider. Defines a specific addon type and what the end user must configure when creating a new addon of that type.
@@ -175,59 +80,4 @@ type AddonTypeSchema struct {
 	Parameters []AddonParameterSchema `json:"parameters,omitempty"`
 	// A list of [Unleash tag types](https://docs.getunleash.io/reference/tags#tag-types) that this addon uses. These tags will be added to the Unleash instance when an addon of this type is created.
 	TagTypes []TagTypeSchema `json:"tagTypes,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AddonTypeSchema AddonTypeSchema
-
-func (c *AddonTypeSchema) UnmarshalJSON(bs []byte) error {
-	data := _AddonTypeSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AddonTypeSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "alerts")
-	delete(additionalFields, "deprecated")
-	delete(additionalFields, "description")
-	delete(additionalFields, "displayName")
-	delete(additionalFields, "documentationUrl")
-	delete(additionalFields, "events")
-	delete(additionalFields, "installation")
-	delete(additionalFields, "name")
-	delete(additionalFields, "parameters")
-	delete(additionalFields, "tagTypes")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AddonTypeSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AddonTypeSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

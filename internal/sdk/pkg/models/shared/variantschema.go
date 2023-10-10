@@ -44,53 +44,6 @@ type VariantSchemaPayload struct {
 	Type VariantSchemaPayloadType `json:"type"`
 	// The actual value of payload
 	Value string `json:"value"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _VariantSchemaPayload VariantSchemaPayload
-
-func (c *VariantSchemaPayload) UnmarshalJSON(bs []byte) error {
-	data := _VariantSchemaPayload{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = VariantSchemaPayload(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "type")
-	delete(additionalFields, "value")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c VariantSchemaPayload) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_VariantSchemaPayload(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // VariantSchemaWeightType - Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
@@ -135,55 +88,4 @@ type VariantSchema struct {
 	Weight float64 `json:"weight"`
 	// Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
 	WeightType *VariantSchemaWeightType `json:"weightType,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _VariantSchema VariantSchema
-
-func (c *VariantSchema) UnmarshalJSON(bs []byte) error {
-	data := _VariantSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = VariantSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "name")
-	delete(additionalFields, "overrides")
-	delete(additionalFields, "payload")
-	delete(additionalFields, "stickiness")
-	delete(additionalFields, "weight")
-	delete(additionalFields, "weightType")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c VariantSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_VariantSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

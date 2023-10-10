@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // TelemetrySettingsSchema - Contains information about which settings are configured for version info collection and feature usage collection.
 type TelemetrySettingsSchema struct {
 	// Whether collection of feature usage metrics is enabled/active.
 	FeatureInfoCollectionEnabled bool `json:"featureInfoCollectionEnabled"`
 	// Whether collection of version info is enabled/active.
 	VersionInfoCollectionEnabled bool `json:"versionInfoCollectionEnabled"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _TelemetrySettingsSchema TelemetrySettingsSchema
-
-func (c *TelemetrySettingsSchema) UnmarshalJSON(bs []byte) error {
-	data := _TelemetrySettingsSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = TelemetrySettingsSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "featureInfoCollectionEnabled")
-	delete(additionalFields, "versionInfoCollectionEnabled")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c TelemetrySettingsSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_TelemetrySettingsSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

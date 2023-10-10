@@ -3,7 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -47,62 +46,4 @@ type ServiceAccountSchema struct {
 	Tokens []PatSchema `json:"tokens,omitempty"`
 	// The service account username
 	Username *string `json:"username,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ServiceAccountSchema ServiceAccountSchema
-
-func (c *ServiceAccountSchema) UnmarshalJSON(bs []byte) error {
-	data := _ServiceAccountSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ServiceAccountSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "createdAt")
-	delete(additionalFields, "email")
-	delete(additionalFields, "emailSent")
-	delete(additionalFields, "id")
-	delete(additionalFields, "imageUrl")
-	delete(additionalFields, "inviteLink")
-	delete(additionalFields, "isAPI")
-	delete(additionalFields, "loginAttempts")
-	delete(additionalFields, "name")
-	delete(additionalFields, "rootRole")
-	delete(additionalFields, "seenAt")
-	delete(additionalFields, "tokens")
-	delete(additionalFields, "username")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ServiceAccountSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ServiceAccountSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

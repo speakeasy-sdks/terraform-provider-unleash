@@ -3,7 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -13,51 +12,4 @@ type PublicSignupTokenCreateSchema struct {
 	ExpiresAt time.Time `json:"expiresAt"`
 	// The token's name.
 	Name string `json:"name"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _PublicSignupTokenCreateSchema PublicSignupTokenCreateSchema
-
-func (c *PublicSignupTokenCreateSchema) UnmarshalJSON(bs []byte) error {
-	data := _PublicSignupTokenCreateSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = PublicSignupTokenCreateSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "expiresAt")
-	delete(additionalFields, "name")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c PublicSignupTokenCreateSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_PublicSignupTokenCreateSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

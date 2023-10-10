@@ -2,58 +2,7 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 type UsersGroupsBaseSchema struct {
 	Groups []GroupSchema `json:"groups,omitempty"`
 	Users  []UserSchema  `json:"users,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _UsersGroupsBaseSchema UsersGroupsBaseSchema
-
-func (c *UsersGroupsBaseSchema) UnmarshalJSON(bs []byte) error {
-	data := _UsersGroupsBaseSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = UsersGroupsBaseSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "groups")
-	delete(additionalFields, "users")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c UsersGroupsBaseSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_UsersGroupsBaseSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

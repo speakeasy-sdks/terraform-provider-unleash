@@ -2,61 +2,10 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // ChangePasswordSchema - Change password as long as the token is a valid token
 type ChangePasswordSchema struct {
 	// The new password for the user
 	Password string `json:"password"`
 	// A reset token used to validate that the user is allowed to change the password.
 	Token string `json:"token"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _ChangePasswordSchema ChangePasswordSchema
-
-func (c *ChangePasswordSchema) UnmarshalJSON(bs []byte) error {
-	data := _ChangePasswordSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = ChangePasswordSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "password")
-	delete(additionalFields, "token")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c ChangePasswordSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_ChangePasswordSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

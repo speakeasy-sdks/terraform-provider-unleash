@@ -3,7 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -23,56 +22,4 @@ type SegmentSchema struct {
 	Name *string `json:"name,omitempty"`
 	// The project the segment relates to, if applicable.
 	Project *string `json:"project,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _SegmentSchema SegmentSchema
-
-func (c *SegmentSchema) UnmarshalJSON(bs []byte) error {
-	data := _SegmentSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = SegmentSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "constraints")
-	delete(additionalFields, "createdAt")
-	delete(additionalFields, "createdBy")
-	delete(additionalFields, "description")
-	delete(additionalFields, "id")
-	delete(additionalFields, "name")
-	delete(additionalFields, "project")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c SegmentSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_SegmentSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

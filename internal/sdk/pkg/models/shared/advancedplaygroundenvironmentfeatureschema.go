@@ -117,53 +117,6 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaStrategies struct {
 	//                                   if one or more of the strategies can't be fully evaluated and the rest of the strategies
 	//                                   all resolve to `false`.
 	Result AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult `json:"result"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AdvancedPlaygroundEnvironmentFeatureSchemaStrategies AdvancedPlaygroundEnvironmentFeatureSchemaStrategies
-
-func (c *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) UnmarshalJSON(bs []byte) error {
-	data := _AdvancedPlaygroundEnvironmentFeatureSchemaStrategies{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AdvancedPlaygroundEnvironmentFeatureSchemaStrategies(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "data")
-	delete(additionalFields, "result")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AdvancedPlaygroundEnvironmentFeatureSchemaStrategies(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload - An optional payload attached to the variant.
@@ -172,53 +125,6 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload struct {
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload
-
-func (c *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) UnmarshalJSON(bs []byte) error {
-	data := _AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "type")
-	delete(additionalFields, "value")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchemaVariant - The feature variant you receive based on the provided context or the _disabled
@@ -233,54 +139,6 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
 	Payload *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload `json:"payload,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AdvancedPlaygroundEnvironmentFeatureSchemaVariant AdvancedPlaygroundEnvironmentFeatureSchemaVariant
-
-func (c *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) UnmarshalJSON(bs []byte) error {
-	data := _AdvancedPlaygroundEnvironmentFeatureSchemaVariant{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AdvancedPlaygroundEnvironmentFeatureSchemaVariant(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "name")
-	delete(additionalFields, "payload")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AdvancedPlaygroundEnvironmentFeatureSchemaVariant) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AdvancedPlaygroundEnvironmentFeatureSchemaVariant(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchema - A simplified feature toggle model intended for the Unleash playground.
@@ -308,58 +166,4 @@ type AdvancedPlaygroundEnvironmentFeatureSchema struct {
 	Variant *AdvancedPlaygroundEnvironmentFeatureSchemaVariant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AdvancedPlaygroundEnvironmentFeatureSchema AdvancedPlaygroundEnvironmentFeatureSchema
-
-func (c *AdvancedPlaygroundEnvironmentFeatureSchema) UnmarshalJSON(bs []byte) error {
-	data := _AdvancedPlaygroundEnvironmentFeatureSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AdvancedPlaygroundEnvironmentFeatureSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "context")
-	delete(additionalFields, "environment")
-	delete(additionalFields, "isEnabled")
-	delete(additionalFields, "isEnabledInCurrentEnvironment")
-	delete(additionalFields, "name")
-	delete(additionalFields, "projectId")
-	delete(additionalFields, "strategies")
-	delete(additionalFields, "variant")
-	delete(additionalFields, "variants")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AdvancedPlaygroundEnvironmentFeatureSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AdvancedPlaygroundEnvironmentFeatureSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

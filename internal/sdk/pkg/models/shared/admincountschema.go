@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // AdminCountSchema - Contains total admin counts for an Unleash instance.
 type AdminCountSchema struct {
 	// Total number of admins that do not have a password set. May be SSO, but may also be users that did not set a password yet.
@@ -14,52 +10,4 @@ type AdminCountSchema struct {
 	Password float64 `json:"password"`
 	// Total number of service accounts that have the admin root role.
 	Service float64 `json:"service"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _AdminCountSchema AdminCountSchema
-
-func (c *AdminCountSchema) UnmarshalJSON(bs []byte) error {
-	data := _AdminCountSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = AdminCountSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "noPassword")
-	delete(additionalFields, "password")
-	delete(additionalFields, "service")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c AdminCountSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_AdminCountSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

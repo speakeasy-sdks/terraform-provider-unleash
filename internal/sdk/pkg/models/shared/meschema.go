@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-)
-
 // MeSchema - Detailed user information
 type MeSchema struct {
 	// User feedback information
@@ -16,53 +12,4 @@ type MeSchema struct {
 	Splash map[string]bool `json:"splash"`
 	// An Unleash user
 	User UserSchema `json:"user"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _MeSchema MeSchema
-
-func (c *MeSchema) UnmarshalJSON(bs []byte) error {
-	data := _MeSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = MeSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "feedback")
-	delete(additionalFields, "permissions")
-	delete(additionalFields, "splash")
-	delete(additionalFields, "user")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c MeSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_MeSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

@@ -3,7 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -23,56 +22,4 @@ type LoginEventSchema struct {
 	Successful *bool `json:"successful,omitempty"`
 	// The username of the user that attempted to log in. Will return "Incorrectly configured provider" when attempting to log in using a misconfigured provider.
 	Username *string `json:"username,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _LoginEventSchema LoginEventSchema
-
-func (c *LoginEventSchema) UnmarshalJSON(bs []byte) error {
-	data := _LoginEventSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = LoginEventSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "auth_type")
-	delete(additionalFields, "created_at")
-	delete(additionalFields, "failure_reason")
-	delete(additionalFields, "id")
-	delete(additionalFields, "ip")
-	delete(additionalFields, "successful")
-	delete(additionalFields, "username")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c LoginEventSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_LoginEventSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }

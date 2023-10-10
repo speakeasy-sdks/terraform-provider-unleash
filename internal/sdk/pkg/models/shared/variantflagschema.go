@@ -44,53 +44,6 @@ type VariantFlagSchemaPayload struct {
 	Type *VariantFlagSchemaPayloadType `json:"type,omitempty"`
 	// The actual associated data
 	Value *string `json:"value,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _VariantFlagSchemaPayload VariantFlagSchemaPayload
-
-func (c *VariantFlagSchemaPayload) UnmarshalJSON(bs []byte) error {
-	data := _VariantFlagSchemaPayload{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = VariantFlagSchemaPayload(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "type")
-	delete(additionalFields, "value")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c VariantFlagSchemaPayload) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_VariantFlagSchemaPayload(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
 
 // VariantFlagSchema - A representation of an evaluated Unleash feature variant.
@@ -101,52 +54,4 @@ type VariantFlagSchema struct {
 	Name *string `json:"name,omitempty"`
 	// Additional data associated with this variant.
 	Payload *VariantFlagSchemaPayload `json:"payload,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _VariantFlagSchema VariantFlagSchema
-
-func (c *VariantFlagSchema) UnmarshalJSON(bs []byte) error {
-	data := _VariantFlagSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = VariantFlagSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "enabled")
-	delete(additionalFields, "name")
-	delete(additionalFields, "payload")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
-}
-
-func (c VariantFlagSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_VariantFlagSchema(c))
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
 }
