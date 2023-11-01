@@ -2,10 +2,39 @@
 
 package shared
 
+import (
+	"terraform/internal/sdk/pkg/utils"
+)
+
 // TagSchema - Representation of a [tag](https://docs.getunleash.io/reference/tags)
 type TagSchema struct {
 	// The [type](https://docs.getunleash.io/reference/tags#tag-types) of the tag
-	Type *string `json:"type,omitempty"`
+	Type *string `default:"simple" json:"type"`
 	// The value of the tag
 	Value string `json:"value"`
+}
+
+func (t TagSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TagSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *TagSchema) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
 }

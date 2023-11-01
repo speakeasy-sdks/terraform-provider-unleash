@@ -9,3 +9,17 @@ type EnvironmentsProjectSchema struct {
 	// Version of the environments schema
 	Version int64 `json:"version"`
 }
+
+func (o *EnvironmentsProjectSchema) GetEnvironments() []EnvironmentProjectSchema {
+	if o == nil {
+		return []EnvironmentProjectSchema{}
+	}
+	return o.Environments
+}
+
+func (o *EnvironmentsProjectSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

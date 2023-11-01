@@ -17,6 +17,27 @@ type CreateFeedback415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateFeedback415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateFeedback415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateFeedback415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateFeedback401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreateFeedback401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type CreateFeedback401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateFeedback401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateFeedback401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateFeedback401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateFeedback400ApplicationJSON - The request data does not match what we expect.
 type CreateFeedback400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type CreateFeedback400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateFeedback400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateFeedback400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateFeedback400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateFeedbackResponse struct {
@@ -52,4 +115,53 @@ type CreateFeedbackResponse struct {
 	CreateFeedback415ApplicationJSONObject *CreateFeedback415ApplicationJSON
 	// feedbackResponseSchema
 	FeedbackResponseSchema *shared.FeedbackResponseSchema
+}
+
+func (o *CreateFeedbackResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateFeedbackResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateFeedbackResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateFeedbackResponse) GetCreateFeedback400ApplicationJSONObject() *CreateFeedback400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateFeedback400ApplicationJSONObject
+}
+
+func (o *CreateFeedbackResponse) GetCreateFeedback401ApplicationJSONObject() *CreateFeedback401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateFeedback401ApplicationJSONObject
+}
+
+func (o *CreateFeedbackResponse) GetCreateFeedback415ApplicationJSONObject() *CreateFeedback415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateFeedback415ApplicationJSONObject
+}
+
+func (o *CreateFeedbackResponse) GetFeedbackResponseSchema() *shared.FeedbackResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeedbackResponseSchema
 }

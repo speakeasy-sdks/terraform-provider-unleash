@@ -17,6 +17,27 @@ type GetUsers403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetUsers403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetUsers403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetUsers403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetUsers401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetUsers401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetUsers401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetUsers401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetUsers401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetUsers401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetUsersResponse struct {
@@ -40,4 +82,46 @@ type GetUsersResponse struct {
 	GetUsers403ApplicationJSONObject *GetUsers403ApplicationJSON
 	// usersSchema
 	UsersSchema *shared.UsersSchema
+}
+
+func (o *GetUsersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetUsersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetUsersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetUsersResponse) GetGetUsers401ApplicationJSONObject() *GetUsers401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetUsers401ApplicationJSONObject
+}
+
+func (o *GetUsersResponse) GetGetUsers403ApplicationJSONObject() *GetUsers403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetUsers403ApplicationJSONObject
+}
+
+func (o *GetUsersResponse) GetUsersSchema() *shared.UsersSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UsersSchema
 }

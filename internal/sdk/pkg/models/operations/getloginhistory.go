@@ -17,6 +17,27 @@ type GetLoginHistory404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetLoginHistory404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetLoginHistory404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetLoginHistory404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetLoginHistory401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetLoginHistory401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetLoginHistory401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetLoginHistory401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetLoginHistory401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetLoginHistory401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetLoginHistoryResponse struct {
@@ -42,4 +84,53 @@ type GetLoginHistoryResponse struct {
 	GetLoginHistory404ApplicationJSONObject *GetLoginHistory404ApplicationJSON
 	// loginHistorySchema
 	LoginHistorySchema *shared.LoginHistorySchema
+}
+
+func (o *GetLoginHistoryResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetLoginHistoryResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetLoginHistoryResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetLoginHistoryResponse) GetGetLoginHistory200TextCsvString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GetLoginHistory200TextCsvString
+}
+
+func (o *GetLoginHistoryResponse) GetGetLoginHistory401ApplicationJSONObject() *GetLoginHistory401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetLoginHistory401ApplicationJSONObject
+}
+
+func (o *GetLoginHistoryResponse) GetGetLoginHistory404ApplicationJSONObject() *GetLoginHistory404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetLoginHistory404ApplicationJSONObject
+}
+
+func (o *GetLoginHistoryResponse) GetLoginHistorySchema() *shared.LoginHistorySchema {
+	if o == nil {
+		return nil
+	}
+	return o.LoginHistorySchema
 }

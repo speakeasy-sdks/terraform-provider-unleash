@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -63,6 +64,94 @@ type APITokenSchema struct {
 	Type APITokenSchemaType `json:"type"`
 	// This property was deprecated in Unleash v5. Prefer the `tokenName` property instead.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Username *string `json:"username,omitempty"`
+}
+
+func (a APITokenSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *APITokenSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *APITokenSchema) GetAlias() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Alias
+}
+
+func (o *APITokenSchema) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *APITokenSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *APITokenSchema) GetExpiresAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresAt
+}
+
+func (o *APITokenSchema) GetProject() string {
+	if o == nil {
+		return ""
+	}
+	return o.Project
+}
+
+func (o *APITokenSchema) GetProjects() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Projects
+}
+
+func (o *APITokenSchema) GetSecret() string {
+	if o == nil {
+		return ""
+	}
+	return o.Secret
+}
+
+func (o *APITokenSchema) GetSeenAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.SeenAt
+}
+
+func (o *APITokenSchema) GetTokenName() string {
+	if o == nil {
+		return ""
+	}
+	return o.TokenName
+}
+
+func (o *APITokenSchema) GetType() APITokenSchemaType {
+	if o == nil {
+		return APITokenSchemaType("")
+	}
+	return o.Type
+}
+
+func (o *APITokenSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

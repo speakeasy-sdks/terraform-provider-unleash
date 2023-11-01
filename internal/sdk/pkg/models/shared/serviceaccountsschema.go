@@ -9,3 +9,17 @@ type ServiceAccountsSchema struct {
 	// A list of service accounts
 	ServiceAccounts []ServiceAccountSchema `json:"serviceAccounts"`
 }
+
+func (o *ServiceAccountsSchema) GetRootRoles() []RoleSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RootRoles
+}
+
+func (o *ServiceAccountsSchema) GetServiceAccounts() []ServiceAccountSchema {
+	if o == nil {
+		return []ServiceAccountSchema{}
+	}
+	return o.ServiceAccounts
+}

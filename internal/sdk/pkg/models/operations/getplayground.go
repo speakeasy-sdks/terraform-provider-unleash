@@ -17,6 +17,27 @@ type GetPlayground401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetPlayground401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetPlayground401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetPlayground401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetPlayground400ApplicationJSON - The request data does not match what we expect.
 type GetPlayground400ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetPlayground400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetPlayground400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetPlayground400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetPlayground400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetPlaygroundResponse struct {
@@ -40,4 +82,46 @@ type GetPlaygroundResponse struct {
 	GetPlayground401ApplicationJSONObject *GetPlayground401ApplicationJSON
 	// playgroundResponseSchema
 	PlaygroundResponseSchema *shared.PlaygroundResponseSchema
+}
+
+func (o *GetPlaygroundResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPlaygroundResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPlaygroundResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetPlaygroundResponse) GetGetPlayground400ApplicationJSONObject() *GetPlayground400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPlayground400ApplicationJSONObject
+}
+
+func (o *GetPlaygroundResponse) GetGetPlayground401ApplicationJSONObject() *GetPlayground401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPlayground401ApplicationJSONObject
+}
+
+func (o *GetPlaygroundResponse) GetPlaygroundResponseSchema() *shared.PlaygroundResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PlaygroundResponseSchema
 }

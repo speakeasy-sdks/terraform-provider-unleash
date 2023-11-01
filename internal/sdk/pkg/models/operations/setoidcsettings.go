@@ -17,6 +17,27 @@ type SetOidcSettings415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *SetOidcSettings415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SetOidcSettings415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SetOidcSettings415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // SetOidcSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type SetOidcSettings403ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type SetOidcSettings403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *SetOidcSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SetOidcSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SetOidcSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // SetOidcSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -37,6 +79,27 @@ type SetOidcSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *SetOidcSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SetOidcSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SetOidcSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // SetOidcSettings400ApplicationJSON - The request data does not match what we expect.
 type SetOidcSettings400ApplicationJSON struct {
 	// The ID of the error instance
@@ -45,6 +108,27 @@ type SetOidcSettings400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *SetOidcSettings400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SetOidcSettings400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SetOidcSettings400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type SetOidcSettingsResponse struct {
@@ -64,4 +148,60 @@ type SetOidcSettingsResponse struct {
 	SetOidcSettings403ApplicationJSONObject *SetOidcSettings403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	SetOidcSettings415ApplicationJSONObject *SetOidcSettings415ApplicationJSON
+}
+
+func (o *SetOidcSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SetOidcSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SetOidcSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *SetOidcSettingsResponse) GetOidcSettingsSchema() *shared.OidcSettingsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.OidcSettingsSchema
+}
+
+func (o *SetOidcSettingsResponse) GetSetOidcSettings400ApplicationJSONObject() *SetOidcSettings400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.SetOidcSettings400ApplicationJSONObject
+}
+
+func (o *SetOidcSettingsResponse) GetSetOidcSettings401ApplicationJSONObject() *SetOidcSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.SetOidcSettings401ApplicationJSONObject
+}
+
+func (o *SetOidcSettingsResponse) GetSetOidcSettings403ApplicationJSONObject() *SetOidcSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.SetOidcSettings403ApplicationJSONObject
+}
+
+func (o *SetOidcSettingsResponse) GetSetOidcSettings415ApplicationJSONObject() *SetOidcSettings415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.SetOidcSettings415ApplicationJSONObject
 }

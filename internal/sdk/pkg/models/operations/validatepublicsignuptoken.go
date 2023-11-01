@@ -10,6 +10,13 @@ type ValidatePublicSignupTokenRequest struct {
 	Token string `pathParam:"style=simple,explode=false,name=token"`
 }
 
+func (o *ValidatePublicSignupTokenRequest) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
 // ValidatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
 type ValidatePublicSignupToken400ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type ValidatePublicSignupToken400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidatePublicSignupToken400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidatePublicSignupToken400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidatePublicSignupToken400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ValidatePublicSignupTokenResponse struct {
@@ -29,4 +57,32 @@ type ValidatePublicSignupTokenResponse struct {
 	RawResponse *http.Response
 	// The request data does not match what we expect.
 	ValidatePublicSignupToken400ApplicationJSONObject *ValidatePublicSignupToken400ApplicationJSON
+}
+
+func (o *ValidatePublicSignupTokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidatePublicSignupTokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidatePublicSignupTokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidatePublicSignupTokenResponse) GetValidatePublicSignupToken400ApplicationJSONObject() *ValidatePublicSignupToken400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatePublicSignupToken400ApplicationJSONObject
 }

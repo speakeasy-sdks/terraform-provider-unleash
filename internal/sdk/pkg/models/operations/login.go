@@ -17,6 +17,27 @@ type Login401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *Login401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Login401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *Login401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type LoginResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type LoginResponse struct {
 	Login401ApplicationJSONObject *Login401ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
+}
+
+func (o *LoginResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *LoginResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *LoginResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *LoginResponse) GetLogin401ApplicationJSONObject() *Login401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.Login401ApplicationJSONObject
+}
+
+func (o *LoginResponse) GetUserSchema() *shared.UserSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UserSchema
 }

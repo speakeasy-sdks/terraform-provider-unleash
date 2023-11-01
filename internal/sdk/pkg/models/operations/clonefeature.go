@@ -14,6 +14,27 @@ type CloneFeatureRequest struct {
 	ProjectID          string                    `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *CloneFeatureRequest) GetCloneFeatureSchema() shared.CloneFeatureSchema {
+	if o == nil {
+		return shared.CloneFeatureSchema{}
+	}
+	return o.CloneFeatureSchema
+}
+
+func (o *CloneFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *CloneFeatureRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // CloneFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type CloneFeature415ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type CloneFeature415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CloneFeature415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneFeature415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneFeature415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // CloneFeature404ApplicationJSON - The requested resource was not found.
@@ -34,6 +76,27 @@ type CloneFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CloneFeature404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneFeature404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneFeature404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CloneFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type CloneFeature403ApplicationJSON struct {
 	// The ID of the error instance
@@ -44,6 +107,27 @@ type CloneFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CloneFeature403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneFeature403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneFeature403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CloneFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CloneFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -52,6 +136,27 @@ type CloneFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CloneFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CloneFeatureResponse struct {
@@ -71,4 +176,60 @@ type CloneFeatureResponse struct {
 	CloneFeature415ApplicationJSONObject *CloneFeature415ApplicationJSON
 	// featureSchema
 	FeatureSchema *shared.FeatureSchema
+}
+
+func (o *CloneFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CloneFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CloneFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CloneFeatureResponse) GetCloneFeature401ApplicationJSONObject() *CloneFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneFeature401ApplicationJSONObject
+}
+
+func (o *CloneFeatureResponse) GetCloneFeature403ApplicationJSONObject() *CloneFeature403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneFeature403ApplicationJSONObject
+}
+
+func (o *CloneFeatureResponse) GetCloneFeature404ApplicationJSONObject() *CloneFeature404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneFeature404ApplicationJSONObject
+}
+
+func (o *CloneFeatureResponse) GetCloneFeature415ApplicationJSONObject() *CloneFeature415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneFeature415ApplicationJSONObject
+}
+
+func (o *CloneFeatureResponse) GetFeatureSchema() *shared.FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureSchema
 }

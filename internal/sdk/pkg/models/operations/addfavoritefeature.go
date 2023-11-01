@@ -11,6 +11,20 @@ type AddFavoriteFeatureRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *AddFavoriteFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *AddFavoriteFeatureRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // AddFavoriteFeature404ApplicationJSON - The requested resource was not found.
 type AddFavoriteFeature404ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type AddFavoriteFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *AddFavoriteFeature404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFavoriteFeature404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFavoriteFeature404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // AddFavoriteFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type AddFavoriteFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -29,6 +64,27 @@ type AddFavoriteFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddFavoriteFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFavoriteFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFavoriteFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type AddFavoriteFeatureResponse struct {
@@ -42,4 +98,39 @@ type AddFavoriteFeatureResponse struct {
 	AddFavoriteFeature401ApplicationJSONObject *AddFavoriteFeature401ApplicationJSON
 	// The requested resource was not found.
 	AddFavoriteFeature404ApplicationJSONObject *AddFavoriteFeature404ApplicationJSON
+}
+
+func (o *AddFavoriteFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddFavoriteFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddFavoriteFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AddFavoriteFeatureResponse) GetAddFavoriteFeature401ApplicationJSONObject() *AddFavoriteFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFavoriteFeature401ApplicationJSONObject
+}
+
+func (o *AddFavoriteFeatureResponse) GetAddFavoriteFeature404ApplicationJSONObject() *AddFavoriteFeature404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFavoriteFeature404ApplicationJSONObject
 }

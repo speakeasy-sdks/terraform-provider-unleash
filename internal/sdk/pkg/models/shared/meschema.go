@@ -13,3 +13,31 @@ type MeSchema struct {
 	// An Unleash user
 	User UserSchema `json:"user"`
 }
+
+func (o *MeSchema) GetFeedback() []FeedbackResponseSchema {
+	if o == nil {
+		return []FeedbackResponseSchema{}
+	}
+	return o.Feedback
+}
+
+func (o *MeSchema) GetPermissions() []PermissionSchema {
+	if o == nil {
+		return []PermissionSchema{}
+	}
+	return o.Permissions
+}
+
+func (o *MeSchema) GetSplash() map[string]bool {
+	if o == nil {
+		return map[string]bool{}
+	}
+	return o.Splash
+}
+
+func (o *MeSchema) GetUser() UserSchema {
+	if o == nil {
+		return UserSchema{}
+	}
+	return o.User
+}

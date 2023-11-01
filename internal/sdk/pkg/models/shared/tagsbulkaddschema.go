@@ -9,3 +9,17 @@ type TagsBulkAddSchema struct {
 	// Represents a set of changes to a feature's tags, such as adding or removing tags.
 	Tags UpdateTagsSchema `json:"tags"`
 }
+
+func (o *TagsBulkAddSchema) GetFeatures() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Features
+}
+
+func (o *TagsBulkAddSchema) GetTags() UpdateTagsSchema {
+	if o == nil {
+		return UpdateTagsSchema{}
+	}
+	return o.Tags
+}

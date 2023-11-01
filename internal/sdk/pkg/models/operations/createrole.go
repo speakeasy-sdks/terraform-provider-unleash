@@ -17,6 +17,27 @@ type CreateRole400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateRole400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateRole400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateRole400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type CreateRoleResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type CreateRoleResponse struct {
 	CreateRole400ApplicationJSONObject *CreateRole400ApplicationJSON
 	// roleWithVersionSchema
 	RoleWithVersionSchema *shared.RoleWithVersionSchema
+}
+
+func (o *CreateRoleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateRoleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateRoleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateRoleResponse) GetCreateRole400ApplicationJSONObject() *CreateRole400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateRole400ApplicationJSONObject
+}
+
+func (o *CreateRoleResponse) GetRoleWithVersionSchema() *shared.RoleWithVersionSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RoleWithVersionSchema
 }

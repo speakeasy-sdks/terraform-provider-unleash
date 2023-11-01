@@ -13,6 +13,20 @@ type UpdateAddonRequest struct {
 	ID                      string                         `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *UpdateAddonRequest) GetAddonCreateUpdateSchema() shared.AddonCreateUpdateSchema {
+	if o == nil {
+		return shared.AddonCreateUpdateSchema{}
+	}
+	return o.AddonCreateUpdateSchema
+}
+
+func (o *UpdateAddonRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // UpdateAddon415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type UpdateAddon415ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdateAddon415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateAddon415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateAddon413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
@@ -33,6 +68,27 @@ type UpdateAddon413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateAddon413ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon413ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon413ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateAddon404ApplicationJSON - The requested resource was not found.
 type UpdateAddon404ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +97,27 @@ type UpdateAddon404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateAddon404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateAddon403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -53,6 +130,27 @@ type UpdateAddon403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateAddon403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateAddon401ApplicationJSON struct {
 	// The ID of the error instance
@@ -63,6 +161,27 @@ type UpdateAddon401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateAddon401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateAddon400ApplicationJSON - The request data does not match what we expect.
 type UpdateAddon400ApplicationJSON struct {
 	// The ID of the error instance
@@ -71,6 +190,27 @@ type UpdateAddon400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateAddon400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateAddon400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateAddon400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateAddonResponse struct {
@@ -94,4 +234,74 @@ type UpdateAddonResponse struct {
 	UpdateAddon413ApplicationJSONObject *UpdateAddon413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateAddon415ApplicationJSONObject *UpdateAddon415ApplicationJSON
+}
+
+func (o *UpdateAddonResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateAddonResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateAddonResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateAddonResponse) GetAddonSchema() *shared.AddonSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AddonSchema
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon400ApplicationJSONObject() *UpdateAddon400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon400ApplicationJSONObject
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon401ApplicationJSONObject() *UpdateAddon401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon401ApplicationJSONObject
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon403ApplicationJSONObject() *UpdateAddon403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon403ApplicationJSONObject
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon404ApplicationJSONObject() *UpdateAddon404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon404ApplicationJSONObject
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon413ApplicationJSONObject() *UpdateAddon413ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon413ApplicationJSONObject
+}
+
+func (o *UpdateAddonResponse) GetUpdateAddon415ApplicationJSONObject() *UpdateAddon415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateAddon415ApplicationJSONObject
 }

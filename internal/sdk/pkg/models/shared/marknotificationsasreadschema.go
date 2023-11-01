@@ -3,55 +3,35 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 type MarkNotificationsAsReadSchema struct {
-	Notifications []float64 `json:"notifications"`
-
-	AdditionalProperties interface{} `json:"-"`
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
+	Notifications        []float64   `json:"notifications"`
 }
-type _MarkNotificationsAsReadSchema MarkNotificationsAsReadSchema
 
-func (c *MarkNotificationsAsReadSchema) UnmarshalJSON(bs []byte) error {
-	data := _MarkNotificationsAsReadSchema{}
+func (m MarkNotificationsAsReadSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (m *MarkNotificationsAsReadSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
-	*c = MarkNotificationsAsReadSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "notifications")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c MarkNotificationsAsReadSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_MarkNotificationsAsReadSchema(c))
-	if err != nil {
-		return nil, err
+func (o *MarkNotificationsAsReadSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *MarkNotificationsAsReadSchema) GetNotifications() []float64 {
+	if o == nil {
+		return []float64{}
 	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
+	return o.Notifications
 }

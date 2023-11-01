@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -26,4 +27,78 @@ type GroupSchema struct {
 	RootRole *float64 `json:"rootRole,omitempty"`
 	// A list of users belonging to this group
 	Users []GroupUserModelSchema `json:"users,omitempty"`
+}
+
+func (g GroupSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GroupSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GroupSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *GroupSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *GroupSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *GroupSchema) GetID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GroupSchema) GetMappingsSSO() []string {
+	if o == nil {
+		return nil
+	}
+	return o.MappingsSSO
+}
+
+func (o *GroupSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *GroupSchema) GetProjects() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
+}
+
+func (o *GroupSchema) GetRootRole() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RootRole
+}
+
+func (o *GroupSchema) GetUsers() []GroupUserModelSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Users
 }

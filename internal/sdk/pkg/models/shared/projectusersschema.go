@@ -6,3 +6,17 @@ type ProjectUsersSchema struct {
 	Roles []RoleSchema                `json:"roles"`
 	Users []UserWithProjectRoleSchema `json:"users"`
 }
+
+func (o *ProjectUsersSchema) GetRoles() []RoleSchema {
+	if o == nil {
+		return []RoleSchema{}
+	}
+	return o.Roles
+}
+
+func (o *ProjectUsersSchema) GetUsers() []UserWithProjectRoleSchema {
+	if o == nil {
+		return []UserWithProjectRoleSchema{}
+	}
+	return o.Users
+}

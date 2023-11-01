@@ -9,3 +9,17 @@ type SetStrategySortOrderSchema struct {
 	// The new sort order of the strategy
 	SortOrder float64 `json:"sortOrder"`
 }
+
+func (o *SetStrategySortOrderSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SetStrategySortOrderSchema) GetSortOrder() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SortOrder
+}

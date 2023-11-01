@@ -15,6 +15,34 @@ type AddFeatureStrategyRequest struct {
 	ProjectID                   string                             `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *AddFeatureStrategyRequest) GetCreateFeatureStrategySchema() shared.CreateFeatureStrategySchema {
+	if o == nil {
+		return shared.CreateFeatureStrategySchema{}
+	}
+	return o.CreateFeatureStrategySchema
+}
+
+func (o *AddFeatureStrategyRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *AddFeatureStrategyRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *AddFeatureStrategyRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // AddFeatureStrategy404ApplicationJSON - The requested resource was not found.
 type AddFeatureStrategy404ApplicationJSON struct {
 	// The ID of the error instance
@@ -23,6 +51,27 @@ type AddFeatureStrategy404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddFeatureStrategy404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFeatureStrategy404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFeatureStrategy404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // AddFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -35,6 +84,27 @@ type AddFeatureStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *AddFeatureStrategy403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFeatureStrategy403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFeatureStrategy403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // AddFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type AddFeatureStrategy401ApplicationJSON struct {
 	// The ID of the error instance
@@ -43,6 +113,27 @@ type AddFeatureStrategy401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddFeatureStrategy401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFeatureStrategy401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFeatureStrategy401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type AddFeatureStrategyResponse struct {
@@ -60,4 +151,53 @@ type AddFeatureStrategyResponse struct {
 	AddFeatureStrategy404ApplicationJSONObject *AddFeatureStrategy404ApplicationJSON
 	// featureStrategySchema
 	FeatureStrategySchema *shared.FeatureStrategySchema
+}
+
+func (o *AddFeatureStrategyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddFeatureStrategyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddFeatureStrategyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AddFeatureStrategyResponse) GetAddFeatureStrategy401ApplicationJSONObject() *AddFeatureStrategy401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFeatureStrategy401ApplicationJSONObject
+}
+
+func (o *AddFeatureStrategyResponse) GetAddFeatureStrategy403ApplicationJSONObject() *AddFeatureStrategy403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFeatureStrategy403ApplicationJSONObject
+}
+
+func (o *AddFeatureStrategyResponse) GetAddFeatureStrategy404ApplicationJSONObject() *AddFeatureStrategy404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFeatureStrategy404ApplicationJSONObject
+}
+
+func (o *AddFeatureStrategyResponse) GetFeatureStrategySchema() *shared.FeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureStrategySchema
 }

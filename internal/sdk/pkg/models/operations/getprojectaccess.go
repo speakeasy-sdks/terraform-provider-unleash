@@ -11,6 +11,13 @@ type GetProjectAccessRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetProjectAccessRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 type GetProjectAccessResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetProjectAccessResponse struct {
 	RawResponse *http.Response
 	// projectAccessSchema
 	ProjectAccessSchema *shared.ProjectAccessSchema
+}
+
+func (o *GetProjectAccessResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProjectAccessResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProjectAccessResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProjectAccessResponse) GetProjectAccessSchema() *shared.ProjectAccessSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectAccessSchema
 }

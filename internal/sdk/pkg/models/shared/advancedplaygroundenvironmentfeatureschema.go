@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 - The cumulative results of all the feature's strategies. Can be `true`,
@@ -72,21 +72,16 @@ func CreateAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultAdvancedPla
 }
 
 func (u *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	boolean := new(bool)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&boolean); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
 		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeBoolean
 		return nil
 	}
 
 	advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 := new(AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2); err == nil {
+	if err := utils.UnmarshalJSON(data, &advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2, "", true, true); err == nil {
 		u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 = advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
 		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
 		return nil
@@ -97,14 +92,14 @@ func (u *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult) UnmarshalJS
 
 func (u AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
-		return json.Marshal(u.Boolean)
+		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
 	if u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 != nil {
-		return json.Marshal(u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2)
+		return utils.MarshalJSON(u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchemaStrategies - Feature's applicable strategies and cumulative results of the strategies
@@ -119,12 +114,40 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaStrategies struct {
 	Result AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult `json:"result"`
 }
 
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetData() []PlaygroundStrategySchema {
+	if o == nil {
+		return []PlaygroundStrategySchema{}
+	}
+	return o.Data
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetResult() AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult {
+	if o == nil {
+		return AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult{}
+	}
+	return o.Result
+}
+
 // AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload - An optional payload attached to the variant.
 type AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload struct {
 	// The format of the payload.
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchemaVariant - The feature variant you receive based on the provided context or the _disabled
@@ -139,6 +162,27 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
 	Payload *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload `json:"payload,omitempty"`
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetPayload() *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
 }
 
 // AdvancedPlaygroundEnvironmentFeatureSchema - A simplified feature toggle model intended for the Unleash playground.
@@ -166,4 +210,67 @@ type AdvancedPlaygroundEnvironmentFeatureSchema struct {
 	Variant *AdvancedPlaygroundEnvironmentFeatureSchemaVariant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetContext() SDKContextSchema {
+	if o == nil {
+		return SDKContextSchema{}
+	}
+	return o.Context
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetIsEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsEnabled
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetIsEnabledInCurrentEnvironment() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsEnabledInCurrentEnvironment
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetStrategies() AdvancedPlaygroundEnvironmentFeatureSchemaStrategies {
+	if o == nil {
+		return AdvancedPlaygroundEnvironmentFeatureSchemaStrategies{}
+	}
+	return o.Strategies
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetVariant() *AdvancedPlaygroundEnvironmentFeatureSchemaVariant {
+	if o == nil {
+		return nil
+	}
+	return o.Variant
+}
+
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return []VariantSchema{}
+	}
+	return o.Variants
 }

@@ -18,3 +18,52 @@ type ApplicationSchema struct {
 	// A link to reference the application reporting the metrics. Could for instance be a GitHub link to the repository of the application
 	URL *string `json:"url,omitempty"`
 }
+
+func (o *ApplicationSchema) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *ApplicationSchema) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
+}
+
+func (o *ApplicationSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ApplicationSchema) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *ApplicationSchema) GetSDKVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SDKVersion
+}
+
+func (o *ApplicationSchema) GetStrategies() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *ApplicationSchema) GetURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.URL
+}

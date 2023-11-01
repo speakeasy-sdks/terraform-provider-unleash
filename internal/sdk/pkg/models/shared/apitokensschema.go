@@ -7,3 +7,10 @@ type APITokensSchema struct {
 	// A list of Unleash API tokens.
 	Tokens []APITokenSchema `json:"tokens"`
 }
+
+func (o *APITokensSchema) GetTokens() []APITokenSchema {
+	if o == nil {
+		return []APITokenSchema{}
+	}
+	return o.Tokens
+}

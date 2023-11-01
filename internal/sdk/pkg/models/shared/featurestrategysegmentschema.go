@@ -6,3 +6,17 @@ type FeatureStrategySegmentSchema struct {
 	FeatureStrategyID string `json:"featureStrategyId"`
 	SegmentID         int64  `json:"segmentId"`
 }
+
+func (o *FeatureStrategySegmentSchema) GetFeatureStrategyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureStrategyID
+}
+
+func (o *FeatureStrategySegmentSchema) GetSegmentID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SegmentID
+}

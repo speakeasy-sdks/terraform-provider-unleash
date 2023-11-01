@@ -17,6 +17,27 @@ type GetMaintenance403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetMaintenance403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMaintenance403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetMaintenance403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetMaintenance401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetMaintenance401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetMaintenance401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetMaintenance401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMaintenance401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetMaintenance401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetMaintenanceResponse struct {
@@ -40,4 +82,46 @@ type GetMaintenanceResponse struct {
 	GetMaintenance403ApplicationJSONObject *GetMaintenance403ApplicationJSON
 	// maintenanceSchema
 	MaintenanceSchema *shared.MaintenanceSchema
+}
+
+func (o *GetMaintenanceResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetMaintenanceResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetMaintenanceResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetMaintenanceResponse) GetGetMaintenance401ApplicationJSONObject() *GetMaintenance401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetMaintenance401ApplicationJSONObject
+}
+
+func (o *GetMaintenanceResponse) GetGetMaintenance403ApplicationJSONObject() *GetMaintenance403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetMaintenance403ApplicationJSONObject
+}
+
+func (o *GetMaintenanceResponse) GetMaintenanceSchema() *shared.MaintenanceSchema {
+	if o == nil {
+		return nil
+	}
+	return o.MaintenanceSchema
 }

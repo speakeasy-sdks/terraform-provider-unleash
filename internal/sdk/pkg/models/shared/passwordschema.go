@@ -11,3 +11,24 @@ type PasswordSchema struct {
 	// The new password to change or validate.
 	Password string `json:"password"`
 }
+
+func (o *PasswordSchema) GetConfirmPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ConfirmPassword
+}
+
+func (o *PasswordSchema) GetOldPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.OldPassword
+}
+
+func (o *PasswordSchema) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}

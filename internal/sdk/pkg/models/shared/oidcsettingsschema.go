@@ -94,3 +94,73 @@ type OidcSettingsSchema struct {
 	// Shared secret from OpenID server. Used to authenticate login requests
 	Secret string `json:"secret"`
 }
+
+func (o *OidcSettingsSchema) GetAcrValues() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AcrValues
+}
+
+func (o *OidcSettingsSchema) GetAutoCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoCreate
+}
+
+func (o *OidcSettingsSchema) GetClientID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientID
+}
+
+func (o *OidcSettingsSchema) GetDefaultRootRole() *OidcSettingsSchemaDefaultRootRole {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultRootRole
+}
+
+func (o *OidcSettingsSchema) GetDiscoverURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DiscoverURL
+}
+
+func (o *OidcSettingsSchema) GetEmailDomains() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailDomains
+}
+
+func (o *OidcSettingsSchema) GetEnableSingleSignOut() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableSingleSignOut
+}
+
+func (o *OidcSettingsSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *OidcSettingsSchema) GetIDTokenSigningAlgorithm() *OidcSettingsSchemaIDTokenSigningAlgorithm {
+	if o == nil {
+		return nil
+	}
+	return o.IDTokenSigningAlgorithm
+}
+
+func (o *OidcSettingsSchema) GetSecret() string {
+	if o == nil {
+		return ""
+	}
+	return o.Secret
+}

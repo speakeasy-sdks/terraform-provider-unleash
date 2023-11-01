@@ -8,8 +8,22 @@ type SetUIConfigSchemaFrontendSettings struct {
 	FrontendAPIOrigins []string `json:"frontendApiOrigins"`
 }
 
+func (o *SetUIConfigSchemaFrontendSettings) GetFrontendAPIOrigins() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.FrontendAPIOrigins
+}
+
 // SetUIConfigSchema - Unleash configuration settings affect the admin UI.
 type SetUIConfigSchema struct {
 	// Settings related to the front-end API.
 	FrontendSettings *SetUIConfigSchemaFrontendSettings `json:"frontendSettings,omitempty"`
+}
+
+func (o *SetUIConfigSchema) GetFrontendSettings() *SetUIConfigSchemaFrontendSettings {
+	if o == nil {
+		return nil
+	}
+	return o.FrontendSettings
 }

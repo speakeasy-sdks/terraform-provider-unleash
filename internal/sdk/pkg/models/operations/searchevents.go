@@ -17,3 +17,31 @@ type SearchEventsResponse struct {
 	// eventsSchema
 	EventsSchema *shared.EventsSchema
 }
+
+func (o *SearchEventsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SearchEventsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SearchEventsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *SearchEventsResponse) GetEventsSchema() *shared.EventsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.EventsSchema
+}

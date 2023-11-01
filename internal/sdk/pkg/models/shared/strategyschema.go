@@ -9,6 +9,34 @@ type StrategySchemaParameters struct {
 	Type        *string `json:"type,omitempty"`
 }
 
+func (o *StrategySchemaParameters) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *StrategySchemaParameters) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *StrategySchemaParameters) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *StrategySchemaParameters) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
 // StrategySchema - The [activation strategy](https://docs.getunleash.io/reference/activation-strategies) schema
 type StrategySchema struct {
 	Deprecated bool `json:"deprecated"`
@@ -24,4 +52,53 @@ type StrategySchema struct {
 	Parameters []StrategySchemaParameters `json:"parameters"`
 	// An optional title for the strategy
 	Title *string `json:"title,omitempty"`
+}
+
+func (o *StrategySchema) GetDeprecated() bool {
+	if o == nil {
+		return false
+	}
+	return o.Deprecated
+}
+
+func (o *StrategySchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *StrategySchema) GetDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *StrategySchema) GetEditable() bool {
+	if o == nil {
+		return false
+	}
+	return o.Editable
+}
+
+func (o *StrategySchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *StrategySchema) GetParameters() []StrategySchemaParameters {
+	if o == nil {
+		return []StrategySchemaParameters{}
+	}
+	return o.Parameters
+}
+
+func (o *StrategySchema) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
 }

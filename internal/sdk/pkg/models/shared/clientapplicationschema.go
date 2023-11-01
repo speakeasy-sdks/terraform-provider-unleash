@@ -3,9 +3,8 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -42,21 +41,16 @@ func CreateClientApplicationSchemaStartedNumber(number float64) ClientApplicatio
 }
 
 func (u *ClientApplicationSchemaStarted) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	dateTime := new(time.Time)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&dateTime); err == nil {
+	if err := utils.UnmarshalJSON(data, &dateTime, "", true, true); err == nil {
 		u.DateTime = dateTime
 		u.Type = ClientApplicationSchemaStartedTypeDateTime
 		return nil
 	}
 
 	number := new(float64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&number); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
 		u.Type = ClientApplicationSchemaStartedTypeNumber
 		return nil
@@ -67,14 +61,14 @@ func (u *ClientApplicationSchemaStarted) UnmarshalJSON(data []byte) error {
 
 func (u ClientApplicationSchemaStarted) MarshalJSON() ([]byte, error) {
 	if u.DateTime != nil {
-		return json.Marshal(u.DateTime)
+		return utils.MarshalJSON(u.DateTime, "", true)
 	}
 
 	if u.Number != nil {
-		return json.Marshal(u.Number)
+		return utils.MarshalJSON(u.Number, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // ClientApplicationSchema - A client application is an instance of one of our SDKs
@@ -83,7 +77,7 @@ type ClientApplicationSchema struct {
 	AppName string `json:"appName"`
 	// The SDK's configured 'environment' property. Deprecated. This property  does **not** control which Unleash environment the SDK gets toggles for. To control Unleash environments, use the SDKs API key.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Environment *string `json:"environment,omitempty"`
 	// A unique identifier identifying the instance of the application running the SDK. Often changes based on execution environment. For instance: two pods in Kubernetes will have two different instanceIds
 	InstanceID *string `json:"instanceId,omitempty"`
@@ -95,4 +89,53 @@ type ClientApplicationSchema struct {
 	Started ClientApplicationSchemaStarted `json:"started"`
 	// Which strategies the SDKs runtime knows about
 	Strategies []string `json:"strategies"`
+}
+
+func (o *ClientApplicationSchema) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *ClientApplicationSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *ClientApplicationSchema) GetInstanceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InstanceID
+}
+
+func (o *ClientApplicationSchema) GetInterval() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Interval
+}
+
+func (o *ClientApplicationSchema) GetSDKVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SDKVersion
+}
+
+func (o *ClientApplicationSchema) GetStarted() ClientApplicationSchemaStarted {
+	if o == nil {
+		return ClientApplicationSchemaStarted{}
+	}
+	return o.Started
+}
+
+func (o *ClientApplicationSchema) GetStrategies() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Strategies
 }

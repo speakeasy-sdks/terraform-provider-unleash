@@ -39,3 +39,17 @@ type FeatureTypesSchema struct {
 	// The schema version used to describe the feature toggle types listed in the `types` property.
 	Version FeatureTypesSchemaVersion `json:"version"`
 }
+
+func (o *FeatureTypesSchema) GetTypes() []FeatureTypeSchema {
+	if o == nil {
+		return []FeatureTypeSchema{}
+	}
+	return o.Types
+}
+
+func (o *FeatureTypesSchema) GetVersion() FeatureTypesSchemaVersion {
+	if o == nil {
+		return FeatureTypesSchemaVersion(0)
+	}
+	return o.Version
+}

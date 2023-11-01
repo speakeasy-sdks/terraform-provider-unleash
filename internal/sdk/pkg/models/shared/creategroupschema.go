@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // CreateGroupSchemaUsersUser - A minimal user object
@@ -12,14 +12,29 @@ type CreateGroupSchemaUsersUser struct {
 	ID int64 `json:"id"`
 }
 
+func (o *CreateGroupSchemaUsersUser) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 // CreateGroupSchemaUsers - A minimal user object
 type CreateGroupSchemaUsers struct {
 	// A minimal user object
 	User CreateGroupSchemaUsersUser `json:"user"`
 }
 
+func (o *CreateGroupSchemaUsers) GetUser() CreateGroupSchemaUsersUser {
+	if o == nil {
+		return CreateGroupSchemaUsersUser{}
+	}
+	return o.User
+}
+
 // CreateGroupSchema - A detailed information about a user group
 type CreateGroupSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// A custom description of the group
 	Description *string `json:"description,omitempty"`
 	// A list of SSO groups that should map to this Unleash group
@@ -30,54 +45,57 @@ type CreateGroupSchema struct {
 	RootRole *float64 `json:"rootRole,omitempty"`
 	// A list of users belonging to this group
 	Users []CreateGroupSchemaUsers `json:"users,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _CreateGroupSchema CreateGroupSchema
-
-func (c *CreateGroupSchema) UnmarshalJSON(bs []byte) error {
-	data := _CreateGroupSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = CreateGroupSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "description")
-	delete(additionalFields, "mappingsSSO")
-	delete(additionalFields, "name")
-	delete(additionalFields, "rootRole")
-	delete(additionalFields, "users")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
 }
 
 func (c CreateGroupSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_CreateGroupSchema(c))
-	if err != nil {
-		return nil, err
-	}
+	return utils.MarshalJSON(c, "", false)
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (c *CreateGroupSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
 	}
+	return nil
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *CreateGroupSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *CreateGroupSchema) GetDescription() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Description
+}
 
-	return json.Marshal(out)
+func (o *CreateGroupSchema) GetMappingsSSO() []string {
+	if o == nil {
+		return nil
+	}
+	return o.MappingsSSO
+}
+
+func (o *CreateGroupSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateGroupSchema) GetRootRole() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RootRole
+}
+
+func (o *CreateGroupSchema) GetUsers() []CreateGroupSchemaUsers {
+	if o == nil {
+		return nil
+	}
+	return o.Users
 }

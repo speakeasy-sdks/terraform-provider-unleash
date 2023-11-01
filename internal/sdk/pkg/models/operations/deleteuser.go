@@ -10,6 +10,13 @@ type DeleteUserRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *DeleteUserRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // DeleteUser404ApplicationJSON - The requested resource was not found.
 type DeleteUser404ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type DeleteUser404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteUser404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteUser404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteUser404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // DeleteUser403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -30,6 +58,27 @@ type DeleteUser403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteUser403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteUser403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteUser403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteUser401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteUser401ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type DeleteUser401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteUser401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteUser401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteUser401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteUserResponse struct {
@@ -53,4 +123,46 @@ type DeleteUserResponse struct {
 	DeleteUser403ApplicationJSONObject *DeleteUser403ApplicationJSON
 	// The requested resource was not found.
 	DeleteUser404ApplicationJSONObject *DeleteUser404ApplicationJSON
+}
+
+func (o *DeleteUserResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteUserResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteUserResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteUserResponse) GetDeleteUser401ApplicationJSONObject() *DeleteUser401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteUser401ApplicationJSONObject
+}
+
+func (o *DeleteUserResponse) GetDeleteUser403ApplicationJSONObject() *DeleteUser403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteUser403ApplicationJSONObject
+}
+
+func (o *DeleteUserResponse) GetDeleteUser404ApplicationJSONObject() *DeleteUser404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteUser404ApplicationJSONObject
 }

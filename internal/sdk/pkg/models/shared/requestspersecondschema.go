@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // RequestsPerSecondSchemaDataResultMetric - A key value set representing the metric
@@ -15,6 +15,20 @@ type RequestsPerSecondSchemaDataResultMetric struct {
 	AppName *string `json:"appName,omitempty"`
 	// Which endpoint has been accessed
 	Endpoint *string `json:"endpoint,omitempty"`
+}
+
+func (o *RequestsPerSecondSchemaDataResultMetric) GetAppName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AppName
+}
+
+func (o *RequestsPerSecondSchemaDataResultMetric) GetEndpoint() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Endpoint
 }
 
 type RequestsPerSecondSchemaDataResultValuesType string
@@ -50,21 +64,16 @@ func CreateRequestsPerSecondSchemaDataResultValuesNumber(number float64) Request
 }
 
 func (u *RequestsPerSecondSchemaDataResultValues) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	str := new(string)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&str); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
 		u.Type = RequestsPerSecondSchemaDataResultValuesTypeStr
 		return nil
 	}
 
 	number := new(float64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&number); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
 		u.Type = RequestsPerSecondSchemaDataResultValuesTypeNumber
 		return nil
@@ -75,14 +84,14 @@ func (u *RequestsPerSecondSchemaDataResultValues) UnmarshalJSON(data []byte) err
 
 func (u RequestsPerSecondSchemaDataResultValues) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
-		return json.Marshal(u.Str)
+		return utils.MarshalJSON(u.Str, "", true)
 	}
 
 	if u.Number != nil {
-		return json.Marshal(u.Number)
+		return utils.MarshalJSON(u.Number, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // RequestsPerSecondSchemaDataResult - A representation of a single metric to build a line in a graph
@@ -91,6 +100,20 @@ type RequestsPerSecondSchemaDataResult struct {
 	Metric *RequestsPerSecondSchemaDataResultMetric `json:"metric,omitempty"`
 	// An array of arrays. Each element of the array is an array of size 2 consisting of the 2 axis for the graph: in position zero the x axis represented as a number and position one the y axis represented as string
 	Values [][]RequestsPerSecondSchemaDataResultValues `json:"values,omitempty"`
+}
+
+func (o *RequestsPerSecondSchemaDataResult) GetMetric() *RequestsPerSecondSchemaDataResultMetric {
+	if o == nil {
+		return nil
+	}
+	return o.Metric
+}
+
+func (o *RequestsPerSecondSchemaDataResult) GetValues() [][]RequestsPerSecondSchemaDataResultValues {
+	if o == nil {
+		return nil
+	}
+	return o.Values
 }
 
 // RequestsPerSecondSchemaDataResultType - Prometheus compatible result type.
@@ -135,6 +158,20 @@ type RequestsPerSecondSchemaData struct {
 	ResultType *RequestsPerSecondSchemaDataResultType `json:"resultType,omitempty"`
 }
 
+func (o *RequestsPerSecondSchemaData) GetResult() []RequestsPerSecondSchemaDataResult {
+	if o == nil {
+		return nil
+	}
+	return o.Result
+}
+
+func (o *RequestsPerSecondSchemaData) GetResultType() *RequestsPerSecondSchemaDataResultType {
+	if o == nil {
+		return nil
+	}
+	return o.ResultType
+}
+
 // RequestsPerSecondSchemaStatus - Whether the query against prometheus succeeded or failed
 type RequestsPerSecondSchemaStatus string
 
@@ -169,4 +206,18 @@ type RequestsPerSecondSchema struct {
 	Data *RequestsPerSecondSchemaData `json:"data,omitempty"`
 	// Whether the query against prometheus succeeded or failed
 	Status *RequestsPerSecondSchemaStatus `json:"status,omitempty"`
+}
+
+func (o *RequestsPerSecondSchema) GetData() *RequestsPerSecondSchemaData {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *RequestsPerSecondSchema) GetStatus() *RequestsPerSecondSchemaStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // UpdateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
@@ -79,21 +79,16 @@ func CreateUpdateUserSchemaRootRoleUpdateUserSchemaRootRole2(updateUserSchemaRoo
 }
 
 func (u *UpdateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	integer := new(int64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&integer); err == nil {
+	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
 		u.Integer = integer
 		u.Type = UpdateUserSchemaRootRoleTypeInteger
 		return nil
 	}
 
 	updateUserSchemaRootRole2 := new(UpdateUserSchemaRootRole2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&updateUserSchemaRootRole2); err == nil {
+	if err := utils.UnmarshalJSON(data, &updateUserSchemaRootRole2, "", true, true); err == nil {
 		u.UpdateUserSchemaRootRole2 = updateUserSchemaRootRole2
 		u.Type = UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2
 		return nil
@@ -104,70 +99,62 @@ func (u *UpdateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
 
 func (u UpdateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
 	if u.Integer != nil {
-		return json.Marshal(u.Integer)
+		return utils.MarshalJSON(u.Integer, "", true)
 	}
 
 	if u.UpdateUserSchemaRootRole2 != nil {
-		return json.Marshal(u.UpdateUserSchemaRootRole2)
+		return utils.MarshalJSON(u.UpdateUserSchemaRootRole2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // UpdateUserSchema - All fields that can be directly changed for the user
 type UpdateUserSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// The user's email address. Must be provided if username is not provided.
 	Email *string `json:"email,omitempty"`
 	// The user's name (not the user's username).
 	Name *string `json:"name,omitempty"`
 	// The role to assign to the user. Can be either the role's ID or its unique name.
 	RootRole *UpdateUserSchemaRootRole `json:"rootRole,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
 }
-type _UpdateUserSchema UpdateUserSchema
 
-func (c *UpdateUserSchema) UnmarshalJSON(bs []byte) error {
-	data := _UpdateUserSchema{}
+func (u UpdateUserSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (u *UpdateUserSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
-	*c = UpdateUserSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "email")
-	delete(additionalFields, "name")
-	delete(additionalFields, "rootRole")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c UpdateUserSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_UpdateUserSchema(c))
-	if err != nil {
-		return nil, err
+func (o *UpdateUserSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *UpdateUserSchema) GetEmail() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Email
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *UpdateUserSchema) GetName() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Name
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *UpdateUserSchema) GetRootRole() *UpdateUserSchemaRootRole {
+	if o == nil {
+		return nil
 	}
-
-	return json.Marshal(out)
+	return o.RootRole
 }

@@ -17,6 +17,27 @@ type GetOidcSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetOidcSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetOidcSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetOidcSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetOidcSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetOidcSettings401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type GetOidcSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetOidcSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetOidcSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetOidcSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetOidcSettings400ApplicationJSON - The request data does not match what we expect.
 type GetOidcSettings400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type GetOidcSettings400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetOidcSettings400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetOidcSettings400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetOidcSettings400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetOidcSettingsResponse struct {
@@ -52,4 +115,53 @@ type GetOidcSettingsResponse struct {
 	GetOidcSettings403ApplicationJSONObject *GetOidcSettings403ApplicationJSON
 	// oidcSettingsSchema
 	OidcSettingsSchema *shared.OidcSettingsSchema
+}
+
+func (o *GetOidcSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetOidcSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetOidcSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetOidcSettingsResponse) GetGetOidcSettings400ApplicationJSONObject() *GetOidcSettings400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetOidcSettings400ApplicationJSONObject
+}
+
+func (o *GetOidcSettingsResponse) GetGetOidcSettings401ApplicationJSONObject() *GetOidcSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetOidcSettings401ApplicationJSONObject
+}
+
+func (o *GetOidcSettingsResponse) GetGetOidcSettings403ApplicationJSONObject() *GetOidcSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetOidcSettings403ApplicationJSONObject
+}
+
+func (o *GetOidcSettingsResponse) GetOidcSettingsSchema() *shared.OidcSettingsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.OidcSettingsSchema
 }

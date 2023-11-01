@@ -7,3 +7,10 @@ type BulkToggleFeaturesSchema struct {
 	// The features that we want to bulk toggle
 	Features []string `json:"features"`
 }
+
+func (o *BulkToggleFeaturesSchema) GetFeatures() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Features
+}

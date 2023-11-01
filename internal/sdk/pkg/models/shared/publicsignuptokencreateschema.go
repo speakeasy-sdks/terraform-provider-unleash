@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -12,4 +13,29 @@ type PublicSignupTokenCreateSchema struct {
 	ExpiresAt time.Time `json:"expiresAt"`
 	// The token's name.
 	Name string `json:"name"`
+}
+
+func (p PublicSignupTokenCreateSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PublicSignupTokenCreateSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PublicSignupTokenCreateSchema) GetExpiresAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.ExpiresAt
+}
+
+func (o *PublicSignupTokenCreateSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
 }

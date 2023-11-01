@@ -11,6 +11,13 @@ type GetServiceAccountTokensRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *GetServiceAccountTokensRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // GetServiceAccountTokens404ApplicationJSON - The requested resource was not found.
 type GetServiceAccountTokens404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetServiceAccountTokens404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetServiceAccountTokens404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetServiceAccountTokens404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetServiceAccountTokens404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetServiceAccountTokens403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type GetServiceAccountTokens403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetServiceAccountTokens403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetServiceAccountTokens403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetServiceAccountTokens403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetServiceAccountTokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetServiceAccountTokens401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type GetServiceAccountTokens401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetServiceAccountTokens401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetServiceAccountTokens401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetServiceAccountTokens401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetServiceAccountTokensResponse struct {
@@ -56,4 +126,53 @@ type GetServiceAccountTokensResponse struct {
 	GetServiceAccountTokens404ApplicationJSONObject *GetServiceAccountTokens404ApplicationJSON
 	// patsSchema
 	PatsSchema *shared.PatsSchema
+}
+
+func (o *GetServiceAccountTokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetServiceAccountTokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetServiceAccountTokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens401ApplicationJSONObject() *GetServiceAccountTokens401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetServiceAccountTokens401ApplicationJSONObject
+}
+
+func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens403ApplicationJSONObject() *GetServiceAccountTokens403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetServiceAccountTokens403ApplicationJSONObject
+}
+
+func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens404ApplicationJSONObject() *GetServiceAccountTokens404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetServiceAccountTokens404ApplicationJSONObject
+}
+
+func (o *GetServiceAccountTokensResponse) GetPatsSchema() *shared.PatsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PatsSchema
 }

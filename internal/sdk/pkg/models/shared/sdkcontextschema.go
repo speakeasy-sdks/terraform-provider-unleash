@@ -3,19 +3,20 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
 // SDKContextSchema - The Unleash context as modeled in client SDKs
 type SDKContextSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// The name of the application.
 	AppName string `json:"appName"`
 	// A DateTime (or similar) data class instance or a string in an RFC3339-compatible format. Defaults to the current time if not set by the user.
 	CurrentTime *time.Time `json:"currentTime,omitempty"`
 	// The environment the app is running in.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Environment *string           `json:"environment,omitempty"`
 	Properties  map[string]string `json:"properties,omitempty"`
 	// The app's IP address
@@ -24,56 +25,71 @@ type SDKContextSchema struct {
 	SessionID *string `json:"sessionId,omitempty"`
 	// An identifier for the current user
 	UserID *string `json:"userId,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
 }
-type _SDKContextSchema SDKContextSchema
 
-func (c *SDKContextSchema) UnmarshalJSON(bs []byte) error {
-	data := _SDKContextSchema{}
+func (s SDKContextSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (s *SDKContextSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
-	*c = SDKContextSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "appName")
-	delete(additionalFields, "currentTime")
-	delete(additionalFields, "environment")
-	delete(additionalFields, "properties")
-	delete(additionalFields, "remoteAddress")
-	delete(additionalFields, "sessionId")
-	delete(additionalFields, "userId")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c SDKContextSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_SDKContextSchema(c))
-	if err != nil {
-		return nil, err
+func (o *SDKContextSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *SDKContextSchema) GetAppName() string {
+	if o == nil {
+		return ""
 	}
+	return o.AppName
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *SDKContextSchema) GetCurrentTime() *time.Time {
+	if o == nil {
+		return nil
 	}
+	return o.CurrentTime
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *SDKContextSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Environment
+}
 
-	return json.Marshal(out)
+func (o *SDKContextSchema) GetProperties() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Properties
+}
+
+func (o *SDKContextSchema) GetRemoteAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RemoteAddress
+}
+
+func (o *SDKContextSchema) GetSessionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SessionID
+}
+
+func (o *SDKContextSchema) GetUserID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UserID
 }

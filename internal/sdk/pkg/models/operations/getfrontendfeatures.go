@@ -17,6 +17,27 @@ type GetFrontendFeatures404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetFrontendFeatures404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFrontendFeatures404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFrontendFeatures404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetFrontendFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetFrontendFeatures401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetFrontendFeatures401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFrontendFeatures401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFrontendFeatures401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFrontendFeatures401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetFrontendFeaturesResponse struct {
@@ -40,4 +82,46 @@ type GetFrontendFeaturesResponse struct {
 	GetFrontendFeatures404ApplicationJSONObject *GetFrontendFeatures404ApplicationJSON
 	// proxyFeaturesSchema
 	ProxyFeaturesSchema *shared.ProxyFeaturesSchema
+}
+
+func (o *GetFrontendFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetFrontendFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetFrontendFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetFrontendFeaturesResponse) GetGetFrontendFeatures401ApplicationJSONObject() *GetFrontendFeatures401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFrontendFeatures401ApplicationJSONObject
+}
+
+func (o *GetFrontendFeaturesResponse) GetGetFrontendFeatures404ApplicationJSONObject() *GetFrontendFeatures404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFrontendFeatures404ApplicationJSONObject
+}
+
+func (o *GetFrontendFeaturesResponse) GetProxyFeaturesSchema() *shared.ProxyFeaturesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProxyFeaturesSchema
 }

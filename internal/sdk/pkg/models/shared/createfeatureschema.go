@@ -12,3 +12,31 @@ type CreateFeatureSchema struct {
 	// The feature toggle's [type](https://docs.getunleash.io/reference/feature-toggle-types). One of experiment, kill-switch, release, operational, or permission
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *CreateFeatureSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateFeatureSchema) GetImpressionData() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ImpressionData
+}
+
+func (o *CreateFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateFeatureSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

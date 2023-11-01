@@ -13,6 +13,27 @@ type GetFeatureEnvironmentRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetFeatureEnvironmentRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *GetFeatureEnvironmentRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *GetFeatureEnvironmentRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // GetFeatureEnvironment404ApplicationJSON - The requested resource was not found.
 type GetFeatureEnvironment404ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +42,27 @@ type GetFeatureEnvironment404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeatureEnvironment404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatureEnvironment404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatureEnvironment404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetFeatureEnvironment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -33,6 +75,27 @@ type GetFeatureEnvironment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetFeatureEnvironment403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatureEnvironment403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatureEnvironment403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetFeatureEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetFeatureEnvironment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +104,27 @@ type GetFeatureEnvironment401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeatureEnvironment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatureEnvironment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatureEnvironment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetFeatureEnvironmentResponse struct {
@@ -58,4 +142,53 @@ type GetFeatureEnvironmentResponse struct {
 	GetFeatureEnvironment403ApplicationJSONObject *GetFeatureEnvironment403ApplicationJSON
 	// The requested resource was not found.
 	GetFeatureEnvironment404ApplicationJSONObject *GetFeatureEnvironment404ApplicationJSON
+}
+
+func (o *GetFeatureEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetFeatureEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetFeatureEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetFeatureEnvironmentResponse) GetFeatureEnvironmentSchema() *shared.FeatureEnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureEnvironmentSchema
+}
+
+func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment401ApplicationJSONObject() *GetFeatureEnvironment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatureEnvironment401ApplicationJSONObject
+}
+
+func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment403ApplicationJSONObject() *GetFeatureEnvironment403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatureEnvironment403ApplicationJSONObject
+}
+
+func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment404ApplicationJSONObject() *GetFeatureEnvironment404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatureEnvironment404ApplicationJSONObject
 }

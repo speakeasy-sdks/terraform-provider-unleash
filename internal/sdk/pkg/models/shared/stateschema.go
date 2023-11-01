@@ -3,13 +3,14 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // StateSchema - The state of the application used by export/import APIs which are deprecated in favor of the more fine grained /api/admin/export and /api/admin/import APIs
 //
-// @deprecated null: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type StateSchema struct {
+	AdditionalProperties    interface{}                    `additionalProperties:"true" json:"-"`
 	Environments            []EnvironmentSchema            `json:"environments,omitempty"`
 	FeatureEnvironments     []FeatureEnvironmentSchema     `json:"featureEnvironments,omitempty"`
 	FeatureStrategies       []FeatureStrategySchema        `json:"featureStrategies,omitempty"`
@@ -22,61 +23,106 @@ type StateSchema struct {
 	TagTypes                []TagTypeSchema                `json:"tagTypes,omitempty"`
 	Tags                    []TagSchema                    `json:"tags,omitempty"`
 	Version                 int64                          `json:"version"`
-
-	AdditionalProperties interface{} `json:"-"`
 }
-type _StateSchema StateSchema
 
-func (c *StateSchema) UnmarshalJSON(bs []byte) error {
-	data := _StateSchema{}
+func (s StateSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (s *StateSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
-	*c = StateSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "environments")
-	delete(additionalFields, "featureEnvironments")
-	delete(additionalFields, "featureStrategies")
-	delete(additionalFields, "featureStrategySegments")
-	delete(additionalFields, "featureTags")
-	delete(additionalFields, "features")
-	delete(additionalFields, "projects")
-	delete(additionalFields, "segments")
-	delete(additionalFields, "strategies")
-	delete(additionalFields, "tagTypes")
-	delete(additionalFields, "tags")
-	delete(additionalFields, "version")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c StateSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_StateSchema(c))
-	if err != nil {
-		return nil, err
+func (o *StateSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *StateSchema) GetEnvironments() []EnvironmentSchema {
+	if o == nil {
+		return nil
 	}
+	return o.Environments
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *StateSchema) GetFeatureEnvironments() []FeatureEnvironmentSchema {
+	if o == nil {
+		return nil
 	}
+	return o.FeatureEnvironments
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *StateSchema) GetFeatureStrategies() []FeatureStrategySchema {
+	if o == nil {
+		return nil
 	}
+	return o.FeatureStrategies
+}
 
-	return json.Marshal(out)
+func (o *StateSchema) GetFeatureStrategySegments() []FeatureStrategySegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureStrategySegments
+}
+
+func (o *StateSchema) GetFeatureTags() []FeatureTagSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureTags
+}
+
+func (o *StateSchema) GetFeatures() []FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Features
+}
+
+func (o *StateSchema) GetProjects() []ProjectSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
+}
+
+func (o *StateSchema) GetSegments() []SegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *StateSchema) GetStrategies() []StrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *StateSchema) GetTagTypes() []TagTypeSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagTypes
+}
+
+func (o *StateSchema) GetTags() []TagSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *StateSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
 }

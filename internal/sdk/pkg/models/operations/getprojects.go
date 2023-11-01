@@ -17,6 +17,27 @@ type GetProjects403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetProjects403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjects403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjects403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetProjects401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetProjects401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetProjects401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetProjects401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjects401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjects401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetProjectsResponse struct {
@@ -40,4 +82,46 @@ type GetProjectsResponse struct {
 	GetProjects403ApplicationJSONObject *GetProjects403ApplicationJSON
 	// projectsSchema
 	ProjectsSchema *shared.ProjectsSchema
+}
+
+func (o *GetProjectsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProjectsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProjectsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProjectsResponse) GetGetProjects401ApplicationJSONObject() *GetProjects401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjects401ApplicationJSONObject
+}
+
+func (o *GetProjectsResponse) GetGetProjects403ApplicationJSONObject() *GetProjects403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjects403ApplicationJSONObject
+}
+
+func (o *GetProjectsResponse) GetProjectsSchema() *shared.ProjectsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectsSchema
 }

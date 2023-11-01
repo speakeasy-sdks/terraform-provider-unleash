@@ -17,6 +17,27 @@ type CreatePublicSignupToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreatePublicSignupToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreatePublicSignupToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreatePublicSignupToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreatePublicSignupToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreatePublicSignupToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type CreatePublicSignupToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreatePublicSignupToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreatePublicSignupToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreatePublicSignupToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
 type CreatePublicSignupToken400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type CreatePublicSignupToken400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreatePublicSignupToken400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreatePublicSignupToken400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreatePublicSignupToken400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreatePublicSignupTokenResponse struct {
@@ -53,4 +116,60 @@ type CreatePublicSignupTokenResponse struct {
 	CreatePublicSignupToken403ApplicationJSONObject *CreatePublicSignupToken403ApplicationJSON
 	// The resource was successfully created.
 	PublicSignupTokenSchema *shared.PublicSignupTokenSchema
+}
+
+func (o *CreatePublicSignupTokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreatePublicSignupTokenResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreatePublicSignupTokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreatePublicSignupTokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreatePublicSignupTokenResponse) GetCreatePublicSignupToken400ApplicationJSONObject() *CreatePublicSignupToken400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreatePublicSignupToken400ApplicationJSONObject
+}
+
+func (o *CreatePublicSignupTokenResponse) GetCreatePublicSignupToken401ApplicationJSONObject() *CreatePublicSignupToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreatePublicSignupToken401ApplicationJSONObject
+}
+
+func (o *CreatePublicSignupTokenResponse) GetCreatePublicSignupToken403ApplicationJSONObject() *CreatePublicSignupToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreatePublicSignupToken403ApplicationJSONObject
+}
+
+func (o *CreatePublicSignupTokenResponse) GetPublicSignupTokenSchema() *shared.PublicSignupTokenSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PublicSignupTokenSchema
 }

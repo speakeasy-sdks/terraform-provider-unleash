@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -24,4 +25,71 @@ type ContextFieldSchema struct {
 	UsedInFeatures *int64 `json:"usedInFeatures,omitempty"`
 	// Number of projects where this context field is used in
 	UsedInProjects *int64 `json:"usedInProjects,omitempty"`
+}
+
+func (c ContextFieldSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ContextFieldSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ContextFieldSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *ContextFieldSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ContextFieldSchema) GetLegalValues() []LegalValueSchema {
+	if o == nil {
+		return nil
+	}
+	return o.LegalValues
+}
+
+func (o *ContextFieldSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ContextFieldSchema) GetSortOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *ContextFieldSchema) GetStickiness() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Stickiness
+}
+
+func (o *ContextFieldSchema) GetUsedInFeatures() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UsedInFeatures
+}
+
+func (o *ContextFieldSchema) GetUsedInProjects() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UsedInProjects
 }

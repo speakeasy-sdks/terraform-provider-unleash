@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // CreateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
@@ -79,21 +79,16 @@ func CreateCreateUserSchemaRootRoleCreateUserSchemaRootRole2(createUserSchemaRoo
 }
 
 func (u *CreateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	integer := new(int64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&integer); err == nil {
+	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
 		u.Integer = integer
 		u.Type = CreateUserSchemaRootRoleTypeInteger
 		return nil
 	}
 
 	createUserSchemaRootRole2 := new(CreateUserSchemaRootRole2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&createUserSchemaRootRole2); err == nil {
+	if err := utils.UnmarshalJSON(data, &createUserSchemaRootRole2, "", true, true); err == nil {
 		u.CreateUserSchemaRootRole2 = createUserSchemaRootRole2
 		u.Type = CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2
 		return nil
@@ -104,14 +99,14 @@ func (u *CreateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
 
 func (u CreateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
 	if u.Integer != nil {
-		return json.Marshal(u.Integer)
+		return utils.MarshalJSON(u.Integer, "", true)
 	}
 
 	if u.CreateUserSchemaRootRole2 != nil {
-		return json.Marshal(u.CreateUserSchemaRootRole2)
+		return utils.MarshalJSON(u.CreateUserSchemaRootRole2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // CreateUserSchema - The payload must contain at least one of the name and email properties, though which one is up to you. For the user to be able to log in to the system, the user must have an email.
@@ -128,4 +123,46 @@ type CreateUserSchema struct {
 	SendEmail *bool `json:"sendEmail,omitempty"`
 	// The user's username. Must be provided if email is not provided.
 	Username *string `json:"username,omitempty"`
+}
+
+func (o *CreateUserSchema) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *CreateUserSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *CreateUserSchema) GetPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Password
+}
+
+func (o *CreateUserSchema) GetRootRole() CreateUserSchemaRootRole {
+	if o == nil {
+		return CreateUserSchemaRootRole{}
+	}
+	return o.RootRole
+}
+
+func (o *CreateUserSchema) GetSendEmail() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SendEmail
+}
+
+func (o *CreateUserSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

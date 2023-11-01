@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // UIConfigSchemaAuthenticationType - The type of authentication enabled for this Unleash instance
@@ -82,23 +82,18 @@ func CreateUIConfigSchemaFlagsVariantFlagSchema(variantFlagSchema VariantFlagSch
 }
 
 func (u *UIConfigSchemaFlags) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
-	boolean := new(bool)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&boolean); err == nil {
-		u.Boolean = boolean
-		u.Type = UIConfigSchemaFlagsTypeBoolean
+	variantFlagSchema := new(VariantFlagSchema)
+	if err := utils.UnmarshalJSON(data, &variantFlagSchema, "", true, true); err == nil {
+		u.VariantFlagSchema = variantFlagSchema
+		u.Type = UIConfigSchemaFlagsTypeVariantFlagSchema
 		return nil
 	}
 
-	variantFlagSchema := new(VariantFlagSchema)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&variantFlagSchema); err == nil {
-		u.VariantFlagSchema = variantFlagSchema
-		u.Type = UIConfigSchemaFlagsTypeVariantFlagSchema
+	boolean := new(bool)
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+		u.Boolean = boolean
+		u.Type = UIConfigSchemaFlagsTypeBoolean
 		return nil
 	}
 
@@ -107,14 +102,14 @@ func (u *UIConfigSchemaFlags) UnmarshalJSON(data []byte) error {
 
 func (u UIConfigSchemaFlags) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
-		return json.Marshal(u.Boolean)
+		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
 	if u.VariantFlagSchema != nil {
-		return json.Marshal(u.VariantFlagSchema)
+		return utils.MarshalJSON(u.VariantFlagSchema, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type UIConfigSchemaLinks struct {
@@ -156,4 +151,123 @@ type UIConfigSchema struct {
 	Version string `json:"version"`
 	// Detailed information about an Unleash version
 	VersionInfo VersionSchema `json:"versionInfo"`
+}
+
+func (o *UIConfigSchema) GetAuthenticationType() *UIConfigSchemaAuthenticationType {
+	if o == nil {
+		return nil
+	}
+	return o.AuthenticationType
+}
+
+func (o *UIConfigSchema) GetBaseURIPath() string {
+	if o == nil {
+		return ""
+	}
+	return o.BaseURIPath
+}
+
+func (o *UIConfigSchema) GetDisablePasswordAuth() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DisablePasswordAuth
+}
+
+func (o *UIConfigSchema) GetEmailEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EmailEnabled
+}
+
+func (o *UIConfigSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *UIConfigSchema) GetFlags() map[string]UIConfigSchemaFlags {
+	if o == nil {
+		return nil
+	}
+	return o.Flags
+}
+
+func (o *UIConfigSchema) GetFrontendAPIOrigins() []string {
+	if o == nil {
+		return nil
+	}
+	return o.FrontendAPIOrigins
+}
+
+func (o *UIConfigSchema) GetLinks() []UIConfigSchemaLinks {
+	if o == nil {
+		return nil
+	}
+	return o.Links
+}
+
+func (o *UIConfigSchema) GetMaintenanceMode() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.MaintenanceMode
+}
+
+func (o *UIConfigSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *UIConfigSchema) GetNetworkViewEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.NetworkViewEnabled
+}
+
+func (o *UIConfigSchema) GetSegmentValuesLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SegmentValuesLimit
+}
+
+func (o *UIConfigSchema) GetSlogan() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slogan
+}
+
+func (o *UIConfigSchema) GetStrategySegmentsLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.StrategySegmentsLimit
+}
+
+func (o *UIConfigSchema) GetUnleashURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.UnleashURL
+}
+
+func (o *UIConfigSchema) GetVersion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Version
+}
+
+func (o *UIConfigSchema) GetVersionInfo() VersionSchema {
+	if o == nil {
+		return VersionSchema{}
+	}
+	return o.VersionInfo
 }

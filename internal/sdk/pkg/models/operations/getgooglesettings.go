@@ -17,6 +17,27 @@ type GetGoogleSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetGoogleSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGoogleSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGoogleSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetGoogleSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetGoogleSettings401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type GetGoogleSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetGoogleSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGoogleSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGoogleSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetGoogleSettings400ApplicationJSON - The request data does not match what we expect.
 type GetGoogleSettings400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type GetGoogleSettings400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetGoogleSettings400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGoogleSettings400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGoogleSettings400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetGoogleSettingsResponse struct {
@@ -52,4 +115,53 @@ type GetGoogleSettingsResponse struct {
 	GetGoogleSettings403ApplicationJSONObject *GetGoogleSettings403ApplicationJSON
 	// googleSettingsSchema
 	GoogleSettingsSchema *shared.GoogleSettingsSchema
+}
+
+func (o *GetGoogleSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetGoogleSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetGoogleSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetGoogleSettingsResponse) GetGetGoogleSettings400ApplicationJSONObject() *GetGoogleSettings400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGoogleSettings400ApplicationJSONObject
+}
+
+func (o *GetGoogleSettingsResponse) GetGetGoogleSettings401ApplicationJSONObject() *GetGoogleSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGoogleSettings401ApplicationJSONObject
+}
+
+func (o *GetGoogleSettingsResponse) GetGetGoogleSettings403ApplicationJSONObject() *GetGoogleSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGoogleSettings403ApplicationJSONObject
+}
+
+func (o *GetGoogleSettingsResponse) GetGoogleSettingsSchema() *shared.GoogleSettingsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.GoogleSettingsSchema
 }

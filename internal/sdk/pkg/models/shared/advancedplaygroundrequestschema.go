@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // AdvancedPlaygroundRequestSchemaProjects2 - Check toggles in all projects.
@@ -67,21 +67,16 @@ func CreateAdvancedPlaygroundRequestSchemaProjectsAdvancedPlaygroundRequestSchem
 }
 
 func (u *AdvancedPlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	arrayOfstr := []string{}
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&arrayOfstr); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
 		u.ArrayOfstr = arrayOfstr
 		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr
 		return nil
 	}
 
 	advancedPlaygroundRequestSchemaProjects2 := new(AdvancedPlaygroundRequestSchemaProjects2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&advancedPlaygroundRequestSchemaProjects2); err == nil {
+	if err := utils.UnmarshalJSON(data, &advancedPlaygroundRequestSchemaProjects2, "", true, true); err == nil {
 		u.AdvancedPlaygroundRequestSchemaProjects2 = advancedPlaygroundRequestSchemaProjects2
 		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2
 		return nil
@@ -92,14 +87,14 @@ func (u *AdvancedPlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) err
 
 func (u AdvancedPlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
 	if u.ArrayOfstr != nil {
-		return json.Marshal(u.ArrayOfstr)
+		return utils.MarshalJSON(u.ArrayOfstr, "", true)
 	}
 
 	if u.AdvancedPlaygroundRequestSchemaProjects2 != nil {
-		return json.Marshal(u.AdvancedPlaygroundRequestSchemaProjects2)
+		return utils.MarshalJSON(u.AdvancedPlaygroundRequestSchemaProjects2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // AdvancedPlaygroundRequestSchema - Data for the playground API to evaluate toggles in advanced mode with environment and context multi selection
@@ -110,4 +105,25 @@ type AdvancedPlaygroundRequestSchema struct {
 	Environments []string `json:"environments"`
 	// A list of projects to check for toggles in.
 	Projects *AdvancedPlaygroundRequestSchemaProjects `json:"projects,omitempty"`
+}
+
+func (o *AdvancedPlaygroundRequestSchema) GetContext() SDKContextSchema {
+	if o == nil {
+		return SDKContextSchema{}
+	}
+	return o.Context
+}
+
+func (o *AdvancedPlaygroundRequestSchema) GetEnvironments() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Environments
+}
+
+func (o *AdvancedPlaygroundRequestSchema) GetProjects() *AdvancedPlaygroundRequestSchemaProjects {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
 }

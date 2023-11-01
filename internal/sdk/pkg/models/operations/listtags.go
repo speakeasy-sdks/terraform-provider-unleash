@@ -11,6 +11,13 @@ type ListTagsRequest struct {
 	FeatureName string `pathParam:"style=simple,explode=false,name=featureName"`
 }
 
+func (o *ListTagsRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
 // ListTags404ApplicationJSON - The requested resource was not found.
 type ListTags404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type ListTags404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ListTags404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ListTags404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ListTags404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ListTags403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type ListTags403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ListTags403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ListTags403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ListTags403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ListTags401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type ListTags401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type ListTags401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ListTags401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ListTags401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ListTags401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ListTagsResponse struct {
@@ -56,4 +126,53 @@ type ListTagsResponse struct {
 	ListTags404ApplicationJSONObject *ListTags404ApplicationJSON
 	// tagsSchema
 	TagsSchema *shared.TagsSchema
+}
+
+func (o *ListTagsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListTagsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListTagsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListTagsResponse) GetListTags401ApplicationJSONObject() *ListTags401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListTags401ApplicationJSONObject
+}
+
+func (o *ListTagsResponse) GetListTags403ApplicationJSONObject() *ListTags403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListTags403ApplicationJSONObject
+}
+
+func (o *ListTagsResponse) GetListTags404ApplicationJSONObject() *ListTags404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListTags404ApplicationJSONObject
+}
+
+func (o *ListTagsResponse) GetTagsSchema() *shared.TagsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagsSchema
 }

@@ -11,6 +11,13 @@ type GetSegmentRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *GetSegmentRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // GetSegment404ApplicationJSON - The requested resource was not found.
 type GetSegment404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetSegment404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetSegment404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSegment404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSegment404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetSegmentResponse struct {
@@ -32,4 +60,39 @@ type GetSegmentResponse struct {
 	AdminSegmentSchema *shared.AdminSegmentSchema
 	// The requested resource was not found.
 	GetSegment404ApplicationJSONObject *GetSegment404ApplicationJSON
+}
+
+func (o *GetSegmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSegmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSegmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSegmentResponse) GetAdminSegmentSchema() *shared.AdminSegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdminSegmentSchema
+}
+
+func (o *GetSegmentResponse) GetGetSegment404ApplicationJSONObject() *GetSegment404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSegment404ApplicationJSONObject
 }

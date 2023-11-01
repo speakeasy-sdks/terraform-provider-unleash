@@ -21,3 +21,59 @@ type EnvironmentProjectSchema struct {
 	// The [type of environment](https://docs.getunleash.io/reference/environments#environment-types).
 	Type string `json:"type"`
 }
+
+func (o *EnvironmentProjectSchema) GetDefaultStrategy() *CreateFeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultStrategy
+}
+
+func (o *EnvironmentProjectSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *EnvironmentProjectSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *EnvironmentProjectSchema) GetProjectAPITokenCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectAPITokenCount
+}
+
+func (o *EnvironmentProjectSchema) GetProjectEnabledToggleCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectEnabledToggleCount
+}
+
+func (o *EnvironmentProjectSchema) GetProtected() bool {
+	if o == nil {
+		return false
+	}
+	return o.Protected
+}
+
+func (o *EnvironmentProjectSchema) GetSortOrder() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.SortOrder
+}
+
+func (o *EnvironmentProjectSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

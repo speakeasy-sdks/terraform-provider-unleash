@@ -9,3 +9,17 @@ type TelemetrySettingsSchema struct {
 	// Whether collection of version info is enabled/active.
 	VersionInfoCollectionEnabled bool `json:"versionInfoCollectionEnabled"`
 }
+
+func (o *TelemetrySettingsSchema) GetFeatureInfoCollectionEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.FeatureInfoCollectionEnabled
+}
+
+func (o *TelemetrySettingsSchema) GetVersionInfoCollectionEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.VersionInfoCollectionEnabled
+}

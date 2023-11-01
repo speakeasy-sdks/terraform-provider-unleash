@@ -43,3 +43,31 @@ type FeatureEventsSchema struct {
 	// An API versioning number
 	Version *FeatureEventsSchemaVersion `json:"version,omitempty"`
 }
+
+func (o *FeatureEventsSchema) GetEvents() []EventSchema {
+	if o == nil {
+		return []EventSchema{}
+	}
+	return o.Events
+}
+
+func (o *FeatureEventsSchema) GetToggleName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleName
+}
+
+func (o *FeatureEventsSchema) GetTotalEvents() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalEvents
+}
+
+func (o *FeatureEventsSchema) GetVersion() *FeatureEventsSchemaVersion {
+	if o == nil {
+		return nil
+	}
+	return o.Version
+}

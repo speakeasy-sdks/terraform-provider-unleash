@@ -8,3 +8,17 @@ type UpdateEnvironmentSchema struct {
 	// Updates the type of environment (i.e. development or production).
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *UpdateEnvironmentSchema) GetSortOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *UpdateEnvironmentSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

@@ -13,6 +13,20 @@ type UpdateFeedbackRequest struct {
 	ID                   string                      `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *UpdateFeedbackRequest) GetFeedbackUpdateSchema() shared.FeedbackUpdateSchema {
+	if o == nil {
+		return shared.FeedbackUpdateSchema{}
+	}
+	return o.FeedbackUpdateSchema
+}
+
+func (o *UpdateFeedbackRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // UpdateFeedback415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type UpdateFeedback415ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdateFeedback415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeedback415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeedback415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeedback415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateFeedback401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -33,6 +68,27 @@ type UpdateFeedback401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateFeedback401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeedback401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeedback401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateFeedback400ApplicationJSON - The request data does not match what we expect.
 type UpdateFeedback400ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +97,27 @@ type UpdateFeedback400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeedback400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeedback400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeedback400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateFeedbackResponse struct {
@@ -58,4 +135,53 @@ type UpdateFeedbackResponse struct {
 	UpdateFeedback401ApplicationJSONObject *UpdateFeedback401ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateFeedback415ApplicationJSONObject *UpdateFeedback415ApplicationJSON
+}
+
+func (o *UpdateFeedbackResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateFeedbackResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateFeedbackResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateFeedbackResponse) GetFeedbackResponseSchema() *shared.FeedbackResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeedbackResponseSchema
+}
+
+func (o *UpdateFeedbackResponse) GetUpdateFeedback400ApplicationJSONObject() *UpdateFeedback400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeedback400ApplicationJSONObject
+}
+
+func (o *UpdateFeedbackResponse) GetUpdateFeedback401ApplicationJSONObject() *UpdateFeedback401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeedback401ApplicationJSONObject
+}
+
+func (o *UpdateFeedbackResponse) GetUpdateFeedback415ApplicationJSONObject() *UpdateFeedback415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeedback415ApplicationJSONObject
 }

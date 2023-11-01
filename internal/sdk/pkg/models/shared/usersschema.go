@@ -9,3 +9,17 @@ type UsersSchema struct {
 	// A list of users in the Unleash instance.
 	Users []UserSchema `json:"users"`
 }
+
+func (o *UsersSchema) GetRootRoles() []RoleSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RootRoles
+}
+
+func (o *UsersSchema) GetUsers() []UserSchema {
+	if o == nil {
+		return []UserSchema{}
+	}
+	return o.Users
+}

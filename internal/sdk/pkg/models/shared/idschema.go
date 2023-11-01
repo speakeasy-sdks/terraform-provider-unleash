@@ -7,3 +7,10 @@ type IDSchema struct {
 	// User email
 	ID string `json:"id"`
 }
+
+func (o *IDSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}

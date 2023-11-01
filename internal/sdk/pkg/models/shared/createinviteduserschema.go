@@ -8,3 +8,31 @@ type CreateInvitedUserSchema struct {
 	Password string  `json:"password"`
 	Username *string `json:"username,omitempty"`
 }
+
+func (o *CreateInvitedUserSchema) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *CreateInvitedUserSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateInvitedUserSchema) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}
+
+func (o *CreateInvitedUserSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
+}

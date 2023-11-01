@@ -13,3 +13,31 @@ type ClientFeaturesSchema struct {
 	// A version number for the format used in the response. Most Unleash instances now return version 2, which includes segments as a separate array
 	Version float64 `json:"version"`
 }
+
+func (o *ClientFeaturesSchema) GetFeatures() []ClientFeatureSchema {
+	if o == nil {
+		return []ClientFeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *ClientFeaturesSchema) GetQuery() *ClientFeaturesQuerySchema {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
+func (o *ClientFeaturesSchema) GetSegments() []ClientSegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *ClientFeaturesSchema) GetVersion() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Version
+}

@@ -12,6 +12,20 @@ type GetTagRequest struct {
 	Value string `pathParam:"style=simple,explode=false,name=value"`
 }
 
+func (o *GetTagRequest) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *GetTagRequest) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // GetTag404ApplicationJSON - The requested resource was not found.
 type GetTag404ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +34,27 @@ type GetTag404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetTag404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTag404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTag404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetTag403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -32,6 +67,27 @@ type GetTag403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetTag403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTag403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTag403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetTag401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetTag401ApplicationJSON struct {
 	// The ID of the error instance
@@ -40,6 +96,27 @@ type GetTag401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetTag401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTag401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTag401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetTagResponse struct {
@@ -57,4 +134,53 @@ type GetTagResponse struct {
 	GetTag404ApplicationJSONObject *GetTag404ApplicationJSON
 	// tagWithVersionSchema
 	TagWithVersionSchema *shared.TagWithVersionSchema
+}
+
+func (o *GetTagResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTagResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTagResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTagResponse) GetGetTag401ApplicationJSONObject() *GetTag401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTag401ApplicationJSONObject
+}
+
+func (o *GetTagResponse) GetGetTag403ApplicationJSONObject() *GetTag403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTag403ApplicationJSONObject
+}
+
+func (o *GetTagResponse) GetGetTag404ApplicationJSONObject() *GetTag404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTag404ApplicationJSONObject
+}
+
+func (o *GetTagResponse) GetTagWithVersionSchema() *shared.TagWithVersionSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagWithVersionSchema
 }

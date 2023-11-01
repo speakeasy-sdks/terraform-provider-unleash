@@ -13,6 +13,20 @@ type UpdateProjectRequest struct {
 	UpdateProjectSchema shared.UpdateProjectSchema `request:"mediaType=application/json"`
 }
 
+func (o *UpdateProjectRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *UpdateProjectRequest) GetUpdateProjectSchema() shared.UpdateProjectSchema {
+	if o == nil {
+		return shared.UpdateProjectSchema{}
+	}
+	return o.UpdateProjectSchema
+}
+
 type UpdateProjectResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +34,25 @@ type UpdateProjectResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *UpdateProjectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateProjectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateProjectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

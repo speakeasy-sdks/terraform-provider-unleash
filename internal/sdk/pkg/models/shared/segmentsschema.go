@@ -5,3 +5,10 @@ package shared
 type SegmentsSchema struct {
 	Segments []AdminSegmentSchema `json:"segments,omitempty"`
 }
+
+func (o *SegmentsSchema) GetSegments() []AdminSegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}

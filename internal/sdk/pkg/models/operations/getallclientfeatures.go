@@ -17,3 +17,31 @@ type GetAllClientFeaturesResponse struct {
 	// clientFeaturesSchema
 	ClientFeaturesSchema *shared.ClientFeaturesSchema
 }
+
+func (o *GetAllClientFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllClientFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllClientFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllClientFeaturesResponse) GetClientFeaturesSchema() *shared.ClientFeaturesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ClientFeaturesSchema
+}

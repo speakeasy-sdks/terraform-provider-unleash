@@ -17,3 +17,45 @@ type GoogleSettingsSchema struct {
 	// Name of the host allowed to access the Google authentication flow
 	UnleashHostname string `json:"unleashHostname"`
 }
+
+func (o *GoogleSettingsSchema) GetAutoCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoCreate
+}
+
+func (o *GoogleSettingsSchema) GetClientID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientID
+}
+
+func (o *GoogleSettingsSchema) GetClientSecret() string {
+	if o == nil {
+		return ""
+	}
+	return o.ClientSecret
+}
+
+func (o *GoogleSettingsSchema) GetEmailDomains() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailDomains
+}
+
+func (o *GoogleSettingsSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *GoogleSettingsSchema) GetUnleashHostname() string {
+	if o == nil {
+		return ""
+	}
+	return o.UnleashHostname
+}

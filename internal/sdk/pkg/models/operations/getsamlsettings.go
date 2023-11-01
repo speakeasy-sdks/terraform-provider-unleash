@@ -17,6 +17,27 @@ type GetSamlSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetSamlSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSamlSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSamlSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetSamlSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetSamlSettings401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type GetSamlSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetSamlSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSamlSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSamlSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetSamlSettings400ApplicationJSON - The request data does not match what we expect.
 type GetSamlSettings400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type GetSamlSettings400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetSamlSettings400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSamlSettings400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSamlSettings400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetSamlSettingsResponse struct {
@@ -52,4 +115,53 @@ type GetSamlSettingsResponse struct {
 	GetSamlSettings403ApplicationJSONObject *GetSamlSettings403ApplicationJSON
 	// samlSettingsSchema
 	SamlSettingsSchema *shared.SamlSettingsSchema
+}
+
+func (o *GetSamlSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSamlSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSamlSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSamlSettingsResponse) GetGetSamlSettings400ApplicationJSONObject() *GetSamlSettings400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSamlSettings400ApplicationJSONObject
+}
+
+func (o *GetSamlSettingsResponse) GetGetSamlSettings401ApplicationJSONObject() *GetSamlSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSamlSettings401ApplicationJSONObject
+}
+
+func (o *GetSamlSettingsResponse) GetGetSamlSettings403ApplicationJSONObject() *GetSamlSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSamlSettings403ApplicationJSONObject
+}
+
+func (o *GetSamlSettingsResponse) GetSamlSettingsSchema() *shared.SamlSettingsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.SamlSettingsSchema
 }

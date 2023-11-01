@@ -55,10 +55,52 @@ type UpdateStrategySchemaParameters struct {
 	Type UpdateStrategySchemaParametersType `json:"type"`
 }
 
+func (o *UpdateStrategySchemaParameters) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpdateStrategySchemaParameters) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateStrategySchemaParameters) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *UpdateStrategySchemaParameters) GetType() UpdateStrategySchemaParametersType {
+	if o == nil {
+		return UpdateStrategySchemaParametersType("")
+	}
+	return o.Type
+}
+
 // UpdateStrategySchema - The data required to update a strategy type.
 type UpdateStrategySchema struct {
 	// A description of the strategy type.
 	Description *string `json:"description,omitempty"`
 	// The parameter list lets you pass arguments to your custom activation strategy. These will be made available to your custom strategy implementation.
 	Parameters []UpdateStrategySchemaParameters `json:"parameters"`
+}
+
+func (o *UpdateStrategySchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpdateStrategySchema) GetParameters() []UpdateStrategySchemaParameters {
+	if o == nil {
+		return []UpdateStrategySchemaParameters{}
+	}
+	return o.Parameters
 }

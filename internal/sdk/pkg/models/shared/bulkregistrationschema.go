@@ -7,6 +7,20 @@ type BulkRegistrationSchemaConnectVia struct {
 	InstanceID string `json:"instanceId"`
 }
 
+func (o *BulkRegistrationSchemaConnectVia) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *BulkRegistrationSchemaConnectVia) GetInstanceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InstanceID
+}
+
 // BulkRegistrationSchema - An application registration. Defines the format POSTed by our server-side SDKs when they're starting up
 type BulkRegistrationSchema struct {
 	// The name of the application that is evaluating toggles
@@ -25,4 +39,60 @@ type BulkRegistrationSchema struct {
 	Started    *DateSchema `json:"started,omitempty"`
 	// Enabled [strategies](https://docs.getunleash.io/reference/activation-strategies) in the application
 	Strategies []string `json:"strategies,omitempty"`
+}
+
+func (o *BulkRegistrationSchema) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *BulkRegistrationSchema) GetConnectVia() []BulkRegistrationSchemaConnectVia {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectVia
+}
+
+func (o *BulkRegistrationSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *BulkRegistrationSchema) GetInstanceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InstanceID
+}
+
+func (o *BulkRegistrationSchema) GetInterval() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
+func (o *BulkRegistrationSchema) GetSDKVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SDKVersion
+}
+
+func (o *BulkRegistrationSchema) GetStarted() *DateSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Started
+}
+
+func (o *BulkRegistrationSchema) GetStrategies() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
 }

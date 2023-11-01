@@ -17,6 +17,27 @@ type GetAllAPITokens403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAllAPITokens403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllAPITokens403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllAPITokens403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetAllAPITokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetAllAPITokens401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetAllAPITokens401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetAllAPITokens401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllAPITokens401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllAPITokens401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetAllAPITokensResponse struct {
@@ -40,4 +82,46 @@ type GetAllAPITokensResponse struct {
 	GetAllAPITokens401ApplicationJSONObject *GetAllAPITokens401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	GetAllAPITokens403ApplicationJSONObject *GetAllAPITokens403ApplicationJSON
+}
+
+func (o *GetAllAPITokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllAPITokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllAPITokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllAPITokensResponse) GetAPITokensSchema() *shared.APITokensSchema {
+	if o == nil {
+		return nil
+	}
+	return o.APITokensSchema
+}
+
+func (o *GetAllAPITokensResponse) GetGetAllAPITokens401ApplicationJSONObject() *GetAllAPITokens401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllAPITokens401ApplicationJSONObject
+}
+
+func (o *GetAllAPITokensResponse) GetGetAllAPITokens403ApplicationJSONObject() *GetAllAPITokens403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllAPITokens403ApplicationJSONObject
 }

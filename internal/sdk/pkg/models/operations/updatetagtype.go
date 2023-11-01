@@ -13,6 +13,20 @@ type UpdateTagTypeRequest struct {
 	UpdateTagTypeSchema shared.UpdateTagTypeSchema `request:"mediaType=application/json"`
 }
 
+func (o *UpdateTagTypeRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateTagTypeRequest) GetUpdateTagTypeSchema() shared.UpdateTagTypeSchema {
+	if o == nil {
+		return shared.UpdateTagTypeSchema{}
+	}
+	return o.UpdateTagTypeSchema
+}
+
 // UpdateTagType415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type UpdateTagType415ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdateTagType415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateTagType415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTagType415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTagType415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -33,6 +68,27 @@ type UpdateTagType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateTagType403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTagType403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTagType403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateTagType401ApplicationJSON struct {
 	// The ID of the error instance
@@ -43,6 +99,27 @@ type UpdateTagType401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateTagType401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTagType401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTagType401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateTagType400ApplicationJSON - The request data does not match what we expect.
 type UpdateTagType400ApplicationJSON struct {
 	// The ID of the error instance
@@ -51,6 +128,27 @@ type UpdateTagType400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateTagType400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTagType400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTagType400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateTagTypeResponse struct {
@@ -68,4 +166,53 @@ type UpdateTagTypeResponse struct {
 	UpdateTagType403ApplicationJSONObject *UpdateTagType403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateTagType415ApplicationJSONObject *UpdateTagType415ApplicationJSON
+}
+
+func (o *UpdateTagTypeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateTagTypeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateTagTypeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateTagTypeResponse) GetUpdateTagType400ApplicationJSONObject() *UpdateTagType400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTagType400ApplicationJSONObject
+}
+
+func (o *UpdateTagTypeResponse) GetUpdateTagType401ApplicationJSONObject() *UpdateTagType401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTagType401ApplicationJSONObject
+}
+
+func (o *UpdateTagTypeResponse) GetUpdateTagType403ApplicationJSONObject() *UpdateTagType403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTagType403ApplicationJSONObject
+}
+
+func (o *UpdateTagTypeResponse) GetUpdateTagType415ApplicationJSONObject() *UpdateTagType415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTagType415ApplicationJSONObject
 }

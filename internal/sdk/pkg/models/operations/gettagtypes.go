@@ -17,6 +17,27 @@ type GetTagTypes403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetTagTypes403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTagTypes403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTagTypes403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetTagTypes401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetTagTypes401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetTagTypes401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetTagTypes401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTagTypes401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTagTypes401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetTagTypesResponse struct {
@@ -40,4 +82,46 @@ type GetTagTypesResponse struct {
 	GetTagTypes403ApplicationJSONObject *GetTagTypes403ApplicationJSON
 	// tagTypesSchema
 	TagTypesSchema *shared.TagTypesSchema
+}
+
+func (o *GetTagTypesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTagTypesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTagTypesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTagTypesResponse) GetGetTagTypes401ApplicationJSONObject() *GetTagTypes401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTagTypes401ApplicationJSONObject
+}
+
+func (o *GetTagTypesResponse) GetGetTagTypes403ApplicationJSONObject() *GetTagTypes403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTagTypes403ApplicationJSONObject
+}
+
+func (o *GetTagTypesResponse) GetTagTypesSchema() *shared.TagTypesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagTypesSchema
 }

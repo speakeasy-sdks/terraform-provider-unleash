@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // ConstraintSchemaOperator - The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
@@ -77,15 +78,68 @@ func (e *ConstraintSchemaOperator) UnmarshalJSON(data []byte) error {
 // ConstraintSchema - A strategy constraint. For more information, refer to [the strategy constraint reference documentation](https://docs.getunleash.io/reference/strategy-constraints)
 type ConstraintSchema struct {
 	// Whether the operator should be case sensitive or not. Defaults to `false` (being case sensitive).
-	CaseInsensitive *bool `json:"caseInsensitive,omitempty"`
+	CaseInsensitive *bool `default:"false" json:"caseInsensitive"`
 	// The name of the context field that this constraint should apply to.
 	ContextName string `json:"contextName"`
 	// Whether the result should be negated or not. If `true`, will turn a `true` result into a `false` result and vice versa.
-	Inverted *bool `json:"inverted,omitempty"`
+	Inverted *bool `default:"false" json:"inverted"`
 	// The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
 	Operator ConstraintSchemaOperator `json:"operator"`
 	// The context value that should be used for constraint evaluation. Use this property instead of `values` for properties that only accept single values.
 	Value *string `json:"value,omitempty"`
 	// The context values that should be used for constraint evaluation. Use this property instead of `value` for properties that accept multiple values.
 	Values []string `json:"values,omitempty"`
+}
+
+func (c ConstraintSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConstraintSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ConstraintSchema) GetCaseInsensitive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.CaseInsensitive
+}
+
+func (o *ConstraintSchema) GetContextName() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContextName
+}
+
+func (o *ConstraintSchema) GetInverted() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Inverted
+}
+
+func (o *ConstraintSchema) GetOperator() ConstraintSchemaOperator {
+	if o == nil {
+		return ConstraintSchemaOperator("")
+	}
+	return o.Operator
+}
+
+func (o *ConstraintSchema) GetValue() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}
+
+func (o *ConstraintSchema) GetValues() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Values
 }

@@ -9,3 +9,17 @@ type ChangePasswordSchema struct {
 	// A reset token used to validate that the user is allowed to change the password.
 	Token string `json:"token"`
 }
+
+func (o *ChangePasswordSchema) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}
+
+func (o *ChangePasswordSchema) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}

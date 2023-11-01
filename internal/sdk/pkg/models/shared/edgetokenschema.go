@@ -47,3 +47,24 @@ type EdgeTokenSchema struct {
 	// The [API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys#api-tokens)'s **type**. Unleash supports three different types of API tokens ([ADMIN](https://docs.getunleash.io/reference/api-tokens-and-client-keys#admin-tokens), [CLIENT](https://docs.getunleash.io/reference/api-tokens-and-client-keys#client-tokens), [FRONTEND](https://docs.getunleash.io/reference/api-tokens-and-client-keys#front-end-tokens)). They all have varying access, so when validating a token it's important to know what kind you're dealing with
 	Type EdgeTokenSchemaType `json:"type"`
 }
+
+func (o *EdgeTokenSchema) GetProjects() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Projects
+}
+
+func (o *EdgeTokenSchema) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
+func (o *EdgeTokenSchema) GetType() EdgeTokenSchemaType {
+	if o == nil {
+		return EdgeTokenSchemaType("")
+	}
+	return o.Type
+}

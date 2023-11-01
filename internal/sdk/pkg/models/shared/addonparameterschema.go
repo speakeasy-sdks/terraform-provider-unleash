@@ -19,3 +19,52 @@ type AddonParameterSchema struct {
 	// The type of the parameter. Corresponds roughly to [HTML `input` field types](https://developer.mozilla.org/docs/Web/HTML/Element/Input#input_types). Multi-line inut fields are indicated as `textfield` (equivalent to the HTML `textarea` tag).
 	Type string `json:"type"`
 }
+
+func (o *AddonParameterSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *AddonParameterSchema) GetDisplayName() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisplayName
+}
+
+func (o *AddonParameterSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AddonParameterSchema) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AddonParameterSchema) GetRequired() bool {
+	if o == nil {
+		return false
+	}
+	return o.Required
+}
+
+func (o *AddonParameterSchema) GetSensitive() bool {
+	if o == nil {
+		return false
+	}
+	return o.Sensitive
+}
+
+func (o *AddonParameterSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

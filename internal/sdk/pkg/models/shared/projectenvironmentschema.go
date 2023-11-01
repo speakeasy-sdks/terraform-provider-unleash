@@ -11,3 +11,24 @@ type ProjectEnvironmentSchema struct {
 	// The environment to add to the project
 	Environment string `json:"environment"`
 }
+
+func (o *ProjectEnvironmentSchema) GetChangeRequestsEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeRequestsEnabled
+}
+
+func (o *ProjectEnvironmentSchema) GetDefaultStrategy() *CreateFeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultStrategy
+}
+
+func (o *ProjectEnvironmentSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}

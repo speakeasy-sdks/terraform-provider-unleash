@@ -13,6 +13,20 @@ type UpdateGroupRequest struct {
 	GroupID           string                   `pathParam:"style=simple,explode=false,name=groupId"`
 }
 
+func (o *UpdateGroupRequest) GetCreateGroupSchema() shared.CreateGroupSchema {
+	if o == nil {
+		return shared.CreateGroupSchema{}
+	}
+	return o.CreateGroupSchema
+}
+
+func (o *UpdateGroupRequest) GetGroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GroupID
+}
+
 // UpdateGroup409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type UpdateGroup409ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdateGroup409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateGroup409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateGroup409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateGroup409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateGroup404ApplicationJSON - The requested resource was not found.
@@ -33,6 +68,27 @@ type UpdateGroup404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateGroup404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateGroup404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateGroup404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type UpdateGroup403ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +97,27 @@ type UpdateGroup403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateGroup403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateGroup403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateGroup403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -53,6 +130,27 @@ type UpdateGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateGroup401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateGroup401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateGroup401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateGroup400ApplicationJSON - The request data does not match what we expect.
 type UpdateGroup400ApplicationJSON struct {
 	// The ID of the error instance
@@ -61,6 +159,27 @@ type UpdateGroup400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateGroup400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateGroup400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateGroup400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateGroupResponse struct {
@@ -82,4 +201,67 @@ type UpdateGroupResponse struct {
 	UpdateGroup404ApplicationJSONObject *UpdateGroup404ApplicationJSON
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 	UpdateGroup409ApplicationJSONObject *UpdateGroup409ApplicationJSON
+}
+
+func (o *UpdateGroupResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateGroupResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateGroupResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateGroupResponse) GetGroupSchema() *shared.GroupSchema {
+	if o == nil {
+		return nil
+	}
+	return o.GroupSchema
+}
+
+func (o *UpdateGroupResponse) GetUpdateGroup400ApplicationJSONObject() *UpdateGroup400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateGroup400ApplicationJSONObject
+}
+
+func (o *UpdateGroupResponse) GetUpdateGroup401ApplicationJSONObject() *UpdateGroup401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateGroup401ApplicationJSONObject
+}
+
+func (o *UpdateGroupResponse) GetUpdateGroup403ApplicationJSONObject() *UpdateGroup403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateGroup403ApplicationJSONObject
+}
+
+func (o *UpdateGroupResponse) GetUpdateGroup404ApplicationJSONObject() *UpdateGroup404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateGroup404ApplicationJSONObject
+}
+
+func (o *UpdateGroupResponse) GetUpdateGroup409ApplicationJSONObject() *UpdateGroup409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateGroup409ApplicationJSONObject
 }

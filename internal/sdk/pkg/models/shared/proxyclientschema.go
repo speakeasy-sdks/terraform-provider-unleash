@@ -3,9 +3,8 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -42,21 +41,16 @@ func CreateProxyClientSchemaStartedNumber(number float64) ProxyClientSchemaStart
 }
 
 func (u *ProxyClientSchemaStarted) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	dateTime := new(time.Time)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&dateTime); err == nil {
+	if err := utils.UnmarshalJSON(data, &dateTime, "", true, true); err == nil {
 		u.DateTime = dateTime
 		u.Type = ProxyClientSchemaStartedTypeDateTime
 		return nil
 	}
 
 	number := new(float64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&number); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
 		u.Type = ProxyClientSchemaStartedTypeNumber
 		return nil
@@ -67,14 +61,14 @@ func (u *ProxyClientSchemaStarted) UnmarshalJSON(data []byte) error {
 
 func (u ProxyClientSchemaStarted) MarshalJSON() ([]byte, error) {
 	if u.DateTime != nil {
-		return json.Marshal(u.DateTime)
+		return utils.MarshalJSON(u.DateTime, "", true)
 	}
 
 	if u.Number != nil {
-		return json.Marshal(u.Number)
+		return utils.MarshalJSON(u.Number, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // ProxyClientSchema - Frontend SDK client registration information
@@ -83,7 +77,7 @@ type ProxyClientSchema struct {
 	AppName string `json:"appName"`
 	// deprecated
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Environment *string `json:"environment,omitempty"`
 	// Instance id for this application (typically hostname, podId or similar)
 	InstanceID *string `json:"instanceId,omitempty"`
@@ -95,4 +89,53 @@ type ProxyClientSchema struct {
 	Started ProxyClientSchemaStarted `json:"started"`
 	// List of strategies implemented by this application
 	Strategies []string `json:"strategies"`
+}
+
+func (o *ProxyClientSchema) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *ProxyClientSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *ProxyClientSchema) GetInstanceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InstanceID
+}
+
+func (o *ProxyClientSchema) GetInterval() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Interval
+}
+
+func (o *ProxyClientSchema) GetSDKVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SDKVersion
+}
+
+func (o *ProxyClientSchema) GetStarted() ProxyClientSchemaStarted {
+	if o == nil {
+		return ProxyClientSchemaStarted{}
+	}
+	return o.Started
+}
+
+func (o *ProxyClientSchema) GetStrategies() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Strategies
 }

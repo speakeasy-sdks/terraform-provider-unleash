@@ -13,3 +13,31 @@ type RoleSchema struct {
 	// A role can either be a global root role (applies to all projects) or a project role
 	Type string `json:"type"`
 }
+
+func (o *RoleSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *RoleSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *RoleSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *RoleSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

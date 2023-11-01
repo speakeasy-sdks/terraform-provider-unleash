@@ -6,7 +6,7 @@ package shared
 type ClientFeaturesQuerySchema struct {
 	// Strategies for the feature toggle configured for this environment are included. (DEPRECATED) - Handled by API tokens
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Environment *string `json:"environment,omitempty"`
 	// Set to true if requesting client does not support Unleash-Client-Specification 4.2.2 or newer. Modern SDKs will have this set to false, since they will be able to merge constraints and segments themselves
 	InlineSegmentConstraints *bool `json:"inlineSegmentConstraints,omitempty"`
@@ -14,8 +14,43 @@ type ClientFeaturesQuerySchema struct {
 	NamePrefix *string `json:"namePrefix,omitempty"`
 	// Features that are part of these projects are included in this response. (DEPRECATED) - Handled by API tokens
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Project []string `json:"project,omitempty"`
 	// Features tagged with one of these tags are included
 	Tag [][]string `json:"tag,omitempty"`
+}
+
+func (o *ClientFeaturesQuerySchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *ClientFeaturesQuerySchema) GetInlineSegmentConstraints() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.InlineSegmentConstraints
+}
+
+func (o *ClientFeaturesQuerySchema) GetNamePrefix() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NamePrefix
+}
+
+func (o *ClientFeaturesQuerySchema) GetProject() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *ClientFeaturesQuerySchema) GetTag() [][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
 }

@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -58,4 +59,92 @@ type ProjectSchema struct {
 	// The name of this project
 	Name      string     `json:"name"`
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+}
+
+func (p ProjectSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProjectSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ProjectSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *ProjectSchema) GetDefaultStickiness() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultStickiness
+}
+
+func (o *ProjectSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ProjectSchema) GetFavorite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Favorite
+}
+
+func (o *ProjectSchema) GetFeatureCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureCount
+}
+
+func (o *ProjectSchema) GetHealth() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Health
+}
+
+func (o *ProjectSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ProjectSchema) GetMemberCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.MemberCount
+}
+
+func (o *ProjectSchema) GetMode() *ProjectSchemaMode {
+	if o == nil {
+		return nil
+	}
+	return o.Mode
+}
+
+func (o *ProjectSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ProjectSchema) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
 }

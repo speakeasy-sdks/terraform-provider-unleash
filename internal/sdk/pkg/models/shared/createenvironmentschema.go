@@ -19,3 +19,31 @@ type CreateEnvironmentSchema struct {
 	// If you pass a string that is not one of the recognized values, Unleash will accept it, but it will carry no special semantics.
 	Type string `json:"type"`
 }
+
+func (o *CreateEnvironmentSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *CreateEnvironmentSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateEnvironmentSchema) GetSortOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *CreateEnvironmentSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

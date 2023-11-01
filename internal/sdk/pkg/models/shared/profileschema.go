@@ -11,3 +11,24 @@ type ProfileSchema struct {
 	// A role holds permissions to allow Unleash to decide what actions a role holder is allowed to perform
 	RootRole RoleSchema `json:"rootRole"`
 }
+
+func (o *ProfileSchema) GetFeatures() []FeatureSchema {
+	if o == nil {
+		return []FeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *ProfileSchema) GetProjects() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Projects
+}
+
+func (o *ProfileSchema) GetRootRole() RoleSchema {
+	if o == nil {
+		return RoleSchema{}
+	}
+	return o.RootRole
+}

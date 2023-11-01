@@ -10,6 +10,13 @@ type AddFavoriteProjectRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *AddFavoriteProjectRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // AddFavoriteProject404ApplicationJSON - The requested resource was not found.
 type AddFavoriteProject404ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type AddFavoriteProject404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *AddFavoriteProject404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFavoriteProject404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFavoriteProject404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // AddFavoriteProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type AddFavoriteProject401ApplicationJSON struct {
 	// The ID of the error instance
@@ -28,6 +56,27 @@ type AddFavoriteProject401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddFavoriteProject401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddFavoriteProject401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddFavoriteProject401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type AddFavoriteProjectResponse struct {
@@ -41,4 +90,39 @@ type AddFavoriteProjectResponse struct {
 	AddFavoriteProject401ApplicationJSONObject *AddFavoriteProject401ApplicationJSON
 	// The requested resource was not found.
 	AddFavoriteProject404ApplicationJSONObject *AddFavoriteProject404ApplicationJSON
+}
+
+func (o *AddFavoriteProjectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddFavoriteProjectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddFavoriteProjectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AddFavoriteProjectResponse) GetAddFavoriteProject401ApplicationJSONObject() *AddFavoriteProject401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFavoriteProject401ApplicationJSONObject
+}
+
+func (o *AddFavoriteProjectResponse) GetAddFavoriteProject404ApplicationJSONObject() *AddFavoriteProject404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddFavoriteProject404ApplicationJSONObject
 }

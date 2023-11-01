@@ -7,3 +7,10 @@ type PatsSchema struct {
 	// A collection of Personal Access Tokens
 	Pats []PatSchema `json:"pats,omitempty"`
 }
+
+func (o *PatsSchema) GetPats() []PatSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Pats
+}

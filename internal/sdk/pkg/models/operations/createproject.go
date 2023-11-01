@@ -17,6 +17,27 @@ type CreateProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateProject401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateProject401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateProject401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateProject400ApplicationJSON - The request data does not match what we expect.
 type CreateProject400ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type CreateProject400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateProject400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateProject400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateProject400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateProjectResponse struct {
@@ -41,4 +83,53 @@ type CreateProjectResponse struct {
 	CreateProject401ApplicationJSONObject *CreateProject401ApplicationJSON
 	// The resource was successfully created.
 	ProjectCreatedSchema *shared.ProjectCreatedSchema
+}
+
+func (o *CreateProjectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateProjectResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateProjectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateProjectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateProjectResponse) GetCreateProject400ApplicationJSONObject() *CreateProject400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateProject400ApplicationJSONObject
+}
+
+func (o *CreateProjectResponse) GetCreateProject401ApplicationJSONObject() *CreateProject401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateProject401ApplicationJSONObject
+}
+
+func (o *CreateProjectResponse) GetProjectCreatedSchema() *shared.ProjectCreatedSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectCreatedSchema
 }

@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // PlaygroundRequestSchemaProjects2 - Check toggles in all projects.
@@ -67,21 +67,16 @@ func CreatePlaygroundRequestSchemaProjectsPlaygroundRequestSchemaProjects2(playg
 }
 
 func (u *PlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	arrayOfstr := []string{}
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&arrayOfstr); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
 		u.ArrayOfstr = arrayOfstr
 		u.Type = PlaygroundRequestSchemaProjectsTypeArrayOfstr
 		return nil
 	}
 
 	playgroundRequestSchemaProjects2 := new(PlaygroundRequestSchemaProjects2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&playgroundRequestSchemaProjects2); err == nil {
+	if err := utils.UnmarshalJSON(data, &playgroundRequestSchemaProjects2, "", true, true); err == nil {
 		u.PlaygroundRequestSchemaProjects2 = playgroundRequestSchemaProjects2
 		u.Type = PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2
 		return nil
@@ -92,14 +87,14 @@ func (u *PlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
 
 func (u PlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
 	if u.ArrayOfstr != nil {
-		return json.Marshal(u.ArrayOfstr)
+		return utils.MarshalJSON(u.ArrayOfstr, "", true)
 	}
 
 	if u.PlaygroundRequestSchemaProjects2 != nil {
-		return json.Marshal(u.PlaygroundRequestSchemaProjects2)
+		return utils.MarshalJSON(u.PlaygroundRequestSchemaProjects2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // PlaygroundRequestSchema - Data for the playground API to evaluate toggles
@@ -110,4 +105,25 @@ type PlaygroundRequestSchema struct {
 	Environment string `json:"environment"`
 	// A list of projects to check for toggles in.
 	Projects *PlaygroundRequestSchemaProjects `json:"projects,omitempty"`
+}
+
+func (o *PlaygroundRequestSchema) GetContext() SDKContextSchema {
+	if o == nil {
+		return SDKContextSchema{}
+	}
+	return o.Context
+}
+
+func (o *PlaygroundRequestSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *PlaygroundRequestSchema) GetProjects() *PlaygroundRequestSchemaProjects {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
 }

@@ -17,3 +17,31 @@ type GetUIConfigResponse struct {
 	// uiConfigSchema
 	UIConfigSchema *shared.UIConfigSchema
 }
+
+func (o *GetUIConfigResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetUIConfigResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetUIConfigResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetUIConfigResponse) GetUIConfigSchema() *shared.UIConfigSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UIConfigSchema
+}

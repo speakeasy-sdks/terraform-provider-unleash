@@ -49,3 +49,31 @@ type PatchSchema struct {
 	Path  string        `json:"path"`
 	Value interface{}   `json:"value,omitempty"`
 }
+
+func (o *PatchSchema) GetFrom() *string {
+	if o == nil {
+		return nil
+	}
+	return o.From
+}
+
+func (o *PatchSchema) GetOp() PatchSchemaOp {
+	if o == nil {
+		return PatchSchemaOp("")
+	}
+	return o.Op
+}
+
+func (o *PatchSchema) GetPath() string {
+	if o == nil {
+		return ""
+	}
+	return o.Path
+}
+
+func (o *PatchSchema) GetValue() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}

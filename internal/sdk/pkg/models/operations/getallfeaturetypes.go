@@ -17,6 +17,27 @@ type GetAllFeatureTypes401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAllFeatureTypes401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllFeatureTypes401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllFeatureTypes401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetAllFeatureTypesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetAllFeatureTypesResponse struct {
 	FeatureTypesSchema *shared.FeatureTypesSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	GetAllFeatureTypes401ApplicationJSONObject *GetAllFeatureTypes401ApplicationJSON
+}
+
+func (o *GetAllFeatureTypesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllFeatureTypesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllFeatureTypesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllFeatureTypesResponse) GetFeatureTypesSchema() *shared.FeatureTypesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureTypesSchema
+}
+
+func (o *GetAllFeatureTypesResponse) GetGetAllFeatureTypes401ApplicationJSONObject() *GetAllFeatureTypes401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllFeatureTypes401ApplicationJSONObject
 }

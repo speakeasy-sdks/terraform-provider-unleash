@@ -17,6 +17,27 @@ type GetValidTokens415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetValidTokens415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetValidTokens415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetValidTokens415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetValidTokens413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
 type GetValidTokens413ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type GetValidTokens413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetValidTokens413ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetValidTokens413ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetValidTokens413ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetValidTokens400ApplicationJSON - The request data does not match what we expect.
 type GetValidTokens400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type GetValidTokens400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetValidTokens400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetValidTokens400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetValidTokens400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetValidTokensResponse struct {
@@ -52,4 +115,53 @@ type GetValidTokensResponse struct {
 	GetValidTokens415ApplicationJSONObject *GetValidTokens415ApplicationJSON
 	// validatedEdgeTokensSchema
 	ValidatedEdgeTokensSchema *shared.ValidatedEdgeTokensSchema
+}
+
+func (o *GetValidTokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetValidTokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetValidTokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetValidTokensResponse) GetGetValidTokens400ApplicationJSONObject() *GetValidTokens400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetValidTokens400ApplicationJSONObject
+}
+
+func (o *GetValidTokensResponse) GetGetValidTokens413ApplicationJSONObject() *GetValidTokens413ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetValidTokens413ApplicationJSONObject
+}
+
+func (o *GetValidTokensResponse) GetGetValidTokens415ApplicationJSONObject() *GetValidTokens415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetValidTokens415ApplicationJSONObject
+}
+
+func (o *GetValidTokensResponse) GetValidatedEdgeTokensSchema() *shared.ValidatedEdgeTokensSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ValidatedEdgeTokensSchema
 }

@@ -11,6 +11,13 @@ type UpdateSplashSettingsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *UpdateSplashSettingsRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // UpdateSplashSettings415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type UpdateSplashSettings415ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type UpdateSplashSettings415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateSplashSettings415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSplashSettings415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSplashSettings415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateSplashSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type UpdateSplashSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateSplashSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSplashSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSplashSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateSplashSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateSplashSettings401ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +90,27 @@ type UpdateSplashSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateSplashSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSplashSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSplashSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateSplashSettings400ApplicationJSON - The request data does not match what we expect.
 type UpdateSplashSettings400ApplicationJSON struct {
 	// The ID of the error instance
@@ -49,6 +119,27 @@ type UpdateSplashSettings400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateSplashSettings400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSplashSettings400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSplashSettings400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateSplashSettingsResponse struct {
@@ -68,4 +159,60 @@ type UpdateSplashSettingsResponse struct {
 	UpdateSplashSettings403ApplicationJSONObject *UpdateSplashSettings403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateSplashSettings415ApplicationJSONObject *UpdateSplashSettings415ApplicationJSON
+}
+
+func (o *UpdateSplashSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateSplashSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateSplashSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateSplashSettingsResponse) GetSplashResponseSchema() *shared.SplashResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.SplashResponseSchema
+}
+
+func (o *UpdateSplashSettingsResponse) GetUpdateSplashSettings400ApplicationJSONObject() *UpdateSplashSettings400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSplashSettings400ApplicationJSONObject
+}
+
+func (o *UpdateSplashSettingsResponse) GetUpdateSplashSettings401ApplicationJSONObject() *UpdateSplashSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSplashSettings401ApplicationJSONObject
+}
+
+func (o *UpdateSplashSettingsResponse) GetUpdateSplashSettings403ApplicationJSONObject() *UpdateSplashSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSplashSettings403ApplicationJSONObject
+}
+
+func (o *UpdateSplashSettingsResponse) GetUpdateSplashSettings415ApplicationJSONObject() *UpdateSplashSettings415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSplashSettings415ApplicationJSONObject
 }

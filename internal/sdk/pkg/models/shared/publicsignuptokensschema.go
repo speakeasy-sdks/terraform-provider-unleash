@@ -7,3 +7,10 @@ type PublicSignupTokensSchema struct {
 	// An array of all the public signup tokens
 	Tokens []PublicSignupTokenSchema `json:"tokens"`
 }
+
+func (o *PublicSignupTokensSchema) GetTokens() []PublicSignupTokenSchema {
+	if o == nil {
+		return []PublicSignupTokenSchema{}
+	}
+	return o.Tokens
+}

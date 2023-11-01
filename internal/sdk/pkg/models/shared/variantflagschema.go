@@ -46,6 +46,20 @@ type VariantFlagSchemaPayload struct {
 	Value *string `json:"value,omitempty"`
 }
 
+func (o *VariantFlagSchemaPayload) GetType() *VariantFlagSchemaPayloadType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *VariantFlagSchemaPayload) GetValue() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}
+
 // VariantFlagSchema - A representation of an evaluated Unleash feature variant.
 type VariantFlagSchema struct {
 	// Whether the variant is enabled or not.
@@ -54,4 +68,25 @@ type VariantFlagSchema struct {
 	Name *string `json:"name,omitempty"`
 	// Additional data associated with this variant.
 	Payload *VariantFlagSchemaPayload `json:"payload,omitempty"`
+}
+
+func (o *VariantFlagSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *VariantFlagSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *VariantFlagSchema) GetPayload() *VariantFlagSchemaPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
 }

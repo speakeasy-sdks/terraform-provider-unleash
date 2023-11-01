@@ -9,3 +9,17 @@ type AdvancedPlaygroundResponseSchema struct {
 	// Data for the playground API to evaluate toggles in advanced mode with environment and context multi selection
 	Input AdvancedPlaygroundRequestSchema `json:"input"`
 }
+
+func (o *AdvancedPlaygroundResponseSchema) GetFeatures() []AdvancedPlaygroundFeatureSchema {
+	if o == nil {
+		return []AdvancedPlaygroundFeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *AdvancedPlaygroundResponseSchema) GetInput() AdvancedPlaygroundRequestSchema {
+	if o == nil {
+		return AdvancedPlaygroundRequestSchema{}
+	}
+	return o.Input
+}

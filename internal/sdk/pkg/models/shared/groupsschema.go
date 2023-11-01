@@ -7,3 +7,10 @@ type GroupsSchema struct {
 	// A list of groups
 	Groups []GroupSchema `json:"groups,omitempty"`
 }
+
+func (o *GroupsSchema) GetGroups() []GroupSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Groups
+}

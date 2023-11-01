@@ -14,6 +14,20 @@ type AdminPermissionsSchemaPermissionsEnvironments struct {
 	Permissions []AdminPermissionSchema `json:"permissions"`
 }
 
+func (o *AdminPermissionsSchemaPermissionsEnvironments) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdminPermissionsSchemaPermissionsEnvironments) GetPermissions() []AdminPermissionSchema {
+	if o == nil {
+		return []AdminPermissionSchema{}
+	}
+	return o.Permissions
+}
+
 // AdminPermissionsSchemaPermissions - Returns permissions available at all three levels (root|project|environment)
 type AdminPermissionsSchemaPermissions struct {
 	// A list of environments with available permissions per environment
@@ -22,6 +36,27 @@ type AdminPermissionsSchemaPermissions struct {
 	Project []AdminPermissionSchema `json:"project"`
 	// Permissions available at the root level, i.e. not connected to any specific project or environment
 	Root []AdminPermissionSchema `json:"root,omitempty"`
+}
+
+func (o *AdminPermissionsSchemaPermissions) GetEnvironments() []AdminPermissionsSchemaPermissionsEnvironments {
+	if o == nil {
+		return []AdminPermissionsSchemaPermissionsEnvironments{}
+	}
+	return o.Environments
+}
+
+func (o *AdminPermissionsSchemaPermissions) GetProject() []AdminPermissionSchema {
+	if o == nil {
+		return []AdminPermissionSchema{}
+	}
+	return o.Project
+}
+
+func (o *AdminPermissionsSchemaPermissions) GetRoot() []AdminPermissionSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Root
 }
 
 // AdminPermissionsSchemaVersion - The api version of this response. A natural increasing number. Only increases if format changes
@@ -58,4 +93,18 @@ type AdminPermissionsSchema struct {
 	Permissions AdminPermissionsSchemaPermissions `json:"permissions"`
 	// The api version of this response. A natural increasing number. Only increases if format changes
 	Version AdminPermissionsSchemaVersion `json:"version"`
+}
+
+func (o *AdminPermissionsSchema) GetPermissions() AdminPermissionsSchemaPermissions {
+	if o == nil {
+		return AdminPermissionsSchemaPermissions{}
+	}
+	return o.Permissions
+}
+
+func (o *AdminPermissionsSchema) GetVersion() AdminPermissionsSchemaVersion {
+	if o == nil {
+		return AdminPermissionsSchemaVersion(0)
+	}
+	return o.Version
 }

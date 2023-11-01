@@ -12,6 +12,13 @@ type SearchUsersRequest struct {
 	Q *string `queryParam:"style=form,explode=true,name=q"`
 }
 
+func (o *SearchUsersRequest) GetQ() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Q
+}
+
 // SearchUsers401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type SearchUsers401ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type SearchUsers401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *SearchUsers401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *SearchUsers401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SearchUsers401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type SearchUsersResponse struct {
@@ -33,4 +61,39 @@ type SearchUsersResponse struct {
 	SearchUsers401ApplicationJSONObject *SearchUsers401ApplicationJSON
 	// usersSchema
 	UsersSchema *shared.UsersSchema
+}
+
+func (o *SearchUsersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SearchUsersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SearchUsersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *SearchUsersResponse) GetSearchUsers401ApplicationJSONObject() *SearchUsers401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.SearchUsers401ApplicationJSONObject
+}
+
+func (o *SearchUsersResponse) GetUsersSchema() *shared.UsersSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UsersSchema
 }

@@ -21,3 +21,59 @@ type AddonSchema struct {
 	// The addon provider, such as "webhook" or "slack".
 	Provider string `json:"provider"`
 }
+
+func (o *AddonSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *AddonSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *AddonSchema) GetEnvironments() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *AddonSchema) GetEvents() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Events
+}
+
+func (o *AddonSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *AddonSchema) GetParameters() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Parameters
+}
+
+func (o *AddonSchema) GetProjects() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
+}
+
+func (o *AddonSchema) GetProvider() string {
+	if o == nil {
+		return ""
+	}
+	return o.Provider
+}

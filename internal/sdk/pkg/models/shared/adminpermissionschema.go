@@ -15,3 +15,38 @@ type AdminPermissionSchema struct {
 	// What level this permission applies to. Either root, project or the name of the environment it applies to
 	Type string `json:"type"`
 }
+
+func (o *AdminPermissionSchema) GetDisplayName() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisplayName
+}
+
+func (o *AdminPermissionSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *AdminPermissionSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *AdminPermissionSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdminPermissionSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

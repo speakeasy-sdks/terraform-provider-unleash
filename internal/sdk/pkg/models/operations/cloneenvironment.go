@@ -10,6 +10,13 @@ type CloneEnvironmentRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+func (o *CloneEnvironmentRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
 // CloneEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CloneEnvironment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type CloneEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CloneEnvironment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneEnvironment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneEnvironment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CloneEnvironment400ApplicationJSON - The request data does not match what we expect.
 type CloneEnvironment400ApplicationJSON struct {
 	// The ID of the error instance
@@ -28,6 +56,27 @@ type CloneEnvironment400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CloneEnvironment400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CloneEnvironment400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CloneEnvironment400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CloneEnvironmentResponse struct {
@@ -41,4 +90,39 @@ type CloneEnvironmentResponse struct {
 	CloneEnvironment400ApplicationJSONObject *CloneEnvironment400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	CloneEnvironment401ApplicationJSONObject *CloneEnvironment401ApplicationJSON
+}
+
+func (o *CloneEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CloneEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CloneEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CloneEnvironmentResponse) GetCloneEnvironment400ApplicationJSONObject() *CloneEnvironment400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneEnvironment400ApplicationJSONObject
+}
+
+func (o *CloneEnvironmentResponse) GetCloneEnvironment401ApplicationJSONObject() *CloneEnvironment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CloneEnvironment401ApplicationJSONObject
 }

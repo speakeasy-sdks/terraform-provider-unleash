@@ -11,6 +11,20 @@ type DeleteServiceAccountTokenRequest struct {
 	TokenID string `pathParam:"style=simple,explode=false,name=tokenId"`
 }
 
+func (o *DeleteServiceAccountTokenRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *DeleteServiceAccountTokenRequest) GetTokenID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TokenID
+}
+
 // DeleteServiceAccountToken404ApplicationJSON - The requested resource was not found.
 type DeleteServiceAccountToken404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +33,27 @@ type DeleteServiceAccountToken404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteServiceAccountToken404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteServiceAccountToken404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteServiceAccountToken404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // DeleteServiceAccountToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +66,27 @@ type DeleteServiceAccountToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteServiceAccountToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteServiceAccountToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteServiceAccountToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteServiceAccountToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteServiceAccountToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +95,27 @@ type DeleteServiceAccountToken401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteServiceAccountToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteServiceAccountToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteServiceAccountToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteServiceAccountTokenResponse struct {
@@ -54,4 +131,46 @@ type DeleteServiceAccountTokenResponse struct {
 	DeleteServiceAccountToken403ApplicationJSONObject *DeleteServiceAccountToken403ApplicationJSON
 	// The requested resource was not found.
 	DeleteServiceAccountToken404ApplicationJSONObject *DeleteServiceAccountToken404ApplicationJSON
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken401ApplicationJSONObject() *DeleteServiceAccountToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteServiceAccountToken401ApplicationJSONObject
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken403ApplicationJSONObject() *DeleteServiceAccountToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteServiceAccountToken403ApplicationJSONObject
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken404ApplicationJSONObject() *DeleteServiceAccountToken404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteServiceAccountToken404ApplicationJSONObject
 }

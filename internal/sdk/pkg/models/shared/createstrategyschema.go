@@ -55,6 +55,34 @@ type CreateStrategySchemaParameters struct {
 	Type CreateStrategySchemaParametersType `json:"type"`
 }
 
+func (o *CreateStrategySchemaParameters) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateStrategySchemaParameters) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateStrategySchemaParameters) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *CreateStrategySchemaParameters) GetType() CreateStrategySchemaParametersType {
+	if o == nil {
+		return CreateStrategySchemaParametersType("")
+	}
+	return o.Type
+}
+
 // CreateStrategySchema - The data required to create a strategy type. Refer to the docs on [custom strategy types](https://docs.getunleash.io/reference/custom-activation-strategies) for more information.
 type CreateStrategySchema struct {
 	// A description of the strategy type.
@@ -63,4 +91,25 @@ type CreateStrategySchema struct {
 	Name string `json:"name"`
 	// The parameter list lets you pass arguments to your custom activation strategy. These will be made available to your custom strategy implementation.
 	Parameters []CreateStrategySchemaParameters `json:"parameters"`
+}
+
+func (o *CreateStrategySchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateStrategySchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateStrategySchema) GetParameters() []CreateStrategySchemaParameters {
+	if o == nil {
+		return []CreateStrategySchemaParameters{}
+	}
+	return o.Parameters
 }

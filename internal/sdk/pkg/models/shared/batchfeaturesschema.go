@@ -7,3 +7,10 @@ type BatchFeaturesSchema struct {
 	// List of feature toggle names
 	Features []string `json:"features"`
 }
+
+func (o *BatchFeaturesSchema) GetFeatures() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Features
+}

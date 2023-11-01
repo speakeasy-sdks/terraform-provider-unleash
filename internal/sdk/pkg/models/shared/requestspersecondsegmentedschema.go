@@ -9,3 +9,17 @@ type RequestsPerSecondSegmentedSchema struct {
 	// Statistics for usage of Unleash, formatted so it can easily be used in a graph
 	ClientMetrics *RequestsPerSecondSchema `json:"clientMetrics,omitempty"`
 }
+
+func (o *RequestsPerSecondSegmentedSchema) GetAdminMetrics() *RequestsPerSecondSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdminMetrics
+}
+
+func (o *RequestsPerSecondSegmentedSchema) GetClientMetrics() *RequestsPerSecondSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ClientMetrics
+}

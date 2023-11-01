@@ -10,6 +10,13 @@ type DeleteFeatureRequest struct {
 	FeatureName string `pathParam:"style=simple,explode=false,name=featureName"`
 }
 
+func (o *DeleteFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
 // DeleteFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type DeleteFeature403ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type DeleteFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteFeature403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteFeature403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteFeature403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -28,6 +56,27 @@ type DeleteFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteFeatureResponse struct {
@@ -41,4 +90,39 @@ type DeleteFeatureResponse struct {
 	DeleteFeature401ApplicationJSONObject *DeleteFeature401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	DeleteFeature403ApplicationJSONObject *DeleteFeature403ApplicationJSON
+}
+
+func (o *DeleteFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteFeatureResponse) GetDeleteFeature401ApplicationJSONObject() *DeleteFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteFeature401ApplicationJSONObject
+}
+
+func (o *DeleteFeatureResponse) GetDeleteFeature403ApplicationJSONObject() *DeleteFeature403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteFeature403ApplicationJSONObject
 }

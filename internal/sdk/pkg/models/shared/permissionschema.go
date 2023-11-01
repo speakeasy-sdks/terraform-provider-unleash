@@ -11,3 +11,24 @@ type PermissionSchema struct {
 	// The project this permission applies to
 	Project *string `json:"project,omitempty"`
 }
+
+func (o *PermissionSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *PermissionSchema) GetPermission() string {
+	if o == nil {
+		return ""
+	}
+	return o.Permission
+}
+
+func (o *PermissionSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}

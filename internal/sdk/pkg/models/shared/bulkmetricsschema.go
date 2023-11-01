@@ -9,3 +9,17 @@ type BulkMetricsSchema struct {
 	// a list of client usage metrics registered by downstream providers. (Typically Unleash Edge)
 	Metrics []ClientMetricsEnvSchema `json:"metrics"`
 }
+
+func (o *BulkMetricsSchema) GetApplications() []BulkRegistrationSchema {
+	if o == nil {
+		return []BulkRegistrationSchema{}
+	}
+	return o.Applications
+}
+
+func (o *BulkMetricsSchema) GetMetrics() []ClientMetricsEnvSchema {
+	if o == nil {
+		return []ClientMetricsEnvSchema{}
+	}
+	return o.Metrics
+}

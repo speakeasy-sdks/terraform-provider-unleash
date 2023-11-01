@@ -23,3 +23,66 @@ type ClientFeatureSchema struct {
 	// [Variants](https://docs.getunleash.io/reference/feature-toggle-variants#what-are-variants) configured for this toggle
 	Variants []VariantSchema `json:"variants,omitempty"`
 }
+
+func (o *ClientFeatureSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ClientFeatureSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *ClientFeatureSchema) GetImpressionData() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ImpressionData
+}
+
+func (o *ClientFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ClientFeatureSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *ClientFeatureSchema) GetStale() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Stale
+}
+
+func (o *ClientFeatureSchema) GetStrategies() []FeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *ClientFeatureSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *ClientFeatureSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

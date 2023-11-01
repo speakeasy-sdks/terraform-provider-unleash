@@ -17,6 +17,27 @@ type CreateUser403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateUser403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateUser403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateUser403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateUser401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreateUser401ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type CreateUser401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateUser401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateUser401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateUser401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateUser400ApplicationJSON - The request data does not match what we expect.
 type CreateUser400ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type CreateUser400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateUser400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateUser400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateUser400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateUserResponse struct {
@@ -53,4 +116,60 @@ type CreateUserResponse struct {
 	CreateUser401ApplicationJSONObject *CreateUser401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	CreateUser403ApplicationJSONObject *CreateUser403ApplicationJSON
+}
+
+func (o *CreateUserResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateUserResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateUserResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateUserResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateUserResponse) GetCreateUserResponseSchema() *shared.CreateUserResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.CreateUserResponseSchema
+}
+
+func (o *CreateUserResponse) GetCreateUser400ApplicationJSONObject() *CreateUser400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateUser400ApplicationJSONObject
+}
+
+func (o *CreateUserResponse) GetCreateUser401ApplicationJSONObject() *CreateUser401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateUser401ApplicationJSONObject
+}
+
+func (o *CreateUserResponse) GetCreateUser403ApplicationJSONObject() *CreateUser403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateUser403ApplicationJSONObject
 }

@@ -13,6 +13,20 @@ type UpdatePublicSignupTokenRequest struct {
 	Token                         string                               `pathParam:"style=simple,explode=false,name=token"`
 }
 
+func (o *UpdatePublicSignupTokenRequest) GetPublicSignupTokenUpdateSchema() shared.PublicSignupTokenUpdateSchema {
+	if o == nil {
+		return shared.PublicSignupTokenUpdateSchema{}
+	}
+	return o.PublicSignupTokenUpdateSchema
+}
+
+func (o *UpdatePublicSignupTokenRequest) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
 // UpdatePublicSignupToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type UpdatePublicSignupToken403ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdatePublicSignupToken403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdatePublicSignupToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdatePublicSignupToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdatePublicSignupToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdatePublicSignupToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -33,6 +68,27 @@ type UpdatePublicSignupToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdatePublicSignupToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdatePublicSignupToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdatePublicSignupToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
 type UpdatePublicSignupToken400ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +97,27 @@ type UpdatePublicSignupToken400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdatePublicSignupToken400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdatePublicSignupToken400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdatePublicSignupToken400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdatePublicSignupTokenResponse struct {
@@ -58,4 +135,53 @@ type UpdatePublicSignupTokenResponse struct {
 	UpdatePublicSignupToken401ApplicationJSONObject *UpdatePublicSignupToken401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	UpdatePublicSignupToken403ApplicationJSONObject *UpdatePublicSignupToken403ApplicationJSON
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetPublicSignupTokenSchema() *shared.PublicSignupTokenSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PublicSignupTokenSchema
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken400ApplicationJSONObject() *UpdatePublicSignupToken400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatePublicSignupToken400ApplicationJSONObject
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken401ApplicationJSONObject() *UpdatePublicSignupToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatePublicSignupToken401ApplicationJSONObject
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken403ApplicationJSONObject() *UpdatePublicSignupToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatePublicSignupToken403ApplicationJSONObject
 }

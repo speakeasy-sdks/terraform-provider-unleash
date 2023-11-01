@@ -11,3 +11,24 @@ type AdminCountSchema struct {
 	// Total number of service accounts that have the admin root role.
 	Service float64 `json:"service"`
 }
+
+func (o *AdminCountSchema) GetNoPassword() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.NoPassword
+}
+
+func (o *AdminCountSchema) GetPassword() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Password
+}
+
+func (o *AdminCountSchema) GetService() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Service
+}

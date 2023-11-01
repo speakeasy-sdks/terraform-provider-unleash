@@ -7,3 +7,24 @@ type ProjectAccessSchema struct {
 	Roles  []RoleSchema                `json:"roles"`
 	Users  []UserWithProjectRoleSchema `json:"users"`
 }
+
+func (o *ProjectAccessSchema) GetGroups() []GroupSchema {
+	if o == nil {
+		return []GroupSchema{}
+	}
+	return o.Groups
+}
+
+func (o *ProjectAccessSchema) GetRoles() []RoleSchema {
+	if o == nil {
+		return []RoleSchema{}
+	}
+	return o.Roles
+}
+
+func (o *ProjectAccessSchema) GetUsers() []UserWithProjectRoleSchema {
+	if o == nil {
+		return []UserWithProjectRoleSchema{}
+	}
+	return o.Users
+}

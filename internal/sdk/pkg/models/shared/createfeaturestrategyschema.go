@@ -21,3 +21,59 @@ type CreateFeatureStrategySchema struct {
 	// Strategy level variants
 	Variants []CreateStrategyVariantSchema `json:"variants,omitempty"`
 }
+
+func (o *CreateFeatureStrategySchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *CreateFeatureStrategySchema) GetDisabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Disabled
+}
+
+func (o *CreateFeatureStrategySchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateFeatureStrategySchema) GetParameters() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Parameters
+}
+
+func (o *CreateFeatureStrategySchema) GetSegments() []float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *CreateFeatureStrategySchema) GetSortOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *CreateFeatureStrategySchema) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *CreateFeatureStrategySchema) GetVariants() []CreateStrategyVariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

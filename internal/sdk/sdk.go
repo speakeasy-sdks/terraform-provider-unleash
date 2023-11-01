@@ -3,6 +3,7 @@
 package sdk
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"terraform/internal/sdk/pkg/models/shared"
@@ -41,7 +42,7 @@ func Float64(f float64) *float64 { return &f }
 type sdkConfiguration struct {
 	DefaultClient     HTTPClient
 	SecurityClient    HTTPClient
-	Security          *shared.Security
+	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
 	Language          string
@@ -49,6 +50,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -59,63 +61,62 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// SDK
 type SDK struct {
-	// APITokens - Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+	// Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
 	APITokens *apiTokens
-	// Addons - Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
+	// Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
 	Addons *addons
-	// AdminUI - Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
+	// Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
 	AdminUI *adminUI
-	// Archive - Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).
+	// Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).
 	Archive *archive
-	// Auth - Manage logins, passwords, etc.
+	// Manage logins, passwords, etc.
 	Auth *auth
-	// Client - Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
+	// Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
 	Client *client
-	// Edge - Endpoints related to Unleash on the Edge.
+	// Endpoints related to Unleash on the Edge.
 	Edge *edge
-	// Environments - Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
+	// Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
 	Environments *environments
-	// Events - Read events from this Unleash instance.
+	// Read events from this Unleash instance.
 	Events *events
-	// Features - Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
+	// Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
 	Features *features
-	// FrontendAPI - API for connecting client-side (frontend) applications to Unleash.
+	// API for connecting client-side (frontend) applications to Unleash.
 	FrontendAPI *frontendAPI
-	// ImportExport - [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
+	// [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
 	ImportExport *importExport
-	// InstanceAdmin - Instance admin endpoints used to manage the Unleash instance itself.
+	// Instance admin endpoints used to manage the Unleash instance itself.
 	InstanceAdmin *instanceAdmin
-	// Maintenance - Enable/disable the maintenance mode of Unleash.
+	// Enable/disable the maintenance mode of Unleash.
 	Maintenance *maintenance
-	// Metrics - Register, read, or delete metrics recorded by Unleash.
+	// Register, read, or delete metrics recorded by Unleash.
 	Metrics *metrics
-	// Operational - Endpoints related to the operational status of this Unleash instance.
+	// Endpoints related to the operational status of this Unleash instance.
 	Operational *operational
-	// PersonalAccessTokens - Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
+	// Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
 	PersonalAccessTokens *personalAccessTokens
-	// Playground - Evaluate an Unleash context against your feature toggles.
+	// Evaluate an Unleash context against your feature toggles.
 	Playground *playground
-	// Projects - Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
+	// Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
 	Projects *projects
-	// PublicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
+	// Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
 	PublicSignupTokens *publicSignupTokens
-	// Segments - Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
+	// Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
 	Segments *segments
-	// ServiceAccounts - Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
+	// Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
 	ServiceAccounts *serviceAccounts
-	// Strategies - Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
+	// Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
 	Strategies *strategies
-	// Tags - Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
+	// Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
 	Tags *tags
-	// Telemetry - API for information about telemetry collection
+	// API for information about telemetry collection
 	Telemetry *telemetry
-	// Unstable - Experimental endpoints that may change or disappear at any time.
+	// Experimental endpoints that may change or disappear at any time.
 	Unstable *unstable
-	// Users - Manage users and passwords.
+	// Manage users and passwords.
 	Users *users
-	// UContext - Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
+	// Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
 	UContext *uContext
 
 	sdkConfiguration sdkConfiguration
@@ -159,10 +160,31 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
+func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
+	return func(context.Context) (interface{}, error) {
+		return &security, nil
+	}
+}
+
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *SDK) {
-		sdk.sdkConfiguration.Security = &security
+		sdk.sdkConfiguration.Security = withSecurity(security)
+	}
+}
+
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *SDK) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *SDK) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
 }
 
@@ -170,11 +192,11 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		sdkConfiguration: sdkConfiguration{
-			Language:          "terraform",
+			Language:          "go",
 			OpenAPIDocVersion: "5.3.3",
-			SDKVersion:        "0.8.2",
-			GenVersion:        "2.151.2",
-			UserAgent:         "speakeasy-sdk/terraform 0.8.2 2.151.2 5.3.3 terraform",
+			SDKVersion:        "0.9.0",
+			GenVersion:        "2.173.0",
+			UserAgent:         "speakeasy-sdk/go 0.9.0 2.173.0 5.3.3 terraform",
 		},
 	}
 	for _, opt := range opts {

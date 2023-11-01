@@ -10,12 +10,40 @@ type VersionSchemaCurrent struct {
 	Oss *string `json:"oss,omitempty"`
 }
 
+func (o *VersionSchemaCurrent) GetEnterprise() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Enterprise
+}
+
+func (o *VersionSchemaCurrent) GetOss() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Oss
+}
+
 // VersionSchemaLatest - Information about the latest available Unleash releases. Will be an empty object if no data is available.
 type VersionSchemaLatest struct {
 	// The latest available Enterprise version of Unleash
 	Enterprise *string `json:"enterprise,omitempty"`
 	// The latest available OSS version of Unleash
 	Oss *string `json:"oss,omitempty"`
+}
+
+func (o *VersionSchemaLatest) GetEnterprise() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Enterprise
+}
+
+func (o *VersionSchemaLatest) GetOss() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Oss
 }
 
 // VersionSchema - Detailed information about an Unleash version
@@ -28,4 +56,32 @@ type VersionSchema struct {
 	IsLatest bool `json:"isLatest"`
 	// Information about the latest available Unleash releases. Will be an empty object if no data is available.
 	Latest VersionSchemaLatest `json:"latest"`
+}
+
+func (o *VersionSchema) GetCurrent() VersionSchemaCurrent {
+	if o == nil {
+		return VersionSchemaCurrent{}
+	}
+	return o.Current
+}
+
+func (o *VersionSchema) GetInstanceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InstanceID
+}
+
+func (o *VersionSchema) GetIsLatest() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsLatest
+}
+
+func (o *VersionSchema) GetLatest() VersionSchemaLatest {
+	if o == nil {
+		return VersionSchemaLatest{}
+	}
+	return o.Latest
 }

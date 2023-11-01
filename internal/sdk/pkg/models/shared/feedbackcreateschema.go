@@ -9,3 +9,17 @@ type FeedbackCreateSchema struct {
 	// `true` if the user has asked never to see this feedback questionnaire again. Defaults to `false`.
 	NeverShow *bool `json:"neverShow,omitempty"`
 }
+
+func (o *FeedbackCreateSchema) GetFeedbackID() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeedbackID
+}
+
+func (o *FeedbackCreateSchema) GetNeverShow() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.NeverShow
+}

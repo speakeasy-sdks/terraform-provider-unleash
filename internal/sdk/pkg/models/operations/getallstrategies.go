@@ -17,6 +17,27 @@ type GetAllStrategies401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAllStrategies401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllStrategies401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllStrategies401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetAllStrategiesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetAllStrategiesResponse struct {
 	GetAllStrategies401ApplicationJSONObject *GetAllStrategies401ApplicationJSON
 	// strategiesSchema
 	StrategiesSchema *shared.StrategiesSchema
+}
+
+func (o *GetAllStrategiesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllStrategiesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllStrategiesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllStrategiesResponse) GetGetAllStrategies401ApplicationJSONObject() *GetAllStrategies401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllStrategies401ApplicationJSONObject
+}
+
+func (o *GetAllStrategiesResponse) GetStrategiesSchema() *shared.StrategiesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.StrategiesSchema
 }

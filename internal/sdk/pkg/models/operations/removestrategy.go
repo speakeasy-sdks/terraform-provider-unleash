@@ -10,6 +10,13 @@ type RemoveStrategyRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+func (o *RemoveStrategyRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
 // RemoveStrategy404ApplicationJSON - The requested resource was not found.
 type RemoveStrategy404ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type RemoveStrategy404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveStrategy404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveStrategy404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveStrategy404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // RemoveStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -30,6 +58,27 @@ type RemoveStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RemoveStrategy403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveStrategy403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveStrategy403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RemoveStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RemoveStrategy401ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type RemoveStrategy401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveStrategy401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveStrategy401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveStrategy401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RemoveStrategyResponse struct {
@@ -53,4 +123,46 @@ type RemoveStrategyResponse struct {
 	RemoveStrategy403ApplicationJSONObject *RemoveStrategy403ApplicationJSON
 	// The requested resource was not found.
 	RemoveStrategy404ApplicationJSONObject *RemoveStrategy404ApplicationJSON
+}
+
+func (o *RemoveStrategyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RemoveStrategyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RemoveStrategyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RemoveStrategyResponse) GetRemoveStrategy401ApplicationJSONObject() *RemoveStrategy401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveStrategy401ApplicationJSONObject
+}
+
+func (o *RemoveStrategyResponse) GetRemoveStrategy403ApplicationJSONObject() *RemoveStrategy403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveStrategy403ApplicationJSONObject
+}
+
+func (o *RemoveStrategyResponse) GetRemoveStrategy404ApplicationJSONObject() *RemoveStrategy404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveStrategy404ApplicationJSONObject
 }

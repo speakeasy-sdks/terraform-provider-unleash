@@ -11,6 +11,13 @@ type GetRoleByIDRequest struct {
 	RoleID string `pathParam:"style=simple,explode=false,name=roleId"`
 }
 
+func (o *GetRoleByIDRequest) GetRoleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RoleID
+}
+
 type GetRoleByIDResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetRoleByIDResponse struct {
 	RawResponse *http.Response
 	// roleWithPermissionsSchema
 	RoleWithPermissionsSchema *shared.RoleWithPermissionsSchema
+}
+
+func (o *GetRoleByIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetRoleByIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetRoleByIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetRoleByIDResponse) GetRoleWithPermissionsSchema() *shared.RoleWithPermissionsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RoleWithPermissionsSchema
 }

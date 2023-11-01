@@ -13,3 +13,31 @@ type UpdateFeatureStrategySegmentsSchema struct {
 	// The ID of the strategy to update segments for.
 	StrategyID string `json:"strategyId"`
 }
+
+func (o *UpdateFeatureStrategySegmentsSchema) GetEnvironmentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.EnvironmentID
+}
+
+func (o *UpdateFeatureStrategySegmentsSchema) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *UpdateFeatureStrategySegmentsSchema) GetSegmentIds() []int64 {
+	if o == nil {
+		return []int64{}
+	}
+	return o.SegmentIds
+}
+
+func (o *UpdateFeatureStrategySegmentsSchema) GetStrategyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.StrategyID
+}

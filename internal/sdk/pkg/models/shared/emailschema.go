@@ -7,3 +7,10 @@ type EmailSchema struct {
 	// The email address
 	Email string `json:"email"`
 }
+
+func (o *EmailSchema) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}

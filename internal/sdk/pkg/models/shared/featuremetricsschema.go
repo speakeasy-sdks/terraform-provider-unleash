@@ -11,3 +11,24 @@ type FeatureMetricsSchema struct {
 	// The version of this schema
 	Version int64 `json:"version"`
 }
+
+func (o *FeatureMetricsSchema) GetData() []FeatureEnvironmentMetricsSchema {
+	if o == nil {
+		return []FeatureEnvironmentMetricsSchema{}
+	}
+	return o.Data
+}
+
+func (o *FeatureMetricsSchema) GetMaturity() string {
+	if o == nil {
+		return ""
+	}
+	return o.Maturity
+}
+
+func (o *FeatureMetricsSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -12,11 +13,11 @@ type ServiceAccountSchema struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Deprecated: service accounts don't have emails associated with them
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Email *string `json:"email,omitempty"`
 	// Deprecated: internal use only
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	EmailSent *bool `json:"emailSent,omitempty"`
 	// The service account id
 	ID float64 `json:"id"`
@@ -24,15 +25,15 @@ type ServiceAccountSchema struct {
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// Deprecated: service accounts cannot be invited via an invitation link
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	InviteLink *string `json:"inviteLink,omitempty"`
 	// Deprecated: for internal use only, should not be exposed through the API
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	IsAPI *bool `json:"isAPI,omitempty"`
 	// Deprecated: service accounts cannot log in to Unleash
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	LoginAttempts *float64 `json:"loginAttempts,omitempty"`
 	// The name of the service account
 	Name *string `json:"name,omitempty"`
@@ -40,10 +41,112 @@ type ServiceAccountSchema struct {
 	RootRole *int64 `json:"rootRole,omitempty"`
 	// Deprecated. This property is always `null`. To find out when a service account was last seen, check its `tokens` list and refer to each token's `lastSeen` property instead.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// The list of tokens associated with the service account
 	Tokens []PatSchema `json:"tokens,omitempty"`
 	// The service account username
 	Username *string `json:"username,omitempty"`
+}
+
+func (s ServiceAccountSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ServiceAccountSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ServiceAccountSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *ServiceAccountSchema) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *ServiceAccountSchema) GetEmailSent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EmailSent
+}
+
+func (o *ServiceAccountSchema) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *ServiceAccountSchema) GetImageURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ImageURL
+}
+
+func (o *ServiceAccountSchema) GetInviteLink() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InviteLink
+}
+
+func (o *ServiceAccountSchema) GetIsAPI() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsAPI
+}
+
+func (o *ServiceAccountSchema) GetLoginAttempts() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.LoginAttempts
+}
+
+func (o *ServiceAccountSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ServiceAccountSchema) GetRootRole() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.RootRole
+}
+
+func (o *ServiceAccountSchema) GetSeenAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.SeenAt
+}
+
+func (o *ServiceAccountSchema) GetTokens() []PatSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Tokens
+}
+
+func (o *ServiceAccountSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

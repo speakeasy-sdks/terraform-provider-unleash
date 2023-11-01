@@ -5,3 +5,10 @@ package shared
 type ValidateProjectSchema struct {
 	ID string `json:"id"`
 }
+
+func (o *ValidateProjectSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}

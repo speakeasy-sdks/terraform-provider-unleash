@@ -10,6 +10,13 @@ type DeleteAddonRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *DeleteAddonRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // DeleteAddon404ApplicationJSON - The requested resource was not found.
 type DeleteAddon404ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type DeleteAddon404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteAddon404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteAddon404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteAddon404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // DeleteAddon403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -30,6 +58,27 @@ type DeleteAddon403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteAddon403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteAddon403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteAddon403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteAddon401ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type DeleteAddon401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteAddon401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteAddon401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteAddon401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteAddonResponse struct {
@@ -53,4 +123,46 @@ type DeleteAddonResponse struct {
 	DeleteAddon403ApplicationJSONObject *DeleteAddon403ApplicationJSON
 	// The requested resource was not found.
 	DeleteAddon404ApplicationJSONObject *DeleteAddon404ApplicationJSON
+}
+
+func (o *DeleteAddonResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAddonResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAddonResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteAddonResponse) GetDeleteAddon401ApplicationJSONObject() *DeleteAddon401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteAddon401ApplicationJSONObject
+}
+
+func (o *DeleteAddonResponse) GetDeleteAddon403ApplicationJSONObject() *DeleteAddon403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteAddon403ApplicationJSONObject
+}
+
+func (o *DeleteAddonResponse) GetDeleteAddon404ApplicationJSONObject() *DeleteAddon404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteAddon404ApplicationJSONObject
 }

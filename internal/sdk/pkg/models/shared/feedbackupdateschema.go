@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -14,4 +15,36 @@ type FeedbackUpdateSchema struct {
 	NeverShow *bool `json:"neverShow,omitempty"`
 	// The ID of the user that gave the feedback.
 	UserID *int64 `json:"userId,omitempty"`
+}
+
+func (f FeedbackUpdateSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FeedbackUpdateSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *FeedbackUpdateSchema) GetGiven() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.Given
+}
+
+func (o *FeedbackUpdateSchema) GetNeverShow() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.NeverShow
+}
+
+func (o *FeedbackUpdateSchema) GetUserID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UserID
 }

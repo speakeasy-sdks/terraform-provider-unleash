@@ -17,6 +17,27 @@ type GetServiceAccounts403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetServiceAccounts403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetServiceAccounts403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetServiceAccounts403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetServiceAccounts401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetServiceAccounts401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetServiceAccounts401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetServiceAccounts401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetServiceAccounts401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetServiceAccounts401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetServiceAccountsResponse struct {
@@ -40,4 +82,46 @@ type GetServiceAccountsResponse struct {
 	GetServiceAccounts403ApplicationJSONObject *GetServiceAccounts403ApplicationJSON
 	// serviceAccountsSchema
 	ServiceAccountsSchema *shared.ServiceAccountsSchema
+}
+
+func (o *GetServiceAccountsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetServiceAccountsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetServiceAccountsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetServiceAccountsResponse) GetGetServiceAccounts401ApplicationJSONObject() *GetServiceAccounts401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetServiceAccounts401ApplicationJSONObject
+}
+
+func (o *GetServiceAccountsResponse) GetGetServiceAccounts403ApplicationJSONObject() *GetServiceAccounts403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetServiceAccounts403ApplicationJSONObject
+}
+
+func (o *GetServiceAccountsResponse) GetServiceAccountsSchema() *shared.ServiceAccountsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceAccountsSchema
 }

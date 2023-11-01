@@ -11,6 +11,13 @@ type GetProjectOverviewRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetProjectOverviewRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // GetProjectOverview404ApplicationJSON - The requested resource was not found.
 type GetProjectOverview404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetProjectOverview404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetProjectOverview404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectOverview404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectOverview404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetProjectOverview403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type GetProjectOverview403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetProjectOverview403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectOverview403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectOverview403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetProjectOverview401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetProjectOverview401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type GetProjectOverview401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetProjectOverview401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectOverview401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectOverview401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetProjectOverviewResponse struct {
@@ -56,4 +126,53 @@ type GetProjectOverviewResponse struct {
 	GetProjectOverview404ApplicationJSONObject *GetProjectOverview404ApplicationJSON
 	// projectOverviewSchema
 	ProjectOverviewSchema *shared.ProjectOverviewSchema
+}
+
+func (o *GetProjectOverviewResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProjectOverviewResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProjectOverviewResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProjectOverviewResponse) GetGetProjectOverview401ApplicationJSONObject() *GetProjectOverview401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectOverview401ApplicationJSONObject
+}
+
+func (o *GetProjectOverviewResponse) GetGetProjectOverview403ApplicationJSONObject() *GetProjectOverview403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectOverview403ApplicationJSONObject
+}
+
+func (o *GetProjectOverviewResponse) GetGetProjectOverview404ApplicationJSONObject() *GetProjectOverview404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectOverview404ApplicationJSONObject
+}
+
+func (o *GetProjectOverviewResponse) GetProjectOverviewSchema() *shared.ProjectOverviewSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectOverviewSchema
 }

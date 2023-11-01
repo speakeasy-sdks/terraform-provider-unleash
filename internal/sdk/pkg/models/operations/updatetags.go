@@ -13,6 +13,20 @@ type UpdateTagsRequest struct {
 	UpdateTagsSchema shared.UpdateTagsSchema `request:"mediaType=application/json"`
 }
 
+func (o *UpdateTagsRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *UpdateTagsRequest) GetUpdateTagsSchema() shared.UpdateTagsSchema {
+	if o == nil {
+		return shared.UpdateTagsSchema{}
+	}
+	return o.UpdateTagsSchema
+}
+
 // UpdateTags404ApplicationJSON - The requested resource was not found.
 type UpdateTags404ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type UpdateTags404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateTags404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTags404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTags404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateTags403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -33,6 +68,27 @@ type UpdateTags403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateTags403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTags403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTags403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateTags401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateTags401ApplicationJSON struct {
 	// The ID of the error instance
@@ -43,6 +99,27 @@ type UpdateTags401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateTags401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTags401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTags401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateTags400ApplicationJSON - The request data does not match what we expect.
 type UpdateTags400ApplicationJSON struct {
 	// The ID of the error instance
@@ -51,6 +128,27 @@ type UpdateTags400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateTags400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateTags400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateTags400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateTagsResponse struct {
@@ -71,4 +169,67 @@ type UpdateTagsResponse struct {
 	UpdateTags403ApplicationJSONObject *UpdateTags403ApplicationJSON
 	// The requested resource was not found.
 	UpdateTags404ApplicationJSONObject *UpdateTags404ApplicationJSON
+}
+
+func (o *UpdateTagsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateTagsResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *UpdateTagsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateTagsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateTagsResponse) GetTagsSchema() *shared.TagsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagsSchema
+}
+
+func (o *UpdateTagsResponse) GetUpdateTags400ApplicationJSONObject() *UpdateTags400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTags400ApplicationJSONObject
+}
+
+func (o *UpdateTagsResponse) GetUpdateTags401ApplicationJSONObject() *UpdateTags401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTags401ApplicationJSONObject
+}
+
+func (o *UpdateTagsResponse) GetUpdateTags403ApplicationJSONObject() *UpdateTags403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTags403ApplicationJSONObject
+}
+
+func (o *UpdateTagsResponse) GetUpdateTags404ApplicationJSONObject() *UpdateTags404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateTags404ApplicationJSONObject
 }

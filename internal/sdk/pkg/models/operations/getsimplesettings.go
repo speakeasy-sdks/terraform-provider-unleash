@@ -17,6 +17,27 @@ type GetSimpleSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetSimpleSettings403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSimpleSettings403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSimpleSettings403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetSimpleSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetSimpleSettings401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetSimpleSettings401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetSimpleSettings401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSimpleSettings401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetSimpleSettings401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetSimpleSettingsResponse struct {
@@ -40,4 +82,46 @@ type GetSimpleSettingsResponse struct {
 	GetSimpleSettings403ApplicationJSONObject *GetSimpleSettings403ApplicationJSON
 	// passwordAuthSchema
 	PasswordAuthSchema *shared.PasswordAuthSchema
+}
+
+func (o *GetSimpleSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSimpleSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSimpleSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSimpleSettingsResponse) GetGetSimpleSettings401ApplicationJSONObject() *GetSimpleSettings401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSimpleSettings401ApplicationJSONObject
+}
+
+func (o *GetSimpleSettingsResponse) GetGetSimpleSettings403ApplicationJSONObject() *GetSimpleSettings403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetSimpleSettings403ApplicationJSONObject
+}
+
+func (o *GetSimpleSettingsResponse) GetPasswordAuthSchema() *shared.PasswordAuthSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PasswordAuthSchema
 }

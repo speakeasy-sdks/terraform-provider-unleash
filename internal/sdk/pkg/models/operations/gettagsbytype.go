@@ -11,6 +11,13 @@ type GetTagsByTypeRequest struct {
 	Type string `pathParam:"style=simple,explode=false,name=type"`
 }
 
+func (o *GetTagsByTypeRequest) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
 // GetTagsByType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type GetTagsByType403ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +28,27 @@ type GetTagsByType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetTagsByType403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTagsByType403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTagsByType403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetTagsByType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetTagsByType401ApplicationJSON struct {
 	// The ID of the error instance
@@ -29,6 +57,27 @@ type GetTagsByType401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetTagsByType401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTagsByType401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetTagsByType401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetTagsByTypeResponse struct {
@@ -44,4 +93,46 @@ type GetTagsByTypeResponse struct {
 	GetTagsByType403ApplicationJSONObject *GetTagsByType403ApplicationJSON
 	// tagsSchema
 	TagsSchema *shared.TagsSchema
+}
+
+func (o *GetTagsByTypeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTagsByTypeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTagsByTypeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTagsByTypeResponse) GetGetTagsByType401ApplicationJSONObject() *GetTagsByType401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTagsByType401ApplicationJSONObject
+}
+
+func (o *GetTagsByTypeResponse) GetGetTagsByType403ApplicationJSONObject() *GetTagsByType403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetTagsByType403ApplicationJSONObject
+}
+
+func (o *GetTagsByTypeResponse) GetTagsSchema() *shared.TagsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagsSchema
 }

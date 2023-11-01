@@ -11,6 +11,13 @@ type GetAddonRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *GetAddonRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // GetAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetAddon401ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetAddon401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetAddon401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAddon401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAddon401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetAddonResponse struct {
@@ -32,4 +60,39 @@ type GetAddonResponse struct {
 	AddonSchema *shared.AddonSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	GetAddon401ApplicationJSONObject *GetAddon401ApplicationJSON
+}
+
+func (o *GetAddonResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAddonResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAddonResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAddonResponse) GetAddonSchema() *shared.AddonSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AddonSchema
+}
+
+func (o *GetAddonResponse) GetGetAddon401ApplicationJSONObject() *GetAddon401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAddon401ApplicationJSONObject
 }

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -22,4 +23,64 @@ type SegmentSchema struct {
 	Name *string `json:"name,omitempty"`
 	// The project the segment relates to, if applicable.
 	Project *string `json:"project,omitempty"`
+}
+
+func (s SegmentSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SegmentSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SegmentSchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return []ConstraintSchema{}
+	}
+	return o.Constraints
+}
+
+func (o *SegmentSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *SegmentSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *SegmentSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *SegmentSchema) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *SegmentSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *SegmentSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
 }

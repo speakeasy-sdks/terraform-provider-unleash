@@ -7,3 +7,17 @@ type RoleWithVersionSchema struct {
 	Roles   RoleSchema `json:"roles"`
 	Version float64    `json:"version"`
 }
+
+func (o *RoleWithVersionSchema) GetRoles() RoleSchema {
+	if o == nil {
+		return RoleSchema{}
+	}
+	return o.Roles
+}
+
+func (o *RoleWithVersionSchema) GetVersion() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Version
+}

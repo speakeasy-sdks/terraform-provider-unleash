@@ -49,3 +49,45 @@ type CreateProjectSchema struct {
 	// The project's name.
 	Name string `json:"name"`
 }
+
+func (o *CreateProjectSchema) GetDefaultStickiness() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultStickiness
+}
+
+func (o *CreateProjectSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateProjectSchema) GetFeatureLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureLimit
+}
+
+func (o *CreateProjectSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *CreateProjectSchema) GetMode() *CreateProjectSchemaMode {
+	if o == nil {
+		return nil
+	}
+	return o.Mode
+}
+
+func (o *CreateProjectSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

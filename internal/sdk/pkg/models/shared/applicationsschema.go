@@ -6,3 +6,10 @@ type ApplicationsSchema struct {
 	// Contains a list of applications that have connected via an SDK
 	Applications []ApplicationSchema `json:"applications,omitempty"`
 }
+
+func (o *ApplicationsSchema) GetApplications() []ApplicationSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Applications
+}

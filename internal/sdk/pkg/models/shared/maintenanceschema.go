@@ -5,3 +5,10 @@ package shared
 type MaintenanceSchema struct {
 	Enabled bool `json:"enabled"`
 }
+
+func (o *MaintenanceSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}

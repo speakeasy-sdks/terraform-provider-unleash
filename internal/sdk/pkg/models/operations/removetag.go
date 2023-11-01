@@ -12,6 +12,27 @@ type RemoveTagRequest struct {
 	Value       string `pathParam:"style=simple,explode=false,name=value"`
 }
 
+func (o *RemoveTagRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *RemoveTagRequest) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *RemoveTagRequest) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // RemoveTag404ApplicationJSON - The requested resource was not found.
 type RemoveTag404ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +41,27 @@ type RemoveTag404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveTag404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveTag404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveTag404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // RemoveTag403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -32,6 +74,27 @@ type RemoveTag403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RemoveTag403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveTag403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveTag403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RemoveTag401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RemoveTag401ApplicationJSON struct {
 	// The ID of the error instance
@@ -40,6 +103,27 @@ type RemoveTag401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveTag401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveTag401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveTag401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RemoveTagResponse struct {
@@ -55,4 +139,46 @@ type RemoveTagResponse struct {
 	RemoveTag403ApplicationJSONObject *RemoveTag403ApplicationJSON
 	// The requested resource was not found.
 	RemoveTag404ApplicationJSONObject *RemoveTag404ApplicationJSON
+}
+
+func (o *RemoveTagResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RemoveTagResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RemoveTagResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RemoveTagResponse) GetRemoveTag401ApplicationJSONObject() *RemoveTag401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveTag401ApplicationJSONObject
+}
+
+func (o *RemoveTagResponse) GetRemoveTag403ApplicationJSONObject() *RemoveTag403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveTag403ApplicationJSONObject
+}
+
+func (o *RemoveTagResponse) GetRemoveTag404ApplicationJSONObject() *RemoveTag404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveTag404ApplicationJSONObject
 }

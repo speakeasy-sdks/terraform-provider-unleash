@@ -6,3 +6,17 @@ type UpdateProjectSchema struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
 }
+
+func (o *UpdateProjectSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpdateProjectSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

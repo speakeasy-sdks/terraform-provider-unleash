@@ -14,6 +14,27 @@ type UpdateFeatureRequest struct {
 	UpdateFeatureSchema shared.UpdateFeatureSchema `request:"mediaType=application/json"`
 }
 
+func (o *UpdateFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *UpdateFeatureRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *UpdateFeatureRequest) GetUpdateFeatureSchema() shared.UpdateFeatureSchema {
+	if o == nil {
+		return shared.UpdateFeatureSchema{}
+	}
+	return o.UpdateFeatureSchema
+}
+
 // UpdateFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type UpdateFeature415ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type UpdateFeature415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeature415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeature415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeature415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateFeature404ApplicationJSON - The requested resource was not found.
@@ -34,6 +76,27 @@ type UpdateFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateFeature404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeature404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeature404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type UpdateFeature403ApplicationJSON struct {
 	// The ID of the error instance
@@ -44,6 +107,27 @@ type UpdateFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateFeature403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeature403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeature403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -52,6 +136,27 @@ type UpdateFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateFeatureResponse struct {
@@ -71,4 +176,60 @@ type UpdateFeatureResponse struct {
 	UpdateFeature404ApplicationJSONObject *UpdateFeature404ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateFeature415ApplicationJSONObject *UpdateFeature415ApplicationJSON
+}
+
+func (o *UpdateFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateFeatureResponse) GetFeatureSchema() *shared.FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureSchema
+}
+
+func (o *UpdateFeatureResponse) GetUpdateFeature401ApplicationJSONObject() *UpdateFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeature401ApplicationJSONObject
+}
+
+func (o *UpdateFeatureResponse) GetUpdateFeature403ApplicationJSONObject() *UpdateFeature403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeature403ApplicationJSONObject
+}
+
+func (o *UpdateFeatureResponse) GetUpdateFeature404ApplicationJSONObject() *UpdateFeature404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeature404ApplicationJSONObject
+}
+
+func (o *UpdateFeatureResponse) GetUpdateFeature415ApplicationJSONObject() *UpdateFeature415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeature415ApplicationJSONObject
 }

@@ -11,6 +11,13 @@ type GetEnvironmentRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+func (o *GetEnvironmentRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
 // GetEnvironment404ApplicationJSON - The requested resource was not found.
 type GetEnvironment404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetEnvironment404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetEnvironment404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetEnvironment404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetEnvironment404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetEnvironment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type GetEnvironment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetEnvironment403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetEnvironment403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetEnvironment403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetEnvironment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type GetEnvironment401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetEnvironment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetEnvironment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetEnvironment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetEnvironmentResponse struct {
@@ -56,4 +126,53 @@ type GetEnvironmentResponse struct {
 	GetEnvironment403ApplicationJSONObject *GetEnvironment403ApplicationJSON
 	// The requested resource was not found.
 	GetEnvironment404ApplicationJSONObject *GetEnvironment404ApplicationJSON
+}
+
+func (o *GetEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetEnvironmentResponse) GetEnvironmentSchema() *shared.EnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.EnvironmentSchema
+}
+
+func (o *GetEnvironmentResponse) GetGetEnvironment401ApplicationJSONObject() *GetEnvironment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetEnvironment401ApplicationJSONObject
+}
+
+func (o *GetEnvironmentResponse) GetGetEnvironment403ApplicationJSONObject() *GetEnvironment403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetEnvironment403ApplicationJSONObject
+}
+
+func (o *GetEnvironmentResponse) GetGetEnvironment404ApplicationJSONObject() *GetEnvironment404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetEnvironment404ApplicationJSONObject
 }

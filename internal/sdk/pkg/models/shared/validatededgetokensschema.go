@@ -7,3 +7,10 @@ type ValidatedEdgeTokensSchema struct {
 	// The list of Unleash token objects. Each object contains the token itself and some additional metadata.
 	Tokens []EdgeTokenSchema `json:"tokens"`
 }
+
+func (o *ValidatedEdgeTokensSchema) GetTokens() []EdgeTokenSchema {
+	if o == nil {
+		return []EdgeTokenSchema{}
+	}
+	return o.Tokens
+}

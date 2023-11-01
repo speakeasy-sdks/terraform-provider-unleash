@@ -17,6 +17,27 @@ type GetAdvancedPlayground401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAdvancedPlayground401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAdvancedPlayground401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAdvancedPlayground401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetAdvancedPlayground400ApplicationJSON - The request data does not match what we expect.
 type GetAdvancedPlayground400ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetAdvancedPlayground400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetAdvancedPlayground400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAdvancedPlayground400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAdvancedPlayground400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetAdvancedPlaygroundResponse struct {
@@ -40,4 +82,46 @@ type GetAdvancedPlaygroundResponse struct {
 	GetAdvancedPlayground400ApplicationJSONObject *GetAdvancedPlayground400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	GetAdvancedPlayground401ApplicationJSONObject *GetAdvancedPlayground401ApplicationJSON
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetAdvancedPlaygroundResponseSchema() *shared.AdvancedPlaygroundResponseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdvancedPlaygroundResponseSchema
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetGetAdvancedPlayground400ApplicationJSONObject() *GetAdvancedPlayground400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAdvancedPlayground400ApplicationJSONObject
+}
+
+func (o *GetAdvancedPlaygroundResponse) GetGetAdvancedPlayground401ApplicationJSONObject() *GetAdvancedPlayground401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAdvancedPlayground401ApplicationJSONObject
 }

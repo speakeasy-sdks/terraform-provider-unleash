@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -13,6 +14,20 @@ type NotificationsSchemaCreatedBy struct {
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// The name of the user who triggered the notification
 	Username *string `json:"username,omitempty"`
+}
+
+func (o *NotificationsSchemaCreatedBy) GetImageURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ImageURL
+}
+
+func (o *NotificationsSchemaCreatedBy) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }
 
 // NotificationsSchemaNotificationType - The type of the notification used e.g. for the graphical hints
@@ -57,4 +72,64 @@ type NotificationsSchema struct {
 	NotificationType NotificationsSchemaNotificationType `json:"notificationType"`
 	// The date and time when the notification was read or marked as read, otherwise `null`
 	ReadAt *time.Time `json:"readAt"`
+}
+
+func (n NotificationsSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NotificationsSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *NotificationsSchema) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *NotificationsSchema) GetCreatedBy() NotificationsSchemaCreatedBy {
+	if o == nil {
+		return NotificationsSchemaCreatedBy{}
+	}
+	return o.CreatedBy
+}
+
+func (o *NotificationsSchema) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *NotificationsSchema) GetLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.Link
+}
+
+func (o *NotificationsSchema) GetMessage() string {
+	if o == nil {
+		return ""
+	}
+	return o.Message
+}
+
+func (o *NotificationsSchema) GetNotificationType() NotificationsSchemaNotificationType {
+	if o == nil {
+		return NotificationsSchemaNotificationType("")
+	}
+	return o.NotificationType
+}
+
+func (o *NotificationsSchema) GetReadAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.ReadAt
 }

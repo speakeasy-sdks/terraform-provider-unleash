@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -24,4 +25,78 @@ type AdminSegmentSchema struct {
 	UsedInFeatures *int64 `json:"usedInFeatures,omitempty"`
 	// The number of projects that use this segment
 	UsedInProjects *int64 `json:"usedInProjects,omitempty"`
+}
+
+func (a AdminSegmentSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AdminSegmentSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AdminSegmentSchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return []ConstraintSchema{}
+	}
+	return o.Constraints
+}
+
+func (o *AdminSegmentSchema) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *AdminSegmentSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *AdminSegmentSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *AdminSegmentSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *AdminSegmentSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdminSegmentSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *AdminSegmentSchema) GetUsedInFeatures() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UsedInFeatures
+}
+
+func (o *AdminSegmentSchema) GetUsedInProjects() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.UsedInProjects
 }

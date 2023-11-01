@@ -46,6 +46,20 @@ type VariantSchemaPayload struct {
 	Value string `json:"value"`
 }
 
+func (o *VariantSchemaPayload) GetType() VariantSchemaPayloadType {
+	if o == nil {
+		return VariantSchemaPayloadType("")
+	}
+	return o.Type
+}
+
+func (o *VariantSchemaPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // VariantSchemaWeightType - Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
 type VariantSchemaWeightType string
 
@@ -88,4 +102,46 @@ type VariantSchema struct {
 	Weight float64 `json:"weight"`
 	// Set to fix if this variant must have exactly the weight allocated to it. If the type is variable, the weight will adjust so that the total weight of all variants adds up to 1000
 	WeightType *VariantSchemaWeightType `json:"weightType,omitempty"`
+}
+
+func (o *VariantSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *VariantSchema) GetOverrides() []OverrideSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Overrides
+}
+
+func (o *VariantSchema) GetPayload() *VariantSchemaPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
+}
+
+func (o *VariantSchema) GetStickiness() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Stickiness
+}
+
+func (o *VariantSchema) GetWeight() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Weight
+}
+
+func (o *VariantSchema) GetWeightType() *VariantSchemaWeightType {
+	if o == nil {
+		return nil
+	}
+	return o.WeightType
 }

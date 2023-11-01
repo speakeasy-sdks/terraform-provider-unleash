@@ -17,6 +17,27 @@ type GetMe401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetMe401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetMe401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetMe401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetMeResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetMeResponse struct {
 	GetMe401ApplicationJSONObject *GetMe401ApplicationJSON
 	// meSchema
 	MeSchema *shared.MeSchema
+}
+
+func (o *GetMeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetMeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetMeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetMeResponse) GetGetMe401ApplicationJSONObject() *GetMe401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetMe401ApplicationJSONObject
+}
+
+func (o *GetMeResponse) GetMeSchema() *shared.MeSchema {
+	if o == nil {
+		return nil
+	}
+	return o.MeSchema
 }

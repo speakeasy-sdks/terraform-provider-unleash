@@ -48,6 +48,20 @@ type AddonTypeSchemaAlerts struct {
 	Type AddonTypeSchemaAlertsType `json:"type"`
 }
 
+func (o *AddonTypeSchemaAlerts) GetText() string {
+	if o == nil {
+		return ""
+	}
+	return o.Text
+}
+
+func (o *AddonTypeSchemaAlerts) GetType() AddonTypeSchemaAlertsType {
+	if o == nil {
+		return AddonTypeSchemaAlertsType("")
+	}
+	return o.Type
+}
+
 // AddonTypeSchemaInstallation - The installation configuration for this addon type.
 type AddonTypeSchemaInstallation struct {
 	// The help text of the installation configuration. This will be displayed to the user when installing addons of this type.
@@ -56,6 +70,27 @@ type AddonTypeSchemaInstallation struct {
 	Title *string `json:"title,omitempty"`
 	// A URL to where the addon configuration should redirect to install addons of this type.
 	URL string `json:"url"`
+}
+
+func (o *AddonTypeSchemaInstallation) GetHelpText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HelpText
+}
+
+func (o *AddonTypeSchemaInstallation) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *AddonTypeSchemaInstallation) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
 }
 
 // AddonTypeSchema - An addon provider. Defines a specific addon type and what the end user must configure when creating a new addon of that type.
@@ -80,4 +115,74 @@ type AddonTypeSchema struct {
 	Parameters []AddonParameterSchema `json:"parameters,omitempty"`
 	// A list of [Unleash tag types](https://docs.getunleash.io/reference/tags#tag-types) that this addon uses. These tags will be added to the Unleash instance when an addon of this type is created.
 	TagTypes []TagTypeSchema `json:"tagTypes,omitempty"`
+}
+
+func (o *AddonTypeSchema) GetAlerts() []AddonTypeSchemaAlerts {
+	if o == nil {
+		return nil
+	}
+	return o.Alerts
+}
+
+func (o *AddonTypeSchema) GetDeprecated() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AddonTypeSchema) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *AddonTypeSchema) GetDisplayName() string {
+	if o == nil {
+		return ""
+	}
+	return o.DisplayName
+}
+
+func (o *AddonTypeSchema) GetDocumentationURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.DocumentationURL
+}
+
+func (o *AddonTypeSchema) GetEvents() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Events
+}
+
+func (o *AddonTypeSchema) GetInstallation() *AddonTypeSchemaInstallation {
+	if o == nil {
+		return nil
+	}
+	return o.Installation
+}
+
+func (o *AddonTypeSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AddonTypeSchema) GetParameters() []AddonParameterSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Parameters
+}
+
+func (o *AddonTypeSchema) GetTagTypes() []TagTypeSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TagTypes
 }

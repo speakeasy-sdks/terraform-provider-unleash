@@ -17,3 +17,45 @@ type TokenUserSchema struct {
 	// A token uniquely identifying a user
 	Token string `json:"token"`
 }
+
+func (o *TokenUserSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *TokenUserSchema) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *TokenUserSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *TokenUserSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *TokenUserSchema) GetRole() RoleSchema {
+	if o == nil {
+		return RoleSchema{}
+	}
+	return o.Role
+}
+
+func (o *TokenUserSchema) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}

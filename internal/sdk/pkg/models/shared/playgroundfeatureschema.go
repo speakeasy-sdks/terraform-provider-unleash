@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // PlaygroundFeatureSchemaStrategiesResult2 - The cumulative results of all the feature's strategies. Can be `true`,
@@ -72,21 +72,16 @@ func CreatePlaygroundFeatureSchemaStrategiesResultPlaygroundFeatureSchemaStrateg
 }
 
 func (u *PlaygroundFeatureSchemaStrategiesResult) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	boolean := new(bool)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&boolean); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
 		u.Type = PlaygroundFeatureSchemaStrategiesResultTypeBoolean
 		return nil
 	}
 
 	playgroundFeatureSchemaStrategiesResult2 := new(PlaygroundFeatureSchemaStrategiesResult2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&playgroundFeatureSchemaStrategiesResult2); err == nil {
+	if err := utils.UnmarshalJSON(data, &playgroundFeatureSchemaStrategiesResult2, "", true, true); err == nil {
 		u.PlaygroundFeatureSchemaStrategiesResult2 = playgroundFeatureSchemaStrategiesResult2
 		u.Type = PlaygroundFeatureSchemaStrategiesResultTypePlaygroundFeatureSchemaStrategiesResult2
 		return nil
@@ -97,14 +92,14 @@ func (u *PlaygroundFeatureSchemaStrategiesResult) UnmarshalJSON(data []byte) err
 
 func (u PlaygroundFeatureSchemaStrategiesResult) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
-		return json.Marshal(u.Boolean)
+		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
 	if u.PlaygroundFeatureSchemaStrategiesResult2 != nil {
-		return json.Marshal(u.PlaygroundFeatureSchemaStrategiesResult2)
+		return utils.MarshalJSON(u.PlaygroundFeatureSchemaStrategiesResult2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // PlaygroundFeatureSchemaStrategies - The feature's applicable strategies and cumulative results of the strategies
@@ -119,12 +114,40 @@ type PlaygroundFeatureSchemaStrategies struct {
 	Result PlaygroundFeatureSchemaStrategiesResult `json:"result"`
 }
 
+func (o *PlaygroundFeatureSchemaStrategies) GetData() []PlaygroundStrategySchema {
+	if o == nil {
+		return []PlaygroundStrategySchema{}
+	}
+	return o.Data
+}
+
+func (o *PlaygroundFeatureSchemaStrategies) GetResult() PlaygroundFeatureSchemaStrategiesResult {
+	if o == nil {
+		return PlaygroundFeatureSchemaStrategiesResult{}
+	}
+	return o.Result
+}
+
 // PlaygroundFeatureSchemaVariantPayload - An optional payload attached to the variant.
 type PlaygroundFeatureSchemaVariantPayload struct {
 	// The format of the payload.
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
+}
+
+func (o *PlaygroundFeatureSchemaVariantPayload) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *PlaygroundFeatureSchemaVariantPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
 }
 
 // PlaygroundFeatureSchemaVariant - The feature variant you receive based on the provided context or the _disabled
@@ -139,6 +162,27 @@ type PlaygroundFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
 	Payload *PlaygroundFeatureSchemaVariantPayload `json:"payload,omitempty"`
+}
+
+func (o *PlaygroundFeatureSchemaVariant) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *PlaygroundFeatureSchemaVariant) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PlaygroundFeatureSchemaVariant) GetPayload() *PlaygroundFeatureSchemaVariantPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
 }
 
 // PlaygroundFeatureSchema - A simplified feature toggle model intended for the Unleash playground.
@@ -162,4 +206,53 @@ type PlaygroundFeatureSchema struct {
 	Variant *PlaygroundFeatureSchemaVariant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
+}
+
+func (o *PlaygroundFeatureSchema) GetIsEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsEnabled
+}
+
+func (o *PlaygroundFeatureSchema) GetIsEnabledInCurrentEnvironment() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsEnabledInCurrentEnvironment
+}
+
+func (o *PlaygroundFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PlaygroundFeatureSchema) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *PlaygroundFeatureSchema) GetStrategies() PlaygroundFeatureSchemaStrategies {
+	if o == nil {
+		return PlaygroundFeatureSchemaStrategies{}
+	}
+	return o.Strategies
+}
+
+func (o *PlaygroundFeatureSchema) GetVariant() *PlaygroundFeatureSchemaVariant {
+	if o == nil {
+		return nil
+	}
+	return o.Variant
+}
+
+func (o *PlaygroundFeatureSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return []VariantSchema{}
+	}
+	return o.Variants
 }

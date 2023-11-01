@@ -17,6 +17,27 @@ type CreateGroup409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateGroup409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateGroup409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateGroup409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type CreateGroup403ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type CreateGroup403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateGroup403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateGroup403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateGroup403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // CreateGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -37,6 +79,27 @@ type CreateGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateGroup401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateGroup401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateGroup401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateGroup400ApplicationJSON - The request data does not match what we expect.
 type CreateGroup400ApplicationJSON struct {
 	// The ID of the error instance
@@ -45,6 +108,27 @@ type CreateGroup400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateGroup400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateGroup400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateGroup400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateGroupResponse struct {
@@ -64,4 +148,60 @@ type CreateGroupResponse struct {
 	CreateGroup409ApplicationJSONObject *CreateGroup409ApplicationJSON
 	// groupSchema
 	GroupSchema *shared.GroupSchema
+}
+
+func (o *CreateGroupResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateGroupResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateGroupResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateGroupResponse) GetCreateGroup400ApplicationJSONObject() *CreateGroup400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateGroup400ApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetCreateGroup401ApplicationJSONObject() *CreateGroup401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateGroup401ApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetCreateGroup403ApplicationJSONObject() *CreateGroup403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateGroup403ApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetCreateGroup409ApplicationJSONObject() *CreateGroup409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateGroup409ApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetGroupSchema() *shared.GroupSchema {
+	if o == nil {
+		return nil
+	}
+	return o.GroupSchema
 }

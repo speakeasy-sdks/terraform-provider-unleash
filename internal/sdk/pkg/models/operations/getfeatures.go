@@ -11,6 +11,13 @@ type GetFeaturesRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetFeaturesRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // GetFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type GetFeatures403ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetFeatures403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeatures403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatures403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatures403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -31,6 +59,27 @@ type GetFeatures401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetFeatures401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatures401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatures401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetFeatures400ApplicationJSON - The request data does not match what we expect.
 type GetFeatures400ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type GetFeatures400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeatures400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeatures400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeatures400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetFeaturesResponse struct {
@@ -56,4 +126,53 @@ type GetFeaturesResponse struct {
 	GetFeatures401ApplicationJSONObject *GetFeatures401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	GetFeatures403ApplicationJSONObject *GetFeatures403ApplicationJSON
+}
+
+func (o *GetFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetFeaturesResponse) GetFeaturesSchema() *shared.FeaturesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeaturesSchema
+}
+
+func (o *GetFeaturesResponse) GetGetFeatures400ApplicationJSONObject() *GetFeatures400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatures400ApplicationJSONObject
+}
+
+func (o *GetFeaturesResponse) GetGetFeatures401ApplicationJSONObject() *GetFeatures401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatures401ApplicationJSONObject
+}
+
+func (o *GetFeaturesResponse) GetGetFeatures403ApplicationJSONObject() *GetFeatures403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeatures403ApplicationJSONObject
 }

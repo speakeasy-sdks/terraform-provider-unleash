@@ -17,3 +17,31 @@ type GetAllPublicSignupTokensResponse struct {
 	// publicSignupTokensSchema
 	PublicSignupTokensSchema *shared.PublicSignupTokensSchema
 }
+
+func (o *GetAllPublicSignupTokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllPublicSignupTokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllPublicSignupTokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllPublicSignupTokensResponse) GetPublicSignupTokensSchema() *shared.PublicSignupTokensSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PublicSignupTokensSchema
+}

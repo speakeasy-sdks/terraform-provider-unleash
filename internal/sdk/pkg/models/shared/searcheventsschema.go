@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // SearchEventsSchemaType - Find events by event type (case-sensitive).
@@ -343,9 +344,9 @@ type SearchEventsSchema struct {
 	// Find events by feature toggle name (case-sensitive).
 	Feature *string `json:"feature,omitempty"`
 	// The maximum amount of events to return in the search result
-	Limit *int64 `json:"limit,omitempty"`
+	Limit *int64 `default:"100" json:"limit"`
 	// Which event id to start listing from
-	Offset *int64 `json:"offset,omitempty"`
+	Offset *int64 `default:"0" json:"offset"`
 	// Find events by project ID (case-sensitive).
 	Project *string `json:"project,omitempty"`
 	//                 Find events by a free-text search query.
@@ -356,4 +357,57 @@ type SearchEventsSchema struct {
 	Query *string `json:"query,omitempty"`
 	// Find events by event type (case-sensitive).
 	Type *SearchEventsSchemaType `json:"type,omitempty"`
+}
+
+func (s SearchEventsSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SearchEventsSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SearchEventsSchema) GetFeature() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Feature
+}
+
+func (o *SearchEventsSchema) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *SearchEventsSchema) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
+func (o *SearchEventsSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *SearchEventsSchema) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
+func (o *SearchEventsSchema) GetType() *SearchEventsSchemaType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

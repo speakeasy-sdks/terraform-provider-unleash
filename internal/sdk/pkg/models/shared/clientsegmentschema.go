@@ -11,3 +11,24 @@ type ClientSegmentSchema struct {
 	// The name of the segment.
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *ClientSegmentSchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return []ConstraintSchema{}
+	}
+	return o.Constraints
+}
+
+func (o *ClientSegmentSchema) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *ClientSegmentSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

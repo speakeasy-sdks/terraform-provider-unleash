@@ -17,3 +17,31 @@ type GetPermissionsResponse struct {
 	// adminPermissionsSchema
 	AdminPermissionsSchema *shared.AdminPermissionsSchema
 }
+
+func (o *GetPermissionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPermissionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPermissionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetPermissionsResponse) GetAdminPermissionsSchema() *shared.AdminPermissionsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdminPermissionsSchema
+}

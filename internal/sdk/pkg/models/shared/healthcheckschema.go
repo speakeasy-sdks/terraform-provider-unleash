@@ -40,3 +40,10 @@ type HealthCheckSchema struct {
 	// The state this Unleash instance is in. GOOD if everything is ok, BAD if the instance should be restarted
 	Health HealthCheckSchemaHealth `json:"health"`
 }
+
+func (o *HealthCheckSchema) GetHealth() HealthCheckSchemaHealth {
+	if o == nil {
+		return HealthCheckSchemaHealth("")
+	}
+	return o.Health
+}

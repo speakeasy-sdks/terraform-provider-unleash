@@ -11,3 +11,24 @@ type TagTypeSchema struct {
 	// The name of the tag type.
 	Name string `json:"name"`
 }
+
+func (o *TagTypeSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *TagTypeSchema) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *TagTypeSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

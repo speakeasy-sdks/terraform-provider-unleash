@@ -17,3 +17,31 @@ type GetTelemetrySettingsResponse struct {
 	// telemetrySettingsSchema
 	TelemetrySettingsSchema *shared.TelemetrySettingsSchema
 }
+
+func (o *GetTelemetrySettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTelemetrySettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTelemetrySettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTelemetrySettingsResponse) GetTelemetrySettingsSchema() *shared.TelemetrySettingsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TelemetrySettingsSchema
+}

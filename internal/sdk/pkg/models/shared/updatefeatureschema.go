@@ -15,3 +15,38 @@ type UpdateFeatureSchema struct {
 	// Type of the toggle e.g. experiment, kill-switch, release, operational, permission
 	Type *string `json:"type,omitempty"`
 }
+
+func (o *UpdateFeatureSchema) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
+}
+
+func (o *UpdateFeatureSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpdateFeatureSchema) GetImpressionData() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ImpressionData
+}
+
+func (o *UpdateFeatureSchema) GetStale() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Stale
+}
+
+func (o *UpdateFeatureSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}

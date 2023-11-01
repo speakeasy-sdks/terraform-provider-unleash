@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -80,21 +80,16 @@ func CreateCreateUserResponseSchemaRootRoleCreateUserResponseSchemaRootRole2(cre
 }
 
 func (u *CreateUserResponseSchemaRootRole) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	integer := new(int64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&integer); err == nil {
+	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
 		u.Integer = integer
 		u.Type = CreateUserResponseSchemaRootRoleTypeInteger
 		return nil
 	}
 
 	createUserResponseSchemaRootRole2 := new(CreateUserResponseSchemaRootRole2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&createUserResponseSchemaRootRole2); err == nil {
+	if err := utils.UnmarshalJSON(data, &createUserResponseSchemaRootRole2, "", true, true); err == nil {
 		u.CreateUserResponseSchemaRootRole2 = createUserResponseSchemaRootRole2
 		u.Type = CreateUserResponseSchemaRootRoleTypeCreateUserResponseSchemaRootRole2
 		return nil
@@ -105,14 +100,14 @@ func (u *CreateUserResponseSchemaRootRole) UnmarshalJSON(data []byte) error {
 
 func (u CreateUserResponseSchemaRootRole) MarshalJSON() ([]byte, error) {
 	if u.Integer != nil {
-		return json.Marshal(u.Integer)
+		return utils.MarshalJSON(u.Integer, "", true)
 	}
 
 	if u.CreateUserResponseSchemaRootRole2 != nil {
-		return json.Marshal(u.CreateUserResponseSchemaRootRole2)
+		return utils.MarshalJSON(u.CreateUserResponseSchemaRootRole2, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 // CreateUserResponseSchema - An Unleash user after creation
@@ -133,7 +128,7 @@ type CreateUserResponseSchema struct {
 	InviteLink *string `json:"inviteLink,omitempty"`
 	// (Deprecated): Used internally to know which operations the user should be allowed to perform
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	IsAPI *bool `json:"isAPI,omitempty"`
 	// How many unsuccessful attempts at logging in has the user made
 	LoginAttempts *int64 `json:"loginAttempts,omitempty"`
@@ -147,4 +142,113 @@ type CreateUserResponseSchema struct {
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// A unique username for the user
 	Username *string `json:"username,omitempty"`
+}
+
+func (c CreateUserResponseSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateUserResponseSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CreateUserResponseSchema) GetAccountType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *CreateUserResponseSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *CreateUserResponseSchema) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *CreateUserResponseSchema) GetEmailSent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EmailSent
+}
+
+func (o *CreateUserResponseSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *CreateUserResponseSchema) GetImageURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ImageURL
+}
+
+func (o *CreateUserResponseSchema) GetInviteLink() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InviteLink
+}
+
+func (o *CreateUserResponseSchema) GetIsAPI() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsAPI
+}
+
+func (o *CreateUserResponseSchema) GetLoginAttempts() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LoginAttempts
+}
+
+func (o *CreateUserResponseSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *CreateUserResponseSchema) GetPermissions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
+}
+
+func (o *CreateUserResponseSchema) GetRootRole() *CreateUserResponseSchemaRootRole {
+	if o == nil {
+		return nil
+	}
+	return o.RootRole
+}
+
+func (o *CreateUserResponseSchema) GetSeenAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.SeenAt
+}
+
+func (o *CreateUserResponseSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

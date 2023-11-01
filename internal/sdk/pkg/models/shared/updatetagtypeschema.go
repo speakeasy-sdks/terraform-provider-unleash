@@ -9,3 +9,17 @@ type UpdateTagTypeSchema struct {
 	// The icon of the tag type.
 	Icon *string `json:"icon,omitempty"`
 }
+
+func (o *UpdateTagTypeSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpdateTagTypeSchema) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}

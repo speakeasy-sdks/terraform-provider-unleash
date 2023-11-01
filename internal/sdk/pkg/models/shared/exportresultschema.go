@@ -7,6 +7,20 @@ type ExportResultSchemaSegments struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ExportResultSchemaSegments) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *ExportResultSchemaSegments) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ExportResultSchema - The result of the export operation, providing you with the feature toggle definitions, strategy definitions and the rest of the elements relevant to the features (tags, environments etc.)
 type ExportResultSchema struct {
 	// A list of all the context fields that are in use by any of the strategies in the `featureStrategies` list.
@@ -23,4 +37,53 @@ type ExportResultSchema struct {
 	Segments []ExportResultSchemaSegments `json:"segments,omitempty"`
 	// A list of all of the tag types that are used in the `featureTags` list.
 	TagTypes []TagTypeSchema `json:"tagTypes"`
+}
+
+func (o *ExportResultSchema) GetContextFields() []ContextFieldSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ContextFields
+}
+
+func (o *ExportResultSchema) GetFeatureEnvironments() []FeatureEnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureEnvironments
+}
+
+func (o *ExportResultSchema) GetFeatureStrategies() []FeatureStrategySchema {
+	if o == nil {
+		return []FeatureStrategySchema{}
+	}
+	return o.FeatureStrategies
+}
+
+func (o *ExportResultSchema) GetFeatureTags() []FeatureTagSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureTags
+}
+
+func (o *ExportResultSchema) GetFeatures() []FeatureSchema {
+	if o == nil {
+		return []FeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *ExportResultSchema) GetSegments() []ExportResultSchemaSegments {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *ExportResultSchema) GetTagTypes() []TagTypeSchema {
+	if o == nil {
+		return []TagTypeSchema{}
+	}
+	return o.TagTypes
 }

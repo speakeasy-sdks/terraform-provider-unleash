@@ -17,6 +17,27 @@ type CreateSegment415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateSegment415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSegment415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateSegment415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateSegment409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type CreateSegment409ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type CreateSegment409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateSegment409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSegment409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateSegment409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // CreateSegment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -37,6 +79,27 @@ type CreateSegment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateSegment403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSegment403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateSegment403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateSegment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreateSegment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -47,6 +110,27 @@ type CreateSegment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateSegment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSegment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateSegment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateSegment400ApplicationJSON - The request data does not match what we expect.
 type CreateSegment400ApplicationJSON struct {
 	// The ID of the error instance
@@ -55,6 +139,27 @@ type CreateSegment400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateSegment400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSegment400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateSegment400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateSegmentResponse struct {
@@ -77,4 +182,74 @@ type CreateSegmentResponse struct {
 	CreateSegment409ApplicationJSONObject *CreateSegment409ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	CreateSegment415ApplicationJSONObject *CreateSegment415ApplicationJSON
+}
+
+func (o *CreateSegmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateSegmentResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateSegmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateSegmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateSegmentResponse) GetAdminSegmentSchema() *shared.AdminSegmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdminSegmentSchema
+}
+
+func (o *CreateSegmentResponse) GetCreateSegment400ApplicationJSONObject() *CreateSegment400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSegment400ApplicationJSONObject
+}
+
+func (o *CreateSegmentResponse) GetCreateSegment401ApplicationJSONObject() *CreateSegment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSegment401ApplicationJSONObject
+}
+
+func (o *CreateSegmentResponse) GetCreateSegment403ApplicationJSONObject() *CreateSegment403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSegment403ApplicationJSONObject
+}
+
+func (o *CreateSegmentResponse) GetCreateSegment409ApplicationJSONObject() *CreateSegment409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSegment409ApplicationJSONObject
+}
+
+func (o *CreateSegmentResponse) GetCreateSegment415ApplicationJSONObject() *CreateSegment415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateSegment415ApplicationJSONObject
 }

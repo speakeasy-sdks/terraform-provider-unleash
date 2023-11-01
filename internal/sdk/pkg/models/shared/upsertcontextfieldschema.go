@@ -9,3 +9,38 @@ type UpsertContextFieldSchema struct {
 	SortOrder   *float64           `json:"sortOrder,omitempty"`
 	Stickiness  *bool              `json:"stickiness,omitempty"`
 }
+
+func (o *UpsertContextFieldSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpsertContextFieldSchema) GetLegalValues() []LegalValueSchema {
+	if o == nil {
+		return nil
+	}
+	return o.LegalValues
+}
+
+func (o *UpsertContextFieldSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpsertContextFieldSchema) GetSortOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *UpsertContextFieldSchema) GetStickiness() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Stickiness
+}

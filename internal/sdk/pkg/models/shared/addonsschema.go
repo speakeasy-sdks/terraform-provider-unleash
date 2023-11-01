@@ -11,3 +11,17 @@ type AddonsSchema struct {
 	// A list of  all available addon providers, along with their parameters and descriptions.
 	Providers []AddonTypeSchema `json:"providers"`
 }
+
+func (o *AddonsSchema) GetAddons() []AddonSchema {
+	if o == nil {
+		return []AddonSchema{}
+	}
+	return o.Addons
+}
+
+func (o *AddonsSchema) GetProviders() []AddonTypeSchema {
+	if o == nil {
+		return []AddonTypeSchema{}
+	}
+	return o.Providers
+}

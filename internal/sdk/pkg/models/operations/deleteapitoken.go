@@ -10,6 +10,13 @@ type DeleteAPITokenRequest struct {
 	Token string `pathParam:"style=simple,explode=false,name=token"`
 }
 
+func (o *DeleteAPITokenRequest) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
 // DeleteAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type DeleteAPIToken403ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type DeleteAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteAPIToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteAPIToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteAPIToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteAPIToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -28,6 +56,27 @@ type DeleteAPIToken401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteAPIToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteAPIToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteAPIToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteAPITokenResponse struct {
@@ -41,4 +90,39 @@ type DeleteAPITokenResponse struct {
 	DeleteAPIToken401ApplicationJSONObject *DeleteAPIToken401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	DeleteAPIToken403ApplicationJSONObject *DeleteAPIToken403ApplicationJSON
+}
+
+func (o *DeleteAPITokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPITokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPITokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteAPITokenResponse) GetDeleteAPIToken401ApplicationJSONObject() *DeleteAPIToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteAPIToken401ApplicationJSONObject
+}
+
+func (o *DeleteAPITokenResponse) GetDeleteAPIToken403ApplicationJSONObject() *DeleteAPIToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteAPIToken403ApplicationJSONObject
 }

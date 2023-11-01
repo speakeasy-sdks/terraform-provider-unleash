@@ -46,6 +46,20 @@ type ProxyFeatureSchemaVariantPayload struct {
 	Value string `json:"value"`
 }
 
+func (o *ProxyFeatureSchemaVariantPayload) GetType() ProxyFeatureSchemaVariantPayloadType {
+	if o == nil {
+		return ProxyFeatureSchemaVariantPayloadType("")
+	}
+	return o.Type
+}
+
+func (o *ProxyFeatureSchemaVariantPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // ProxyFeatureSchemaVariant - Variant details
 type ProxyFeatureSchemaVariant struct {
 	// Whether the variant is enabled or not.
@@ -54,6 +68,27 @@ type ProxyFeatureSchemaVariant struct {
 	Name string `json:"name"`
 	// Extra data configured for this variant
 	Payload *ProxyFeatureSchemaVariantPayload `json:"payload,omitempty"`
+}
+
+func (o *ProxyFeatureSchemaVariant) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *ProxyFeatureSchemaVariant) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ProxyFeatureSchemaVariant) GetPayload() *ProxyFeatureSchemaVariantPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
 }
 
 // ProxyFeatureSchema - Frontend API feature
@@ -66,4 +101,32 @@ type ProxyFeatureSchema struct {
 	Name string `json:"name"`
 	// Variant details
 	Variant *ProxyFeatureSchemaVariant `json:"variant,omitempty"`
+}
+
+func (o *ProxyFeatureSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *ProxyFeatureSchema) GetImpressionData() bool {
+	if o == nil {
+		return false
+	}
+	return o.ImpressionData
+}
+
+func (o *ProxyFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ProxyFeatureSchema) GetVariant() *ProxyFeatureSchemaVariant {
+	if o == nil {
+		return nil
+	}
+	return o.Variant
 }

@@ -11,6 +11,13 @@ type GetStrategiesBySegmentIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *GetStrategiesBySegmentIDRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 type GetStrategiesBySegmentIDResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetStrategiesBySegmentIDResponse struct {
 	RawResponse *http.Response
 	// adminStrategiesSchema
 	AdminStrategiesSchema *shared.AdminStrategiesSchema
+}
+
+func (o *GetStrategiesBySegmentIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetStrategiesBySegmentIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetStrategiesBySegmentIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetStrategiesBySegmentIDResponse) GetAdminStrategiesSchema() *shared.AdminStrategiesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AdminStrategiesSchema
 }

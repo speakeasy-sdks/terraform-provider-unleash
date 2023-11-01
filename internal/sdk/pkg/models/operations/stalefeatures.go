@@ -13,6 +13,20 @@ type StaleFeaturesRequest struct {
 	ProjectID        string                  `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *StaleFeaturesRequest) GetBatchStaleSchema() shared.BatchStaleSchema {
+	if o == nil {
+		return shared.BatchStaleSchema{}
+	}
+	return o.BatchStaleSchema
+}
+
+func (o *StaleFeaturesRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // StaleFeatures415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type StaleFeatures415ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type StaleFeatures415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *StaleFeatures415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *StaleFeatures415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *StaleFeatures415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // StaleFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -33,6 +68,27 @@ type StaleFeatures403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *StaleFeatures403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *StaleFeatures403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *StaleFeatures403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // StaleFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type StaleFeatures401ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +97,27 @@ type StaleFeatures401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *StaleFeatures401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *StaleFeatures401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *StaleFeatures401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type StaleFeaturesResponse struct {
@@ -56,4 +133,46 @@ type StaleFeaturesResponse struct {
 	StaleFeatures403ApplicationJSONObject *StaleFeatures403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	StaleFeatures415ApplicationJSONObject *StaleFeatures415ApplicationJSON
+}
+
+func (o *StaleFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *StaleFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *StaleFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *StaleFeaturesResponse) GetStaleFeatures401ApplicationJSONObject() *StaleFeatures401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.StaleFeatures401ApplicationJSONObject
+}
+
+func (o *StaleFeaturesResponse) GetStaleFeatures403ApplicationJSONObject() *StaleFeatures403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.StaleFeatures403ApplicationJSONObject
+}
+
+func (o *StaleFeaturesResponse) GetStaleFeatures415ApplicationJSONObject() *StaleFeatures415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.StaleFeatures415ApplicationJSONObject
 }

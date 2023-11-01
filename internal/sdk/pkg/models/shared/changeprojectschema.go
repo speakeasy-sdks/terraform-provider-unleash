@@ -7,3 +7,10 @@ type ChangeProjectSchema struct {
 	// The project to move the feature toggle to.
 	NewProjectID string `json:"newProjectId"`
 }
+
+func (o *ChangeProjectSchema) GetNewProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.NewProjectID
+}

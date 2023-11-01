@@ -10,6 +10,13 @@ type ReviveFeatureRequest struct {
 	FeatureName string `pathParam:"style=simple,explode=false,name=featureName"`
 }
 
+func (o *ReviveFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
 // ReviveFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type ReviveFeature403ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type ReviveFeature403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ReviveFeature403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ReviveFeature403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ReviveFeature403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ReviveFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -30,6 +58,27 @@ type ReviveFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ReviveFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ReviveFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ReviveFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ReviveFeature400ApplicationJSON - The request data does not match what we expect.
 type ReviveFeature400ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type ReviveFeature400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ReviveFeature400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ReviveFeature400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ReviveFeature400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ReviveFeatureResponse struct {
@@ -53,4 +123,46 @@ type ReviveFeatureResponse struct {
 	ReviveFeature401ApplicationJSONObject *ReviveFeature401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	ReviveFeature403ApplicationJSONObject *ReviveFeature403ApplicationJSON
+}
+
+func (o *ReviveFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ReviveFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ReviveFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ReviveFeatureResponse) GetReviveFeature400ApplicationJSONObject() *ReviveFeature400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ReviveFeature400ApplicationJSONObject
+}
+
+func (o *ReviveFeatureResponse) GetReviveFeature401ApplicationJSONObject() *ReviveFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ReviveFeature401ApplicationJSONObject
+}
+
+func (o *ReviveFeatureResponse) GetReviveFeature403ApplicationJSONObject() *ReviveFeature403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ReviveFeature403ApplicationJSONObject
 }

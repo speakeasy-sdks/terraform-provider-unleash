@@ -9,3 +9,17 @@ type UpdateTagsSchema struct {
 	// Tags to remove from the feature.
 	RemovedTags []TagSchema `json:"removedTags"`
 }
+
+func (o *UpdateTagsSchema) GetAddedTags() []TagSchema {
+	if o == nil {
+		return []TagSchema{}
+	}
+	return o.AddedTags
+}
+
+func (o *UpdateTagsSchema) GetRemovedTags() []TagSchema {
+	if o == nil {
+		return []TagSchema{}
+	}
+	return o.RemovedTags
+}

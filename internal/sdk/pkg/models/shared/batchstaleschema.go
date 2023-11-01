@@ -9,3 +9,17 @@ type BatchStaleSchema struct {
 	// Whether the list of features should be marked as stale or not stale. If `true`, the features will be marked as stale. If `false`, the features will be marked as not stale.
 	Stale bool `json:"stale"`
 }
+
+func (o *BatchStaleSchema) GetFeatures() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Features
+}
+
+func (o *BatchStaleSchema) GetStale() bool {
+	if o == nil {
+		return false
+	}
+	return o.Stale
+}

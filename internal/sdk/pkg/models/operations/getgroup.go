@@ -11,6 +11,13 @@ type GetGroupRequest struct {
 	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
 }
 
+func (o *GetGroupRequest) GetGroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GroupID
+}
+
 // GetGroup404ApplicationJSON - The requested resource was not found.
 type GetGroup404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetGroup404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetGroup404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroup404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroup404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type GetGroup403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetGroup403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroup403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroup403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetGroup401ApplicationJSON struct {
 	// The ID of the error instance
@@ -41,6 +90,27 @@ type GetGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetGroup401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroup401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroup401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetGroup400ApplicationJSON - The request data does not match what we expect.
 type GetGroup400ApplicationJSON struct {
 	// The ID of the error instance
@@ -49,6 +119,27 @@ type GetGroup400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetGroup400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroup400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroup400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetGroupResponse struct {
@@ -68,4 +159,60 @@ type GetGroupResponse struct {
 	GetGroup404ApplicationJSONObject *GetGroup404ApplicationJSON
 	// groupSchema
 	GroupSchema *shared.GroupSchema
+}
+
+func (o *GetGroupResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetGroupResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetGroupResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetGroupResponse) GetGetGroup400ApplicationJSONObject() *GetGroup400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroup400ApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetGetGroup401ApplicationJSONObject() *GetGroup401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroup401ApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetGetGroup403ApplicationJSONObject() *GetGroup403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroup403ApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetGetGroup404ApplicationJSONObject() *GetGroup404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroup404ApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetGroupSchema() *shared.GroupSchema {
+	if o == nil {
+		return nil
+	}
+	return o.GroupSchema
 }

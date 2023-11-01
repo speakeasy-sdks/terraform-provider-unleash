@@ -17,6 +17,27 @@ type ExportFeatures404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ExportFeatures404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ExportFeatures404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ExportFeatures404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type ExportFeaturesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type ExportFeaturesResponse struct {
 	ExportFeatures404ApplicationJSONObject *ExportFeatures404ApplicationJSON
 	// exportResultSchema
 	ExportResultSchema *shared.ExportResultSchema
+}
+
+func (o *ExportFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ExportFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ExportFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ExportFeaturesResponse) GetExportFeatures404ApplicationJSONObject() *ExportFeatures404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ExportFeatures404ApplicationJSONObject
+}
+
+func (o *ExportFeaturesResponse) GetExportResultSchema() *shared.ExportResultSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ExportResultSchema
 }

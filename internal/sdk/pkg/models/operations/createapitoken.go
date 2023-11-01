@@ -17,6 +17,27 @@ type CreateAPIToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateAPIToken415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateAPIToken415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateAPIToken415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type CreateAPIToken403ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type CreateAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateAPIToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateAPIToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateAPIToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreateAPIToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type CreateAPIToken401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateAPIToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateAPIToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateAPIToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateAPITokenResponse struct {
@@ -53,4 +116,60 @@ type CreateAPITokenResponse struct {
 	CreateAPIToken403ApplicationJSONObject *CreateAPIToken403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	CreateAPIToken415ApplicationJSONObject *CreateAPIToken415ApplicationJSON
+}
+
+func (o *CreateAPITokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateAPITokenResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateAPITokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateAPITokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateAPITokenResponse) GetAPITokenSchema() *shared.APITokenSchema {
+	if o == nil {
+		return nil
+	}
+	return o.APITokenSchema
+}
+
+func (o *CreateAPITokenResponse) GetCreateAPIToken401ApplicationJSONObject() *CreateAPIToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateAPIToken401ApplicationJSONObject
+}
+
+func (o *CreateAPITokenResponse) GetCreateAPIToken403ApplicationJSONObject() *CreateAPIToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateAPIToken403ApplicationJSONObject
+}
+
+func (o *CreateAPITokenResponse) GetCreateAPIToken415ApplicationJSONObject() *CreateAPIToken415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateAPIToken415ApplicationJSONObject
 }

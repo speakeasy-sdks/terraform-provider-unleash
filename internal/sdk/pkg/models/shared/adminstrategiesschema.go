@@ -15,8 +15,50 @@ type AdminStrategiesSchemaStrategies struct {
 	StrategyName string `json:"strategyName"`
 }
 
+func (o *AdminStrategiesSchemaStrategies) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *AdminStrategiesSchemaStrategies) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *AdminStrategiesSchemaStrategies) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *AdminStrategiesSchemaStrategies) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *AdminStrategiesSchemaStrategies) GetStrategyName() string {
+	if o == nil {
+		return ""
+	}
+	return o.StrategyName
+}
+
 // AdminStrategiesSchema - A collection of strategies belonging to a specified segment.
 type AdminStrategiesSchema struct {
 	// The list of strategies
 	Strategies []AdminStrategiesSchemaStrategies `json:"strategies"`
+}
+
+func (o *AdminStrategiesSchema) GetStrategies() []AdminStrategiesSchemaStrategies {
+	if o == nil {
+		return []AdminStrategiesSchemaStrategies{}
+	}
+	return o.Strategies
 }

@@ -17,6 +17,27 @@ type GetBaseUsersAndGroups401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetBaseUsersAndGroups401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetBaseUsersAndGroups401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetBaseUsersAndGroups401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetBaseUsersAndGroupsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetBaseUsersAndGroupsResponse struct {
 	GetBaseUsersAndGroups401ApplicationJSONObject *GetBaseUsersAndGroups401ApplicationJSON
 	// usersGroupsBaseSchema
 	UsersGroupsBaseSchema *shared.UsersGroupsBaseSchema
+}
+
+func (o *GetBaseUsersAndGroupsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBaseUsersAndGroupsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBaseUsersAndGroupsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetBaseUsersAndGroupsResponse) GetGetBaseUsersAndGroups401ApplicationJSONObject() *GetBaseUsersAndGroups401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetBaseUsersAndGroups401ApplicationJSONObject
+}
+
+func (o *GetBaseUsersAndGroupsResponse) GetUsersGroupsBaseSchema() *shared.UsersGroupsBaseSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UsersGroupsBaseSchema
 }

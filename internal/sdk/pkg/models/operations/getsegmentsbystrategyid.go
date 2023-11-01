@@ -11,6 +11,13 @@ type GetSegmentsByStrategyIDRequest struct {
 	StrategyID string `pathParam:"style=simple,explode=false,name=strategyId"`
 }
 
+func (o *GetSegmentsByStrategyIDRequest) GetStrategyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.StrategyID
+}
+
 type GetSegmentsByStrategyIDResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetSegmentsByStrategyIDResponse struct {
 	RawResponse *http.Response
 	// segmentsSchema
 	SegmentsSchema *shared.SegmentsSchema
+}
+
+func (o *GetSegmentsByStrategyIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSegmentsByStrategyIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSegmentsByStrategyIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSegmentsByStrategyIDResponse) GetSegmentsSchema() *shared.SegmentsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.SegmentsSchema
 }

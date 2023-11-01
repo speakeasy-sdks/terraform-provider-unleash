@@ -17,6 +17,27 @@ type ValidateToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateToken415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateToken415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateToken415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ValidateToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type ValidateToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type ValidateToken401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidateToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ValidateTokenResponse struct {
@@ -40,4 +82,46 @@ type ValidateTokenResponse struct {
 	ValidateToken401ApplicationJSONObject *ValidateToken401ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	ValidateToken415ApplicationJSONObject *ValidateToken415ApplicationJSON
+}
+
+func (o *ValidateTokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidateTokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidateTokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidateTokenResponse) GetTokenUserSchema() *shared.TokenUserSchema {
+	if o == nil {
+		return nil
+	}
+	return o.TokenUserSchema
+}
+
+func (o *ValidateTokenResponse) GetValidateToken401ApplicationJSONObject() *ValidateToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateToken401ApplicationJSONObject
+}
+
+func (o *ValidateTokenResponse) GetValidateToken415ApplicationJSONObject() *ValidateToken415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateToken415ApplicationJSONObject
 }

@@ -12,3 +12,31 @@ type PlaygroundSegmentSchema struct {
 	// Whether this was evaluated as true or false.
 	Result bool `json:"result"`
 }
+
+func (o *PlaygroundSegmentSchema) GetConstraints() []PlaygroundConstraintSchema {
+	if o == nil {
+		return []PlaygroundConstraintSchema{}
+	}
+	return o.Constraints
+}
+
+func (o *PlaygroundSegmentSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *PlaygroundSegmentSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PlaygroundSegmentSchema) GetResult() bool {
+	if o == nil {
+		return false
+	}
+	return o.Result
+}

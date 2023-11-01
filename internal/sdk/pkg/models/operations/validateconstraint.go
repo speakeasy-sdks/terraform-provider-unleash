@@ -16,6 +16,27 @@ type ValidateConstraint415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateConstraint415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateConstraint415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateConstraint415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ValidateConstraint403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type ValidateConstraint403ApplicationJSON struct {
 	// The ID of the error instance
@@ -24,6 +45,27 @@ type ValidateConstraint403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidateConstraint403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateConstraint403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateConstraint403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ValidateConstraint401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -36,6 +78,27 @@ type ValidateConstraint401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateConstraint401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateConstraint401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateConstraint401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ValidateConstraint400ApplicationJSON - The request data does not match what we expect.
 type ValidateConstraint400ApplicationJSON struct {
 	// The ID of the error instance
@@ -44,6 +107,27 @@ type ValidateConstraint400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidateConstraint400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateConstraint400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateConstraint400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ValidateConstraintResponse struct {
@@ -61,4 +145,53 @@ type ValidateConstraintResponse struct {
 	ValidateConstraint403ApplicationJSONObject *ValidateConstraint403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	ValidateConstraint415ApplicationJSONObject *ValidateConstraint415ApplicationJSON
+}
+
+func (o *ValidateConstraintResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidateConstraintResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidateConstraintResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidateConstraintResponse) GetValidateConstraint400ApplicationJSONObject() *ValidateConstraint400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateConstraint400ApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetValidateConstraint401ApplicationJSONObject() *ValidateConstraint401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateConstraint401ApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetValidateConstraint403ApplicationJSONObject() *ValidateConstraint403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateConstraint403ApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetValidateConstraint415ApplicationJSONObject() *ValidateConstraint415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateConstraint415ApplicationJSONObject
 }

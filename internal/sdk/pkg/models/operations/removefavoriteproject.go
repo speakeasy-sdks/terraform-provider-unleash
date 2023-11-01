@@ -10,6 +10,13 @@ type RemoveFavoriteProjectRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *RemoveFavoriteProjectRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // RemoveFavoriteProject404ApplicationJSON - The requested resource was not found.
 type RemoveFavoriteProject404ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +27,27 @@ type RemoveFavoriteProject404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RemoveFavoriteProject404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveFavoriteProject404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveFavoriteProject404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RemoveFavoriteProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RemoveFavoriteProject401ApplicationJSON struct {
 	// The ID of the error instance
@@ -28,6 +56,27 @@ type RemoveFavoriteProject401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveFavoriteProject401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveFavoriteProject401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveFavoriteProject401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RemoveFavoriteProjectResponse struct {
@@ -41,4 +90,39 @@ type RemoveFavoriteProjectResponse struct {
 	RemoveFavoriteProject401ApplicationJSONObject *RemoveFavoriteProject401ApplicationJSON
 	// The requested resource was not found.
 	RemoveFavoriteProject404ApplicationJSONObject *RemoveFavoriteProject404ApplicationJSON
+}
+
+func (o *RemoveFavoriteProjectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RemoveFavoriteProjectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RemoveFavoriteProjectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RemoveFavoriteProjectResponse) GetRemoveFavoriteProject401ApplicationJSONObject() *RemoveFavoriteProject401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveFavoriteProject401ApplicationJSONObject
+}
+
+func (o *RemoveFavoriteProjectResponse) GetRemoveFavoriteProject404ApplicationJSONObject() *RemoveFavoriteProject404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveFavoriteProject404ApplicationJSONObject
 }

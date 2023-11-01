@@ -11,6 +11,13 @@ type GetProjectUsersRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetProjectUsersRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 type GetProjectUsersResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetProjectUsersResponse struct {
 	RawResponse *http.Response
 	// projectUsersSchema
 	ProjectUsersSchema *shared.ProjectUsersSchema
+}
+
+func (o *GetProjectUsersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProjectUsersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProjectUsersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProjectUsersResponse) GetProjectUsersSchema() *shared.ProjectUsersSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectUsersSchema
 }

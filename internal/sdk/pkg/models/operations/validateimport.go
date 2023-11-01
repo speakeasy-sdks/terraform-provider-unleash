@@ -17,6 +17,27 @@ type ValidateImport404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateImport404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateImport404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateImport404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type ValidateImportResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type ValidateImportResponse struct {
 	ImportTogglesValidateSchema *shared.ImportTogglesValidateSchema
 	// The requested resource was not found.
 	ValidateImport404ApplicationJSONObject *ValidateImport404ApplicationJSON
+}
+
+func (o *ValidateImportResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidateImportResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidateImportResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidateImportResponse) GetImportTogglesValidateSchema() *shared.ImportTogglesValidateSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ImportTogglesValidateSchema
+}
+
+func (o *ValidateImportResponse) GetValidateImport404ApplicationJSONObject() *ValidateImport404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateImport404ApplicationJSONObject
 }

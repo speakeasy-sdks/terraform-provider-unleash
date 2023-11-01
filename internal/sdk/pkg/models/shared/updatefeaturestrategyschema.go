@@ -17,3 +17,45 @@ type UpdateFeatureStrategySchema struct {
 	// A descriptive title for the strategy
 	Title *string `json:"title,omitempty"`
 }
+
+func (o *UpdateFeatureStrategySchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *UpdateFeatureStrategySchema) GetDisabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Disabled
+}
+
+func (o *UpdateFeatureStrategySchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *UpdateFeatureStrategySchema) GetParameters() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Parameters
+}
+
+func (o *UpdateFeatureStrategySchema) GetSortOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *UpdateFeatureStrategySchema) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}

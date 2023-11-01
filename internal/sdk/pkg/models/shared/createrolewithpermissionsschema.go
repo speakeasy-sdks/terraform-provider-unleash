@@ -12,6 +12,20 @@ type CreateRoleWithPermissionsSchemaPermissions struct {
 	ID          float64 `json:"id"`
 }
 
+func (o *CreateRoleWithPermissionsSchemaPermissions) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *CreateRoleWithPermissionsSchemaPermissions) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
 type CreateRoleWithPermissionsSchemaType string
 
 const (
@@ -44,4 +58,32 @@ type CreateRoleWithPermissionsSchema struct {
 	Name        string                                       `json:"name"`
 	Permissions []CreateRoleWithPermissionsSchemaPermissions `json:"permissions,omitempty"`
 	Type        *CreateRoleWithPermissionsSchemaType         `json:"type,omitempty"`
+}
+
+func (o *CreateRoleWithPermissionsSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CreateRoleWithPermissionsSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateRoleWithPermissionsSchema) GetPermissions() []CreateRoleWithPermissionsSchemaPermissions {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
+}
+
+func (o *CreateRoleWithPermissionsSchema) GetType() *CreateRoleWithPermissionsSchemaType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

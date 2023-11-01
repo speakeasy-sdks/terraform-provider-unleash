@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -37,7 +38,7 @@ type FeatureSchema struct {
 	Stale *bool `json:"stale,omitempty"`
 	// This is a legacy field that will be deprecated
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Strategies []FeatureSchemaStrategies `json:"strategies,omitempty"`
 	// The list of feature tags
 	Tags []TagSchema `json:"tags,omitempty"`
@@ -45,6 +46,129 @@ type FeatureSchema struct {
 	Type *string `json:"type,omitempty"`
 	// The list of feature variants
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Variants []VariantSchema `json:"variants,omitempty"`
+}
+
+func (f FeatureSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FeatureSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *FeatureSchema) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
+}
+
+func (o *FeatureSchema) GetArchivedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.ArchivedAt
+}
+
+func (o *FeatureSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *FeatureSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *FeatureSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *FeatureSchema) GetEnvironments() []FeatureEnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *FeatureSchema) GetFavorite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Favorite
+}
+
+func (o *FeatureSchema) GetImpressionData() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ImpressionData
+}
+
+func (o *FeatureSchema) GetLastSeenAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastSeenAt
+}
+
+func (o *FeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *FeatureSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *FeatureSchema) GetStale() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Stale
+}
+
+func (o *FeatureSchema) GetStrategies() []FeatureSchemaStrategies {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *FeatureSchema) GetTags() []TagSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *FeatureSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *FeatureSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
 }

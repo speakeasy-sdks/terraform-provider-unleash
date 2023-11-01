@@ -3,9 +3,8 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -42,21 +41,16 @@ func CreateDateSchemaNumber(number float64) DateSchema {
 }
 
 func (u *DateSchema) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	dateTime := new(time.Time)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&dateTime); err == nil {
+	if err := utils.UnmarshalJSON(data, &dateTime, "", true, true); err == nil {
 		u.DateTime = dateTime
 		u.Type = DateSchemaTypeDateTime
 		return nil
 	}
 
 	number := new(float64)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&number); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
 		u.Type = DateSchemaTypeNumber
 		return nil
@@ -67,12 +61,12 @@ func (u *DateSchema) UnmarshalJSON(data []byte) error {
 
 func (u DateSchema) MarshalJSON() ([]byte, error) {
 	if u.DateTime != nil {
-		return json.Marshal(u.DateTime)
+		return utils.MarshalJSON(u.DateTime, "", true)
 	}
 
 	if u.Number != nil {
-		return json.Marshal(u.Number)
+		return utils.MarshalJSON(u.Number, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }

@@ -17,6 +17,27 @@ type CreateStrategy415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateStrategy415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateStrategy415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateStrategy415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateStrategy409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type CreateStrategy409ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type CreateStrategy409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateStrategy409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateStrategy409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateStrategy409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // CreateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -37,6 +79,27 @@ type CreateStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateStrategy403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateStrategy403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateStrategy403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type CreateStrategy401ApplicationJSON struct {
 	// The ID of the error instance
@@ -45,6 +108,27 @@ type CreateStrategy401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateStrategy401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateStrategy401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateStrategy401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateStrategyResponse struct {
@@ -65,4 +149,67 @@ type CreateStrategyResponse struct {
 	CreateStrategy415ApplicationJSONObject *CreateStrategy415ApplicationJSON
 	// The resource was successfully created.
 	StrategySchema *shared.StrategySchema
+}
+
+func (o *CreateStrategyResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateStrategyResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateStrategyResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateStrategyResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateStrategyResponse) GetCreateStrategy401ApplicationJSONObject() *CreateStrategy401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateStrategy401ApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetCreateStrategy403ApplicationJSONObject() *CreateStrategy403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateStrategy403ApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetCreateStrategy409ApplicationJSONObject() *CreateStrategy409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateStrategy409ApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetCreateStrategy415ApplicationJSONObject() *CreateStrategy415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateStrategy415ApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetStrategySchema() *shared.StrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.StrategySchema
 }

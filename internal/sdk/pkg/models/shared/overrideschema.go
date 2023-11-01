@@ -9,3 +9,17 @@ type OverrideSchema struct {
 	// Which values that should be overriden
 	Values []string `json:"values"`
 }
+
+func (o *OverrideSchema) GetContextName() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContextName
+}
+
+func (o *OverrideSchema) GetValues() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Values
+}

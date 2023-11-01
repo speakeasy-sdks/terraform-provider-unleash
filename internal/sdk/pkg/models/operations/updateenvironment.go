@@ -13,6 +13,20 @@ type UpdateEnvironmentRequest struct {
 	UpdateEnvironmentSchema shared.UpdateEnvironmentSchema `request:"mediaType=application/json"`
 }
 
+func (o *UpdateEnvironmentRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateEnvironmentRequest) GetUpdateEnvironmentSchema() shared.UpdateEnvironmentSchema {
+	if o == nil {
+		return shared.UpdateEnvironmentSchema{}
+	}
+	return o.UpdateEnvironmentSchema
+}
+
 // UpdateEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateEnvironment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -23,6 +37,27 @@ type UpdateEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateEnvironment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateEnvironment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateEnvironment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateEnvironment400ApplicationJSON - The request data does not match what we expect.
 type UpdateEnvironment400ApplicationJSON struct {
 	// The ID of the error instance
@@ -31,6 +66,27 @@ type UpdateEnvironment400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateEnvironment400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateEnvironment400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateEnvironment400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateEnvironmentResponse struct {
@@ -46,4 +102,46 @@ type UpdateEnvironmentResponse struct {
 	UpdateEnvironment400ApplicationJSONObject *UpdateEnvironment400ApplicationJSON
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	UpdateEnvironment401ApplicationJSONObject *UpdateEnvironment401ApplicationJSON
+}
+
+func (o *UpdateEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateEnvironmentResponse) GetEnvironmentSchema() *shared.EnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.EnvironmentSchema
+}
+
+func (o *UpdateEnvironmentResponse) GetUpdateEnvironment400ApplicationJSONObject() *UpdateEnvironment400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateEnvironment400ApplicationJSONObject
+}
+
+func (o *UpdateEnvironmentResponse) GetUpdateEnvironment401ApplicationJSONObject() *UpdateEnvironment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateEnvironment401ApplicationJSONObject
 }

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -14,4 +15,36 @@ type GroupUserModelSchema struct {
 	JoinedAt *time.Time `json:"joinedAt,omitempty"`
 	// An Unleash user
 	User UserSchema `json:"user"`
+}
+
+func (g GroupUserModelSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GroupUserModelSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GroupUserModelSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *GroupUserModelSchema) GetJoinedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.JoinedAt
+}
+
+func (o *GroupUserModelSchema) GetUser() UserSchema {
+	if o == nil {
+		return UserSchema{}
+	}
+	return o.User
 }

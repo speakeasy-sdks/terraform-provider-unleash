@@ -11,6 +11,20 @@ type RemoveFavoriteFeatureRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *RemoveFavoriteFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *RemoveFavoriteFeatureRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // RemoveFavoriteFeature404ApplicationJSON - The requested resource was not found.
 type RemoveFavoriteFeature404ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type RemoveFavoriteFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RemoveFavoriteFeature404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveFavoriteFeature404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveFavoriteFeature404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RemoveFavoriteFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RemoveFavoriteFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -29,6 +64,27 @@ type RemoveFavoriteFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveFavoriteFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveFavoriteFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveFavoriteFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RemoveFavoriteFeatureResponse struct {
@@ -42,4 +98,39 @@ type RemoveFavoriteFeatureResponse struct {
 	RemoveFavoriteFeature401ApplicationJSONObject *RemoveFavoriteFeature401ApplicationJSON
 	// The requested resource was not found.
 	RemoveFavoriteFeature404ApplicationJSONObject *RemoveFavoriteFeature404ApplicationJSON
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetRemoveFavoriteFeature401ApplicationJSONObject() *RemoveFavoriteFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveFavoriteFeature401ApplicationJSONObject
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetRemoveFavoriteFeature404ApplicationJSONObject() *RemoveFavoriteFeature404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveFavoriteFeature404ApplicationJSONObject
 }

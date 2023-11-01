@@ -12,6 +12,27 @@ type AddRoleToUserRequest struct {
 	UserID    string `pathParam:"style=simple,explode=false,name=userId"`
 }
 
+func (o *AddRoleToUserRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *AddRoleToUserRequest) GetRoleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RoleID
+}
+
+func (o *AddRoleToUserRequest) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
+}
+
 type AddRoleToUserResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -19,4 +40,25 @@ type AddRoleToUserResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *AddRoleToUserResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddRoleToUserResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddRoleToUserResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

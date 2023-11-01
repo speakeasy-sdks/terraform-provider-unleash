@@ -17,6 +17,27 @@ type UpdateFeatureStrategySegments415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateFeatureStrategySegments415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeatureStrategySegments415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeatureStrategySegments415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateFeatureStrategySegments403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type UpdateFeatureStrategySegments403ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type UpdateFeatureStrategySegments403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeatureStrategySegments403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeatureStrategySegments403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeatureStrategySegments403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // UpdateFeatureStrategySegments401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -37,6 +79,27 @@ type UpdateFeatureStrategySegments401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateFeatureStrategySegments401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeatureStrategySegments401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeatureStrategySegments401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateFeatureStrategySegments400ApplicationJSON - The request data does not match what we expect.
 type UpdateFeatureStrategySegments400ApplicationJSON struct {
 	// The ID of the error instance
@@ -45,6 +108,27 @@ type UpdateFeatureStrategySegments400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateFeatureStrategySegments400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateFeatureStrategySegments400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateFeatureStrategySegments400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateFeatureStrategySegmentsResponse struct {
@@ -65,4 +149,67 @@ type UpdateFeatureStrategySegmentsResponse struct {
 	UpdateFeatureStrategySegments403ApplicationJSONObject *UpdateFeatureStrategySegments403ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	UpdateFeatureStrategySegments415ApplicationJSONObject *UpdateFeatureStrategySegments415ApplicationJSON
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetUpdateFeatureStrategySegmentsSchema() *shared.UpdateFeatureStrategySegmentsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeatureStrategySegmentsSchema
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetUpdateFeatureStrategySegments400ApplicationJSONObject() *UpdateFeatureStrategySegments400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeatureStrategySegments400ApplicationJSONObject
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetUpdateFeatureStrategySegments401ApplicationJSONObject() *UpdateFeatureStrategySegments401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeatureStrategySegments401ApplicationJSONObject
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetUpdateFeatureStrategySegments403ApplicationJSONObject() *UpdateFeatureStrategySegments403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeatureStrategySegments403ApplicationJSONObject
+}
+
+func (o *UpdateFeatureStrategySegmentsResponse) GetUpdateFeatureStrategySegments415ApplicationJSONObject() *UpdateFeatureStrategySegments415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateFeatureStrategySegments415ApplicationJSONObject
 }

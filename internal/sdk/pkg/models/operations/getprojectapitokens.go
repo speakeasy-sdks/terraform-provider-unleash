@@ -11,6 +11,13 @@ type GetProjectAPITokensRequest struct {
 	ProjectID string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetProjectAPITokensRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // GetProjectAPITokens404ApplicationJSON - The requested resource was not found.
 type GetProjectAPITokens404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetProjectAPITokens404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetProjectAPITokens404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectAPITokens404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectAPITokens404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetProjectAPITokens403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -31,6 +59,27 @@ type GetProjectAPITokens403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetProjectAPITokens403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectAPITokens403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectAPITokens403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetProjectAPITokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetProjectAPITokens401ApplicationJSON struct {
 	// The ID of the error instance
@@ -39,6 +88,27 @@ type GetProjectAPITokens401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetProjectAPITokens401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProjectAPITokens401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProjectAPITokens401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetProjectAPITokensResponse struct {
@@ -56,4 +126,53 @@ type GetProjectAPITokensResponse struct {
 	GetProjectAPITokens403ApplicationJSONObject *GetProjectAPITokens403ApplicationJSON
 	// The requested resource was not found.
 	GetProjectAPITokens404ApplicationJSONObject *GetProjectAPITokens404ApplicationJSON
+}
+
+func (o *GetProjectAPITokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProjectAPITokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProjectAPITokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProjectAPITokensResponse) GetAPITokensSchema() *shared.APITokensSchema {
+	if o == nil {
+		return nil
+	}
+	return o.APITokensSchema
+}
+
+func (o *GetProjectAPITokensResponse) GetGetProjectAPITokens401ApplicationJSONObject() *GetProjectAPITokens401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectAPITokens401ApplicationJSONObject
+}
+
+func (o *GetProjectAPITokensResponse) GetGetProjectAPITokens403ApplicationJSONObject() *GetProjectAPITokens403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectAPITokens403ApplicationJSONObject
+}
+
+func (o *GetProjectAPITokensResponse) GetGetProjectAPITokens404ApplicationJSONObject() *GetProjectAPITokens404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProjectAPITokens404ApplicationJSONObject
 }

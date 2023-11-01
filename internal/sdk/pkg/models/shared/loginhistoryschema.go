@@ -6,3 +6,10 @@ package shared
 type LoginHistorySchema struct {
 	Events []LoginEventSchema `json:"events"`
 }
+
+func (o *LoginHistorySchema) GetEvents() []LoginEventSchema {
+	if o == nil {
+		return []LoginEventSchema{}
+	}
+	return o.Events
+}

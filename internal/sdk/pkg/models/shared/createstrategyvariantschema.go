@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // CreateStrategyVariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
@@ -46,6 +47,20 @@ type CreateStrategyVariantSchemaPayload struct {
 	Value string `json:"value"`
 }
 
+func (o *CreateStrategyVariantSchemaPayload) GetType() CreateStrategyVariantSchemaPayloadType {
+	if o == nil {
+		return CreateStrategyVariantSchemaPayloadType("")
+	}
+	return o.Type
+}
+
+func (o *CreateStrategyVariantSchemaPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // CreateStrategyVariantSchemaWeightType - Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 type CreateStrategyVariantSchemaWeightType string
 
@@ -76,6 +91,7 @@ func (e *CreateStrategyVariantSchemaWeightType) UnmarshalJSON(data []byte) error
 
 // CreateStrategyVariantSchema - This is an experimental property. It may change or be removed as we work on it. Please don't depend on it yet. A strategy variant allows you to attach any data to strategies instead of only returning `true`/`false`. Strategy variants take precedence over feature variants.
 type CreateStrategyVariantSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// The variant name. Must be unique for this feature toggle
 	Name string `json:"name"`
 	// Extra data configured for this variant
@@ -86,54 +102,57 @@ type CreateStrategyVariantSchema struct {
 	Weight int64 `json:"weight"`
 	// Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 	WeightType CreateStrategyVariantSchemaWeightType `json:"weightType"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _CreateStrategyVariantSchema CreateStrategyVariantSchema
-
-func (c *CreateStrategyVariantSchema) UnmarshalJSON(bs []byte) error {
-	data := _CreateStrategyVariantSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = CreateStrategyVariantSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "name")
-	delete(additionalFields, "payload")
-	delete(additionalFields, "stickiness")
-	delete(additionalFields, "weight")
-	delete(additionalFields, "weightType")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
 }
 
 func (c CreateStrategyVariantSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_CreateStrategyVariantSchema(c))
-	if err != nil {
-		return nil, err
-	}
+	return utils.MarshalJSON(c, "", false)
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (c *CreateStrategyVariantSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
 	}
+	return nil
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *CreateStrategyVariantSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *CreateStrategyVariantSchema) GetName() string {
+	if o == nil {
+		return ""
 	}
+	return o.Name
+}
 
-	return json.Marshal(out)
+func (o *CreateStrategyVariantSchema) GetPayload() *CreateStrategyVariantSchemaPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
+}
+
+func (o *CreateStrategyVariantSchema) GetStickiness() string {
+	if o == nil {
+		return ""
+	}
+	return o.Stickiness
+}
+
+func (o *CreateStrategyVariantSchema) GetWeight() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Weight
+}
+
+func (o *CreateStrategyVariantSchema) GetWeightType() CreateStrategyVariantSchemaWeightType {
+	if o == nil {
+		return CreateStrategyVariantSchemaWeightType("")
+	}
+	return o.WeightType
 }

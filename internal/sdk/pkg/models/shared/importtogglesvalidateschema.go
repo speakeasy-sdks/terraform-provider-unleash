@@ -11,3 +11,24 @@ type ImportTogglesValidateSchema struct {
 	// A list of warnings related to the provided data.
 	Warnings []ImportTogglesValidateItemSchema `json:"warnings"`
 }
+
+func (o *ImportTogglesValidateSchema) GetErrors() []ImportTogglesValidateItemSchema {
+	if o == nil {
+		return []ImportTogglesValidateItemSchema{}
+	}
+	return o.Errors
+}
+
+func (o *ImportTogglesValidateSchema) GetPermissions() []ImportTogglesValidateItemSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
+}
+
+func (o *ImportTogglesValidateSchema) GetWarnings() []ImportTogglesValidateItemSchema {
+	if o == nil {
+		return []ImportTogglesValidateItemSchema{}
+	}
+	return o.Warnings
+}

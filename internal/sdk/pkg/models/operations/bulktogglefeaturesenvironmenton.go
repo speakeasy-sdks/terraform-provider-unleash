@@ -14,6 +14,27 @@ type BulkToggleFeaturesEnvironmentOnRequest struct {
 	ProjectID                string                          `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOnRequest) GetBulkToggleFeaturesSchema() shared.BulkToggleFeaturesSchema {
+	if o == nil {
+		return shared.BulkToggleFeaturesSchema{}
+	}
+	return o.BulkToggleFeaturesSchema
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // BulkToggleFeaturesEnvironmentOn415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type BulkToggleFeaturesEnvironmentOn415ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type BulkToggleFeaturesEnvironmentOn415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // BulkToggleFeaturesEnvironmentOn413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
@@ -34,6 +76,27 @@ type BulkToggleFeaturesEnvironmentOn413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOn413ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn413ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn413ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOn404ApplicationJSON - The requested resource was not found.
 type BulkToggleFeaturesEnvironmentOn404ApplicationJSON struct {
 	// The ID of the error instance
@@ -42,6 +105,27 @@ type BulkToggleFeaturesEnvironmentOn404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // BulkToggleFeaturesEnvironmentOn403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -54,6 +138,27 @@ type BulkToggleFeaturesEnvironmentOn403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOn403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOn401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type BulkToggleFeaturesEnvironmentOn401ApplicationJSON struct {
 	// The ID of the error instance
@@ -64,6 +169,27 @@ type BulkToggleFeaturesEnvironmentOn401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOn401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOn400ApplicationJSON - The request data does not match what we expect.
 type BulkToggleFeaturesEnvironmentOn400ApplicationJSON struct {
 	// The ID of the error instance
@@ -72,6 +198,27 @@ type BulkToggleFeaturesEnvironmentOn400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOn400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type BulkToggleFeaturesEnvironmentOnResponse struct {
@@ -93,4 +240,67 @@ type BulkToggleFeaturesEnvironmentOnResponse struct {
 	BulkToggleFeaturesEnvironmentOn413ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	BulkToggleFeaturesEnvironmentOn415ApplicationJSONObject *BulkToggleFeaturesEnvironmentOn415ApplicationJSON
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn400ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn400ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn401ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn401ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn403ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn403ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn404ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn404ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn413ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn413ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn413ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOnResponse) GetBulkToggleFeaturesEnvironmentOn415ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOn415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOn415ApplicationJSONObject
 }

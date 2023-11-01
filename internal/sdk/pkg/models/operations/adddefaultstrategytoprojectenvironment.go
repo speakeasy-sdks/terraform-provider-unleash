@@ -14,6 +14,27 @@ type AddDefaultStrategyToProjectEnvironmentRequest struct {
 	ProjectID                   string                             `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *AddDefaultStrategyToProjectEnvironmentRequest) GetCreateFeatureStrategySchema() shared.CreateFeatureStrategySchema {
+	if o == nil {
+		return shared.CreateFeatureStrategySchema{}
+	}
+	return o.CreateFeatureStrategySchema
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // AddDefaultStrategyToProjectEnvironment400ApplicationJSON - The request data does not match what we expect.
 type AddDefaultStrategyToProjectEnvironment400ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type AddDefaultStrategyToProjectEnvironment400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type AddDefaultStrategyToProjectEnvironmentResponse struct {
@@ -35,4 +77,39 @@ type AddDefaultStrategyToProjectEnvironmentResponse struct {
 	AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject *AddDefaultStrategyToProjectEnvironment400ApplicationJSON
 	// createFeatureStrategySchema
 	CreateFeatureStrategySchema *shared.CreateFeatureStrategySchema
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetAddDefaultStrategyToProjectEnvironment400ApplicationJSONObject() *AddDefaultStrategyToProjectEnvironment400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetCreateFeatureStrategySchema() *shared.CreateFeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.CreateFeatureStrategySchema
 }

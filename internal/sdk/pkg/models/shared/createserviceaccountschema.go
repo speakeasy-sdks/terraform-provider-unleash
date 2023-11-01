@@ -11,3 +11,24 @@ type CreateServiceAccountSchema struct {
 	// The username of the service account
 	Username *string `json:"username,omitempty"`
 }
+
+func (o *CreateServiceAccountSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *CreateServiceAccountSchema) GetRootRole() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.RootRole
+}
+
+func (o *CreateServiceAccountSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
+}

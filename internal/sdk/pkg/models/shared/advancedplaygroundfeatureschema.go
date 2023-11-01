@@ -11,3 +11,24 @@ type AdvancedPlaygroundFeatureSchema struct {
 	// The ID of the project that contains this feature.
 	ProjectID string `json:"projectId"`
 }
+
+func (o *AdvancedPlaygroundFeatureSchema) GetEnvironments() map[string][]AdvancedPlaygroundEnvironmentFeatureSchema {
+	if o == nil {
+		return map[string][]AdvancedPlaygroundEnvironmentFeatureSchema{}
+	}
+	return o.Environments
+}
+
+func (o *AdvancedPlaygroundFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AdvancedPlaygroundFeatureSchema) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}

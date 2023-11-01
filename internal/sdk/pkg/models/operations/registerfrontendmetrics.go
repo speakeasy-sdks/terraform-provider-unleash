@@ -16,6 +16,27 @@ type RegisterFrontendMetrics404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RegisterFrontendMetrics404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RegisterFrontendMetrics404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RegisterFrontendMetrics404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RegisterFrontendMetrics401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RegisterFrontendMetrics401ApplicationJSON struct {
 	// The ID of the error instance
@@ -26,6 +47,27 @@ type RegisterFrontendMetrics401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RegisterFrontendMetrics401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RegisterFrontendMetrics401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RegisterFrontendMetrics401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RegisterFrontendMetrics400ApplicationJSON - The request data does not match what we expect.
 type RegisterFrontendMetrics400ApplicationJSON struct {
 	// The ID of the error instance
@@ -34,6 +76,27 @@ type RegisterFrontendMetrics400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RegisterFrontendMetrics400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RegisterFrontendMetrics400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RegisterFrontendMetrics400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RegisterFrontendMetricsResponse struct {
@@ -49,4 +112,46 @@ type RegisterFrontendMetricsResponse struct {
 	RegisterFrontendMetrics401ApplicationJSONObject *RegisterFrontendMetrics401ApplicationJSON
 	// The requested resource was not found.
 	RegisterFrontendMetrics404ApplicationJSONObject *RegisterFrontendMetrics404ApplicationJSON
+}
+
+func (o *RegisterFrontendMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RegisterFrontendMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RegisterFrontendMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics400ApplicationJSONObject() *RegisterFrontendMetrics400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RegisterFrontendMetrics400ApplicationJSONObject
+}
+
+func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics401ApplicationJSONObject() *RegisterFrontendMetrics401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RegisterFrontendMetrics401ApplicationJSONObject
+}
+
+func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics404ApplicationJSONObject() *RegisterFrontendMetrics404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RegisterFrontendMetrics404ApplicationJSONObject
 }

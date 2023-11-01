@@ -8,3 +8,31 @@ type UpsertSegmentSchema struct {
 	Name        string             `json:"name"`
 	Project     *string            `json:"project,omitempty"`
 }
+
+func (o *UpsertSegmentSchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return []ConstraintSchema{}
+	}
+	return o.Constraints
+}
+
+func (o *UpsertSegmentSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *UpsertSegmentSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpsertSegmentSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}

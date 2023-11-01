@@ -17,6 +17,27 @@ type GetArchivedFeatures403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetArchivedFeatures403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetArchivedFeatures403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetArchivedFeatures403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetArchivedFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetArchivedFeatures401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetArchivedFeatures401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetArchivedFeatures401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetArchivedFeatures401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetArchivedFeatures401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetArchivedFeaturesResponse struct {
@@ -40,4 +82,46 @@ type GetArchivedFeaturesResponse struct {
 	GetArchivedFeatures401ApplicationJSONObject *GetArchivedFeatures401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	GetArchivedFeatures403ApplicationJSONObject *GetArchivedFeatures403ApplicationJSON
+}
+
+func (o *GetArchivedFeaturesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetArchivedFeaturesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetArchivedFeaturesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetArchivedFeaturesResponse) GetFeaturesSchema() *shared.FeaturesSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeaturesSchema
+}
+
+func (o *GetArchivedFeaturesResponse) GetGetArchivedFeatures401ApplicationJSONObject() *GetArchivedFeatures401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetArchivedFeatures401ApplicationJSONObject
+}
+
+func (o *GetArchivedFeaturesResponse) GetGetArchivedFeatures403ApplicationJSONObject() *GetArchivedFeatures403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetArchivedFeatures403ApplicationJSONObject
 }

@@ -9,3 +9,17 @@ type FeatureVariantsSchema struct {
 	// The version of the feature variants schema.
 	Version int64 `json:"version"`
 }
+
+func (o *FeatureVariantsSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return []VariantSchema{}
+	}
+	return o.Variants
+}
+
+func (o *FeatureVariantsSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

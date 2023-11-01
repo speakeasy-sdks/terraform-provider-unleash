@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -67,4 +68,113 @@ type ProjectOverviewSchema struct {
 	Stats     *ProjectStatsSchema `json:"stats,omitempty"`
 	UpdatedAt *time.Time          `json:"updatedAt,omitempty"`
 	Version   float64             `json:"version"`
+}
+
+func (p ProjectOverviewSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProjectOverviewSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ProjectOverviewSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *ProjectOverviewSchema) GetDefaultStickiness() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultStickiness
+}
+
+func (o *ProjectOverviewSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *ProjectOverviewSchema) GetEnvironments() []ProjectEnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *ProjectOverviewSchema) GetFavorite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Favorite
+}
+
+func (o *ProjectOverviewSchema) GetFeatureLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureLimit
+}
+
+func (o *ProjectOverviewSchema) GetFeatures() []FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Features
+}
+
+func (o *ProjectOverviewSchema) GetHealth() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Health
+}
+
+func (o *ProjectOverviewSchema) GetMembers() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Members
+}
+
+func (o *ProjectOverviewSchema) GetMode() *ProjectOverviewSchemaMode {
+	if o == nil {
+		return nil
+	}
+	return o.Mode
+}
+
+func (o *ProjectOverviewSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ProjectOverviewSchema) GetStats() *ProjectStatsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Stats
+}
+
+func (o *ProjectOverviewSchema) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *ProjectOverviewSchema) GetVersion() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Version
 }

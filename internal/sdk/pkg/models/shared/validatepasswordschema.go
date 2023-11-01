@@ -7,3 +7,10 @@ type ValidatePasswordSchema struct {
 	// The password to validate
 	Password string `json:"password"`
 }
+
+func (o *ValidatePasswordSchema) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}

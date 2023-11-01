@@ -11,6 +11,20 @@ type DeleteProjectAPITokenRequest struct {
 	Token     string `pathParam:"style=simple,explode=false,name=token"`
 }
 
+func (o *DeleteProjectAPITokenRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
+func (o *DeleteProjectAPITokenRequest) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
 // DeleteProjectAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type DeleteProjectAPIToken403ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +35,27 @@ type DeleteProjectAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *DeleteProjectAPIToken403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteProjectAPIToken403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteProjectAPIToken403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // DeleteProjectAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type DeleteProjectAPIToken401ApplicationJSON struct {
 	// The ID of the error instance
@@ -29,6 +64,27 @@ type DeleteProjectAPIToken401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteProjectAPIToken401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteProjectAPIToken401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteProjectAPIToken401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteProjectAPITokenResponse struct {
@@ -42,4 +98,39 @@ type DeleteProjectAPITokenResponse struct {
 	DeleteProjectAPIToken401ApplicationJSONObject *DeleteProjectAPIToken401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	DeleteProjectAPIToken403ApplicationJSONObject *DeleteProjectAPIToken403ApplicationJSON
+}
+
+func (o *DeleteProjectAPITokenResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteProjectAPITokenResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteProjectAPITokenResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteProjectAPITokenResponse) GetDeleteProjectAPIToken401ApplicationJSONObject() *DeleteProjectAPIToken401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteProjectAPIToken401ApplicationJSONObject
+}
+
+func (o *DeleteProjectAPITokenResponse) GetDeleteProjectAPIToken403ApplicationJSONObject() *DeleteProjectAPIToken403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteProjectAPIToken403ApplicationJSONObject
 }

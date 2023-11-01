@@ -30,3 +30,52 @@ type AddonCreateUpdateSchema struct {
 	//
 	Provider string `json:"provider"`
 }
+
+func (o *AddonCreateUpdateSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *AddonCreateUpdateSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *AddonCreateUpdateSchema) GetEnvironments() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *AddonCreateUpdateSchema) GetEvents() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Events
+}
+
+func (o *AddonCreateUpdateSchema) GetParameters() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Parameters
+}
+
+func (o *AddonCreateUpdateSchema) GetProjects() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
+}
+
+func (o *AddonCreateUpdateSchema) GetProvider() string {
+	if o == nil {
+		return ""
+	}
+	return o.Provider
+}

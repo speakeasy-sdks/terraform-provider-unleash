@@ -10,6 +10,13 @@ type RemoveSegmentRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *RemoveSegmentRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 // RemoveSegment409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type RemoveSegment409ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type RemoveSegment409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveSegment409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveSegment409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveSegment409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // RemoveSegment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -30,6 +58,27 @@ type RemoveSegment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RemoveSegment403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveSegment403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveSegment403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // RemoveSegment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type RemoveSegment401ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type RemoveSegment401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *RemoveSegment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RemoveSegment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RemoveSegment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type RemoveSegmentResponse struct {
@@ -53,4 +123,46 @@ type RemoveSegmentResponse struct {
 	RemoveSegment403ApplicationJSONObject *RemoveSegment403ApplicationJSON
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 	RemoveSegment409ApplicationJSONObject *RemoveSegment409ApplicationJSON
+}
+
+func (o *RemoveSegmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RemoveSegmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RemoveSegmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RemoveSegmentResponse) GetRemoveSegment401ApplicationJSONObject() *RemoveSegment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveSegment401ApplicationJSONObject
+}
+
+func (o *RemoveSegmentResponse) GetRemoveSegment403ApplicationJSONObject() *RemoveSegment403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveSegment403ApplicationJSONObject
+}
+
+func (o *RemoveSegmentResponse) GetRemoveSegment409ApplicationJSONObject() *RemoveSegment409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RemoveSegment409ApplicationJSONObject
 }

@@ -17,3 +17,31 @@ type GetContextFieldsResponse struct {
 	// contextFieldsSchema
 	ContextFieldsSchema []shared.ContextFieldSchema
 }
+
+func (o *GetContextFieldsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetContextFieldsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetContextFieldsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetContextFieldsResponse) GetContextFieldsSchema() []shared.ContextFieldSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ContextFieldsSchema
+}

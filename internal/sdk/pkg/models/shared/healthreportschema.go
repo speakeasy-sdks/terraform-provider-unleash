@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -76,4 +77,134 @@ type HealthReportSchema struct {
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 	// The project overview version.
 	Version int64 `json:"version"`
+}
+
+func (h HealthReportSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(h, "", false)
+}
+
+func (h *HealthReportSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &h, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *HealthReportSchema) GetActiveCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ActiveCount
+}
+
+func (o *HealthReportSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *HealthReportSchema) GetDefaultStickiness() string {
+	if o == nil {
+		return ""
+	}
+	return o.DefaultStickiness
+}
+
+func (o *HealthReportSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *HealthReportSchema) GetEnvironments() []ProjectEnvironmentSchema {
+	if o == nil {
+		return []ProjectEnvironmentSchema{}
+	}
+	return o.Environments
+}
+
+func (o *HealthReportSchema) GetFavorite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Favorite
+}
+
+func (o *HealthReportSchema) GetFeatureLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureLimit
+}
+
+func (o *HealthReportSchema) GetFeatures() []FeatureSchema {
+	if o == nil {
+		return []FeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *HealthReportSchema) GetHealth() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Health
+}
+
+func (o *HealthReportSchema) GetMembers() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Members
+}
+
+func (o *HealthReportSchema) GetMode() HealthReportSchemaMode {
+	if o == nil {
+		return HealthReportSchemaMode("")
+	}
+	return o.Mode
+}
+
+func (o *HealthReportSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *HealthReportSchema) GetPotentiallyStaleCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.PotentiallyStaleCount
+}
+
+func (o *HealthReportSchema) GetStaleCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.StaleCount
+}
+
+func (o *HealthReportSchema) GetStats() *ProjectStatsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Stats
+}
+
+func (o *HealthReportSchema) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *HealthReportSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
 }

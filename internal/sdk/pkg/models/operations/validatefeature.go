@@ -16,6 +16,27 @@ type ValidateFeature415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateFeature415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateFeature415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateFeature415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ValidateFeature409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type ValidateFeature409ApplicationJSON struct {
 	// The ID of the error instance
@@ -24,6 +45,27 @@ type ValidateFeature409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidateFeature409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateFeature409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateFeature409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ValidateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -36,6 +78,27 @@ type ValidateFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ValidateFeature400ApplicationJSON - The request data does not match what we expect.
 type ValidateFeature400ApplicationJSON struct {
 	// The ID of the error instance
@@ -44,6 +107,27 @@ type ValidateFeature400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ValidateFeature400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateFeature400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateFeature400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ValidateFeatureResponse struct {
@@ -61,4 +145,53 @@ type ValidateFeatureResponse struct {
 	ValidateFeature409ApplicationJSONObject *ValidateFeature409ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	ValidateFeature415ApplicationJSONObject *ValidateFeature415ApplicationJSON
+}
+
+func (o *ValidateFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidateFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidateFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidateFeatureResponse) GetValidateFeature400ApplicationJSONObject() *ValidateFeature400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateFeature400ApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetValidateFeature401ApplicationJSONObject() *ValidateFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateFeature401ApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetValidateFeature409ApplicationJSONObject() *ValidateFeature409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateFeature409ApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetValidateFeature415ApplicationJSONObject() *ValidateFeature415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateFeature415ApplicationJSONObject
 }

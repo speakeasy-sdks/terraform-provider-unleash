@@ -17,6 +17,27 @@ type CreateEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *CreateEnvironment401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateEnvironment401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateEnvironment401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // CreateEnvironment400ApplicationJSON - The request data does not match what we expect.
 type CreateEnvironment400ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type CreateEnvironment400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *CreateEnvironment400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateEnvironment400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *CreateEnvironment400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type CreateEnvironmentResponse struct {
@@ -41,4 +83,53 @@ type CreateEnvironmentResponse struct {
 	CreateEnvironment401ApplicationJSONObject *CreateEnvironment401ApplicationJSON
 	// The resource was successfully created.
 	EnvironmentSchema *shared.EnvironmentSchema
+}
+
+func (o *CreateEnvironmentResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateEnvironmentResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateEnvironmentResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateEnvironmentResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateEnvironmentResponse) GetCreateEnvironment400ApplicationJSONObject() *CreateEnvironment400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateEnvironment400ApplicationJSONObject
+}
+
+func (o *CreateEnvironmentResponse) GetCreateEnvironment401ApplicationJSONObject() *CreateEnvironment401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.CreateEnvironment401ApplicationJSONObject
+}
+
+func (o *CreateEnvironmentResponse) GetEnvironmentSchema() *shared.EnvironmentSchema {
+	if o == nil {
+		return nil
+	}
+	return o.EnvironmentSchema
 }

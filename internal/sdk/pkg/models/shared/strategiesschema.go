@@ -39,3 +39,17 @@ type StrategiesSchema struct {
 	// Version of the strategies schema
 	Version StrategiesSchemaVersion `json:"version"`
 }
+
+func (o *StrategiesSchema) GetStrategies() []StrategySchema {
+	if o == nil {
+		return []StrategySchema{}
+	}
+	return o.Strategies
+}
+
+func (o *StrategiesSchema) GetVersion() StrategiesSchemaVersion {
+	if o == nil {
+		return StrategiesSchemaVersion(0)
+	}
+	return o.Version
+}

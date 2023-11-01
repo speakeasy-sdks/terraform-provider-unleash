@@ -3,57 +3,37 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // TokenStringListSchema - A list of unleash tokens to validate against known tokens
 type TokenStringListSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// Tokens that we want to get access information about
 	Tokens []string `json:"tokens"`
-
-	AdditionalProperties interface{} `json:"-"`
 }
-type _TokenStringListSchema TokenStringListSchema
 
-func (c *TokenStringListSchema) UnmarshalJSON(bs []byte) error {
-	data := _TokenStringListSchema{}
+func (t TokenStringListSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (t *TokenStringListSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
-	*c = TokenStringListSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "tokens")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c TokenStringListSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_TokenStringListSchema(c))
-	if err != nil {
-		return nil, err
+func (o *TokenStringListSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *TokenStringListSchema) GetTokens() []string {
+	if o == nil {
+		return []string{}
 	}
-
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
-	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
+	return o.Tokens
 }

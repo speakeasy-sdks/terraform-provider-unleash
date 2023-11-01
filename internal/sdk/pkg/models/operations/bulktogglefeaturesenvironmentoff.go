@@ -14,6 +14,27 @@ type BulkToggleFeaturesEnvironmentOffRequest struct {
 	ProjectID                string                          `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOffRequest) GetBulkToggleFeaturesSchema() shared.BulkToggleFeaturesSchema {
+	if o == nil {
+		return shared.BulkToggleFeaturesSchema{}
+	}
+	return o.BulkToggleFeaturesSchema
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // BulkToggleFeaturesEnvironmentOff415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type BulkToggleFeaturesEnvironmentOff415ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type BulkToggleFeaturesEnvironmentOff415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // BulkToggleFeaturesEnvironmentOff413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
@@ -34,6 +76,27 @@ type BulkToggleFeaturesEnvironmentOff413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOff413ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff413ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff413ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOff404ApplicationJSON - The requested resource was not found.
 type BulkToggleFeaturesEnvironmentOff404ApplicationJSON struct {
 	// The ID of the error instance
@@ -42,6 +105,27 @@ type BulkToggleFeaturesEnvironmentOff404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // BulkToggleFeaturesEnvironmentOff403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -54,6 +138,27 @@ type BulkToggleFeaturesEnvironmentOff403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOff403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOff401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type BulkToggleFeaturesEnvironmentOff401ApplicationJSON struct {
 	// The ID of the error instance
@@ -64,6 +169,27 @@ type BulkToggleFeaturesEnvironmentOff401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *BulkToggleFeaturesEnvironmentOff401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // BulkToggleFeaturesEnvironmentOff400ApplicationJSON - The request data does not match what we expect.
 type BulkToggleFeaturesEnvironmentOff400ApplicationJSON struct {
 	// The ID of the error instance
@@ -72,6 +198,27 @@ type BulkToggleFeaturesEnvironmentOff400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *BulkToggleFeaturesEnvironmentOff400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type BulkToggleFeaturesEnvironmentOffResponse struct {
@@ -93,4 +240,67 @@ type BulkToggleFeaturesEnvironmentOffResponse struct {
 	BulkToggleFeaturesEnvironmentOff413ApplicationJSONObject *BulkToggleFeaturesEnvironmentOff413ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	BulkToggleFeaturesEnvironmentOff415ApplicationJSONObject *BulkToggleFeaturesEnvironmentOff415ApplicationJSON
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff400ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff400ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff401ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff401ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff403ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff403ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff404ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff404ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff413ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff413ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff413ApplicationJSONObject
+}
+
+func (o *BulkToggleFeaturesEnvironmentOffResponse) GetBulkToggleFeaturesEnvironmentOff415ApplicationJSONObject() *BulkToggleFeaturesEnvironmentOff415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.BulkToggleFeaturesEnvironmentOff415ApplicationJSONObject
 }

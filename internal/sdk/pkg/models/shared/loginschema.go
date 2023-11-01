@@ -9,3 +9,17 @@ type LoginSchema struct {
 	// The username trying to log in
 	Username string `json:"username"`
 }
+
+func (o *LoginSchema) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}
+
+func (o *LoginSchema) GetUsername() string {
+	if o == nil {
+		return ""
+	}
+	return o.Username
+}

@@ -11,12 +11,54 @@ type ClientMetricsSchemaBucketToggles struct {
 	Yes *float64 `json:"yes,omitempty"`
 }
 
+func (o *ClientMetricsSchemaBucketToggles) GetNo() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.No
+}
+
+func (o *ClientMetricsSchemaBucketToggles) GetVariants() map[string]int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}
+
+func (o *ClientMetricsSchemaBucketToggles) GetYes() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Yes
+}
+
 // ClientMetricsSchemaBucket - Holds all metrics gathered over a window of time. Typically 1 hour wide
 type ClientMetricsSchemaBucket struct {
 	Start DateSchema `json:"start"`
 	Stop  DateSchema `json:"stop"`
 	// an object containing feature names with yes/no plus variant usage
 	Toggles map[string]ClientMetricsSchemaBucketToggles `json:"toggles"`
+}
+
+func (o *ClientMetricsSchemaBucket) GetStart() DateSchema {
+	if o == nil {
+		return DateSchema{}
+	}
+	return o.Start
+}
+
+func (o *ClientMetricsSchemaBucket) GetStop() DateSchema {
+	if o == nil {
+		return DateSchema{}
+	}
+	return o.Stop
+}
+
+func (o *ClientMetricsSchemaBucket) GetToggles() map[string]ClientMetricsSchemaBucketToggles {
+	if o == nil {
+		return map[string]ClientMetricsSchemaBucketToggles{}
+	}
+	return o.Toggles
 }
 
 // ClientMetricsSchema - Client usage metrics, accumulated in buckets of hour by hour by default
@@ -29,4 +71,32 @@ type ClientMetricsSchema struct {
 	Environment *string `json:"environment,omitempty"`
 	// A [(somewhat) unique identifier](https://docs.getunleash.io/reference/sdks/node#advanced-usage) for the application
 	InstanceID *string `json:"instanceId,omitempty"`
+}
+
+func (o *ClientMetricsSchema) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
+func (o *ClientMetricsSchema) GetBucket() ClientMetricsSchemaBucket {
+	if o == nil {
+		return ClientMetricsSchemaBucket{}
+	}
+	return o.Bucket
+}
+
+func (o *ClientMetricsSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *ClientMetricsSchema) GetInstanceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InstanceID
 }

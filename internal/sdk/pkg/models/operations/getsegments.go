@@ -17,3 +17,31 @@ type GetSegmentsResponse struct {
 	// segmentsSchema
 	SegmentsSchema *shared.SegmentsSchema
 }
+
+func (o *GetSegmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetSegmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetSegmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetSegmentsResponse) GetSegmentsSchema() *shared.SegmentsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.SegmentsSchema
+}

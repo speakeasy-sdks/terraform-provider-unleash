@@ -5,3 +5,10 @@ package shared
 type ResetPasswordSchema struct {
 	ResetPasswordURL string `json:"resetPasswordUrl"`
 }
+
+func (o *ResetPasswordSchema) GetResetPasswordURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.ResetPasswordURL
+}

@@ -23,3 +23,66 @@ type FeatureEnvironmentSchema struct {
 	// A list of variants for the feature environment
 	Variants []VariantSchema `json:"variants,omitempty"`
 }
+
+func (o *FeatureEnvironmentSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *FeatureEnvironmentSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *FeatureEnvironmentSchema) GetFeatureName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureName
+}
+
+func (o *FeatureEnvironmentSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *FeatureEnvironmentSchema) GetSortOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *FeatureEnvironmentSchema) GetStrategies() []FeatureStrategySchema {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *FeatureEnvironmentSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *FeatureEnvironmentSchema) GetVariantCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.VariantCount
+}
+
+func (o *FeatureEnvironmentSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

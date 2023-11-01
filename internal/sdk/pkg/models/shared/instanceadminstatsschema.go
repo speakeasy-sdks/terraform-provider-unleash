@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -47,6 +48,20 @@ type InstanceAdminStatsSchemaClientApps struct {
 	Range *InstanceAdminStatsSchemaClientAppsRange `json:"range,omitempty"`
 }
 
+func (o *InstanceAdminStatsSchemaClientApps) GetCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Count
+}
+
+func (o *InstanceAdminStatsSchemaClientApps) GetRange() *InstanceAdminStatsSchemaClientAppsRange {
+	if o == nil {
+		return nil
+	}
+	return o.Range
+}
+
 // InstanceAdminStatsSchema - Information about an instance and statistics about usage of various features of Unleash
 type InstanceAdminStatsSchema struct {
 	// Whether or not OIDC authentication is enabled for this instance
@@ -83,4 +98,134 @@ type InstanceAdminStatsSchema struct {
 	VersionEnterprise *string `json:"versionEnterprise,omitempty"`
 	// The version of Unleash OSS that is bundled in this instance
 	VersionOSS *string `json:"versionOSS,omitempty"`
+}
+
+func (i InstanceAdminStatsSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InstanceAdminStatsSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *InstanceAdminStatsSchema) GetOIDCenabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.OIDCenabled
+}
+
+func (o *InstanceAdminStatsSchema) GetSAMLenabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SAMLenabled
+}
+
+func (o *InstanceAdminStatsSchema) GetClientApps() []InstanceAdminStatsSchemaClientApps {
+	if o == nil {
+		return nil
+	}
+	return o.ClientApps
+}
+
+func (o *InstanceAdminStatsSchema) GetContextFields() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.ContextFields
+}
+
+func (o *InstanceAdminStatsSchema) GetEnvironments() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *InstanceAdminStatsSchema) GetFeatureToggles() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureToggles
+}
+
+func (o *InstanceAdminStatsSchema) GetGroups() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Groups
+}
+
+func (o *InstanceAdminStatsSchema) GetInstanceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InstanceID
+}
+
+func (o *InstanceAdminStatsSchema) GetProjects() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Projects
+}
+
+func (o *InstanceAdminStatsSchema) GetRoles() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Roles
+}
+
+func (o *InstanceAdminStatsSchema) GetSegments() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *InstanceAdminStatsSchema) GetStrategies() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *InstanceAdminStatsSchema) GetSum() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sum
+}
+
+func (o *InstanceAdminStatsSchema) GetTimestamp() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.Timestamp
+}
+
+func (o *InstanceAdminStatsSchema) GetUsers() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Users
+}
+
+func (o *InstanceAdminStatsSchema) GetVersionEnterprise() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VersionEnterprise
+}
+
+func (o *InstanceAdminStatsSchema) GetVersionOSS() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VersionOSS
 }

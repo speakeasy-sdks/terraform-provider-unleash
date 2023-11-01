@@ -17,3 +17,31 @@ type GetInstanceAdminStatsResponse struct {
 	// instanceAdminStatsSchema
 	InstanceAdminStatsSchema *shared.InstanceAdminStatsSchema
 }
+
+func (o *GetInstanceAdminStatsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetInstanceAdminStatsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetInstanceAdminStatsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetInstanceAdminStatsResponse) GetInstanceAdminStatsSchema() *shared.InstanceAdminStatsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.InstanceAdminStatsSchema
+}

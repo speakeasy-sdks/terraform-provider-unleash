@@ -59,3 +59,66 @@ type SamlSettingsSchema struct {
 	// Signing certificate for sign out requests
 	SpCertificate *string `json:"spCertificate,omitempty"`
 }
+
+func (o *SamlSettingsSchema) GetAutoCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoCreate
+}
+
+func (o *SamlSettingsSchema) GetCertificate() string {
+	if o == nil {
+		return ""
+	}
+	return o.Certificate
+}
+
+func (o *SamlSettingsSchema) GetDefaultRootRole() *SamlSettingsSchemaDefaultRootRole {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultRootRole
+}
+
+func (o *SamlSettingsSchema) GetEmailDomains() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailDomains
+}
+
+func (o *SamlSettingsSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *SamlSettingsSchema) GetEntityID() string {
+	if o == nil {
+		return ""
+	}
+	return o.EntityID
+}
+
+func (o *SamlSettingsSchema) GetSignOnURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.SignOnURL
+}
+
+func (o *SamlSettingsSchema) GetSignOutURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SignOutURL
+}
+
+func (o *SamlSettingsSchema) GetSpCertificate() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SpCertificate
+}

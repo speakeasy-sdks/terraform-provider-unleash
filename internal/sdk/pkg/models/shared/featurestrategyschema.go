@@ -25,3 +25,73 @@ type FeatureStrategySchema struct {
 	// Strategy level variants
 	Variants []StrategyVariantSchema `json:"variants,omitempty"`
 }
+
+func (o *FeatureStrategySchema) GetConstraints() []ConstraintSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *FeatureStrategySchema) GetDisabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Disabled
+}
+
+func (o *FeatureStrategySchema) GetFeatureName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureName
+}
+
+func (o *FeatureStrategySchema) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *FeatureStrategySchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *FeatureStrategySchema) GetParameters() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Parameters
+}
+
+func (o *FeatureStrategySchema) GetSegments() []float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Segments
+}
+
+func (o *FeatureStrategySchema) GetSortOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *FeatureStrategySchema) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *FeatureStrategySchema) GetVariants() []StrategyVariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

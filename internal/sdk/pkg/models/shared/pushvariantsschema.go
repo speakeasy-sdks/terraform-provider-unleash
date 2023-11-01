@@ -6,3 +6,17 @@ type PushVariantsSchema struct {
 	Environments []string        `json:"environments,omitempty"`
 	Variants     []VariantSchema `json:"variants,omitempty"`
 }
+
+func (o *PushVariantsSchema) GetEnvironments() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Environments
+}
+
+func (o *PushVariantsSchema) GetVariants() []VariantSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}

@@ -18,3 +18,52 @@ type FeatureEnvironmentMetricsSchema struct {
 	// How many times the toggle evaluated to true
 	Yes int64 `json:"yes"`
 }
+
+func (o *FeatureEnvironmentMetricsSchema) GetAppName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AppName
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetFeatureName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureName
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetNo() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.No
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetTimestamp() DateSchema {
+	if o == nil {
+		return DateSchema{}
+	}
+	return o.Timestamp
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetVariants() map[string]int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Variants
+}
+
+func (o *FeatureEnvironmentMetricsSchema) GetYes() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Yes
+}

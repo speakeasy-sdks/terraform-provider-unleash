@@ -10,6 +10,13 @@ type ToggleEnvironmentOffRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+func (o *ToggleEnvironmentOffRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
 // ToggleEnvironmentOff404ApplicationJSON - The requested resource was not found.
 type ToggleEnvironmentOff404ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type ToggleEnvironmentOff404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ToggleEnvironmentOff404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleEnvironmentOff404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleEnvironmentOff404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ToggleEnvironmentOff403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -30,6 +58,27 @@ type ToggleEnvironmentOff403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ToggleEnvironmentOff403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleEnvironmentOff403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleEnvironmentOff403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ToggleEnvironmentOff401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type ToggleEnvironmentOff401ApplicationJSON struct {
 	// The ID of the error instance
@@ -38,6 +87,27 @@ type ToggleEnvironmentOff401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ToggleEnvironmentOff401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleEnvironmentOff401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleEnvironmentOff401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ToggleEnvironmentOffResponse struct {
@@ -53,4 +123,46 @@ type ToggleEnvironmentOffResponse struct {
 	ToggleEnvironmentOff403ApplicationJSONObject *ToggleEnvironmentOff403ApplicationJSON
 	// The requested resource was not found.
 	ToggleEnvironmentOff404ApplicationJSONObject *ToggleEnvironmentOff404ApplicationJSON
+}
+
+func (o *ToggleEnvironmentOffResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ToggleEnvironmentOffResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ToggleEnvironmentOffResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ToggleEnvironmentOffResponse) GetToggleEnvironmentOff401ApplicationJSONObject() *ToggleEnvironmentOff401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleEnvironmentOff401ApplicationJSONObject
+}
+
+func (o *ToggleEnvironmentOffResponse) GetToggleEnvironmentOff403ApplicationJSONObject() *ToggleEnvironmentOff403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleEnvironmentOff403ApplicationJSONObject
+}
+
+func (o *ToggleEnvironmentOffResponse) GetToggleEnvironmentOff404ApplicationJSONObject() *ToggleEnvironmentOff404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleEnvironmentOff404ApplicationJSONObject
 }

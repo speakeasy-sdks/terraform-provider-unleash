@@ -11,6 +11,13 @@ type GetClientFeatureRequest struct {
 	FeatureName string `pathParam:"style=simple,explode=false,name=featureName"`
 }
 
+func (o *GetClientFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
 type GetClientFeatureResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetClientFeatureResponse struct {
 	RawResponse *http.Response
 	// clientFeatureSchema
 	ClientFeatureSchema *shared.ClientFeatureSchema
+}
+
+func (o *GetClientFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetClientFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetClientFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetClientFeatureResponse) GetClientFeatureSchema() *shared.ClientFeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ClientFeatureSchema
 }

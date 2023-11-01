@@ -13,3 +13,31 @@ type FeatureTypeSchema struct {
 	// The display name of this feature toggle type.
 	Name string `json:"name"`
 }
+
+func (o *FeatureTypeSchema) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *FeatureTypeSchema) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *FeatureTypeSchema) GetLifetimeDays() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LifetimeDays
+}
+
+func (o *FeatureTypeSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

@@ -8,3 +8,17 @@ type ProjectsSchema struct {
 	Projects []ProjectSchema `json:"projects"`
 	Version  int64           `json:"version"`
 }
+
+func (o *ProjectsSchema) GetProjects() []ProjectSchema {
+	if o == nil {
+		return []ProjectSchema{}
+	}
+	return o.Projects
+}
+
+func (o *ProjectsSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

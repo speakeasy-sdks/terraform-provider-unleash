@@ -16,3 +16,31 @@ type GetInstanceAdminStatsCsvResponse struct {
 	// instanceAdminStatsSchemaCsv
 	GetInstanceAdminStatsCsv200TextCsvString *string
 }
+
+func (o *GetInstanceAdminStatsCsvResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetInstanceAdminStatsCsvResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetInstanceAdminStatsCsvResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetInstanceAdminStatsCsvResponse) GetGetInstanceAdminStatsCsv200TextCsvString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GetInstanceAdminStatsCsv200TextCsvString
+}

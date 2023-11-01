@@ -7,3 +7,10 @@ type ValidateFeatureSchema struct {
 	// The feature name to validate.
 	Name string `json:"name"`
 }
+
+func (o *ValidateFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

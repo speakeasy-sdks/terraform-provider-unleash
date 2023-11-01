@@ -41,3 +41,24 @@ type EventsSchema struct {
 	// The api version of this response. A natural increasing number. Only increases if format changes
 	Version EventsSchemaVersion `json:"version"`
 }
+
+func (o *EventsSchema) GetEvents() []EventSchema {
+	if o == nil {
+		return []EventSchema{}
+	}
+	return o.Events
+}
+
+func (o *EventsSchema) GetTotalEvents() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalEvents
+}
+
+func (o *EventsSchema) GetVersion() EventsSchemaVersion {
+	if o == nil {
+		return EventsSchemaVersion(0)
+	}
+	return o.Version
+}

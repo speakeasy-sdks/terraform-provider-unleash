@@ -14,6 +14,27 @@ type ChangeProjectRequest struct {
 	ProjectID           string                     `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *ChangeProjectRequest) GetChangeProjectSchema() shared.ChangeProjectSchema {
+	if o == nil {
+		return shared.ChangeProjectSchema{}
+	}
+	return o.ChangeProjectSchema
+}
+
+func (o *ChangeProjectRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *ChangeProjectRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // ChangeProject415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 type ChangeProject415ApplicationJSON struct {
 	// The ID of the error instance
@@ -22,6 +43,27 @@ type ChangeProject415ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ChangeProject415ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ChangeProject415ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ChangeProject415ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ChangeProject404ApplicationJSON - The requested resource was not found.
@@ -34,6 +76,27 @@ type ChangeProject404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ChangeProject404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ChangeProject404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ChangeProject404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ChangeProject403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type ChangeProject403ApplicationJSON struct {
 	// The ID of the error instance
@@ -42,6 +105,27 @@ type ChangeProject403ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ChangeProject403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ChangeProject403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ChangeProject403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ChangeProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
@@ -54,6 +138,27 @@ type ChangeProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ChangeProject401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ChangeProject401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ChangeProject401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ChangeProject400ApplicationJSON - The request data does not match what we expect.
 type ChangeProject400ApplicationJSON struct {
 	// The ID of the error instance
@@ -62,6 +167,27 @@ type ChangeProject400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ChangeProject400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ChangeProject400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ChangeProject400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ChangeProjectResponse struct {
@@ -81,4 +207,60 @@ type ChangeProjectResponse struct {
 	ChangeProject404ApplicationJSONObject *ChangeProject404ApplicationJSON
 	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
 	ChangeProject415ApplicationJSONObject *ChangeProject415ApplicationJSON
+}
+
+func (o *ChangeProjectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ChangeProjectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ChangeProjectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ChangeProjectResponse) GetChangeProject400ApplicationJSONObject() *ChangeProject400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeProject400ApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetChangeProject401ApplicationJSONObject() *ChangeProject401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeProject401ApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetChangeProject403ApplicationJSONObject() *ChangeProject403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeProject403ApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetChangeProject404ApplicationJSONObject() *ChangeProject404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeProject404ApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetChangeProject415ApplicationJSONObject() *ChangeProject415ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ChangeProject415ApplicationJSONObject
 }

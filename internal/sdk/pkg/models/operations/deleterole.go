@@ -10,6 +10,13 @@ type DeleteRoleRequest struct {
 	RoleID string `pathParam:"style=simple,explode=false,name=roleId"`
 }
 
+func (o *DeleteRoleRequest) GetRoleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RoleID
+}
+
 // DeleteRole409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type DeleteRole409ApplicationJSON struct {
 	// The ID of the error instance
@@ -18,6 +25,27 @@ type DeleteRole409ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *DeleteRole409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *DeleteRole409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DeleteRole409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type DeleteRoleResponse struct {
@@ -29,4 +57,32 @@ type DeleteRoleResponse struct {
 	RawResponse *http.Response
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 	DeleteRole409ApplicationJSONObject *DeleteRole409ApplicationJSON
+}
+
+func (o *DeleteRoleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteRoleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteRoleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *DeleteRoleResponse) GetDeleteRole409ApplicationJSONObject() *DeleteRole409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.DeleteRole409ApplicationJSONObject
 }

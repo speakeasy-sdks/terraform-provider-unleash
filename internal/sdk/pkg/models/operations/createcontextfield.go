@@ -18,3 +18,38 @@ type CreateContextFieldResponse struct {
 	// The resource was successfully created.
 	ContextFieldSchema *shared.ContextFieldSchema
 }
+
+func (o *CreateContextFieldResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateContextFieldResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *CreateContextFieldResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateContextFieldResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateContextFieldResponse) GetContextFieldSchema() *shared.ContextFieldSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ContextFieldSchema
+}

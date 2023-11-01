@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -22,4 +23,64 @@ type LoginEventSchema struct {
 	Successful *bool `json:"successful,omitempty"`
 	// The username of the user that attempted to log in. Will return "Incorrectly configured provider" when attempting to log in using a misconfigured provider.
 	Username *string `json:"username,omitempty"`
+}
+
+func (l LoginEventSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LoginEventSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *LoginEventSchema) GetAuthType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AuthType
+}
+
+func (o *LoginEventSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *LoginEventSchema) GetFailureReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FailureReason
+}
+
+func (o *LoginEventSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *LoginEventSchema) GetIP() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IP
+}
+
+func (o *LoginEventSchema) GetSuccessful() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Successful
+}
+
+func (o *LoginEventSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

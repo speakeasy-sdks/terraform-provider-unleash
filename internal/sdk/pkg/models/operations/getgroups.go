@@ -17,6 +17,27 @@ type GetGroups403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetGroups403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroups403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroups403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetGroups401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetGroups401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetGroups401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetGroups401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetGroups401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetGroups401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetGroupsResponse struct {
@@ -40,4 +82,46 @@ type GetGroupsResponse struct {
 	GetGroups403ApplicationJSONObject *GetGroups403ApplicationJSON
 	// groupsSchema
 	GroupsSchema *shared.GroupsSchema
+}
+
+func (o *GetGroupsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetGroupsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetGroupsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetGroupsResponse) GetGetGroups401ApplicationJSONObject() *GetGroups401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroups401ApplicationJSONObject
+}
+
+func (o *GetGroupsResponse) GetGetGroups403ApplicationJSONObject() *GetGroups403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetGroups403ApplicationJSONObject
+}
+
+func (o *GetGroupsResponse) GetGroupsSchema() *shared.GroupsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.GroupsSchema
 }

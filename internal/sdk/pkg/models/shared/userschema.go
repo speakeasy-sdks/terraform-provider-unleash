@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -24,7 +25,7 @@ type UserSchema struct {
 	InviteLink *string `json:"inviteLink,omitempty"`
 	// (Deprecated): Used internally to know which operations the user should be allowed to perform
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	IsAPI *bool `json:"isAPI,omitempty"`
 	// How many unsuccessful attempts at logging in has the user made
 	LoginAttempts *int64 `json:"loginAttempts,omitempty"`
@@ -38,4 +39,113 @@ type UserSchema struct {
 	SeenAt *time.Time `json:"seenAt,omitempty"`
 	// A unique username for the user
 	Username *string `json:"username,omitempty"`
+}
+
+func (u UserSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UserSchema) GetAccountType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
+}
+
+func (o *UserSchema) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *UserSchema) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *UserSchema) GetEmailSent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EmailSent
+}
+
+func (o *UserSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *UserSchema) GetImageURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ImageURL
+}
+
+func (o *UserSchema) GetInviteLink() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InviteLink
+}
+
+func (o *UserSchema) GetIsAPI() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsAPI
+}
+
+func (o *UserSchema) GetLoginAttempts() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LoginAttempts
+}
+
+func (o *UserSchema) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *UserSchema) GetPermissions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
+}
+
+func (o *UserSchema) GetRootRole() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.RootRole
+}
+
+func (o *UserSchema) GetSeenAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.SeenAt
+}
+
+func (o *UserSchema) GetUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Username
 }

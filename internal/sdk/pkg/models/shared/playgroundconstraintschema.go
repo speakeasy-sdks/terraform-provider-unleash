@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // PlaygroundConstraintSchemaOperator - The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
@@ -77,11 +78,11 @@ func (e *PlaygroundConstraintSchemaOperator) UnmarshalJSON(data []byte) error {
 // PlaygroundConstraintSchema - A strategy constraint. For more information, refer to [the strategy constraint reference documentation](https://docs.getunleash.io/reference/strategy-constraints)
 type PlaygroundConstraintSchema struct {
 	// Whether the operator should be case sensitive or not. Defaults to `false` (being case sensitive).
-	CaseInsensitive *bool `json:"caseInsensitive,omitempty"`
+	CaseInsensitive *bool `default:"false" json:"caseInsensitive"`
 	// The name of the context field that this constraint should apply to.
 	ContextName string `json:"contextName"`
 	// Whether the result should be negated or not. If `true`, will turn a `true` result into a `false` result and vice versa.
-	Inverted *bool `json:"inverted,omitempty"`
+	Inverted *bool `default:"false" json:"inverted"`
 	// The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
 	Operator PlaygroundConstraintSchemaOperator `json:"operator"`
 	// Whether this was evaluated as true or false.
@@ -90,4 +91,64 @@ type PlaygroundConstraintSchema struct {
 	Value *string `json:"value,omitempty"`
 	// The context values that should be used for constraint evaluation. Use this property instead of `value` for properties that accept multiple values.
 	Values []string `json:"values,omitempty"`
+}
+
+func (p PlaygroundConstraintSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PlaygroundConstraintSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PlaygroundConstraintSchema) GetCaseInsensitive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.CaseInsensitive
+}
+
+func (o *PlaygroundConstraintSchema) GetContextName() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContextName
+}
+
+func (o *PlaygroundConstraintSchema) GetInverted() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Inverted
+}
+
+func (o *PlaygroundConstraintSchema) GetOperator() PlaygroundConstraintSchemaOperator {
+	if o == nil {
+		return PlaygroundConstraintSchemaOperator("")
+	}
+	return o.Operator
+}
+
+func (o *PlaygroundConstraintSchema) GetResult() bool {
+	if o == nil {
+		return false
+	}
+	return o.Result
+}
+
+func (o *PlaygroundConstraintSchema) GetValue() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Value
+}
+
+func (o *PlaygroundConstraintSchema) GetValues() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Values
 }

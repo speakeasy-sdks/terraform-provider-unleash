@@ -16,6 +16,27 @@ type RegisterClientMetrics400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *RegisterClientMetrics400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *RegisterClientMetrics400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *RegisterClientMetrics400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type RegisterClientMetricsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -25,4 +46,32 @@ type RegisterClientMetricsResponse struct {
 	RawResponse *http.Response
 	// The request data does not match what we expect.
 	RegisterClientMetrics400ApplicationJSONObject *RegisterClientMetrics400ApplicationJSON
+}
+
+func (o *RegisterClientMetricsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *RegisterClientMetricsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *RegisterClientMetricsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *RegisterClientMetricsResponse) GetRegisterClientMetrics400ApplicationJSONObject() *RegisterClientMetrics400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.RegisterClientMetrics400ApplicationJSONObject
 }

@@ -3,60 +3,46 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // UpdateServiceAccountSchema - Describes the properties required to update a service account
 type UpdateServiceAccountSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// The name of the service account
 	Name *string `json:"name,omitempty"`
 	// The id of the root role for the service account
 	RootRole *int64 `json:"rootRole,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
 }
-type _UpdateServiceAccountSchema UpdateServiceAccountSchema
 
-func (c *UpdateServiceAccountSchema) UnmarshalJSON(bs []byte) error {
-	data := _UpdateServiceAccountSchema{}
+func (u UpdateServiceAccountSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
 
-	if err := json.Unmarshal(bs, &data); err != nil {
+func (u *UpdateServiceAccountSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
-	*c = UpdateServiceAccountSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "name")
-	delete(additionalFields, "rootRole")
-
-	c.AdditionalProperties = additionalFields
-
 	return nil
 }
 
-func (c UpdateServiceAccountSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_UpdateServiceAccountSchema(c))
-	if err != nil {
-		return nil, err
+func (o *UpdateServiceAccountSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *UpdateServiceAccountSchema) GetName() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Name
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *UpdateServiceAccountSchema) GetRootRole() *int64 {
+	if o == nil {
+		return nil
 	}
-
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
-	}
-
-	return json.Marshal(out)
+	return o.RootRole
 }

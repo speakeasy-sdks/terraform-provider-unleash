@@ -9,3 +9,38 @@ type RoleWithPermissionsSchema struct {
 	Permissions []AdminPermissionSchema `json:"permissions"`
 	Type        string                  `json:"type"`
 }
+
+func (o *RoleWithPermissionsSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *RoleWithPermissionsSchema) GetID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ID
+}
+
+func (o *RoleWithPermissionsSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *RoleWithPermissionsSchema) GetPermissions() []AdminPermissionSchema {
+	if o == nil {
+		return []AdminPermissionSchema{}
+	}
+	return o.Permissions
+}
+
+func (o *RoleWithPermissionsSchema) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

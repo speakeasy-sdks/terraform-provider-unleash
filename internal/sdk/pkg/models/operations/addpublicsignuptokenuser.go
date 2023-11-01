@@ -13,6 +13,20 @@ type AddPublicSignupTokenUserRequest struct {
 	Token                   string                         `pathParam:"style=simple,explode=false,name=token"`
 }
 
+func (o *AddPublicSignupTokenUserRequest) GetCreateInvitedUserSchema() shared.CreateInvitedUserSchema {
+	if o == nil {
+		return shared.CreateInvitedUserSchema{}
+	}
+	return o.CreateInvitedUserSchema
+}
+
+func (o *AddPublicSignupTokenUserRequest) GetToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.Token
+}
+
 // AddPublicSignupTokenUser409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
 type AddPublicSignupTokenUser409ApplicationJSON struct {
 	// The ID of the error instance
@@ -23,6 +37,27 @@ type AddPublicSignupTokenUser409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *AddPublicSignupTokenUser409ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddPublicSignupTokenUser409ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddPublicSignupTokenUser409ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // AddPublicSignupTokenUser400ApplicationJSON - The request data does not match what we expect.
 type AddPublicSignupTokenUser400ApplicationJSON struct {
 	// The ID of the error instance
@@ -31,6 +66,27 @@ type AddPublicSignupTokenUser400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *AddPublicSignupTokenUser400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AddPublicSignupTokenUser400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *AddPublicSignupTokenUser400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type AddPublicSignupTokenUserResponse struct {
@@ -46,4 +102,46 @@ type AddPublicSignupTokenUserResponse struct {
 	AddPublicSignupTokenUser409ApplicationJSONObject *AddPublicSignupTokenUser409ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetAddPublicSignupTokenUser400ApplicationJSONObject() *AddPublicSignupTokenUser400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddPublicSignupTokenUser400ApplicationJSONObject
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetAddPublicSignupTokenUser409ApplicationJSONObject() *AddPublicSignupTokenUser409ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.AddPublicSignupTokenUser409ApplicationJSONObject
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetUserSchema() *shared.UserSchema {
+	if o == nil {
+		return nil
+	}
+	return o.UserSchema
 }

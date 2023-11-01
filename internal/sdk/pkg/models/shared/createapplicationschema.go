@@ -3,11 +3,12 @@
 package shared
 
 import (
-	"encoding/json"
+	"terraform/internal/sdk/pkg/utils"
 )
 
 // CreateApplicationSchema - Reported application information from Unleash SDKs
 type CreateApplicationSchema struct {
+	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// Name of the application
 	AppName *string `json:"appName,omitempty"`
 	// Css color to be used to color the application's entry in the application list
@@ -20,55 +21,64 @@ type CreateApplicationSchema struct {
 	Strategies []string `json:"strategies,omitempty"`
 	// A link to reference the application reporting the metrics. Could for instance be a GitHub link to the repository of the application
 	URL *string `json:"url,omitempty"`
-
-	AdditionalProperties interface{} `json:"-"`
-}
-type _CreateApplicationSchema CreateApplicationSchema
-
-func (c *CreateApplicationSchema) UnmarshalJSON(bs []byte) error {
-	data := _CreateApplicationSchema{}
-
-	if err := json.Unmarshal(bs, &data); err != nil {
-		return err
-	}
-	*c = CreateApplicationSchema(data)
-
-	additionalFields := make(map[string]interface{})
-
-	if err := json.Unmarshal(bs, &additionalFields); err != nil {
-		return err
-	}
-	delete(additionalFields, "appName")
-	delete(additionalFields, "color")
-	delete(additionalFields, "icon")
-	delete(additionalFields, "sdkVersion")
-	delete(additionalFields, "strategies")
-	delete(additionalFields, "url")
-
-	c.AdditionalProperties = additionalFields
-
-	return nil
 }
 
 func (c CreateApplicationSchema) MarshalJSON() ([]byte, error) {
-	out := map[string]interface{}{}
-	bs, err := json.Marshal(_CreateApplicationSchema(c))
-	if err != nil {
-		return nil, err
-	}
+	return utils.MarshalJSON(c, "", false)
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (c *CreateApplicationSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
 	}
+	return nil
+}
 
-	bs, err = json.Marshal(c.AdditionalProperties)
-	if err != nil {
-		return nil, err
+func (o *CreateApplicationSchema) GetAdditionalProperties() interface{} {
+	if o == nil {
+		return nil
 	}
+	return o.AdditionalProperties
+}
 
-	if err := json.Unmarshal([]byte(bs), &out); err != nil {
-		return nil, err
+func (o *CreateApplicationSchema) GetAppName() *string {
+	if o == nil {
+		return nil
 	}
+	return o.AppName
+}
 
-	return json.Marshal(out)
+func (o *CreateApplicationSchema) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
+}
+
+func (o *CreateApplicationSchema) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *CreateApplicationSchema) GetSDKVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SDKVersion
+}
+
+func (o *CreateApplicationSchema) GetStrategies() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Strategies
+}
+
+func (o *CreateApplicationSchema) GetURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.URL
 }

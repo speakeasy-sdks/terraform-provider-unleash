@@ -15,6 +15,34 @@ type PatchEnvironmentsFeatureVariantsRequest struct {
 	ProjectID   string               `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *PatchEnvironmentsFeatureVariantsRequest) GetRequestBody() []shared.PatchSchema {
+	if o == nil {
+		return []shared.PatchSchema{}
+	}
+	return o.RequestBody
+}
+
+func (o *PatchEnvironmentsFeatureVariantsRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *PatchEnvironmentsFeatureVariantsRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *PatchEnvironmentsFeatureVariantsRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // PatchEnvironmentsFeatureVariants404ApplicationJSON - The requested resource was not found.
 type PatchEnvironmentsFeatureVariants404ApplicationJSON struct {
 	// The ID of the error instance
@@ -23,6 +51,27 @@ type PatchEnvironmentsFeatureVariants404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *PatchEnvironmentsFeatureVariants404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PatchEnvironmentsFeatureVariants404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PatchEnvironmentsFeatureVariants404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // PatchEnvironmentsFeatureVariants403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -35,6 +84,27 @@ type PatchEnvironmentsFeatureVariants403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *PatchEnvironmentsFeatureVariants403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PatchEnvironmentsFeatureVariants403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PatchEnvironmentsFeatureVariants403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // PatchEnvironmentsFeatureVariants401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type PatchEnvironmentsFeatureVariants401ApplicationJSON struct {
 	// The ID of the error instance
@@ -45,6 +115,27 @@ type PatchEnvironmentsFeatureVariants401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *PatchEnvironmentsFeatureVariants401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PatchEnvironmentsFeatureVariants401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PatchEnvironmentsFeatureVariants401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // PatchEnvironmentsFeatureVariants400ApplicationJSON - The request data does not match what we expect.
 type PatchEnvironmentsFeatureVariants400ApplicationJSON struct {
 	// The ID of the error instance
@@ -53,6 +144,27 @@ type PatchEnvironmentsFeatureVariants400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *PatchEnvironmentsFeatureVariants400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PatchEnvironmentsFeatureVariants400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *PatchEnvironmentsFeatureVariants400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type PatchEnvironmentsFeatureVariantsResponse struct {
@@ -72,4 +184,60 @@ type PatchEnvironmentsFeatureVariantsResponse struct {
 	PatchEnvironmentsFeatureVariants403ApplicationJSONObject *PatchEnvironmentsFeatureVariants403ApplicationJSON
 	// The requested resource was not found.
 	PatchEnvironmentsFeatureVariants404ApplicationJSONObject *PatchEnvironmentsFeatureVariants404ApplicationJSON
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetFeatureVariantsSchema() *shared.FeatureVariantsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureVariantsSchema
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetPatchEnvironmentsFeatureVariants400ApplicationJSONObject() *PatchEnvironmentsFeatureVariants400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.PatchEnvironmentsFeatureVariants400ApplicationJSONObject
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetPatchEnvironmentsFeatureVariants401ApplicationJSONObject() *PatchEnvironmentsFeatureVariants401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.PatchEnvironmentsFeatureVariants401ApplicationJSONObject
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetPatchEnvironmentsFeatureVariants403ApplicationJSONObject() *PatchEnvironmentsFeatureVariants403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.PatchEnvironmentsFeatureVariants403ApplicationJSONObject
+}
+
+func (o *PatchEnvironmentsFeatureVariantsResponse) GetPatchEnvironmentsFeatureVariants404ApplicationJSONObject() *PatchEnvironmentsFeatureVariants404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.PatchEnvironmentsFeatureVariants404ApplicationJSONObject
 }

@@ -16,6 +16,27 @@ type UpdateSortOrder404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateSortOrder404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSortOrder404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSortOrder404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateSortOrder403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type UpdateSortOrder403ApplicationJSON struct {
 	// The ID of the error instance
@@ -26,6 +47,27 @@ type UpdateSortOrder403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *UpdateSortOrder403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSortOrder403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSortOrder403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // UpdateSortOrder401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type UpdateSortOrder401ApplicationJSON struct {
 	// The ID of the error instance
@@ -34,6 +76,27 @@ type UpdateSortOrder401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *UpdateSortOrder401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSortOrder401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UpdateSortOrder401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type UpdateSortOrderResponse struct {
@@ -49,4 +112,46 @@ type UpdateSortOrderResponse struct {
 	UpdateSortOrder403ApplicationJSONObject *UpdateSortOrder403ApplicationJSON
 	// The requested resource was not found.
 	UpdateSortOrder404ApplicationJSONObject *UpdateSortOrder404ApplicationJSON
+}
+
+func (o *UpdateSortOrderResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateSortOrderResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateSortOrderResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateSortOrderResponse) GetUpdateSortOrder401ApplicationJSONObject() *UpdateSortOrder401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSortOrder401ApplicationJSONObject
+}
+
+func (o *UpdateSortOrderResponse) GetUpdateSortOrder403ApplicationJSONObject() *UpdateSortOrder403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSortOrder403ApplicationJSONObject
+}
+
+func (o *UpdateSortOrderResponse) GetUpdateSortOrder404ApplicationJSONObject() *UpdateSortOrder404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSortOrder404ApplicationJSONObject
 }

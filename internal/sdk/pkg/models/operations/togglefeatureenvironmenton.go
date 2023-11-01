@@ -13,6 +13,27 @@ type ToggleFeatureEnvironmentOnRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *ToggleFeatureEnvironmentOnRequest) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *ToggleFeatureEnvironmentOnRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *ToggleFeatureEnvironmentOnRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // ToggleFeatureEnvironmentOn404ApplicationJSON - The requested resource was not found.
 type ToggleFeatureEnvironmentOn404ApplicationJSON struct {
 	// The ID of the error instance
@@ -21,6 +42,27 @@ type ToggleFeatureEnvironmentOn404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ToggleFeatureEnvironmentOn404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleFeatureEnvironmentOn404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleFeatureEnvironmentOn404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // ToggleFeatureEnvironmentOn403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -33,6 +75,27 @@ type ToggleFeatureEnvironmentOn403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ToggleFeatureEnvironmentOn403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleFeatureEnvironmentOn403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleFeatureEnvironmentOn403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ToggleFeatureEnvironmentOn401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type ToggleFeatureEnvironmentOn401ApplicationJSON struct {
 	// The ID of the error instance
@@ -43,6 +106,27 @@ type ToggleFeatureEnvironmentOn401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ToggleFeatureEnvironmentOn401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleFeatureEnvironmentOn401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleFeatureEnvironmentOn401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // ToggleFeatureEnvironmentOn400ApplicationJSON - The request data does not match what we expect.
 type ToggleFeatureEnvironmentOn400ApplicationJSON struct {
 	// The ID of the error instance
@@ -51,6 +135,27 @@ type ToggleFeatureEnvironmentOn400ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *ToggleFeatureEnvironmentOn400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ToggleFeatureEnvironmentOn400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ToggleFeatureEnvironmentOn400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type ToggleFeatureEnvironmentOnResponse struct {
@@ -70,4 +175,60 @@ type ToggleFeatureEnvironmentOnResponse struct {
 	ToggleFeatureEnvironmentOn403ApplicationJSONObject *ToggleFeatureEnvironmentOn403ApplicationJSON
 	// The requested resource was not found.
 	ToggleFeatureEnvironmentOn404ApplicationJSONObject *ToggleFeatureEnvironmentOn404ApplicationJSON
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetFeatureSchema() *shared.FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureSchema
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetToggleFeatureEnvironmentOn400ApplicationJSONObject() *ToggleFeatureEnvironmentOn400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleFeatureEnvironmentOn400ApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetToggleFeatureEnvironmentOn401ApplicationJSONObject() *ToggleFeatureEnvironmentOn401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleFeatureEnvironmentOn401ApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetToggleFeatureEnvironmentOn403ApplicationJSONObject() *ToggleFeatureEnvironmentOn403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleFeatureEnvironmentOn403ApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOnResponse) GetToggleFeatureEnvironmentOn404ApplicationJSONObject() *ToggleFeatureEnvironmentOn404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ToggleFeatureEnvironmentOn404ApplicationJSONObject
 }

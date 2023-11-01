@@ -7,3 +7,10 @@ type NameSchema struct {
 	// The name of the represented object.
 	Name string `json:"name"`
 }
+
+func (o *NameSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

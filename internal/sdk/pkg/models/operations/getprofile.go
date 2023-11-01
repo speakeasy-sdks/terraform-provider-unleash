@@ -17,6 +17,27 @@ type GetProfile401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetProfile401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetProfile401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetProfile401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetProfileResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetProfileResponse struct {
 	GetProfile401ApplicationJSONObject *GetProfile401ApplicationJSON
 	// profileSchema
 	ProfileSchema *shared.ProfileSchema
+}
+
+func (o *GetProfileResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetProfileResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetProfileResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetProfileResponse) GetGetProfile401ApplicationJSONObject() *GetProfile401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetProfile401ApplicationJSONObject
+}
+
+func (o *GetProfileResponse) GetProfileSchema() *shared.ProfileSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ProfileSchema
 }

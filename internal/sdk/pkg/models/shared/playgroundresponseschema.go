@@ -9,3 +9,17 @@ type PlaygroundResponseSchema struct {
 	// Data for the playground API to evaluate toggles
 	Input PlaygroundRequestSchema `json:"input"`
 }
+
+func (o *PlaygroundResponseSchema) GetFeatures() []PlaygroundFeatureSchema {
+	if o == nil {
+		return []PlaygroundFeatureSchema{}
+	}
+	return o.Features
+}
+
+func (o *PlaygroundResponseSchema) GetInput() PlaygroundRequestSchema {
+	if o == nil {
+		return PlaygroundRequestSchema{}
+	}
+	return o.Input
+}

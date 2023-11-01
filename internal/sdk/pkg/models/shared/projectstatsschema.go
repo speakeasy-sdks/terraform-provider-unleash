@@ -25,3 +25,59 @@ type ProjectStatsSchema struct {
 	// The number of members that were added to the project during the current window
 	ProjectMembersAddedCurrentWindow float64 `json:"projectMembersAddedCurrentWindow"`
 }
+
+func (o *ProjectStatsSchema) GetArchivedCurrentWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ArchivedCurrentWindow
+}
+
+func (o *ProjectStatsSchema) GetArchivedPastWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ArchivedPastWindow
+}
+
+func (o *ProjectStatsSchema) GetAvgTimeToProdCurrentWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AvgTimeToProdCurrentWindow
+}
+
+func (o *ProjectStatsSchema) GetCreatedCurrentWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.CreatedCurrentWindow
+}
+
+func (o *ProjectStatsSchema) GetCreatedPastWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.CreatedPastWindow
+}
+
+func (o *ProjectStatsSchema) GetProjectActivityCurrentWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ProjectActivityCurrentWindow
+}
+
+func (o *ProjectStatsSchema) GetProjectActivityPastWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ProjectActivityPastWindow
+}
+
+func (o *ProjectStatsSchema) GetProjectMembersAddedCurrentWindow() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ProjectMembersAddedCurrentWindow
+}

@@ -11,6 +11,13 @@ type GetApplicationRequest struct {
 	AppName string `pathParam:"style=simple,explode=false,name=appName"`
 }
 
+func (o *GetApplicationRequest) GetAppName() string {
+	if o == nil {
+		return ""
+	}
+	return o.AppName
+}
+
 // GetApplication404ApplicationJSON - The requested resource was not found.
 type GetApplication404ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetApplication404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetApplication404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetApplication404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetApplication404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetApplicationResponse struct {
@@ -32,4 +60,39 @@ type GetApplicationResponse struct {
 	ApplicationSchema *shared.ApplicationSchema
 	// The requested resource was not found.
 	GetApplication404ApplicationJSONObject *GetApplication404ApplicationJSON
+}
+
+func (o *GetApplicationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetApplicationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetApplicationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetApplicationResponse) GetApplicationSchema() *shared.ApplicationSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ApplicationSchema
+}
+
+func (o *GetApplicationResponse) GetGetApplication404ApplicationJSONObject() *GetApplication404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetApplication404ApplicationJSONObject
 }

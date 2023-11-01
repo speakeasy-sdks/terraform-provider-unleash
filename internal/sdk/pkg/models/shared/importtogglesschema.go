@@ -11,3 +11,24 @@ type ImportTogglesSchema struct {
 	// The exported [project](https://docs.getunleash.io/reference/projects)
 	Project string `json:"project"`
 }
+
+func (o *ImportTogglesSchema) GetData() ExportResultSchema {
+	if o == nil {
+		return ExportResultSchema{}
+	}
+	return o.Data
+}
+
+func (o *ImportTogglesSchema) GetEnvironment() string {
+	if o == nil {
+		return ""
+	}
+	return o.Environment
+}
+
+func (o *ImportTogglesSchema) GetProject() string {
+	if o == nil {
+		return ""
+	}
+	return o.Project
+}

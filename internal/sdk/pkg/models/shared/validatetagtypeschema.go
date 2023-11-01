@@ -9,3 +9,17 @@ type ValidateTagTypeSchema struct {
 	// Whether or not the tag type is valid.
 	Valid bool `json:"valid"`
 }
+
+func (o *ValidateTagTypeSchema) GetTagType() TagTypeSchema {
+	if o == nil {
+		return TagTypeSchema{}
+	}
+	return o.TagType
+}
+
+func (o *ValidateTagTypeSchema) GetValid() bool {
+	if o == nil {
+		return false
+	}
+	return o.Valid
+}

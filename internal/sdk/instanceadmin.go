@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strings"
 	"terraform/internal/sdk/pkg/models/operations"
+	"terraform/internal/sdk/pkg/models/sdkerrors"
 	"terraform/internal/sdk/pkg/models/shared"
 	"terraform/internal/sdk/pkg/utils"
 )
@@ -28,7 +29,7 @@ func newInstanceAdmin(sdkConfig sdkConfiguration) *instanceAdmin {
 // GetInstanceAdminStats - Instance usage statistics
 // Provides statistics about various features of Unleash to allow for reporting of usage for self-hosted customers. The response contains data such as the number of users, groups, features, strategies, versions, etc.
 //
-// @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *instanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.GetInstanceAdminStatsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/instance-admin/statistics"
@@ -68,12 +69,14 @@ func (s *instanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InstanceAdminStatsSchema
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return res, err
+			var out shared.InstanceAdminStatsSchema
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
 			}
 
-			res.InstanceAdminStatsSchema = out
+			res.InstanceAdminStatsSchema = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -123,6 +126,8 @@ func (s *instanceAdmin) GetInstanceAdminStatsCsv(ctx context.Context) (*operatio
 		case utils.MatchContentType(contentType, `text/csv`):
 			out := string(rawBody)
 			res.GetInstanceAdminStatsCsv200TextCsvString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

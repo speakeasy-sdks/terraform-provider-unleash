@@ -5,3 +5,10 @@ package shared
 type ToggleMaintenanceSchema struct {
 	Enabled bool `json:"enabled"`
 }
+
+func (o *ToggleMaintenanceSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}

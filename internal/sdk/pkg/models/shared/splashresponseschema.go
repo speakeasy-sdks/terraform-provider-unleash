@@ -11,3 +11,24 @@ type SplashResponseSchema struct {
 	// The ID of the user that was shown the splash screen.
 	UserID int64 `json:"userId"`
 }
+
+func (o *SplashResponseSchema) GetSeen() bool {
+	if o == nil {
+		return false
+	}
+	return o.Seen
+}
+
+func (o *SplashResponseSchema) GetSplashID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SplashID
+}
+
+func (o *SplashResponseSchema) GetUserID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.UserID
+}

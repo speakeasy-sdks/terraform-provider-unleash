@@ -46,6 +46,20 @@ type StrategyVariantSchemaPayload struct {
 	Value string `json:"value"`
 }
 
+func (o *StrategyVariantSchemaPayload) GetType() StrategyVariantSchemaPayloadType {
+	if o == nil {
+		return StrategyVariantSchemaPayloadType("")
+	}
+	return o.Type
+}
+
+func (o *StrategyVariantSchemaPayload) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}
+
 // StrategyVariantSchemaWeightType - Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 type StrategyVariantSchemaWeightType string
 
@@ -86,4 +100,39 @@ type StrategyVariantSchema struct {
 	Weight int64 `json:"weight"`
 	// Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
 	WeightType StrategyVariantSchemaWeightType `json:"weightType"`
+}
+
+func (o *StrategyVariantSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *StrategyVariantSchema) GetPayload() *StrategyVariantSchemaPayload {
+	if o == nil {
+		return nil
+	}
+	return o.Payload
+}
+
+func (o *StrategyVariantSchema) GetStickiness() string {
+	if o == nil {
+		return ""
+	}
+	return o.Stickiness
+}
+
+func (o *StrategyVariantSchema) GetWeight() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Weight
+}
+
+func (o *StrategyVariantSchema) GetWeightType() StrategyVariantSchemaWeightType {
+	if o == nil {
+		return StrategyVariantSchemaWeightType("")
+	}
+	return o.WeightType
 }

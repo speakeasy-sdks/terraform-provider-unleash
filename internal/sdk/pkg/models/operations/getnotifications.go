@@ -17,3 +17,31 @@ type GetNotificationsResponse struct {
 	// notificationsSchema
 	NotificationsSchema []shared.NotificationsSchema
 }
+
+func (o *GetNotificationsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetNotificationsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetNotificationsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetNotificationsResponse) GetNotificationsSchema() []shared.NotificationsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.NotificationsSchema
+}

@@ -9,3 +9,17 @@ type CloneFeatureSchema struct {
 	// Whether to use the new feature name as its group ID or not. Group ID is used for calculating [stickiness](https://docs.getunleash.io/reference/stickiness#calculation). Defaults to true.
 	ReplaceGroupID *bool `json:"replaceGroupId,omitempty"`
 }
+
+func (o *CloneFeatureSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CloneFeatureSchema) GetReplaceGroupID() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ReplaceGroupID
+}

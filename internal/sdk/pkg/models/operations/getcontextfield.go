@@ -11,6 +11,13 @@ type GetContextFieldRequest struct {
 	ContextField string `pathParam:"style=simple,explode=false,name=contextField"`
 }
 
+func (o *GetContextFieldRequest) GetContextField() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContextField
+}
+
 type GetContextFieldResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -20,4 +27,32 @@ type GetContextFieldResponse struct {
 	RawResponse *http.Response
 	// contextFieldSchema
 	ContextFieldSchema *shared.ContextFieldSchema
+}
+
+func (o *GetContextFieldResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetContextFieldResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetContextFieldResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetContextFieldResponse) GetContextFieldSchema() *shared.ContextFieldSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ContextFieldSchema
 }

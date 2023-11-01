@@ -17,3 +17,31 @@ type GetRolesResponse struct {
 	// rolesWithVersionSchema
 	RolesWithVersionSchema *shared.RolesWithVersionSchema
 }
+
+func (o *GetRolesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetRolesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetRolesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetRolesResponse) GetRolesWithVersionSchema() *shared.RolesWithVersionSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RolesWithVersionSchema
+}

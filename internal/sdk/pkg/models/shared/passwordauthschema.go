@@ -7,3 +7,10 @@ type PasswordAuthSchema struct {
 	// Is username/password authentication enabled
 	Enabled *bool `json:"enabled,omitempty"`
 }
+
+func (o *PasswordAuthSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}

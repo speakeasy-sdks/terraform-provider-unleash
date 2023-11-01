@@ -11,6 +11,13 @@ type GetEventsForToggleRequest struct {
 	FeatureName string `pathParam:"style=simple,explode=false,name=featureName"`
 }
 
+func (o *GetEventsForToggleRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
 // GetEventsForToggle401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetEventsForToggle401ApplicationJSON struct {
 	// The ID of the error instance
@@ -19,6 +26,27 @@ type GetEventsForToggle401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetEventsForToggle401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetEventsForToggle401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetEventsForToggle401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetEventsForToggleResponse struct {
@@ -32,4 +60,39 @@ type GetEventsForToggleResponse struct {
 	FeatureEventsSchema *shared.FeatureEventsSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	GetEventsForToggle401ApplicationJSONObject *GetEventsForToggle401ApplicationJSON
+}
+
+func (o *GetEventsForToggleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEventsForToggleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEventsForToggleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetEventsForToggleResponse) GetFeatureEventsSchema() *shared.FeatureEventsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureEventsSchema
+}
+
+func (o *GetEventsForToggleResponse) GetGetEventsForToggle401ApplicationJSONObject() *GetEventsForToggle401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetEventsForToggle401ApplicationJSONObject
 }

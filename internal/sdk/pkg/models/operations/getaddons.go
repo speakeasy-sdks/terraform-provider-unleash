@@ -17,6 +17,27 @@ type GetAddons401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAddons401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAddons401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAddons401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type GetAddonsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -28,4 +49,39 @@ type GetAddonsResponse struct {
 	AddonsSchema *shared.AddonsSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 	GetAddons401ApplicationJSONObject *GetAddons401ApplicationJSON
+}
+
+func (o *GetAddonsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAddonsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAddonsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAddonsResponse) GetAddonsSchema() *shared.AddonsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.AddonsSchema
+}
+
+func (o *GetAddonsResponse) GetGetAddons401ApplicationJSONObject() *GetAddons401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAddons401ApplicationJSONObject
 }

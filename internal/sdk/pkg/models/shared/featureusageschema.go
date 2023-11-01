@@ -15,3 +15,38 @@ type FeatureUsageSchema struct {
 	// The version of this schema
 	Version int64 `json:"version"`
 }
+
+func (o *FeatureUsageSchema) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *FeatureUsageSchema) GetLastHourUsage() []FeatureEnvironmentMetricsSchema {
+	if o == nil {
+		return []FeatureEnvironmentMetricsSchema{}
+	}
+	return o.LastHourUsage
+}
+
+func (o *FeatureUsageSchema) GetMaturity() string {
+	if o == nil {
+		return ""
+	}
+	return o.Maturity
+}
+
+func (o *FeatureUsageSchema) GetSeenApplications() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.SeenApplications
+}
+
+func (o *FeatureUsageSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

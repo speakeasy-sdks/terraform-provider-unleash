@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -12,4 +13,29 @@ type PublicSignupTokenUpdateSchema struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// The token's expiration date.
 	ExpiresAt *time.Time `json:"expiresAt,omitempty"`
+}
+
+func (p PublicSignupTokenUpdateSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PublicSignupTokenUpdateSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PublicSignupTokenUpdateSchema) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *PublicSignupTokenUpdateSchema) GetExpiresAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresAt
 }

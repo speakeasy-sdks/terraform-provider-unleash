@@ -7,3 +7,10 @@ type ProxyFeaturesSchema struct {
 	// The actual features returned to the Frontend SDK
 	Toggles []ProxyFeatureSchema `json:"toggles"`
 }
+
+func (o *ProxyFeaturesSchema) GetToggles() []ProxyFeatureSchema {
+	if o == nil {
+		return []ProxyFeatureSchema{}
+	}
+	return o.Toggles
+}

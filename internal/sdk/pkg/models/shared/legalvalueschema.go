@@ -9,3 +9,17 @@ type LegalValueSchema struct {
 	// The valid value
 	Value string `json:"value"`
 }
+
+func (o *LegalValueSchema) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *LegalValueSchema) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
+}

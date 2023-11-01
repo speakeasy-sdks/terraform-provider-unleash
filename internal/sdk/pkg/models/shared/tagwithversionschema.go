@@ -9,3 +9,17 @@ type TagWithVersionSchema struct {
 	// The version of the schema used to model the tag.
 	Version int64 `json:"version"`
 }
+
+func (o *TagWithVersionSchema) GetTag() TagSchema {
+	if o == nil {
+		return TagSchema{}
+	}
+	return o.Tag
+}
+
+func (o *TagWithVersionSchema) GetVersion() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Version
+}

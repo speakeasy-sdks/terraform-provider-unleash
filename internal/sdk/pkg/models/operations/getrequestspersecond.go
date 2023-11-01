@@ -17,3 +17,31 @@ type GetRequestsPerSecondResponse struct {
 	// requestsPerSecondSegmentedSchema
 	RequestsPerSecondSegmentedSchema *shared.RequestsPerSecondSegmentedSchema
 }
+
+func (o *GetRequestsPerSecondResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetRequestsPerSecondResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetRequestsPerSecondResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetRequestsPerSecondResponse) GetRequestsPerSecondSegmentedSchema() *shared.RequestsPerSecondSegmentedSchema {
+	if o == nil {
+		return nil
+	}
+	return o.RequestsPerSecondSegmentedSchema
+}

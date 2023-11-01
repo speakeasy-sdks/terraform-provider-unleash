@@ -12,10 +12,45 @@ type FeatureTagSchema struct {
 	TagValue string `json:"tagValue"`
 	// The [type](https://docs.getunleash.io/reference/tags#tag-types tag types) of the tag. This property is deprecated and will be removed in a future version of Unleash. Superseded by the `tagType` property.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *string `json:"type,omitempty"`
 	// The value of the tag. This property is deprecated and will be removed in a future version of Unleash. Superseded by the `tagValue` property.
 	//
-	// @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Value *string `json:"value,omitempty"`
+}
+
+func (o *FeatureTagSchema) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *FeatureTagSchema) GetTagType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagType
+}
+
+func (o *FeatureTagSchema) GetTagValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.TagValue
+}
+
+func (o *FeatureTagSchema) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *FeatureTagSchema) GetValue() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Value
 }

@@ -17,6 +17,27 @@ type GetPats404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetPats404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetPats404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetPats404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetPats403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 type GetPats403ApplicationJSON struct {
 	// The ID of the error instance
@@ -27,6 +48,27 @@ type GetPats403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetPats403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetPats403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetPats403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetPats401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetPats401ApplicationJSON struct {
 	// The ID of the error instance
@@ -35,6 +77,27 @@ type GetPats401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetPats401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetPats401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetPats401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetPatsResponse struct {
@@ -52,4 +115,53 @@ type GetPatsResponse struct {
 	GetPats404ApplicationJSONObject *GetPats404ApplicationJSON
 	// patsSchema
 	PatsSchema *shared.PatsSchema
+}
+
+func (o *GetPatsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPatsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPatsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetPatsResponse) GetGetPats401ApplicationJSONObject() *GetPats401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPats401ApplicationJSONObject
+}
+
+func (o *GetPatsResponse) GetGetPats403ApplicationJSONObject() *GetPats403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPats403ApplicationJSONObject
+}
+
+func (o *GetPatsResponse) GetGetPats404ApplicationJSONObject() *GetPats404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetPats404ApplicationJSONObject
+}
+
+func (o *GetPatsResponse) GetPatsSchema() *shared.PatsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.PatsSchema
 }

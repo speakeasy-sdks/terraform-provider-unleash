@@ -16,6 +16,27 @@ type ValidateRole400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ValidateRole400ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ValidateRole400ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ValidateRole400ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type ValidateRoleResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -25,4 +46,32 @@ type ValidateRoleResponse struct {
 	RawResponse *http.Response
 	// The request data does not match what we expect.
 	ValidateRole400ApplicationJSONObject *ValidateRole400ApplicationJSON
+}
+
+func (o *ValidateRoleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ValidateRoleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ValidateRoleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ValidateRoleResponse) GetValidateRole400ApplicationJSONObject() *ValidateRole400ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateRole400ApplicationJSONObject
 }

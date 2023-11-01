@@ -17,6 +17,27 @@ type GetAllEnvironments403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetAllEnvironments403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllEnvironments403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllEnvironments403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetAllEnvironments401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetAllEnvironments401ApplicationJSON struct {
 	// The ID of the error instance
@@ -25,6 +46,27 @@ type GetAllEnvironments401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetAllEnvironments401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetAllEnvironments401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetAllEnvironments401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetAllEnvironmentsResponse struct {
@@ -40,4 +82,46 @@ type GetAllEnvironmentsResponse struct {
 	GetAllEnvironments401ApplicationJSONObject *GetAllEnvironments401ApplicationJSON
 	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
 	GetAllEnvironments403ApplicationJSONObject *GetAllEnvironments403ApplicationJSON
+}
+
+func (o *GetAllEnvironmentsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAllEnvironmentsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAllEnvironmentsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAllEnvironmentsResponse) GetEnvironmentsSchema() *shared.EnvironmentsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.EnvironmentsSchema
+}
+
+func (o *GetAllEnvironmentsResponse) GetGetAllEnvironments401ApplicationJSONObject() *GetAllEnvironments401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllEnvironments401ApplicationJSONObject
+}
+
+func (o *GetAllEnvironmentsResponse) GetGetAllEnvironments403ApplicationJSONObject() *GetAllEnvironments403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetAllEnvironments403ApplicationJSONObject
 }

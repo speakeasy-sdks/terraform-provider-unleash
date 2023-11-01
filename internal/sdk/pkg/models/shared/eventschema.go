@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -358,4 +359,85 @@ type EventSchema struct {
 	Tags []TagSchema `json:"tags,omitempty"`
 	// What [type](https://docs.getunleash.io/reference/api/legacy/unleash/admin/events#event-type-description) of event this is
 	Type EventSchemaType `json:"type"`
+}
+
+func (e EventSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EventSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EventSchema) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *EventSchema) GetCreatedBy() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedBy
+}
+
+func (o *EventSchema) GetData() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Data
+}
+
+func (o *EventSchema) GetEnvironment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Environment
+}
+
+func (o *EventSchema) GetFeatureName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureName
+}
+
+func (o *EventSchema) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
+func (o *EventSchema) GetPreData() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.PreData
+}
+
+func (o *EventSchema) GetProject() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Project
+}
+
+func (o *EventSchema) GetTags() []TagSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *EventSchema) GetType() EventSchemaType {
+	if o == nil {
+		return EventSchemaType("")
+	}
+	return o.Type
 }

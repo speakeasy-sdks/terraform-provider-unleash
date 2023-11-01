@@ -17,3 +17,31 @@ type GetApplicationsResponse struct {
 	// applicationsSchema
 	ApplicationsSchema *shared.ApplicationsSchema
 }
+
+func (o *GetApplicationsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetApplicationsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetApplicationsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetApplicationsResponse) GetApplicationsSchema() *shared.ApplicationsSchema {
+	if o == nil {
+		return nil
+	}
+	return o.ApplicationsSchema
+}

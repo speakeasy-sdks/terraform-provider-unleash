@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"terraform/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -26,4 +27,78 @@ type PublicSignupTokenSchema struct {
 	URL string `json:"url"`
 	// Array of users that have signed up using the token.
 	Users []UserSchema `json:"users,omitempty"`
+}
+
+func (p PublicSignupTokenSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PublicSignupTokenSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PublicSignupTokenSchema) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *PublicSignupTokenSchema) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
+}
+
+func (o *PublicSignupTokenSchema) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *PublicSignupTokenSchema) GetExpiresAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.ExpiresAt
+}
+
+func (o *PublicSignupTokenSchema) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PublicSignupTokenSchema) GetRole() RoleSchema {
+	if o == nil {
+		return RoleSchema{}
+	}
+	return o.Role
+}
+
+func (o *PublicSignupTokenSchema) GetSecret() string {
+	if o == nil {
+		return ""
+	}
+	return o.Secret
+}
+
+func (o *PublicSignupTokenSchema) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *PublicSignupTokenSchema) GetUsers() []UserSchema {
+	if o == nil {
+		return nil
+	}
+	return o.Users
 }

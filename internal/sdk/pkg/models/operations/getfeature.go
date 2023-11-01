@@ -12,6 +12,20 @@ type GetFeatureRequest struct {
 	ProjectID   string `pathParam:"style=simple,explode=false,name=projectId"`
 }
 
+func (o *GetFeatureRequest) GetFeatureName() string {
+	if o == nil {
+		return ""
+	}
+	return o.FeatureName
+}
+
+func (o *GetFeatureRequest) GetProjectID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProjectID
+}
+
 // GetFeature404ApplicationJSON - The requested resource was not found.
 type GetFeature404ApplicationJSON struct {
 	// The ID of the error instance
@@ -20,6 +34,27 @@ type GetFeature404ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeature404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeature404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeature404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 // GetFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
@@ -32,6 +67,27 @@ type GetFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *GetFeature403ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeature403ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeature403ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 // GetFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
 type GetFeature401ApplicationJSON struct {
 	// The ID of the error instance
@@ -40,6 +96,27 @@ type GetFeature401ApplicationJSON struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the error kind
 	Name *string `json:"name,omitempty"`
+}
+
+func (o *GetFeature401ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetFeature401ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *GetFeature401ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 type GetFeatureResponse struct {
@@ -57,4 +134,53 @@ type GetFeatureResponse struct {
 	GetFeature403ApplicationJSONObject *GetFeature403ApplicationJSON
 	// The requested resource was not found.
 	GetFeature404ApplicationJSONObject *GetFeature404ApplicationJSON
+}
+
+func (o *GetFeatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetFeatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetFeatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetFeatureResponse) GetFeatureSchema() *shared.FeatureSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureSchema
+}
+
+func (o *GetFeatureResponse) GetGetFeature401ApplicationJSONObject() *GetFeature401ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeature401ApplicationJSONObject
+}
+
+func (o *GetFeatureResponse) GetGetFeature403ApplicationJSONObject() *GetFeature403ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeature403ApplicationJSONObject
+}
+
+func (o *GetFeatureResponse) GetGetFeature404ApplicationJSONObject() *GetFeature404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.GetFeature404ApplicationJSONObject
 }

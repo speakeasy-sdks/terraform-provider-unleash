@@ -16,6 +16,27 @@ type ImportToggles404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (o *ImportToggles404ApplicationJSON) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *ImportToggles404ApplicationJSON) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *ImportToggles404ApplicationJSON) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
 type ImportTogglesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -25,4 +46,32 @@ type ImportTogglesResponse struct {
 	RawResponse *http.Response
 	// The requested resource was not found.
 	ImportToggles404ApplicationJSONObject *ImportToggles404ApplicationJSON
+}
+
+func (o *ImportTogglesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ImportTogglesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ImportTogglesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ImportTogglesResponse) GetImportToggles404ApplicationJSONObject() *ImportToggles404ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ImportToggles404ApplicationJSONObject
 }
