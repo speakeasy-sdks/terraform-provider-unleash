@@ -35,8 +35,8 @@ func (o *AddDefaultStrategyToProjectEnvironmentRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// AddDefaultStrategyToProjectEnvironment400ApplicationJSON - The request data does not match what we expect.
-type AddDefaultStrategyToProjectEnvironment400ApplicationJSON struct {
+// AddDefaultStrategyToProjectEnvironmentResponseBody - The request data does not match what we expect.
+type AddDefaultStrategyToProjectEnvironmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -45,21 +45,21 @@ type AddDefaultStrategyToProjectEnvironment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetID() *string {
+func (o *AddDefaultStrategyToProjectEnvironmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetMessage() *string {
+func (o *AddDefaultStrategyToProjectEnvironmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddDefaultStrategyToProjectEnvironment400ApplicationJSON) GetName() *string {
+func (o *AddDefaultStrategyToProjectEnvironmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -73,10 +73,10 @@ type AddDefaultStrategyToProjectEnvironmentResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject *AddDefaultStrategyToProjectEnvironment400ApplicationJSON
 	// createFeatureStrategySchema
 	CreateFeatureStrategySchema *shared.CreateFeatureStrategySchema
+	// The request data does not match what we expect.
+	Object *AddDefaultStrategyToProjectEnvironmentResponseBody
 }
 
 func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetContentType() string {
@@ -100,16 +100,16 @@ func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetRawResponse() *http.
 	return o.RawResponse
 }
 
-func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetAddDefaultStrategyToProjectEnvironment400ApplicationJSONObject() *AddDefaultStrategyToProjectEnvironment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject
-}
-
 func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetCreateFeatureStrategySchema() *shared.CreateFeatureStrategySchema {
 	if o == nil {
 		return nil
 	}
 	return o.CreateFeatureStrategySchema
+}
+
+func (o *AddDefaultStrategyToProjectEnvironmentResponse) GetObject() *AddDefaultStrategyToProjectEnvironmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

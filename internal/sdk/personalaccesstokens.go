@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// personalAccessTokens - Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
-type personalAccessTokens struct {
+// PersonalAccessTokens - Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
+type PersonalAccessTokens struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPersonalAccessTokens(sdkConfig sdkConfiguration) *personalAccessTokens {
-	return &personalAccessTokens{
+func newPersonalAccessTokens(sdkConfig sdkConfiguration) *PersonalAccessTokens {
+	return &PersonalAccessTokens{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreatePat - Create a new Personal Access Token.
 // Creates a new [Personal Access Token](https://docs.getunleash.io/how-to/how-to-create-personal-access-tokens) for the current user.
-func (s *personalAccessTokens) CreatePat(ctx context.Context, request shared.PatSchema) (*operations.CreatePatResponse, error) {
+func (s *PersonalAccessTokens) CreatePat(ctx context.Context, request shared.PatSchema) (*operations.CreatePatResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user/tokens"
 
@@ -95,36 +95,36 @@ func (s *personalAccessTokens) CreatePat(ctx context.Context, request shared.Pat
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePat401ApplicationJSON
+			var out operations.CreatePatResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePat401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePat403ApplicationJSON
+			var out operations.CreatePatPersonalAccessTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePat403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePat404ApplicationJSON
+			var out operations.CreatePatPersonalAccessTokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePat404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -135,7 +135,7 @@ func (s *personalAccessTokens) CreatePat(ctx context.Context, request shared.Pat
 
 // DeletePat - Delete a Personal Access Token.
 // This endpoint allows for deleting a [Personal Access Token](https://docs.getunleash.io/how-to/how-to-create-personal-access-tokens) belonging to the current user.
-func (s *personalAccessTokens) DeletePat(ctx context.Context, request operations.DeletePatRequest) (*operations.DeletePatResponse, error) {
+func (s *PersonalAccessTokens) DeletePat(ctx context.Context, request operations.DeletePatRequest) (*operations.DeletePatResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/user/tokens/{id}", request, nil)
 	if err != nil {
@@ -178,36 +178,36 @@ func (s *personalAccessTokens) DeletePat(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeletePat401ApplicationJSON
+			var out operations.DeletePatResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeletePat401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeletePat403ApplicationJSON
+			var out operations.DeletePatPersonalAccessTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeletePat403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeletePat404ApplicationJSON
+			var out operations.DeletePatPersonalAccessTokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeletePat404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -218,7 +218,7 @@ func (s *personalAccessTokens) DeletePat(ctx context.Context, request operations
 
 // GetPats - Get all Personal Access Tokens for the current user.
 // Returns all of the [Personal Access Tokens](https://docs.getunleash.io/how-to/how-to-create-personal-access-tokens) belonging to the current user.
-func (s *personalAccessTokens) GetPats(ctx context.Context) (*operations.GetPatsResponse, error) {
+func (s *PersonalAccessTokens) GetPats(ctx context.Context) (*operations.GetPatsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user/tokens"
 
@@ -269,36 +269,36 @@ func (s *personalAccessTokens) GetPats(ctx context.Context) (*operations.GetPats
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPats401ApplicationJSON
+			var out operations.GetPatsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPats401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPats403ApplicationJSON
+			var out operations.GetPatsPersonalAccessTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPats403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPats404ApplicationJSON
+			var out operations.GetPatsPersonalAccessTokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPats404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

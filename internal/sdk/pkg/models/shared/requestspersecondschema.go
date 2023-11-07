@@ -9,80 +9,80 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// RequestsPerSecondSchemaDataResultMetric - A key value set representing the metric
-type RequestsPerSecondSchemaDataResultMetric struct {
+// Metric - A key value set representing the metric
+type Metric struct {
 	// Name of the application this metric relates to
 	AppName *string `json:"appName,omitempty"`
 	// Which endpoint has been accessed
 	Endpoint *string `json:"endpoint,omitempty"`
 }
 
-func (o *RequestsPerSecondSchemaDataResultMetric) GetAppName() *string {
+func (o *Metric) GetAppName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AppName
 }
 
-func (o *RequestsPerSecondSchemaDataResultMetric) GetEndpoint() *string {
+func (o *Metric) GetEndpoint() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Endpoint
 }
 
-type RequestsPerSecondSchemaDataResultValuesType string
+type ValuesType string
 
 const (
-	RequestsPerSecondSchemaDataResultValuesTypeStr    RequestsPerSecondSchemaDataResultValuesType = "str"
-	RequestsPerSecondSchemaDataResultValuesTypeNumber RequestsPerSecondSchemaDataResultValuesType = "number"
+	ValuesTypeStr    ValuesType = "str"
+	ValuesTypeNumber ValuesType = "number"
 )
 
-type RequestsPerSecondSchemaDataResultValues struct {
+type Values struct {
 	Str    *string
 	Number *float64
 
-	Type RequestsPerSecondSchemaDataResultValuesType
+	Type ValuesType
 }
 
-func CreateRequestsPerSecondSchemaDataResultValuesStr(str string) RequestsPerSecondSchemaDataResultValues {
-	typ := RequestsPerSecondSchemaDataResultValuesTypeStr
+func CreateValuesStr(str string) Values {
+	typ := ValuesTypeStr
 
-	return RequestsPerSecondSchemaDataResultValues{
+	return Values{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateRequestsPerSecondSchemaDataResultValuesNumber(number float64) RequestsPerSecondSchemaDataResultValues {
-	typ := RequestsPerSecondSchemaDataResultValuesTypeNumber
+func CreateValuesNumber(number float64) Values {
+	typ := ValuesTypeNumber
 
-	return RequestsPerSecondSchemaDataResultValues{
+	return Values{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *RequestsPerSecondSchemaDataResultValues) UnmarshalJSON(data []byte) error {
+func (u *Values) UnmarshalJSON(data []byte) error {
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = RequestsPerSecondSchemaDataResultValuesTypeStr
+		u.Type = ValuesTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = RequestsPerSecondSchemaDataResultValuesTypeNumber
+		u.Type = ValuesTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u RequestsPerSecondSchemaDataResultValues) MarshalJSON() ([]byte, error) {
+func (u Values) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -94,43 +94,43 @@ func (u RequestsPerSecondSchemaDataResultValues) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-// RequestsPerSecondSchemaDataResult - A representation of a single metric to build a line in a graph
-type RequestsPerSecondSchemaDataResult struct {
+// RequestsPerSecondSchemaResult - A representation of a single metric to build a line in a graph
+type RequestsPerSecondSchemaResult struct {
 	// A key value set representing the metric
-	Metric *RequestsPerSecondSchemaDataResultMetric `json:"metric,omitempty"`
+	Metric *Metric `json:"metric,omitempty"`
 	// An array of arrays. Each element of the array is an array of size 2 consisting of the 2 axis for the graph: in position zero the x axis represented as a number and position one the y axis represented as string
-	Values [][]RequestsPerSecondSchemaDataResultValues `json:"values,omitempty"`
+	Values [][]Values `json:"values,omitempty"`
 }
 
-func (o *RequestsPerSecondSchemaDataResult) GetMetric() *RequestsPerSecondSchemaDataResultMetric {
+func (o *RequestsPerSecondSchemaResult) GetMetric() *Metric {
 	if o == nil {
 		return nil
 	}
 	return o.Metric
 }
 
-func (o *RequestsPerSecondSchemaDataResult) GetValues() [][]RequestsPerSecondSchemaDataResultValues {
+func (o *RequestsPerSecondSchemaResult) GetValues() [][]Values {
 	if o == nil {
 		return nil
 	}
 	return o.Values
 }
 
-// RequestsPerSecondSchemaDataResultType - Prometheus compatible result type.
-type RequestsPerSecondSchemaDataResultType string
+// ResultType - Prometheus compatible result type.
+type ResultType string
 
 const (
-	RequestsPerSecondSchemaDataResultTypeMatrix RequestsPerSecondSchemaDataResultType = "matrix"
-	RequestsPerSecondSchemaDataResultTypeVector RequestsPerSecondSchemaDataResultType = "vector"
-	RequestsPerSecondSchemaDataResultTypeScalar RequestsPerSecondSchemaDataResultType = "scalar"
-	RequestsPerSecondSchemaDataResultTypeString RequestsPerSecondSchemaDataResultType = "string"
+	ResultTypeMatrix ResultType = "matrix"
+	ResultTypeVector ResultType = "vector"
+	ResultTypeScalar ResultType = "scalar"
+	ResultTypeString ResultType = "string"
 )
 
-func (e RequestsPerSecondSchemaDataResultType) ToPointer() *RequestsPerSecondSchemaDataResultType {
+func (e ResultType) ToPointer() *ResultType {
 	return &e
 }
 
-func (e *RequestsPerSecondSchemaDataResultType) UnmarshalJSON(data []byte) error {
+func (e *ResultType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -143,48 +143,48 @@ func (e *RequestsPerSecondSchemaDataResultType) UnmarshalJSON(data []byte) error
 	case "scalar":
 		fallthrough
 	case "string":
-		*e = RequestsPerSecondSchemaDataResultType(v)
+		*e = ResultType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RequestsPerSecondSchemaDataResultType: %v", v)
+		return fmt.Errorf("invalid value for ResultType: %v", v)
 	}
 }
 
-// RequestsPerSecondSchemaData - The query result from prometheus
-type RequestsPerSecondSchemaData struct {
+// Data - The query result from prometheus
+type Data struct {
 	// An array of values per metric. Each one represents a line in the graph labeled by its metric name
-	Result []RequestsPerSecondSchemaDataResult `json:"result,omitempty"`
+	Result []RequestsPerSecondSchemaResult `json:"result,omitempty"`
 	// Prometheus compatible result type.
-	ResultType *RequestsPerSecondSchemaDataResultType `json:"resultType,omitempty"`
+	ResultType *ResultType `json:"resultType,omitempty"`
 }
 
-func (o *RequestsPerSecondSchemaData) GetResult() []RequestsPerSecondSchemaDataResult {
+func (o *Data) GetResult() []RequestsPerSecondSchemaResult {
 	if o == nil {
 		return nil
 	}
 	return o.Result
 }
 
-func (o *RequestsPerSecondSchemaData) GetResultType() *RequestsPerSecondSchemaDataResultType {
+func (o *Data) GetResultType() *ResultType {
 	if o == nil {
 		return nil
 	}
 	return o.ResultType
 }
 
-// RequestsPerSecondSchemaStatus - Whether the query against prometheus succeeded or failed
-type RequestsPerSecondSchemaStatus string
+// Status - Whether the query against prometheus succeeded or failed
+type Status string
 
 const (
-	RequestsPerSecondSchemaStatusSuccess RequestsPerSecondSchemaStatus = "success"
-	RequestsPerSecondSchemaStatusFailure RequestsPerSecondSchemaStatus = "failure"
+	StatusSuccess Status = "success"
+	StatusFailure Status = "failure"
 )
 
-func (e RequestsPerSecondSchemaStatus) ToPointer() *RequestsPerSecondSchemaStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *RequestsPerSecondSchemaStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -193,29 +193,29 @@ func (e *RequestsPerSecondSchemaStatus) UnmarshalJSON(data []byte) error {
 	case "success":
 		fallthrough
 	case "failure":
-		*e = RequestsPerSecondSchemaStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RequestsPerSecondSchemaStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
 // RequestsPerSecondSchema - Statistics for usage of Unleash, formatted so it can easily be used in a graph
 type RequestsPerSecondSchema struct {
 	// The query result from prometheus
-	Data *RequestsPerSecondSchemaData `json:"data,omitempty"`
+	Data *Data `json:"data,omitempty"`
 	// Whether the query against prometheus succeeded or failed
-	Status *RequestsPerSecondSchemaStatus `json:"status,omitempty"`
+	Status *Status `json:"status,omitempty"`
 }
 
-func (o *RequestsPerSecondSchema) GetData() *RequestsPerSecondSchemaData {
+func (o *RequestsPerSecondSchema) GetData() *Data {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *RequestsPerSecondSchema) GetStatus() *RequestsPerSecondSchemaStatus {
+func (o *RequestsPerSecondSchema) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}

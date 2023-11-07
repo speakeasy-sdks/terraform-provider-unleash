@@ -18,8 +18,8 @@ func (o *GetGroupRequest) GetGroupID() string {
 	return o.GroupID
 }
 
-// GetGroup404ApplicationJSON - The requested resource was not found.
-type GetGroup404ApplicationJSON struct {
+// GetGroupUsersResponse404ResponseBody - The requested resource was not found.
+type GetGroupUsersResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetGroup404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroup404ApplicationJSON) GetID() *string {
+func (o *GetGroupUsersResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroup404ApplicationJSON) GetMessage() *string {
+func (o *GetGroupUsersResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroup404ApplicationJSON) GetName() *string {
+func (o *GetGroupUsersResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetGroup403ApplicationJSON struct {
+// GetGroupUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetGroupUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetGroup403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroup403ApplicationJSON) GetID() *string {
+func (o *GetGroupUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroup403ApplicationJSON) GetMessage() *string {
+func (o *GetGroupUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroup403ApplicationJSON) GetName() *string {
+func (o *GetGroupUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetGroup401ApplicationJSON struct {
+// GetGroupUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetGroupUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,29 +90,29 @@ type GetGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroup401ApplicationJSON) GetID() *string {
+func (o *GetGroupUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroup401ApplicationJSON) GetMessage() *string {
+func (o *GetGroupUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroup401ApplicationJSON) GetName() *string {
+func (o *GetGroupUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGroup400ApplicationJSON - The request data does not match what we expect.
-type GetGroup400ApplicationJSON struct {
+// GetGroupResponseBody - The request data does not match what we expect.
+type GetGroupResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -121,21 +121,21 @@ type GetGroup400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroup400ApplicationJSON) GetID() *string {
+func (o *GetGroupResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroup400ApplicationJSON) GetMessage() *string {
+func (o *GetGroupResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroup400ApplicationJSON) GetName() *string {
+func (o *GetGroupResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -143,22 +143,50 @@ func (o *GetGroup400ApplicationJSON) GetName() *string {
 }
 
 type GetGroupResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetGroupResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetGroupUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetGroupUsersResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetGroupUsersResponse404ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGroup400ApplicationJSONObject *GetGroup400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetGroup401ApplicationJSONObject *GetGroup401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGroup403ApplicationJSONObject *GetGroup403ApplicationJSON
-	// The requested resource was not found.
-	GetGroup404ApplicationJSONObject *GetGroup404ApplicationJSON
 	// groupSchema
 	GroupSchema *shared.GroupSchema
+}
+
+func (o *GetGroupResponse) GetFourHundredApplicationJSONObject() *GetGroupResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetFourHundredAndOneApplicationJSONObject() *GetGroupUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetFourHundredAndThreeApplicationJSONObject() *GetGroupUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetGroupResponse) GetFourHundredAndFourApplicationJSONObject() *GetGroupUsersResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetGroupResponse) GetContentType() string {
@@ -180,34 +208,6 @@ func (o *GetGroupResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetGroupResponse) GetGetGroup400ApplicationJSONObject() *GetGroup400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroup400ApplicationJSONObject
-}
-
-func (o *GetGroupResponse) GetGetGroup401ApplicationJSONObject() *GetGroup401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroup401ApplicationJSONObject
-}
-
-func (o *GetGroupResponse) GetGetGroup403ApplicationJSONObject() *GetGroup403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroup403ApplicationJSONObject
-}
-
-func (o *GetGroupResponse) GetGetGroup404ApplicationJSONObject() *GetGroup404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroup404ApplicationJSONObject
 }
 
 func (o *GetGroupResponse) GetGroupSchema() *shared.GroupSchema {

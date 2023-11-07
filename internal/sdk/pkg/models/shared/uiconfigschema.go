@@ -9,23 +9,23 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// UIConfigSchemaAuthenticationType - The type of authentication enabled for this Unleash instance
-type UIConfigSchemaAuthenticationType string
+// AuthenticationType - The type of authentication enabled for this Unleash instance
+type AuthenticationType string
 
 const (
-	UIConfigSchemaAuthenticationTypeOpenSource UIConfigSchemaAuthenticationType = "open-source"
-	UIConfigSchemaAuthenticationTypeDemo       UIConfigSchemaAuthenticationType = "demo"
-	UIConfigSchemaAuthenticationTypeEnterprise UIConfigSchemaAuthenticationType = "enterprise"
-	UIConfigSchemaAuthenticationTypeHosted     UIConfigSchemaAuthenticationType = "hosted"
-	UIConfigSchemaAuthenticationTypeCustom     UIConfigSchemaAuthenticationType = "custom"
-	UIConfigSchemaAuthenticationTypeNone       UIConfigSchemaAuthenticationType = "none"
+	AuthenticationTypeOpenSource AuthenticationType = "open-source"
+	AuthenticationTypeDemo       AuthenticationType = "demo"
+	AuthenticationTypeEnterprise AuthenticationType = "enterprise"
+	AuthenticationTypeHosted     AuthenticationType = "hosted"
+	AuthenticationTypeCustom     AuthenticationType = "custom"
+	AuthenticationTypeNone       AuthenticationType = "none"
 )
 
-func (e UIConfigSchemaAuthenticationType) ToPointer() *UIConfigSchemaAuthenticationType {
+func (e AuthenticationType) ToPointer() *AuthenticationType {
 	return &e
 }
 
-func (e *UIConfigSchemaAuthenticationType) UnmarshalJSON(data []byte) error {
+func (e *AuthenticationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -42,65 +42,65 @@ func (e *UIConfigSchemaAuthenticationType) UnmarshalJSON(data []byte) error {
 	case "custom":
 		fallthrough
 	case "none":
-		*e = UIConfigSchemaAuthenticationType(v)
+		*e = AuthenticationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UIConfigSchemaAuthenticationType: %v", v)
+		return fmt.Errorf("invalid value for AuthenticationType: %v", v)
 	}
 }
 
-type UIConfigSchemaFlagsType string
+type FlagsType string
 
 const (
-	UIConfigSchemaFlagsTypeBoolean           UIConfigSchemaFlagsType = "boolean"
-	UIConfigSchemaFlagsTypeVariantFlagSchema UIConfigSchemaFlagsType = "variantFlagSchema"
+	FlagsTypeBoolean           FlagsType = "boolean"
+	FlagsTypeVariantFlagSchema FlagsType = "variantFlagSchema"
 )
 
-type UIConfigSchemaFlags struct {
+type Flags struct {
 	Boolean           *bool
 	VariantFlagSchema *VariantFlagSchema
 
-	Type UIConfigSchemaFlagsType
+	Type FlagsType
 }
 
-func CreateUIConfigSchemaFlagsBoolean(boolean bool) UIConfigSchemaFlags {
-	typ := UIConfigSchemaFlagsTypeBoolean
+func CreateFlagsBoolean(boolean bool) Flags {
+	typ := FlagsTypeBoolean
 
-	return UIConfigSchemaFlags{
+	return Flags{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateUIConfigSchemaFlagsVariantFlagSchema(variantFlagSchema VariantFlagSchema) UIConfigSchemaFlags {
-	typ := UIConfigSchemaFlagsTypeVariantFlagSchema
+func CreateFlagsVariantFlagSchema(variantFlagSchema VariantFlagSchema) Flags {
+	typ := FlagsTypeVariantFlagSchema
 
-	return UIConfigSchemaFlags{
+	return Flags{
 		VariantFlagSchema: &variantFlagSchema,
 		Type:              typ,
 	}
 }
 
-func (u *UIConfigSchemaFlags) UnmarshalJSON(data []byte) error {
+func (u *Flags) UnmarshalJSON(data []byte) error {
 
 	variantFlagSchema := new(VariantFlagSchema)
 	if err := utils.UnmarshalJSON(data, &variantFlagSchema, "", true, true); err == nil {
 		u.VariantFlagSchema = variantFlagSchema
-		u.Type = UIConfigSchemaFlagsTypeVariantFlagSchema
+		u.Type = FlagsTypeVariantFlagSchema
 		return nil
 	}
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = UIConfigSchemaFlagsTypeBoolean
+		u.Type = FlagsTypeBoolean
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u UIConfigSchemaFlags) MarshalJSON() ([]byte, error) {
+func (u Flags) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -118,7 +118,7 @@ type UIConfigSchemaLinks struct {
 // UIConfigSchema - A collection of properties used to configure the Unleash Admin UI.
 type UIConfigSchema struct {
 	// The type of authentication enabled for this Unleash instance
-	AuthenticationType *UIConfigSchemaAuthenticationType `json:"authenticationType,omitempty"`
+	AuthenticationType *AuthenticationType `json:"authenticationType,omitempty"`
 	// The base URI path at which this Unleash instance is listening.
 	BaseURIPath string `json:"baseUriPath"`
 	// Whether password authentication should be disabled or not.
@@ -128,7 +128,7 @@ type UIConfigSchema struct {
 	// What kind of Unleash instance it is: Enterprise, Pro, or Open source
 	Environment *string `json:"environment,omitempty"`
 	// Additional (largely experimental) features that are enabled in this Unleash instance.
-	Flags map[string]UIConfigSchemaFlags `json:"flags,omitempty"`
+	Flags map[string]Flags `json:"flags,omitempty"`
 	// The list of origins that the front-end API should accept requests from.
 	FrontendAPIOrigins []string `json:"frontendApiOrigins,omitempty"`
 	// Relevant links to use in the UI.
@@ -153,7 +153,7 @@ type UIConfigSchema struct {
 	VersionInfo VersionSchema `json:"versionInfo"`
 }
 
-func (o *UIConfigSchema) GetAuthenticationType() *UIConfigSchemaAuthenticationType {
+func (o *UIConfigSchema) GetAuthenticationType() *AuthenticationType {
 	if o == nil {
 		return nil
 	}
@@ -188,7 +188,7 @@ func (o *UIConfigSchema) GetEnvironment() *string {
 	return o.Environment
 }
 
-func (o *UIConfigSchema) GetFlags() map[string]UIConfigSchemaFlags {
+func (o *UIConfigSchema) GetFlags() map[string]Flags {
 	if o == nil {
 		return nil
 	}

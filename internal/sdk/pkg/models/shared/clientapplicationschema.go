@@ -8,58 +8,58 @@ import (
 	"time"
 )
 
-type ClientApplicationSchemaStartedType string
+type StartedType string
 
 const (
-	ClientApplicationSchemaStartedTypeDateTime ClientApplicationSchemaStartedType = "date-time"
-	ClientApplicationSchemaStartedTypeNumber   ClientApplicationSchemaStartedType = "number"
+	StartedTypeDateTime StartedType = "date-time"
+	StartedTypeNumber   StartedType = "number"
 )
 
-type ClientApplicationSchemaStarted struct {
+type Started struct {
 	DateTime *time.Time
 	Number   *float64
 
-	Type ClientApplicationSchemaStartedType
+	Type StartedType
 }
 
-func CreateClientApplicationSchemaStartedDateTime(dateTime time.Time) ClientApplicationSchemaStarted {
-	typ := ClientApplicationSchemaStartedTypeDateTime
+func CreateStartedDateTime(dateTime time.Time) Started {
+	typ := StartedTypeDateTime
 
-	return ClientApplicationSchemaStarted{
+	return Started{
 		DateTime: &dateTime,
 		Type:     typ,
 	}
 }
 
-func CreateClientApplicationSchemaStartedNumber(number float64) ClientApplicationSchemaStarted {
-	typ := ClientApplicationSchemaStartedTypeNumber
+func CreateStartedNumber(number float64) Started {
+	typ := StartedTypeNumber
 
-	return ClientApplicationSchemaStarted{
+	return Started{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ClientApplicationSchemaStarted) UnmarshalJSON(data []byte) error {
+func (u *Started) UnmarshalJSON(data []byte) error {
 
 	dateTime := new(time.Time)
 	if err := utils.UnmarshalJSON(data, &dateTime, "", true, true); err == nil {
 		u.DateTime = dateTime
-		u.Type = ClientApplicationSchemaStartedTypeDateTime
+		u.Type = StartedTypeDateTime
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ClientApplicationSchemaStartedTypeNumber
+		u.Type = StartedTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ClientApplicationSchemaStarted) MarshalJSON() ([]byte, error) {
+func (u Started) MarshalJSON() ([]byte, error) {
 	if u.DateTime != nil {
 		return utils.MarshalJSON(u.DateTime, "", true)
 	}
@@ -86,7 +86,7 @@ type ClientApplicationSchema struct {
 	// An SDK version identifier. Usually formatted as "unleash-client-<language>:<version>"
 	SDKVersion *string `json:"sdkVersion,omitempty"`
 	// Either an RFC-3339 timestamp or a unix timestamp in seconds
-	Started ClientApplicationSchemaStarted `json:"started"`
+	Started Started `json:"started"`
 	// Which strategies the SDKs runtime knows about
 	Strategies []string `json:"strategies"`
 }
@@ -126,9 +126,9 @@ func (o *ClientApplicationSchema) GetSDKVersion() *string {
 	return o.SDKVersion
 }
 
-func (o *ClientApplicationSchema) GetStarted() ClientApplicationSchemaStarted {
+func (o *ClientApplicationSchema) GetStarted() Started {
 	if o == nil {
-		return ClientApplicationSchemaStarted{}
+		return Started{}
 	}
 	return o.Started
 }

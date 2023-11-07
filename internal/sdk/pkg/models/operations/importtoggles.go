@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ImportToggles404ApplicationJSON - The requested resource was not found.
-type ImportToggles404ApplicationJSON struct {
+// ImportTogglesResponseBody - The requested resource was not found.
+type ImportTogglesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,21 +16,21 @@ type ImportToggles404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ImportToggles404ApplicationJSON) GetID() *string {
+func (o *ImportTogglesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ImportToggles404ApplicationJSON) GetMessage() *string {
+func (o *ImportTogglesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ImportToggles404ApplicationJSON) GetName() *string {
+func (o *ImportTogglesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,7 +45,7 @@ type ImportTogglesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The requested resource was not found.
-	ImportToggles404ApplicationJSONObject *ImportToggles404ApplicationJSON
+	Object *ImportTogglesResponseBody
 }
 
 func (o *ImportTogglesResponse) GetContentType() string {
@@ -69,9 +69,9 @@ func (o *ImportTogglesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ImportTogglesResponse) GetImportToggles404ApplicationJSONObject() *ImportToggles404ApplicationJSON {
+func (o *ImportTogglesResponse) GetObject() *ImportTogglesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ImportToggles404ApplicationJSONObject
+	return o.Object
 }

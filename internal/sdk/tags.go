@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// tags - Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
-type tags struct {
+// Tags - Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
+type Tags struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTags(sdkConfig sdkConfiguration) *tags {
-	return &tags{
+func newTags(sdkConfig sdkConfiguration) *Tags {
+	return &Tags{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // AddTagToFeatures - Adds a tag to the specified features
 // Add a tag to a list of features. Create tags if needed.
-func (s *tags) AddTagToFeatures(ctx context.Context, request operations.AddTagToFeaturesRequest) (*operations.AddTagToFeaturesResponse, error) {
+func (s *Tags) AddTagToFeatures(ctx context.Context, request operations.AddTagToFeaturesRequest) (*operations.AddTagToFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/tags", request, nil)
 	if err != nil {
@@ -85,48 +85,48 @@ func (s *tags) AddTagToFeatures(ctx context.Context, request operations.AddTagTo
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTagToFeatures401ApplicationJSON
+			var out operations.AddTagToFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTagToFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTagToFeatures403ApplicationJSON
+			var out operations.AddTagToFeaturesTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTagToFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTagToFeatures404ApplicationJSON
+			var out operations.AddTagToFeaturesTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTagToFeatures404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTagToFeatures415ApplicationJSON
+			var out operations.AddTagToFeaturesTagsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTagToFeatures415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -137,7 +137,7 @@ func (s *tags) AddTagToFeatures(ctx context.Context, request operations.AddTagTo
 
 // CreateTag - Create a new tag.
 // Create a new tag with the specified data.
-func (s *tags) CreateTag(ctx context.Context, request shared.TagSchema) (*operations.CreateTagResponse, error) {
+func (s *Tags) CreateTag(ctx context.Context, request shared.TagSchema) (*operations.CreateTagResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/tags"
 
@@ -204,60 +204,60 @@ func (s *tags) CreateTag(ctx context.Context, request shared.TagSchema) (*operat
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTag400ApplicationJSON
+			var out operations.CreateTagResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTag400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTag401ApplicationJSON
+			var out operations.CreateTagTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTag401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTag403ApplicationJSON
+			var out operations.CreateTagTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTag403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTag409ApplicationJSON
+			var out operations.CreateTagTagsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTag409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTag415ApplicationJSON
+			var out operations.CreateTagTagsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTag415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -268,7 +268,7 @@ func (s *tags) CreateTag(ctx context.Context, request shared.TagSchema) (*operat
 
 // CreateTagType - Create a tag type
 // Create a new tag type.
-func (s *tags) CreateTagType(ctx context.Context, request shared.TagTypeSchema) (*operations.CreateTagTypeResponse, error) {
+func (s *Tags) CreateTagType(ctx context.Context, request shared.TagTypeSchema) (*operations.CreateTagTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/tag-types"
 
@@ -335,60 +335,60 @@ func (s *tags) CreateTagType(ctx context.Context, request shared.TagTypeSchema) 
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTagType400ApplicationJSON
+			var out operations.CreateTagTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTagType400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTagType401ApplicationJSON
+			var out operations.CreateTagTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTagType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTagType403ApplicationJSON
+			var out operations.CreateTagTypeTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTagType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTagType409ApplicationJSON
+			var out operations.CreateTagTypeTagsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTagType409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTagType415ApplicationJSON
+			var out operations.CreateTagTypeTagsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTagType415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -399,7 +399,7 @@ func (s *tags) CreateTagType(ctx context.Context, request shared.TagTypeSchema) 
 
 // DeleteTag - Delete a tag.
 // Delete a tag by type and value. When a tag is deleted all references to the tag are removed.
-func (s *tags) DeleteTag(ctx context.Context, request operations.DeleteTagRequest) (*operations.DeleteTagResponse, error) {
+func (s *Tags) DeleteTag(ctx context.Context, request operations.DeleteTagRequest) (*operations.DeleteTagResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tags/{type}/{value}", request, nil)
 	if err != nil {
@@ -446,7 +446,7 @@ func (s *tags) DeleteTag(ctx context.Context, request operations.DeleteTagReques
 
 // DeleteTagType - Delete a tag type
 // Deletes a tag type. If any features have tags of this type, those tags will be deleted.
-func (s *tags) DeleteTagType(ctx context.Context, request operations.DeleteTagTypeRequest) (*operations.DeleteTagTypeResponse, error) {
+func (s *Tags) DeleteTagType(ctx context.Context, request operations.DeleteTagTypeRequest) (*operations.DeleteTagTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tag-types/{name}", request, nil)
 	if err != nil {
@@ -489,24 +489,24 @@ func (s *tags) DeleteTagType(ctx context.Context, request operations.DeleteTagTy
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteTagType401ApplicationJSON
+			var out operations.DeleteTagTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteTagType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteTagType403ApplicationJSON
+			var out operations.DeleteTagTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteTagType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -517,7 +517,7 @@ func (s *tags) DeleteTagType(ctx context.Context, request operations.DeleteTagTy
 
 // GetTag - Get a tag by type and value.
 // Get a tag by type and value. Can be used to check whether a given tag already exists in Unleash or not.
-func (s *tags) GetTag(ctx context.Context, request operations.GetTagRequest) (*operations.GetTagResponse, error) {
+func (s *Tags) GetTag(ctx context.Context, request operations.GetTagRequest) (*operations.GetTagResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tags/{type}/{value}", request, nil)
 	if err != nil {
@@ -571,36 +571,36 @@ func (s *tags) GetTag(ctx context.Context, request operations.GetTagRequest) (*o
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTag401ApplicationJSON
+			var out operations.GetTagResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTag401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTag403ApplicationJSON
+			var out operations.GetTagTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTag403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTag404ApplicationJSON
+			var out operations.GetTagTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTag404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -611,7 +611,7 @@ func (s *tags) GetTag(ctx context.Context, request operations.GetTagRequest) (*o
 
 // GetTagType - Get a tag type
 // Get a tag type by name.
-func (s *tags) GetTagType(ctx context.Context, request operations.GetTagTypeRequest) (*operations.GetTagTypeResponse, error) {
+func (s *Tags) GetTagType(ctx context.Context, request operations.GetTagTypeRequest) (*operations.GetTagTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tag-types/{name}", request, nil)
 	if err != nil {
@@ -665,24 +665,24 @@ func (s *tags) GetTagType(ctx context.Context, request operations.GetTagTypeRequ
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagType401ApplicationJSON
+			var out operations.GetTagTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagType403ApplicationJSON
+			var out operations.GetTagTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -693,7 +693,7 @@ func (s *tags) GetTagType(ctx context.Context, request operations.GetTagTypeRequ
 
 // GetTagTypes - Get all tag types
 // Get a list of all available tag types.
-func (s *tags) GetTagTypes(ctx context.Context) (*operations.GetTagTypesResponse, error) {
+func (s *Tags) GetTagTypes(ctx context.Context) (*operations.GetTagTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/tag-types"
 
@@ -744,24 +744,24 @@ func (s *tags) GetTagTypes(ctx context.Context) (*operations.GetTagTypesResponse
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagTypes401ApplicationJSON
+			var out operations.GetTagTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagTypes401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagTypes403ApplicationJSON
+			var out operations.GetTagTypesTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagTypes403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -772,7 +772,7 @@ func (s *tags) GetTagTypes(ctx context.Context) (*operations.GetTagTypesResponse
 
 // GetTags - List all tags.
 // List all tags available in Unleash.
-func (s *tags) GetTags(ctx context.Context) (*operations.GetTagsResponse, error) {
+func (s *Tags) GetTags(ctx context.Context) (*operations.GetTagsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/tags"
 
@@ -823,24 +823,24 @@ func (s *tags) GetTags(ctx context.Context) (*operations.GetTagsResponse, error)
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTags401ApplicationJSON
+			var out operations.GetTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTags401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTags403ApplicationJSON
+			var out operations.GetTagsTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTags403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -851,7 +851,7 @@ func (s *tags) GetTags(ctx context.Context) (*operations.GetTagsResponse, error)
 
 // GetTagsByType - List all tags of a given type.
 // List all tags of a given type. If the tag type does not exist it returns an empty list.
-func (s *tags) GetTagsByType(ctx context.Context, request operations.GetTagsByTypeRequest) (*operations.GetTagsByTypeResponse, error) {
+func (s *Tags) GetTagsByType(ctx context.Context, request operations.GetTagsByTypeRequest) (*operations.GetTagsByTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tags/{type}", request, nil)
 	if err != nil {
@@ -905,24 +905,24 @@ func (s *tags) GetTagsByType(ctx context.Context, request operations.GetTagsByTy
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagsByType401ApplicationJSON
+			var out operations.GetTagsByTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagsByType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTagsByType403ApplicationJSON
+			var out operations.GetTagsByTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTagsByType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -933,7 +933,7 @@ func (s *tags) GetTagsByType(ctx context.Context, request operations.GetTagsByTy
 
 // UpdateTagType - Update a tag type
 // Update the configuration for the specified tag type.
-func (s *tags) UpdateTagType(ctx context.Context, request operations.UpdateTagTypeRequest) (*operations.UpdateTagTypeResponse, error) {
+func (s *Tags) UpdateTagType(ctx context.Context, request operations.UpdateTagTypeRequest) (*operations.UpdateTagTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/tag-types/{name}", request, nil)
 	if err != nil {
@@ -990,48 +990,48 @@ func (s *tags) UpdateTagType(ctx context.Context, request operations.UpdateTagTy
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTagType400ApplicationJSON
+			var out operations.UpdateTagTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTagType400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTagType401ApplicationJSON
+			var out operations.UpdateTagTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTagType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTagType403ApplicationJSON
+			var out operations.UpdateTagTypeTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTagType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTagType415ApplicationJSON
+			var out operations.UpdateTagTypeTagsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTagType415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1042,7 +1042,7 @@ func (s *tags) UpdateTagType(ctx context.Context, request operations.UpdateTagTy
 
 // ValidateTagType - Validate a tag type
 // Validates whether if the body of the request is a valid tag and whether the a tag type with that name already exists or not. If a tag type with the same name exists, this operation will return a 409 status code.
-func (s *tags) ValidateTagType(ctx context.Context, request shared.TagTypeSchema) (*operations.ValidateTagTypeResponse, error) {
+func (s *Tags) ValidateTagType(ctx context.Context, request shared.TagTypeSchema) (*operations.ValidateTagTypeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/tag-types/validate"
 
@@ -1107,60 +1107,60 @@ func (s *tags) ValidateTagType(ctx context.Context, request shared.TagTypeSchema
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateTagType400ApplicationJSON
+			var out operations.ValidateTagTypeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateTagType400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateTagType401ApplicationJSON
+			var out operations.ValidateTagTypeTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateTagType401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateTagType403ApplicationJSON
+			var out operations.ValidateTagTypeTagsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateTagType403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateTagType409ApplicationJSON
+			var out operations.ValidateTagTypeTagsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateTagType409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateTagType415ApplicationJSON
+			var out operations.ValidateTagTypeTagsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateTagType415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

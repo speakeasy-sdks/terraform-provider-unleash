@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateStrategy415ApplicationJSON struct {
+// CreateStrategyStrategiesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateStrategyStrategiesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateStrategy415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateStrategy415ApplicationJSON) GetID() *string {
+func (o *CreateStrategyStrategiesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateStrategy415ApplicationJSON) GetMessage() *string {
+func (o *CreateStrategyStrategiesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateStrategy415ApplicationJSON) GetName() *string {
+func (o *CreateStrategyStrategiesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateStrategy409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type CreateStrategy409ApplicationJSON struct {
+// CreateStrategyStrategiesResponseResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type CreateStrategyStrategiesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateStrategy409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateStrategy409ApplicationJSON) GetID() *string {
+func (o *CreateStrategyStrategiesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateStrategy409ApplicationJSON) GetMessage() *string {
+func (o *CreateStrategyStrategiesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateStrategy409ApplicationJSON) GetName() *string {
+func (o *CreateStrategyStrategiesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateStrategy403ApplicationJSON struct {
+// CreateStrategyStrategiesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type CreateStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateStrategy403ApplicationJSON) GetID() *string {
+func (o *CreateStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateStrategy403ApplicationJSON) GetMessage() *string {
+func (o *CreateStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateStrategy403ApplicationJSON) GetName() *string {
+func (o *CreateStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateStrategy401ApplicationJSON struct {
+// CreateStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,21 +110,21 @@ type CreateStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateStrategy401ApplicationJSON) GetID() *string {
+func (o *CreateStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateStrategy401ApplicationJSON) GetMessage() *string {
+func (o *CreateStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateStrategy401ApplicationJSON) GetName() *string {
+func (o *CreateStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -132,6 +132,14 @@ func (o *CreateStrategy401ApplicationJSON) GetName() *string {
 }
 
 type CreateStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateStrategyStrategiesResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *CreateStrategyStrategiesResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateStrategyStrategiesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -139,16 +147,36 @@ type CreateStrategyResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateStrategy401ApplicationJSONObject *CreateStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateStrategy403ApplicationJSONObject *CreateStrategy403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateStrategy409ApplicationJSONObject *CreateStrategy409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateStrategy415ApplicationJSONObject *CreateStrategy415ApplicationJSON
 	// The resource was successfully created.
 	StrategySchema *shared.StrategySchema
+}
+
+func (o *CreateStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *CreateStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetFourHundredAndNineApplicationJSONObject() *CreateStrategyStrategiesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *CreateStrategyResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateStrategyStrategiesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateStrategyResponse) GetContentType() string {
@@ -177,34 +205,6 @@ func (o *CreateStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateStrategyResponse) GetCreateStrategy401ApplicationJSONObject() *CreateStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateStrategy401ApplicationJSONObject
-}
-
-func (o *CreateStrategyResponse) GetCreateStrategy403ApplicationJSONObject() *CreateStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateStrategy403ApplicationJSONObject
-}
-
-func (o *CreateStrategyResponse) GetCreateStrategy409ApplicationJSONObject() *CreateStrategy409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateStrategy409ApplicationJSONObject
-}
-
-func (o *CreateStrategyResponse) GetCreateStrategy415ApplicationJSONObject() *CreateStrategy415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateStrategy415ApplicationJSONObject
 }
 
 func (o *CreateStrategyResponse) GetStrategySchema() *shared.StrategySchema {

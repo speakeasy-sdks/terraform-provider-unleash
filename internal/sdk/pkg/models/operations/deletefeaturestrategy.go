@@ -41,8 +41,8 @@ func (o *DeleteFeatureStrategyRequest) GetStrategyID() string {
 	return o.StrategyID
 }
 
-// DeleteFeatureStrategy404ApplicationJSON - The requested resource was not found.
-type DeleteFeatureStrategy404ApplicationJSON struct {
+// DeleteFeatureStrategyFeaturesResponseResponseBody - The requested resource was not found.
+type DeleteFeatureStrategyFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -51,29 +51,29 @@ type DeleteFeatureStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteFeatureStrategy404ApplicationJSON) GetID() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteFeatureStrategy404ApplicationJSON) GetMessage() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteFeatureStrategy404ApplicationJSON) GetName() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeleteFeatureStrategy403ApplicationJSON struct {
+// DeleteFeatureStrategyFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteFeatureStrategyFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -82,29 +82,29 @@ type DeleteFeatureStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteFeatureStrategy403ApplicationJSON) GetID() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteFeatureStrategy403ApplicationJSON) GetMessage() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteFeatureStrategy403ApplicationJSON) GetName() *string {
+func (o *DeleteFeatureStrategyFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeleteFeatureStrategy401ApplicationJSON struct {
+// DeleteFeatureStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteFeatureStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -113,21 +113,21 @@ type DeleteFeatureStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteFeatureStrategy401ApplicationJSON) GetID() *string {
+func (o *DeleteFeatureStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteFeatureStrategy401ApplicationJSON) GetMessage() *string {
+func (o *DeleteFeatureStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteFeatureStrategy401ApplicationJSON) GetName() *string {
+func (o *DeleteFeatureStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -135,18 +135,39 @@ func (o *DeleteFeatureStrategy401ApplicationJSON) GetName() *string {
 }
 
 type DeleteFeatureStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeleteFeatureStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeleteFeatureStrategyFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *DeleteFeatureStrategyFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeleteFeatureStrategy401ApplicationJSONObject *DeleteFeatureStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeleteFeatureStrategy403ApplicationJSONObject *DeleteFeatureStrategy403ApplicationJSON
-	// The requested resource was not found.
-	DeleteFeatureStrategy404ApplicationJSONObject *DeleteFeatureStrategy404ApplicationJSON
+}
+
+func (o *DeleteFeatureStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *DeleteFeatureStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeleteFeatureStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *DeleteFeatureStrategyFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *DeleteFeatureStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *DeleteFeatureStrategyFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *DeleteFeatureStrategyResponse) GetContentType() string {
@@ -168,25 +189,4 @@ func (o *DeleteFeatureStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteFeatureStrategyResponse) GetDeleteFeatureStrategy401ApplicationJSONObject() *DeleteFeatureStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteFeatureStrategy401ApplicationJSONObject
-}
-
-func (o *DeleteFeatureStrategyResponse) GetDeleteFeatureStrategy403ApplicationJSONObject() *DeleteFeatureStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteFeatureStrategy403ApplicationJSONObject
-}
-
-func (o *DeleteFeatureStrategyResponse) GetDeleteFeatureStrategy404ApplicationJSONObject() *DeleteFeatureStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteFeatureStrategy404ApplicationJSONObject
 }

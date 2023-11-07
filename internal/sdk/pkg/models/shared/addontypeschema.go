@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-// AddonTypeSchemaAlertsType - The type of alert. This determines the color of the alert.
-type AddonTypeSchemaAlertsType string
+// AddonTypeSchemaType - The type of alert. This determines the color of the alert.
+type AddonTypeSchemaType string
 
 const (
-	AddonTypeSchemaAlertsTypeSuccess AddonTypeSchemaAlertsType = "success"
-	AddonTypeSchemaAlertsTypeInfo    AddonTypeSchemaAlertsType = "info"
-	AddonTypeSchemaAlertsTypeWarning AddonTypeSchemaAlertsType = "warning"
-	AddonTypeSchemaAlertsTypeError   AddonTypeSchemaAlertsType = "error"
+	AddonTypeSchemaTypeSuccess AddonTypeSchemaType = "success"
+	AddonTypeSchemaTypeInfo    AddonTypeSchemaType = "info"
+	AddonTypeSchemaTypeWarning AddonTypeSchemaType = "warning"
+	AddonTypeSchemaTypeError   AddonTypeSchemaType = "error"
 )
 
-func (e AddonTypeSchemaAlertsType) ToPointer() *AddonTypeSchemaAlertsType {
+func (e AddonTypeSchemaType) ToPointer() *AddonTypeSchemaType {
 	return &e
 }
 
-func (e *AddonTypeSchemaAlertsType) UnmarshalJSON(data []byte) error {
+func (e *AddonTypeSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -34,36 +34,36 @@ func (e *AddonTypeSchemaAlertsType) UnmarshalJSON(data []byte) error {
 	case "warning":
 		fallthrough
 	case "error":
-		*e = AddonTypeSchemaAlertsType(v)
+		*e = AddonTypeSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddonTypeSchemaAlertsType: %v", v)
+		return fmt.Errorf("invalid value for AddonTypeSchemaType: %v", v)
 	}
 }
 
-type AddonTypeSchemaAlerts struct {
+type Alerts struct {
 	// The text of the alert. This is what will be displayed to the user.
 	Text string `json:"text"`
 	// The type of alert. This determines the color of the alert.
-	Type AddonTypeSchemaAlertsType `json:"type"`
+	Type AddonTypeSchemaType `json:"type"`
 }
 
-func (o *AddonTypeSchemaAlerts) GetText() string {
+func (o *Alerts) GetText() string {
 	if o == nil {
 		return ""
 	}
 	return o.Text
 }
 
-func (o *AddonTypeSchemaAlerts) GetType() AddonTypeSchemaAlertsType {
+func (o *Alerts) GetType() AddonTypeSchemaType {
 	if o == nil {
-		return AddonTypeSchemaAlertsType("")
+		return AddonTypeSchemaType("")
 	}
 	return o.Type
 }
 
-// AddonTypeSchemaInstallation - The installation configuration for this addon type.
-type AddonTypeSchemaInstallation struct {
+// Installation - The installation configuration for this addon type.
+type Installation struct {
 	// The help text of the installation configuration. This will be displayed to the user when installing addons of this type.
 	HelpText *string `json:"helpText,omitempty"`
 	// The title of the installation configuration. This will be displayed to the user when installing addons of this type.
@@ -72,21 +72,21 @@ type AddonTypeSchemaInstallation struct {
 	URL string `json:"url"`
 }
 
-func (o *AddonTypeSchemaInstallation) GetHelpText() *string {
+func (o *Installation) GetHelpText() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HelpText
 }
 
-func (o *AddonTypeSchemaInstallation) GetTitle() *string {
+func (o *Installation) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *AddonTypeSchemaInstallation) GetURL() string {
+func (o *Installation) GetURL() string {
 	if o == nil {
 		return ""
 	}
@@ -96,7 +96,7 @@ func (o *AddonTypeSchemaInstallation) GetURL() string {
 // AddonTypeSchema - An addon provider. Defines a specific addon type and what the end user must configure when creating a new addon of that type.
 type AddonTypeSchema struct {
 	// A list of alerts to display to the user when installing addons of this type.
-	Alerts []AddonTypeSchemaAlerts `json:"alerts,omitempty"`
+	Alerts []Alerts `json:"alerts,omitempty"`
 	// This should be used to inform the user that this addon type is deprecated and should not be used. Deprecated addons will show a badge with this information on the UI.
 	Deprecated *string `json:"deprecated,omitempty"`
 	// A description of the addon type.
@@ -108,7 +108,7 @@ type AddonTypeSchema struct {
 	// All the [event types](https://docs.getunleash.io/reference/api/legacy/unleash/admin/events#feature-toggle-events) that are available for this addon provider.
 	Events []string `json:"events,omitempty"`
 	// The installation configuration for this addon type.
-	Installation *AddonTypeSchemaInstallation `json:"installation,omitempty"`
+	Installation *Installation `json:"installation,omitempty"`
 	// The name of the addon type. When creating new addons, this goes in the payload's `type` field.
 	Name string `json:"name"`
 	// The addon provider's parameters. Use these to configure an addon of this provider type. Items with `required: true` must be provided.
@@ -117,7 +117,7 @@ type AddonTypeSchema struct {
 	TagTypes []TagTypeSchema `json:"tagTypes,omitempty"`
 }
 
-func (o *AddonTypeSchema) GetAlerts() []AddonTypeSchemaAlerts {
+func (o *AddonTypeSchema) GetAlerts() []Alerts {
 	if o == nil {
 		return nil
 	}
@@ -159,7 +159,7 @@ func (o *AddonTypeSchema) GetEvents() []string {
 	return o.Events
 }
 
-func (o *AddonTypeSchema) GetInstallation() *AddonTypeSchemaInstallation {
+func (o *AddonTypeSchema) GetInstallation() *Installation {
 	if o == nil {
 		return nil
 	}

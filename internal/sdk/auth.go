@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// auth - Manage logins, passwords, etc.
-type auth struct {
+// Auth - Manage logins, passwords, etc.
+type Auth struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAuth(sdkConfig sdkConfiguration) *auth {
-	return &auth{
+func newAuth(sdkConfig sdkConfiguration) *Auth {
+	return &Auth{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // ChangePassword - Changes a user password
 // Allows users with a valid reset token to reset their password without remembering their old password
-func (s *auth) ChangePassword(ctx context.Context, request shared.ChangePasswordSchema) (*operations.ChangePasswordResponse, error) {
+func (s *Auth) ChangePassword(ctx context.Context, request shared.ChangePasswordSchema) (*operations.ChangePasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/auth/reset/password"
 
@@ -82,36 +82,36 @@ func (s *auth) ChangePassword(ctx context.Context, request shared.ChangePassword
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangePassword401ApplicationJSON
+			var out operations.ChangePasswordResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangePassword403ApplicationJSON
+			var out operations.ChangePasswordAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangePassword415ApplicationJSON
+			var out operations.ChangePasswordAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangePassword415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -124,7 +124,7 @@ func (s *auth) ChangePassword(ctx context.Context, request shared.ChangePassword
 // Returns the current settings for Google Authentication (deprecated, please use OpenID instead)
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *auth) GetGoogleSettings(ctx context.Context) (*operations.GetGoogleSettingsResponse, error) {
+func (s *Auth) GetGoogleSettings(ctx context.Context) (*operations.GetGoogleSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/google/settings"
 
@@ -175,36 +175,36 @@ func (s *auth) GetGoogleSettings(ctx context.Context) (*operations.GetGoogleSett
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGoogleSettings400ApplicationJSON
+			var out operations.GetGoogleSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGoogleSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGoogleSettings401ApplicationJSON
+			var out operations.GetGoogleSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGoogleSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGoogleSettings403ApplicationJSON
+			var out operations.GetGoogleSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGoogleSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -215,7 +215,7 @@ func (s *auth) GetGoogleSettings(ctx context.Context) (*operations.GetGoogleSett
 
 // GetOidcSettings - Get OIDC auth settings
 // Returns the current settings for OIDC Authentication
-func (s *auth) GetOidcSettings(ctx context.Context) (*operations.GetOidcSettingsResponse, error) {
+func (s *Auth) GetOidcSettings(ctx context.Context) (*operations.GetOidcSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/oidc/settings"
 
@@ -266,36 +266,36 @@ func (s *auth) GetOidcSettings(ctx context.Context) (*operations.GetOidcSettings
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetOidcSettings400ApplicationJSON
+			var out operations.GetOidcSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetOidcSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetOidcSettings401ApplicationJSON
+			var out operations.GetOidcSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetOidcSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetOidcSettings403ApplicationJSON
+			var out operations.GetOidcSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetOidcSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -306,7 +306,7 @@ func (s *auth) GetOidcSettings(ctx context.Context) (*operations.GetOidcSettings
 
 // GetPermissions - Gets available permissions
 // Returns a list of available permissions
-func (s *auth) GetPermissions(ctx context.Context) (*operations.GetPermissionsResponse, error) {
+func (s *Auth) GetPermissions(ctx context.Context) (*operations.GetPermissionsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/permissions"
 
@@ -361,7 +361,7 @@ func (s *auth) GetPermissions(ctx context.Context) (*operations.GetPermissionsRe
 
 // GetSamlSettings - Get SAML auth settings
 // Returns the current settings for SAML authentication
-func (s *auth) GetSamlSettings(ctx context.Context) (*operations.GetSamlSettingsResponse, error) {
+func (s *Auth) GetSamlSettings(ctx context.Context) (*operations.GetSamlSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/saml/settings"
 
@@ -412,36 +412,36 @@ func (s *auth) GetSamlSettings(ctx context.Context) (*operations.GetSamlSettings
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSamlSettings400ApplicationJSON
+			var out operations.GetSamlSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSamlSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSamlSettings401ApplicationJSON
+			var out operations.GetSamlSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSamlSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSamlSettings403ApplicationJSON
+			var out operations.GetSamlSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSamlSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -452,7 +452,7 @@ func (s *auth) GetSamlSettings(ctx context.Context) (*operations.GetSamlSettings
 
 // GetSimpleSettings - Get Simple auth settings
 // Is simple authentication (username/password) enabled for this server
-func (s *auth) GetSimpleSettings(ctx context.Context) (*operations.GetSimpleSettingsResponse, error) {
+func (s *Auth) GetSimpleSettings(ctx context.Context) (*operations.GetSimpleSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/simple/settings"
 
@@ -503,24 +503,24 @@ func (s *auth) GetSimpleSettings(ctx context.Context) (*operations.GetSimpleSett
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSimpleSettings401ApplicationJSON
+			var out operations.GetSimpleSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSimpleSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSimpleSettings403ApplicationJSON
+			var out operations.GetSimpleSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSimpleSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -531,7 +531,7 @@ func (s *auth) GetSimpleSettings(ctx context.Context) (*operations.GetSimpleSett
 
 // Login - Log in
 // Logs in the user and creates an active session
-func (s *auth) Login(ctx context.Context, request shared.LoginSchema) (*operations.LoginResponse, error) {
+func (s *Auth) Login(ctx context.Context, request shared.LoginSchema) (*operations.LoginResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/auth/simple/login"
 
@@ -596,12 +596,12 @@ func (s *auth) Login(ctx context.Context, request shared.LoginSchema) (*operatio
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.Login401ApplicationJSON
+			var out operations.LoginResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Login401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -612,7 +612,7 @@ func (s *auth) Login(ctx context.Context, request shared.LoginSchema) (*operatio
 
 // SendResetPasswordEmail - Reset password
 // Requests a password reset email for the user. This email can be used to reset the password for a user that has forgotten their password
-func (s *auth) SendResetPasswordEmail(ctx context.Context, request shared.EmailSchema) (*operations.SendResetPasswordEmailResponse, error) {
+func (s *Auth) SendResetPasswordEmail(ctx context.Context, request shared.EmailSchema) (*operations.SendResetPasswordEmailResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/auth/reset/password-email"
 
@@ -666,36 +666,36 @@ func (s *auth) SendResetPasswordEmail(ctx context.Context, request shared.EmailS
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SendResetPasswordEmail401ApplicationJSON
+			var out operations.SendResetPasswordEmailResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SendResetPasswordEmail404ApplicationJSON
+			var out operations.SendResetPasswordEmailAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SendResetPasswordEmail415ApplicationJSON
+			var out operations.SendResetPasswordEmailAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SendResetPasswordEmail415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -708,7 +708,7 @@ func (s *auth) SendResetPasswordEmail(ctx context.Context, request shared.EmailS
 // Updates the settings for Google Authentication (deprecated, please use OpenID instead)
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *auth) SetGoogleSettings(ctx context.Context, request shared.GoogleSettingsSchema) (*operations.SetGoogleSettingsResponse, error) {
+func (s *Auth) SetGoogleSettings(ctx context.Context, request shared.GoogleSettingsSchema) (*operations.SetGoogleSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/google/settings"
 
@@ -773,48 +773,48 @@ func (s *auth) SetGoogleSettings(ctx context.Context, request shared.GoogleSetti
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetGoogleSettings400ApplicationJSON
+			var out operations.SetGoogleSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetGoogleSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetGoogleSettings401ApplicationJSON
+			var out operations.SetGoogleSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetGoogleSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetGoogleSettings403ApplicationJSON
+			var out operations.SetGoogleSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetGoogleSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetGoogleSettings415ApplicationJSON
+			var out operations.SetGoogleSettingsAuthResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetGoogleSettings415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -823,7 +823,7 @@ func (s *auth) SetGoogleSettings(ctx context.Context, request shared.GoogleSetti
 	return res, nil
 }
 
-func (s *auth) SetOidcSettings(ctx context.Context, request shared.OidcSettingsSchema) (*operations.SetOidcSettingsResponse, error) {
+func (s *Auth) SetOidcSettings(ctx context.Context, request shared.OidcSettingsSchema) (*operations.SetOidcSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/oidc/settings"
 
@@ -888,48 +888,48 @@ func (s *auth) SetOidcSettings(ctx context.Context, request shared.OidcSettingsS
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetOidcSettings400ApplicationJSON
+			var out operations.SetOidcSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetOidcSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetOidcSettings401ApplicationJSON
+			var out operations.SetOidcSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetOidcSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetOidcSettings403ApplicationJSON
+			var out operations.SetOidcSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetOidcSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetOidcSettings415ApplicationJSON
+			var out operations.SetOidcSettingsAuthResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetOidcSettings415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -940,7 +940,7 @@ func (s *auth) SetOidcSettings(ctx context.Context, request shared.OidcSettingsS
 
 // SetSamlSettings - Update SAML auth settings
 // Updates the settings for SAML Authentication
-func (s *auth) SetSamlSettings(ctx context.Context, request shared.SamlSettingsSchema) (*operations.SetSamlSettingsResponse, error) {
+func (s *Auth) SetSamlSettings(ctx context.Context, request shared.SamlSettingsSchema) (*operations.SetSamlSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/saml/settings"
 
@@ -1005,48 +1005,48 @@ func (s *auth) SetSamlSettings(ctx context.Context, request shared.SamlSettingsS
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSamlSettings400ApplicationJSON
+			var out operations.SetSamlSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSamlSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSamlSettings401ApplicationJSON
+			var out operations.SetSamlSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSamlSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSamlSettings403ApplicationJSON
+			var out operations.SetSamlSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSamlSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSamlSettings415ApplicationJSON
+			var out operations.SetSamlSettingsAuthResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSamlSettings415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1057,7 +1057,7 @@ func (s *auth) SetSamlSettings(ctx context.Context, request shared.SamlSettingsS
 
 // SetSimpleSettings - Update Simple auth settings
 // Enable or disable simple authentication (username/password)
-func (s *auth) SetSimpleSettings(ctx context.Context, request shared.PasswordAuthSchema) (*operations.SetSimpleSettingsResponse, error) {
+func (s *Auth) SetSimpleSettings(ctx context.Context, request shared.PasswordAuthSchema) (*operations.SetSimpleSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/auth/simple/settings"
 
@@ -1122,48 +1122,48 @@ func (s *auth) SetSimpleSettings(ctx context.Context, request shared.PasswordAut
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSimpleSettings400ApplicationJSON
+			var out operations.SetSimpleSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSimpleSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSimpleSettings401ApplicationJSON
+			var out operations.SetSimpleSettingsAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSimpleSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSimpleSettings403ApplicationJSON
+			var out operations.SetSimpleSettingsAuthResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSimpleSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetSimpleSettings415ApplicationJSON
+			var out operations.SetSimpleSettingsAuthResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetSimpleSettings415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1174,7 +1174,7 @@ func (s *auth) SetSimpleSettings(ctx context.Context, request shared.PasswordAut
 
 // ValidatePassword - Validates password
 // Verifies that the password adheres to the [Unleash password guidelines](https://docs.getunleash.io/reference/deploy/securing-unleash#password-requirements)
-func (s *auth) ValidatePassword(ctx context.Context, request shared.ValidatePasswordSchema) (*operations.ValidatePasswordResponse, error) {
+func (s *Auth) ValidatePassword(ctx context.Context, request shared.ValidatePasswordSchema) (*operations.ValidatePasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/auth/reset/validate-password"
 
@@ -1228,24 +1228,24 @@ func (s *auth) ValidatePassword(ctx context.Context, request shared.ValidatePass
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidatePassword400ApplicationJSON
+			var out operations.ValidatePasswordResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePassword400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidatePassword415ApplicationJSON
+			var out operations.ValidatePasswordAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePassword415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1256,7 +1256,7 @@ func (s *auth) ValidatePassword(ctx context.Context, request shared.ValidatePass
 
 // ValidateToken - Validates a token
 // If the token is valid returns the user that owns the token
-func (s *auth) ValidateToken(ctx context.Context) (*operations.ValidateTokenResponse, error) {
+func (s *Auth) ValidateToken(ctx context.Context) (*operations.ValidateTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/auth/reset/validate"
 
@@ -1307,24 +1307,24 @@ func (s *auth) ValidateToken(ctx context.Context) (*operations.ValidateTokenResp
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateToken401ApplicationJSON
+			var out operations.ValidateTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateToken415ApplicationJSON
+			var out operations.ValidateTokenAuthResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateToken415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

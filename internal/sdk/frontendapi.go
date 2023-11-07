@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// frontendAPI - API for connecting client-side (frontend) applications to Unleash.
-type frontendAPI struct {
+// FrontendAPI - API for connecting client-side (frontend) applications to Unleash.
+type FrontendAPI struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newFrontendAPI(sdkConfig sdkConfiguration) *frontendAPI {
-	return &frontendAPI{
+func newFrontendAPI(sdkConfig sdkConfiguration) *FrontendAPI {
+	return &FrontendAPI{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetFrontendFeatures - Retrieve enabled feature toggles for the provided context.
 // This endpoint returns the list of feature toggles that the proxy evaluates to enabled for the given context. Context values are provided as query parameters. If the Frontend API is disabled 404 is returned.
-func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetFrontendFeaturesResponse, error) {
+func (s *FrontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetFrontendFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/frontend"
 
@@ -79,24 +79,24 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFrontendFeatures401ApplicationJSON
+			var out operations.GetFrontendFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFrontendFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFrontendFeatures404ApplicationJSON
+			var out operations.GetFrontendFeaturesFrontendAPIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFrontendFeatures404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -107,7 +107,7 @@ func (s *frontendAPI) GetFrontendFeatures(ctx context.Context) (*operations.GetF
 
 // RegisterFrontendClient - Register a client SDK
 // This is for future use. Currently Frontend client registration is not supported. Returning 200 for clients that expect this status code. If the Frontend API is disabled 404 is returned.
-func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared.ProxyClientSchema) (*operations.RegisterFrontendClientResponse, error) {
+func (s *FrontendAPI) RegisterFrontendClient(ctx context.Context, request shared.ProxyClientSchema) (*operations.RegisterFrontendClientResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/frontend/client/register"
 
@@ -161,36 +161,36 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendClient400ApplicationJSON
+			var out operations.RegisterFrontendClientResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendClient400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendClient401ApplicationJSON
+			var out operations.RegisterFrontendClientFrontendAPIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendClient401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendClient404ApplicationJSON
+			var out operations.RegisterFrontendClientFrontendAPIResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendClient404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -201,7 +201,7 @@ func (s *frontendAPI) RegisterFrontendClient(ctx context.Context, request shared
 
 // RegisterFrontendMetrics - Register client usage metrics
 // Registers usage metrics. Stores information about how many times each toggle was evaluated to enabled and disabled within a time frame. If provided, this operation will also store data on how many times each feature toggle's variants were displayed to the end user. If the Frontend API is disabled 404 is returned.
-func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request shared.ClientMetricsSchema) (*operations.RegisterFrontendMetricsResponse, error) {
+func (s *FrontendAPI) RegisterFrontendMetrics(ctx context.Context, request shared.ClientMetricsSchema) (*operations.RegisterFrontendMetricsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/frontend/client/metrics"
 
@@ -255,36 +255,36 @@ func (s *frontendAPI) RegisterFrontendMetrics(ctx context.Context, request share
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendMetrics400ApplicationJSON
+			var out operations.RegisterFrontendMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendMetrics400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendMetrics401ApplicationJSON
+			var out operations.RegisterFrontendMetricsFrontendAPIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendMetrics401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterFrontendMetrics404ApplicationJSON
+			var out operations.RegisterFrontendMetricsFrontendAPIResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterFrontendMetrics404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

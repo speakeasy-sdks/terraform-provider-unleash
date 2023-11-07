@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-// InstanceAdminStatsSchemaClientAppsRange - A description of a time range
-type InstanceAdminStatsSchemaClientAppsRange string
+// Range - A description of a time range
+type Range string
 
 const (
-	InstanceAdminStatsSchemaClientAppsRangeAllTime InstanceAdminStatsSchemaClientAppsRange = "allTime"
-	InstanceAdminStatsSchemaClientAppsRangeThirtyd InstanceAdminStatsSchemaClientAppsRange = "30d"
-	InstanceAdminStatsSchemaClientAppsRangeSevend  InstanceAdminStatsSchemaClientAppsRange = "7d"
+	RangeAllTime Range = "allTime"
+	RangeThirtyd Range = "30d"
+	RangeSevend  Range = "7d"
 )
 
-func (e InstanceAdminStatsSchemaClientAppsRange) ToPointer() *InstanceAdminStatsSchemaClientAppsRange {
+func (e Range) ToPointer() *Range {
 	return &e
 }
 
-func (e *InstanceAdminStatsSchemaClientAppsRange) UnmarshalJSON(data []byte) error {
+func (e *Range) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,29 +33,29 @@ func (e *InstanceAdminStatsSchemaClientAppsRange) UnmarshalJSON(data []byte) err
 	case "30d":
 		fallthrough
 	case "7d":
-		*e = InstanceAdminStatsSchemaClientAppsRange(v)
+		*e = Range(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InstanceAdminStatsSchemaClientAppsRange: %v", v)
+		return fmt.Errorf("invalid value for Range: %v", v)
 	}
 }
 
-// InstanceAdminStatsSchemaClientApps - An entry describing how many client applications has been observed over the defined range
-type InstanceAdminStatsSchemaClientApps struct {
+// ClientApps - An entry describing how many client applications has been observed over the defined range
+type ClientApps struct {
 	// The number of client applications that have been observed in this period
 	Count *float64 `json:"count,omitempty"`
 	// A description of a time range
-	Range *InstanceAdminStatsSchemaClientAppsRange `json:"range,omitempty"`
+	Range *Range `json:"range,omitempty"`
 }
 
-func (o *InstanceAdminStatsSchemaClientApps) GetCount() *float64 {
+func (o *ClientApps) GetCount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Count
 }
 
-func (o *InstanceAdminStatsSchemaClientApps) GetRange() *InstanceAdminStatsSchemaClientAppsRange {
+func (o *ClientApps) GetRange() *Range {
 	if o == nil {
 		return nil
 	}
@@ -69,7 +69,7 @@ type InstanceAdminStatsSchema struct {
 	// Whether or not SAML authentication is enabled for this instance
 	SAMLenabled *bool `json:"SAMLenabled,omitempty"`
 	// A count of connected applications in the last week, last month and all time since last restart
-	ClientApps []InstanceAdminStatsSchemaClientApps `json:"clientApps,omitempty"`
+	ClientApps []ClientApps `json:"clientApps,omitempty"`
 	// The number of context fields defined in this instance.
 	ContextFields *float64 `json:"contextFields,omitempty"`
 	// The number of environments defined in this instance
@@ -125,7 +125,7 @@ func (o *InstanceAdminStatsSchema) GetSAMLenabled() *bool {
 	return o.SAMLenabled
 }
 
-func (o *InstanceAdminStatsSchema) GetClientApps() []InstanceAdminStatsSchemaClientApps {
+func (o *InstanceAdminStatsSchema) GetClientApps() []ClientApps {
 	if o == nil {
 		return nil
 	}

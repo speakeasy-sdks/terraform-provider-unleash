@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// operational - Endpoints related to the operational status of this Unleash instance.
-type operational struct {
+// Operational - Endpoints related to the operational status of this Unleash instance.
+type Operational struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newOperational(sdkConfig sdkConfiguration) *operational {
-	return &operational{
+func newOperational(sdkConfig sdkConfiguration) *Operational {
+	return &Operational{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetHealth - Get instance operational status
 // This operation returns information about whether this Unleash instance is healthy and ready to serve requests or not. Typically used by your deployment orchestrator (e.g. Kubernetes, Docker Swarm, Mesos, et al.).
-func (s *operational) GetHealth(ctx context.Context) (*operations.GetHealthResponse, error) {
+func (s *Operational) GetHealth(ctx context.Context) (*operations.GetHealthResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/health"
 

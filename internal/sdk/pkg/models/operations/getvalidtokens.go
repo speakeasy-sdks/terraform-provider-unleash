@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetValidTokens415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type GetValidTokens415ApplicationJSON struct {
+// GetValidTokensEdgeResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type GetValidTokensEdgeResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetValidTokens415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetValidTokens415ApplicationJSON) GetID() *string {
+func (o *GetValidTokensEdgeResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetValidTokens415ApplicationJSON) GetMessage() *string {
+func (o *GetValidTokensEdgeResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetValidTokens415ApplicationJSON) GetName() *string {
+func (o *GetValidTokensEdgeResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetValidTokens413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-type GetValidTokens413ApplicationJSON struct {
+// GetValidTokensEdgeResponseBody - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type GetValidTokensEdgeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type GetValidTokens413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetValidTokens413ApplicationJSON) GetID() *string {
+func (o *GetValidTokensEdgeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetValidTokens413ApplicationJSON) GetMessage() *string {
+func (o *GetValidTokensEdgeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetValidTokens413ApplicationJSON) GetName() *string {
+func (o *GetValidTokensEdgeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetValidTokens400ApplicationJSON - The request data does not match what we expect.
-type GetValidTokens400ApplicationJSON struct {
+// GetValidTokensResponseBody - The request data does not match what we expect.
+type GetValidTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type GetValidTokens400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetValidTokens400ApplicationJSON) GetID() *string {
+func (o *GetValidTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetValidTokens400ApplicationJSON) GetMessage() *string {
+func (o *GetValidTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetValidTokens400ApplicationJSON) GetName() *string {
+func (o *GetValidTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *GetValidTokens400ApplicationJSON) GetName() *string {
 }
 
 type GetValidTokensResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetValidTokensResponseBody
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	FourHundredAndThirteenApplicationJSONObject *GetValidTokensEdgeResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *GetValidTokensEdgeResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetValidTokens400ApplicationJSONObject *GetValidTokens400ApplicationJSON
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	GetValidTokens413ApplicationJSONObject *GetValidTokens413ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	GetValidTokens415ApplicationJSONObject *GetValidTokens415ApplicationJSON
 	// validatedEdgeTokensSchema
 	ValidatedEdgeTokensSchema *shared.ValidatedEdgeTokensSchema
+}
+
+func (o *GetValidTokensResponse) GetFourHundredApplicationJSONObject() *GetValidTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetValidTokensResponse) GetFourHundredAndThirteenApplicationJSONObject() *GetValidTokensEdgeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThirteenApplicationJSONObject
+}
+
+func (o *GetValidTokensResponse) GetFourHundredAndFifteenApplicationJSONObject() *GetValidTokensEdgeResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *GetValidTokensResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *GetValidTokensResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetValidTokensResponse) GetGetValidTokens400ApplicationJSONObject() *GetValidTokens400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetValidTokens400ApplicationJSONObject
-}
-
-func (o *GetValidTokensResponse) GetGetValidTokens413ApplicationJSONObject() *GetValidTokens413ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetValidTokens413ApplicationJSONObject
-}
-
-func (o *GetValidTokensResponse) GetGetValidTokens415ApplicationJSONObject() *GetValidTokens415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetValidTokens415ApplicationJSONObject
 }
 
 func (o *GetValidTokensResponse) GetValidatedEdgeTokensSchema() *shared.ValidatedEdgeTokensSchema {

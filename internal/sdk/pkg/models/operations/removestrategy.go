@@ -17,8 +17,8 @@ func (o *RemoveStrategyRequest) GetName() string {
 	return o.Name
 }
 
-// RemoveStrategy404ApplicationJSON - The requested resource was not found.
-type RemoveStrategy404ApplicationJSON struct {
+// RemoveStrategyStrategiesResponseResponseBody - The requested resource was not found.
+type RemoveStrategyStrategiesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type RemoveStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveStrategy404ApplicationJSON) GetID() *string {
+func (o *RemoveStrategyStrategiesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveStrategy404ApplicationJSON) GetMessage() *string {
+func (o *RemoveStrategyStrategiesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveStrategy404ApplicationJSON) GetName() *string {
+func (o *RemoveStrategyStrategiesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type RemoveStrategy403ApplicationJSON struct {
+// RemoveStrategyStrategiesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type RemoveStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type RemoveStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveStrategy403ApplicationJSON) GetID() *string {
+func (o *RemoveStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveStrategy403ApplicationJSON) GetMessage() *string {
+func (o *RemoveStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveStrategy403ApplicationJSON) GetName() *string {
+func (o *RemoveStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RemoveStrategy401ApplicationJSON struct {
+// RemoveStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type RemoveStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveStrategy401ApplicationJSON) GetID() *string {
+func (o *RemoveStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveStrategy401ApplicationJSON) GetMessage() *string {
+func (o *RemoveStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveStrategy401ApplicationJSON) GetName() *string {
+func (o *RemoveStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *RemoveStrategy401ApplicationJSON) GetName() *string {
 }
 
 type RemoveStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RemoveStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *RemoveStrategyStrategiesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *RemoveStrategyStrategiesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RemoveStrategy401ApplicationJSONObject *RemoveStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	RemoveStrategy403ApplicationJSONObject *RemoveStrategy403ApplicationJSON
-	// The requested resource was not found.
-	RemoveStrategy404ApplicationJSONObject *RemoveStrategy404ApplicationJSON
+}
+
+func (o *RemoveStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *RemoveStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *RemoveStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *RemoveStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *RemoveStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *RemoveStrategyStrategiesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *RemoveStrategyResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *RemoveStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveStrategyResponse) GetRemoveStrategy401ApplicationJSONObject() *RemoveStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveStrategy401ApplicationJSONObject
-}
-
-func (o *RemoveStrategyResponse) GetRemoveStrategy403ApplicationJSONObject() *RemoveStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveStrategy403ApplicationJSONObject
-}
-
-func (o *RemoveStrategyResponse) GetRemoveStrategy404ApplicationJSONObject() *RemoveStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveStrategy404ApplicationJSONObject
 }

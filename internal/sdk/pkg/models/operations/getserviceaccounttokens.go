@@ -18,8 +18,8 @@ func (o *GetServiceAccountTokensRequest) GetID() string {
 	return o.ID
 }
 
-// GetServiceAccountTokens404ApplicationJSON - The requested resource was not found.
-type GetServiceAccountTokens404ApplicationJSON struct {
+// GetServiceAccountTokensServiceAccountsResponseResponseBody - The requested resource was not found.
+type GetServiceAccountTokensServiceAccountsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetServiceAccountTokens404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetServiceAccountTokens404ApplicationJSON) GetID() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetServiceAccountTokens404ApplicationJSON) GetMessage() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetServiceAccountTokens404ApplicationJSON) GetName() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetServiceAccountTokens403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetServiceAccountTokens403ApplicationJSON struct {
+// GetServiceAccountTokensServiceAccountsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetServiceAccountTokensServiceAccountsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetServiceAccountTokens403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetServiceAccountTokens403ApplicationJSON) GetID() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetServiceAccountTokens403ApplicationJSON) GetMessage() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetServiceAccountTokens403ApplicationJSON) GetName() *string {
+func (o *GetServiceAccountTokensServiceAccountsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetServiceAccountTokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetServiceAccountTokens401ApplicationJSON struct {
+// GetServiceAccountTokensResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetServiceAccountTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type GetServiceAccountTokens401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetServiceAccountTokens401ApplicationJSON) GetID() *string {
+func (o *GetServiceAccountTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetServiceAccountTokens401ApplicationJSON) GetMessage() *string {
+func (o *GetServiceAccountTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetServiceAccountTokens401ApplicationJSON) GetName() *string {
+func (o *GetServiceAccountTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,20 +112,41 @@ func (o *GetServiceAccountTokens401ApplicationJSON) GetName() *string {
 }
 
 type GetServiceAccountTokensResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetServiceAccountTokensResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetServiceAccountTokensServiceAccountsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetServiceAccountTokensServiceAccountsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetServiceAccountTokens401ApplicationJSONObject *GetServiceAccountTokens401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetServiceAccountTokens403ApplicationJSONObject *GetServiceAccountTokens403ApplicationJSON
-	// The requested resource was not found.
-	GetServiceAccountTokens404ApplicationJSONObject *GetServiceAccountTokens404ApplicationJSON
 	// patsSchema
 	PatsSchema *shared.PatsSchema
+}
+
+func (o *GetServiceAccountTokensResponse) GetFourHundredAndOneApplicationJSONObject() *GetServiceAccountTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetServiceAccountTokensResponse) GetFourHundredAndThreeApplicationJSONObject() *GetServiceAccountTokensServiceAccountsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetServiceAccountTokensResponse) GetFourHundredAndFourApplicationJSONObject() *GetServiceAccountTokensServiceAccountsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetServiceAccountTokensResponse) GetContentType() string {
@@ -147,27 +168,6 @@ func (o *GetServiceAccountTokensResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens401ApplicationJSONObject() *GetServiceAccountTokens401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetServiceAccountTokens401ApplicationJSONObject
-}
-
-func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens403ApplicationJSONObject() *GetServiceAccountTokens403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetServiceAccountTokens403ApplicationJSONObject
-}
-
-func (o *GetServiceAccountTokensResponse) GetGetServiceAccountTokens404ApplicationJSONObject() *GetServiceAccountTokens404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetServiceAccountTokens404ApplicationJSONObject
 }
 
 func (o *GetServiceAccountTokensResponse) GetPatsSchema() *shared.PatsSchema {

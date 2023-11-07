@@ -17,8 +17,8 @@ func (o *ValidatePublicSignupTokenRequest) GetToken() string {
 	return o.Token
 }
 
-// ValidatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
-type ValidatePublicSignupToken400ApplicationJSON struct {
+// ValidatePublicSignupTokenResponseBody - The request data does not match what we expect.
+type ValidatePublicSignupTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,21 +27,21 @@ type ValidatePublicSignupToken400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidatePublicSignupToken400ApplicationJSON) GetID() *string {
+func (o *ValidatePublicSignupTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidatePublicSignupToken400ApplicationJSON) GetMessage() *string {
+func (o *ValidatePublicSignupTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidatePublicSignupToken400ApplicationJSON) GetName() *string {
+func (o *ValidatePublicSignupTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -56,7 +56,7 @@ type ValidatePublicSignupTokenResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	ValidatePublicSignupToken400ApplicationJSONObject *ValidatePublicSignupToken400ApplicationJSON
+	Object *ValidatePublicSignupTokenResponseBody
 }
 
 func (o *ValidatePublicSignupTokenResponse) GetContentType() string {
@@ -80,9 +80,9 @@ func (o *ValidatePublicSignupTokenResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ValidatePublicSignupTokenResponse) GetValidatePublicSignupToken400ApplicationJSONObject() *ValidatePublicSignupToken400ApplicationJSON {
+func (o *ValidatePublicSignupTokenResponse) GetObject() *ValidatePublicSignupTokenResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidatePublicSignupToken400ApplicationJSONObject
+	return o.Object
 }

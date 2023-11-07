@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateAddon415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateAddon415ApplicationJSON struct {
+// CreateAddonAddonsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateAddonAddonsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateAddon415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAddon415ApplicationJSON) GetID() *string {
+func (o *CreateAddonAddonsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAddon415ApplicationJSON) GetMessage() *string {
+func (o *CreateAddonAddonsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAddon415ApplicationJSON) GetName() *string {
+func (o *CreateAddonAddonsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAddon413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-type CreateAddon413ApplicationJSON struct {
+// CreateAddonAddonsResponse413ResponseBody - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type CreateAddonAddonsResponse413ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateAddon413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAddon413ApplicationJSON) GetID() *string {
+func (o *CreateAddonAddonsResponse413ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAddon413ApplicationJSON) GetMessage() *string {
+func (o *CreateAddonAddonsResponse413ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAddon413ApplicationJSON) GetName() *string {
+func (o *CreateAddonAddonsResponse413ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAddon403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateAddon403ApplicationJSON struct {
+// CreateAddonAddonsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateAddonAddonsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type CreateAddon403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAddon403ApplicationJSON) GetID() *string {
+func (o *CreateAddonAddonsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAddon403ApplicationJSON) GetMessage() *string {
+func (o *CreateAddonAddonsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAddon403ApplicationJSON) GetName() *string {
+func (o *CreateAddonAddonsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateAddon401ApplicationJSON struct {
+// CreateAddonAddonsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateAddonAddonsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,29 +110,29 @@ type CreateAddon401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAddon401ApplicationJSON) GetID() *string {
+func (o *CreateAddonAddonsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAddon401ApplicationJSON) GetMessage() *string {
+func (o *CreateAddonAddonsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAddon401ApplicationJSON) GetName() *string {
+func (o *CreateAddonAddonsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAddon400ApplicationJSON - The request data does not match what we expect.
-type CreateAddon400ApplicationJSON struct {
+// CreateAddonResponseBody - The request data does not match what we expect.
+type CreateAddonResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -141,21 +141,21 @@ type CreateAddon400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAddon400ApplicationJSON) GetID() *string {
+func (o *CreateAddonResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAddon400ApplicationJSON) GetMessage() *string {
+func (o *CreateAddonResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAddon400ApplicationJSON) GetName() *string {
+func (o *CreateAddonResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -163,6 +163,16 @@ func (o *CreateAddon400ApplicationJSON) GetName() *string {
 }
 
 type CreateAddonResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateAddonResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateAddonAddonsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateAddonAddonsResponseResponseBody
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	FourHundredAndThirteenApplicationJSONObject *CreateAddonAddonsResponse413ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateAddonAddonsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -171,16 +181,41 @@ type CreateAddonResponse struct {
 	RawResponse *http.Response
 	// addonSchema
 	AddonSchema *shared.AddonSchema
-	// The request data does not match what we expect.
-	CreateAddon400ApplicationJSONObject *CreateAddon400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateAddon401ApplicationJSONObject *CreateAddon401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateAddon403ApplicationJSONObject *CreateAddon403ApplicationJSON
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	CreateAddon413ApplicationJSONObject *CreateAddon413ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateAddon415ApplicationJSONObject *CreateAddon415ApplicationJSON
+}
+
+func (o *CreateAddonResponse) GetFourHundredApplicationJSONObject() *CreateAddonResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateAddonResponse) GetFourHundredAndOneApplicationJSONObject() *CreateAddonAddonsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateAddonResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateAddonAddonsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateAddonResponse) GetFourHundredAndThirteenApplicationJSONObject() *CreateAddonAddonsResponse413ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThirteenApplicationJSONObject
+}
+
+func (o *CreateAddonResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateAddonAddonsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateAddonResponse) GetContentType() string {
@@ -209,39 +244,4 @@ func (o *CreateAddonResponse) GetAddonSchema() *shared.AddonSchema {
 		return nil
 	}
 	return o.AddonSchema
-}
-
-func (o *CreateAddonResponse) GetCreateAddon400ApplicationJSONObject() *CreateAddon400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAddon400ApplicationJSONObject
-}
-
-func (o *CreateAddonResponse) GetCreateAddon401ApplicationJSONObject() *CreateAddon401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAddon401ApplicationJSONObject
-}
-
-func (o *CreateAddonResponse) GetCreateAddon403ApplicationJSONObject() *CreateAddon403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAddon403ApplicationJSONObject
-}
-
-func (o *CreateAddonResponse) GetCreateAddon413ApplicationJSONObject() *CreateAddon413ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAddon413ApplicationJSONObject
-}
-
-func (o *CreateAddonResponse) GetCreateAddon415ApplicationJSONObject() *CreateAddon415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAddon415ApplicationJSONObject
 }

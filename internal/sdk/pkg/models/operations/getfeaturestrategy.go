@@ -42,8 +42,8 @@ func (o *GetFeatureStrategyRequest) GetStrategyID() string {
 	return o.StrategyID
 }
 
-// GetFeatureStrategy404ApplicationJSON - The requested resource was not found.
-type GetFeatureStrategy404ApplicationJSON struct {
+// GetFeatureStrategyFeaturesResponseResponseBody - The requested resource was not found.
+type GetFeatureStrategyFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -52,29 +52,29 @@ type GetFeatureStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureStrategy404ApplicationJSON) GetID() *string {
+func (o *GetFeatureStrategyFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureStrategy404ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureStrategyFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureStrategy404ApplicationJSON) GetName() *string {
+func (o *GetFeatureStrategyFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetFeatureStrategy403ApplicationJSON struct {
+// GetFeatureStrategyFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeatureStrategyFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -83,29 +83,29 @@ type GetFeatureStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureStrategy403ApplicationJSON) GetID() *string {
+func (o *GetFeatureStrategyFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureStrategy403ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureStrategyFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureStrategy403ApplicationJSON) GetName() *string {
+func (o *GetFeatureStrategyFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetFeatureStrategy401ApplicationJSON struct {
+// GetFeatureStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeatureStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -114,21 +114,21 @@ type GetFeatureStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureStrategy401ApplicationJSON) GetID() *string {
+func (o *GetFeatureStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureStrategy401ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureStrategy401ApplicationJSON) GetName() *string {
+func (o *GetFeatureStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -136,6 +136,12 @@ func (o *GetFeatureStrategy401ApplicationJSON) GetName() *string {
 }
 
 type GetFeatureStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetFeatureStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetFeatureStrategyFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetFeatureStrategyFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -144,12 +150,27 @@ type GetFeatureStrategyResponse struct {
 	RawResponse *http.Response
 	// featureStrategySchema
 	FeatureStrategySchema *shared.FeatureStrategySchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetFeatureStrategy401ApplicationJSONObject *GetFeatureStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetFeatureStrategy403ApplicationJSONObject *GetFeatureStrategy403ApplicationJSON
-	// The requested resource was not found.
-	GetFeatureStrategy404ApplicationJSONObject *GetFeatureStrategy404ApplicationJSON
+}
+
+func (o *GetFeatureStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *GetFeatureStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetFeatureStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *GetFeatureStrategyFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetFeatureStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *GetFeatureStrategyFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetFeatureStrategyResponse) GetContentType() string {
@@ -178,25 +199,4 @@ func (o *GetFeatureStrategyResponse) GetFeatureStrategySchema() *shared.FeatureS
 		return nil
 	}
 	return o.FeatureStrategySchema
-}
-
-func (o *GetFeatureStrategyResponse) GetGetFeatureStrategy401ApplicationJSONObject() *GetFeatureStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureStrategy401ApplicationJSONObject
-}
-
-func (o *GetFeatureStrategyResponse) GetGetFeatureStrategy403ApplicationJSONObject() *GetFeatureStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureStrategy403ApplicationJSONObject
-}
-
-func (o *GetFeatureStrategyResponse) GetGetFeatureStrategy404ApplicationJSONObject() *GetFeatureStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureStrategy404ApplicationJSONObject
 }

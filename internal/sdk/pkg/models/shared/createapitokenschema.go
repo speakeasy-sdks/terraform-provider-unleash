@@ -8,8 +8,8 @@ import (
 	"time"
 )
 
-// CreateAPITokenSchema4 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
-type CreateAPITokenSchema4 struct {
+// Four - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type Four struct {
 	// The environment that the token should be valid for. Defaults to "default"
 	Environment *string `json:"environment,omitempty"`
 	// The time when this token should expire.
@@ -26,61 +26,61 @@ type CreateAPITokenSchema4 struct {
 	Username string `json:"username"`
 }
 
-func (c CreateAPITokenSchema4) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (f Four) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
 }
 
-func (c *CreateAPITokenSchema4) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+func (f *Four) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreateAPITokenSchema4) GetEnvironment() *string {
+func (o *Four) GetEnvironment() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Environment
 }
 
-func (o *CreateAPITokenSchema4) GetExpiresAt() *time.Time {
+func (o *Four) GetExpiresAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiresAt
 }
 
-func (o *CreateAPITokenSchema4) GetProject() *string {
+func (o *Four) GetProject() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Project
 }
 
-func (o *CreateAPITokenSchema4) GetProjects() []string {
+func (o *Four) GetProjects() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Projects
 }
 
-func (o *CreateAPITokenSchema4) GetType() string {
+func (o *Four) GetType() string {
 	if o == nil {
 		return ""
 	}
 	return o.Type
 }
 
-func (o *CreateAPITokenSchema4) GetUsername() string {
+func (o *Four) GetUsername() string {
 	if o == nil {
 		return ""
 	}
 	return o.Username
 }
 
-// CreateAPITokenSchema3 - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
-type CreateAPITokenSchema3 struct {
+// Three - The data required to create an [Unleash API token](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type Three struct {
 	// The environment that the token should be valid for. Defaults to "default"
 	Environment *string `json:"environment,omitempty"`
 	// The time when this token should expire.
@@ -95,53 +95,53 @@ type CreateAPITokenSchema3 struct {
 	Type string `json:"type"`
 }
 
-func (c CreateAPITokenSchema3) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (t Three) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (c *CreateAPITokenSchema3) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+func (t *Three) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreateAPITokenSchema3) GetEnvironment() *string {
+func (o *Three) GetEnvironment() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Environment
 }
 
-func (o *CreateAPITokenSchema3) GetExpiresAt() *time.Time {
+func (o *Three) GetExpiresAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiresAt
 }
 
-func (o *CreateAPITokenSchema3) GetProject() *string {
+func (o *Three) GetProject() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Project
 }
 
-func (o *CreateAPITokenSchema3) GetProjects() []string {
+func (o *Three) GetProjects() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Projects
 }
 
-func (o *CreateAPITokenSchema3) GetTokenName() string {
+func (o *Three) GetTokenName() string {
 	if o == nil {
 		return ""
 	}
 	return o.TokenName
 }
 
-func (o *CreateAPITokenSchema3) GetType() string {
+func (o *Three) GetType() string {
 	if o == nil {
 		return ""
 	}
@@ -239,15 +239,15 @@ type CreateAPITokenSchemaType string
 const (
 	CreateAPITokenSchemaTypeCreateAPITokenSchema1 CreateAPITokenSchemaType = "createApiTokenSchema_1"
 	CreateAPITokenSchemaTypeCreateAPITokenSchema2 CreateAPITokenSchemaType = "createApiTokenSchema_2"
-	CreateAPITokenSchemaTypeCreateAPITokenSchema3 CreateAPITokenSchemaType = "createApiTokenSchema_3"
-	CreateAPITokenSchemaTypeCreateAPITokenSchema4 CreateAPITokenSchemaType = "createApiTokenSchema_4"
+	CreateAPITokenSchemaTypeThree                 CreateAPITokenSchemaType = "3"
+	CreateAPITokenSchemaTypeFour                  CreateAPITokenSchemaType = "4"
 )
 
 type CreateAPITokenSchema struct {
 	CreateAPITokenSchema1 *CreateAPITokenSchema1
 	CreateAPITokenSchema2 *CreateAPITokenSchema2
-	CreateAPITokenSchema3 *CreateAPITokenSchema3
-	CreateAPITokenSchema4 *CreateAPITokenSchema4
+	Three                 *Three
+	Four                  *Four
 
 	Type CreateAPITokenSchemaType
 }
@@ -270,21 +270,21 @@ func CreateCreateAPITokenSchemaCreateAPITokenSchema2(createAPITokenSchema2 Creat
 	}
 }
 
-func CreateCreateAPITokenSchemaCreateAPITokenSchema3(createAPITokenSchema3 CreateAPITokenSchema3) CreateAPITokenSchema {
-	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema3
+func CreateCreateAPITokenSchemaThree(three Three) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeThree
 
 	return CreateAPITokenSchema{
-		CreateAPITokenSchema3: &createAPITokenSchema3,
-		Type:                  typ,
+		Three: &three,
+		Type:  typ,
 	}
 }
 
-func CreateCreateAPITokenSchemaCreateAPITokenSchema4(createAPITokenSchema4 CreateAPITokenSchema4) CreateAPITokenSchema {
-	typ := CreateAPITokenSchemaTypeCreateAPITokenSchema4
+func CreateCreateAPITokenSchemaFour(four Four) CreateAPITokenSchema {
+	typ := CreateAPITokenSchemaTypeFour
 
 	return CreateAPITokenSchema{
-		CreateAPITokenSchema4: &createAPITokenSchema4,
-		Type:                  typ,
+		Four: &four,
+		Type: typ,
 	}
 }
 
@@ -304,17 +304,17 @@ func (u *CreateAPITokenSchema) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	createAPITokenSchema3 := new(CreateAPITokenSchema3)
-	if err := utils.UnmarshalJSON(data, &createAPITokenSchema3, "", true, true); err == nil {
-		u.CreateAPITokenSchema3 = createAPITokenSchema3
-		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema3
+	three := new(Three)
+	if err := utils.UnmarshalJSON(data, &three, "", true, true); err == nil {
+		u.Three = three
+		u.Type = CreateAPITokenSchemaTypeThree
 		return nil
 	}
 
-	createAPITokenSchema4 := new(CreateAPITokenSchema4)
-	if err := utils.UnmarshalJSON(data, &createAPITokenSchema4, "", true, true); err == nil {
-		u.CreateAPITokenSchema4 = createAPITokenSchema4
-		u.Type = CreateAPITokenSchemaTypeCreateAPITokenSchema4
+	four := new(Four)
+	if err := utils.UnmarshalJSON(data, &four, "", true, true); err == nil {
+		u.Four = four
+		u.Type = CreateAPITokenSchemaTypeFour
 		return nil
 	}
 
@@ -330,12 +330,12 @@ func (u CreateAPITokenSchema) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.CreateAPITokenSchema2, "", true)
 	}
 
-	if u.CreateAPITokenSchema3 != nil {
-		return utils.MarshalJSON(u.CreateAPITokenSchema3, "", true)
+	if u.Three != nil {
+		return utils.MarshalJSON(u.Three, "", true)
 	}
 
-	if u.CreateAPITokenSchema4 != nil {
-		return utils.MarshalJSON(u.CreateAPITokenSchema4, "", true)
+	if u.Four != nil {
+		return utils.MarshalJSON(u.Four, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")

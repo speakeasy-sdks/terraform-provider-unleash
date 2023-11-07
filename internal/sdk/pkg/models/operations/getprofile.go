@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetProfile401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetProfile401ApplicationJSON struct {
+// GetProfileResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetProfileResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetProfile401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetProfile401ApplicationJSON) GetID() *string {
+func (o *GetProfileResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetProfile401ApplicationJSON) GetMessage() *string {
+func (o *GetProfileResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetProfile401ApplicationJSON) GetName() *string {
+func (o *GetProfileResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ type GetProfileResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetProfile401ApplicationJSONObject *GetProfile401ApplicationJSON
+	Object *GetProfileResponseBody
 	// profileSchema
 	ProfileSchema *shared.ProfileSchema
 }
@@ -72,11 +72,11 @@ func (o *GetProfileResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetProfileResponse) GetGetProfile401ApplicationJSONObject() *GetProfile401ApplicationJSON {
+func (o *GetProfileResponse) GetObject() *GetProfileResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetProfile401ApplicationJSONObject
+	return o.Object
 }
 
 func (o *GetProfileResponse) GetProfileSchema() *shared.ProfileSchema {

@@ -17,8 +17,8 @@ func (o *RemoveSegmentRequest) GetID() string {
 	return o.ID
 }
 
-// RemoveSegment409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type RemoveSegment409ApplicationJSON struct {
+// RemoveSegmentSegmentsResponseResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type RemoveSegmentSegmentsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type RemoveSegment409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveSegment409ApplicationJSON) GetID() *string {
+func (o *RemoveSegmentSegmentsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveSegment409ApplicationJSON) GetMessage() *string {
+func (o *RemoveSegmentSegmentsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveSegment409ApplicationJSON) GetName() *string {
+func (o *RemoveSegmentSegmentsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveSegment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type RemoveSegment403ApplicationJSON struct {
+// RemoveSegmentSegmentsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type RemoveSegmentSegmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type RemoveSegment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveSegment403ApplicationJSON) GetID() *string {
+func (o *RemoveSegmentSegmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveSegment403ApplicationJSON) GetMessage() *string {
+func (o *RemoveSegmentSegmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveSegment403ApplicationJSON) GetName() *string {
+func (o *RemoveSegmentSegmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveSegment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RemoveSegment401ApplicationJSON struct {
+// RemoveSegmentResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveSegmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type RemoveSegment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveSegment401ApplicationJSON) GetID() *string {
+func (o *RemoveSegmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveSegment401ApplicationJSON) GetMessage() *string {
+func (o *RemoveSegmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveSegment401ApplicationJSON) GetName() *string {
+func (o *RemoveSegmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *RemoveSegment401ApplicationJSON) GetName() *string {
 }
 
 type RemoveSegmentResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RemoveSegmentResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *RemoveSegmentSegmentsResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *RemoveSegmentSegmentsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RemoveSegment401ApplicationJSONObject *RemoveSegment401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	RemoveSegment403ApplicationJSONObject *RemoveSegment403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	RemoveSegment409ApplicationJSONObject *RemoveSegment409ApplicationJSON
+}
+
+func (o *RemoveSegmentResponse) GetFourHundredAndOneApplicationJSONObject() *RemoveSegmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *RemoveSegmentResponse) GetFourHundredAndThreeApplicationJSONObject() *RemoveSegmentSegmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *RemoveSegmentResponse) GetFourHundredAndNineApplicationJSONObject() *RemoveSegmentSegmentsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
 }
 
 func (o *RemoveSegmentResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *RemoveSegmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveSegmentResponse) GetRemoveSegment401ApplicationJSONObject() *RemoveSegment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveSegment401ApplicationJSONObject
-}
-
-func (o *RemoveSegmentResponse) GetRemoveSegment403ApplicationJSONObject() *RemoveSegment403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveSegment403ApplicationJSONObject
-}
-
-func (o *RemoveSegmentResponse) GetRemoveSegment409ApplicationJSONObject() *RemoveSegment409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveSegment409ApplicationJSONObject
 }

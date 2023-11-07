@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateRole400ApplicationJSON - The request data does not match what we expect.
-type ValidateRole400ApplicationJSON struct {
+// ValidateRoleResponseBody - The request data does not match what we expect.
+type ValidateRoleResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,21 +16,21 @@ type ValidateRole400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateRole400ApplicationJSON) GetID() *string {
+func (o *ValidateRoleResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateRole400ApplicationJSON) GetMessage() *string {
+func (o *ValidateRoleResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateRole400ApplicationJSON) GetName() *string {
+func (o *ValidateRoleResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,7 +45,7 @@ type ValidateRoleResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	ValidateRole400ApplicationJSONObject *ValidateRole400ApplicationJSON
+	Object *ValidateRoleResponseBody
 }
 
 func (o *ValidateRoleResponse) GetContentType() string {
@@ -69,9 +69,9 @@ func (o *ValidateRoleResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ValidateRoleResponse) GetValidateRole400ApplicationJSONObject() *ValidateRole400ApplicationJSON {
+func (o *ValidateRoleResponse) GetObject() *ValidateRoleResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateRole400ApplicationJSONObject
+	return o.Object
 }

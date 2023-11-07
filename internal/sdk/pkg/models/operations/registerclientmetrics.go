@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// RegisterClientMetrics400ApplicationJSON - The request data does not match what we expect.
-type RegisterClientMetrics400ApplicationJSON struct {
+// RegisterClientMetricsResponseBody - The request data does not match what we expect.
+type RegisterClientMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,21 +16,21 @@ type RegisterClientMetrics400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RegisterClientMetrics400ApplicationJSON) GetID() *string {
+func (o *RegisterClientMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RegisterClientMetrics400ApplicationJSON) GetMessage() *string {
+func (o *RegisterClientMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RegisterClientMetrics400ApplicationJSON) GetName() *string {
+func (o *RegisterClientMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,7 +45,7 @@ type RegisterClientMetricsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	RegisterClientMetrics400ApplicationJSONObject *RegisterClientMetrics400ApplicationJSON
+	Object *RegisterClientMetricsResponseBody
 }
 
 func (o *RegisterClientMetricsResponse) GetContentType() string {
@@ -69,9 +69,9 @@ func (o *RegisterClientMetricsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *RegisterClientMetricsResponse) GetRegisterClientMetrics400ApplicationJSONObject() *RegisterClientMetrics400ApplicationJSON {
+func (o *RegisterClientMetricsResponse) GetObject() *RegisterClientMetricsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.RegisterClientMetrics400ApplicationJSONObject
+	return o.Object
 }

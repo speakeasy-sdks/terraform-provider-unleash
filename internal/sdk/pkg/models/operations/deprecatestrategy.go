@@ -17,8 +17,8 @@ func (o *DeprecateStrategyRequest) GetStrategyName() string {
 	return o.StrategyName
 }
 
-// DeprecateStrategy404ApplicationJSON - The requested resource was not found.
-type DeprecateStrategy404ApplicationJSON struct {
+// DeprecateStrategyStrategiesResponseResponseBody - The requested resource was not found.
+type DeprecateStrategyStrategiesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type DeprecateStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeprecateStrategy404ApplicationJSON) GetID() *string {
+func (o *DeprecateStrategyStrategiesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeprecateStrategy404ApplicationJSON) GetMessage() *string {
+func (o *DeprecateStrategyStrategiesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeprecateStrategy404ApplicationJSON) GetName() *string {
+func (o *DeprecateStrategyStrategiesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeprecateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeprecateStrategy403ApplicationJSON struct {
+// DeprecateStrategyStrategiesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeprecateStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type DeprecateStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeprecateStrategy403ApplicationJSON) GetID() *string {
+func (o *DeprecateStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeprecateStrategy403ApplicationJSON) GetMessage() *string {
+func (o *DeprecateStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeprecateStrategy403ApplicationJSON) GetName() *string {
+func (o *DeprecateStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeprecateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeprecateStrategy401ApplicationJSON struct {
+// DeprecateStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeprecateStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type DeprecateStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeprecateStrategy401ApplicationJSON) GetID() *string {
+func (o *DeprecateStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeprecateStrategy401ApplicationJSON) GetMessage() *string {
+func (o *DeprecateStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeprecateStrategy401ApplicationJSON) GetName() *string {
+func (o *DeprecateStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *DeprecateStrategy401ApplicationJSON) GetName() *string {
 }
 
 type DeprecateStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeprecateStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeprecateStrategyStrategiesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *DeprecateStrategyStrategiesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeprecateStrategy401ApplicationJSONObject *DeprecateStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeprecateStrategy403ApplicationJSONObject *DeprecateStrategy403ApplicationJSON
-	// The requested resource was not found.
-	DeprecateStrategy404ApplicationJSONObject *DeprecateStrategy404ApplicationJSON
+}
+
+func (o *DeprecateStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *DeprecateStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeprecateStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *DeprecateStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *DeprecateStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *DeprecateStrategyStrategiesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *DeprecateStrategyResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *DeprecateStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeprecateStrategyResponse) GetDeprecateStrategy401ApplicationJSONObject() *DeprecateStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeprecateStrategy401ApplicationJSONObject
-}
-
-func (o *DeprecateStrategyResponse) GetDeprecateStrategy403ApplicationJSONObject() *DeprecateStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeprecateStrategy403ApplicationJSONObject
-}
-
-func (o *DeprecateStrategyResponse) GetDeprecateStrategy404ApplicationJSONObject() *DeprecateStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeprecateStrategy404ApplicationJSONObject
 }

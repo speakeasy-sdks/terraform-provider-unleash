@@ -2,7 +2,7 @@
 
 package shared
 
-type AdminStrategiesSchemaStrategies struct {
+type Strategies struct {
 	// The ID of the environment that the strategy belongs to.
 	Environment string `json:"environment"`
 	// The ID of the strategy
@@ -15,35 +15,35 @@ type AdminStrategiesSchemaStrategies struct {
 	StrategyName string `json:"strategyName"`
 }
 
-func (o *AdminStrategiesSchemaStrategies) GetEnvironment() string {
+func (o *Strategies) GetEnvironment() string {
 	if o == nil {
 		return ""
 	}
 	return o.Environment
 }
 
-func (o *AdminStrategiesSchemaStrategies) GetFeatureName() string {
+func (o *Strategies) GetFeatureName() string {
 	if o == nil {
 		return ""
 	}
 	return o.FeatureName
 }
 
-func (o *AdminStrategiesSchemaStrategies) GetID() string {
+func (o *Strategies) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *AdminStrategiesSchemaStrategies) GetProjectID() string {
+func (o *Strategies) GetProjectID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ProjectID
 }
 
-func (o *AdminStrategiesSchemaStrategies) GetStrategyName() string {
+func (o *Strategies) GetStrategyName() string {
 	if o == nil {
 		return ""
 	}
@@ -53,12 +53,12 @@ func (o *AdminStrategiesSchemaStrategies) GetStrategyName() string {
 // AdminStrategiesSchema - A collection of strategies belonging to a specified segment.
 type AdminStrategiesSchema struct {
 	// The list of strategies
-	Strategies []AdminStrategiesSchemaStrategies `json:"strategies"`
+	Strategies []Strategies `json:"strategies"`
 }
 
-func (o *AdminStrategiesSchema) GetStrategies() []AdminStrategiesSchemaStrategies {
+func (o *AdminStrategiesSchema) GetStrategies() []Strategies {
 	if o == nil {
-		return []AdminStrategiesSchemaStrategies{}
+		return []Strategies{}
 	}
 	return o.Strategies
 }

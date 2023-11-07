@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateAPIToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateAPIToken415ApplicationJSON struct {
+// CreateAPITokenAPITokensResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateAPITokenAPITokensResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateAPIToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAPIToken415ApplicationJSON) GetID() *string {
+func (o *CreateAPITokenAPITokensResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAPIToken415ApplicationJSON) GetMessage() *string {
+func (o *CreateAPITokenAPITokensResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAPIToken415ApplicationJSON) GetName() *string {
+func (o *CreateAPITokenAPITokensResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateAPIToken403ApplicationJSON struct {
+// CreateAPITokenAPITokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateAPITokenAPITokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAPIToken403ApplicationJSON) GetID() *string {
+func (o *CreateAPITokenAPITokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAPIToken403ApplicationJSON) GetMessage() *string {
+func (o *CreateAPITokenAPITokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAPIToken403ApplicationJSON) GetName() *string {
+func (o *CreateAPITokenAPITokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateAPIToken401ApplicationJSON struct {
+// CreateAPITokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateAPITokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type CreateAPIToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateAPIToken401ApplicationJSON) GetID() *string {
+func (o *CreateAPITokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateAPIToken401ApplicationJSON) GetMessage() *string {
+func (o *CreateAPITokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateAPIToken401ApplicationJSON) GetName() *string {
+func (o *CreateAPITokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,6 +101,12 @@ func (o *CreateAPIToken401ApplicationJSON) GetName() *string {
 }
 
 type CreateAPITokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateAPITokenResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateAPITokenAPITokensResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateAPITokenAPITokensResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -110,12 +116,27 @@ type CreateAPITokenResponse struct {
 	RawResponse *http.Response
 	// The resource was successfully created.
 	APITokenSchema *shared.APITokenSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateAPIToken401ApplicationJSONObject *CreateAPIToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateAPIToken403ApplicationJSONObject *CreateAPIToken403ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateAPIToken415ApplicationJSONObject *CreateAPIToken415ApplicationJSON
+}
+
+func (o *CreateAPITokenResponse) GetFourHundredAndOneApplicationJSONObject() *CreateAPITokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateAPITokenResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateAPITokenAPITokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateAPITokenResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateAPITokenAPITokensResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateAPITokenResponse) GetContentType() string {
@@ -151,25 +172,4 @@ func (o *CreateAPITokenResponse) GetAPITokenSchema() *shared.APITokenSchema {
 		return nil
 	}
 	return o.APITokenSchema
-}
-
-func (o *CreateAPITokenResponse) GetCreateAPIToken401ApplicationJSONObject() *CreateAPIToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAPIToken401ApplicationJSONObject
-}
-
-func (o *CreateAPITokenResponse) GetCreateAPIToken403ApplicationJSONObject() *CreateAPIToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAPIToken403ApplicationJSONObject
-}
-
-func (o *CreateAPITokenResponse) GetCreateAPIToken415ApplicationJSONObject() *CreateAPIToken415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateAPIToken415ApplicationJSONObject
 }

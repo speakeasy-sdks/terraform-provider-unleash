@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateConstraint415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateConstraint415ApplicationJSON struct {
+// ValidateConstraintFeaturesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateConstraintFeaturesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidateConstraint415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateConstraint415ApplicationJSON) GetID() *string {
+func (o *ValidateConstraintFeaturesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateConstraint415ApplicationJSON) GetMessage() *string {
+func (o *ValidateConstraintFeaturesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateConstraint415ApplicationJSON) GetName() *string {
+func (o *ValidateConstraintFeaturesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateConstraint403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ValidateConstraint403ApplicationJSON struct {
+// ValidateConstraintFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ValidateConstraintFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ValidateConstraint403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateConstraint403ApplicationJSON) GetID() *string {
+func (o *ValidateConstraintFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateConstraint403ApplicationJSON) GetMessage() *string {
+func (o *ValidateConstraintFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateConstraint403ApplicationJSON) GetName() *string {
+func (o *ValidateConstraintFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateConstraint401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateConstraint401ApplicationJSON struct {
+// ValidateConstraintFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateConstraintFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,29 +78,29 @@ type ValidateConstraint401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateConstraint401ApplicationJSON) GetID() *string {
+func (o *ValidateConstraintFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateConstraint401ApplicationJSON) GetMessage() *string {
+func (o *ValidateConstraintFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateConstraint401ApplicationJSON) GetName() *string {
+func (o *ValidateConstraintFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateConstraint400ApplicationJSON - The request data does not match what we expect.
-type ValidateConstraint400ApplicationJSON struct {
+// ValidateConstraintResponseBody - The request data does not match what we expect.
+type ValidateConstraintResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -109,21 +109,21 @@ type ValidateConstraint400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateConstraint400ApplicationJSON) GetID() *string {
+func (o *ValidateConstraintResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateConstraint400ApplicationJSON) GetMessage() *string {
+func (o *ValidateConstraintResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateConstraint400ApplicationJSON) GetName() *string {
+func (o *ValidateConstraintResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -131,20 +131,48 @@ func (o *ValidateConstraint400ApplicationJSON) GetName() *string {
 }
 
 type ValidateConstraintResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateConstraintResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateConstraintFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ValidateConstraintFeaturesResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateConstraintFeaturesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidateConstraint400ApplicationJSONObject *ValidateConstraint400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateConstraint401ApplicationJSONObject *ValidateConstraint401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ValidateConstraint403ApplicationJSONObject *ValidateConstraint403ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateConstraint415ApplicationJSONObject *ValidateConstraint415ApplicationJSON
+}
+
+func (o *ValidateConstraintResponse) GetFourHundredApplicationJSONObject() *ValidateConstraintResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateConstraintFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetFourHundredAndThreeApplicationJSONObject() *ValidateConstraintFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ValidateConstraintResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateConstraintFeaturesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateConstraintResponse) GetContentType() string {
@@ -166,32 +194,4 @@ func (o *ValidateConstraintResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidateConstraintResponse) GetValidateConstraint400ApplicationJSONObject() *ValidateConstraint400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateConstraint400ApplicationJSONObject
-}
-
-func (o *ValidateConstraintResponse) GetValidateConstraint401ApplicationJSONObject() *ValidateConstraint401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateConstraint401ApplicationJSONObject
-}
-
-func (o *ValidateConstraintResponse) GetValidateConstraint403ApplicationJSONObject() *ValidateConstraint403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateConstraint403ApplicationJSONObject
-}
-
-func (o *ValidateConstraintResponse) GetValidateConstraint415ApplicationJSONObject() *ValidateConstraint415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateConstraint415ApplicationJSONObject
 }

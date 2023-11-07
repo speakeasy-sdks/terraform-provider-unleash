@@ -27,8 +27,8 @@ func (o *UpdateFeatureTypeLifetimeRequest) GetUpdateFeatureTypeLifetimeSchema() 
 	return o.UpdateFeatureTypeLifetimeSchema
 }
 
-// UpdateFeatureTypeLifetime415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateFeatureTypeLifetime415ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateFeatureTypeLifetime415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime415ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime415ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime415ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeatureTypeLifetime409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type UpdateFeatureTypeLifetime409ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdateFeatureTypeLifetime409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime409ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime409ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime409ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeatureTypeLifetime404ApplicationJSON - The requested resource was not found.
-type UpdateFeatureTypeLifetime404ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody - The requested resource was not found.
+type UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type UpdateFeatureTypeLifetime404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime404ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime404ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime404ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeatureTypeLifetime403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateFeatureTypeLifetime403ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeUnstableResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateFeatureTypeLifetimeUnstableResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,29 +130,29 @@ type UpdateFeatureTypeLifetime403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime403ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime403ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime403ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeatureTypeLifetime401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateFeatureTypeLifetime401ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeUnstableResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateFeatureTypeLifetimeUnstableResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -161,29 +161,29 @@ type UpdateFeatureTypeLifetime401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime401ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime401ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime401ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeUnstableResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeatureTypeLifetime400ApplicationJSON - The request data does not match what we expect.
-type UpdateFeatureTypeLifetime400ApplicationJSON struct {
+// UpdateFeatureTypeLifetimeResponseBody - The request data does not match what we expect.
+type UpdateFeatureTypeLifetimeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -192,21 +192,21 @@ type UpdateFeatureTypeLifetime400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeatureTypeLifetime400ApplicationJSON) GetID() *string {
+func (o *UpdateFeatureTypeLifetimeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeatureTypeLifetime400ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeatureTypeLifetimeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeatureTypeLifetime400ApplicationJSON) GetName() *string {
+func (o *UpdateFeatureTypeLifetimeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -214,6 +214,18 @@ func (o *UpdateFeatureTypeLifetime400ApplicationJSON) GetName() *string {
 }
 
 type UpdateFeatureTypeLifetimeResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdateFeatureTypeLifetimeResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateFeatureTypeLifetimeUnstableResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateFeatureTypeLifetimeUnstableResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -222,18 +234,48 @@ type UpdateFeatureTypeLifetimeResponse struct {
 	RawResponse *http.Response
 	// featureTypeSchema
 	FeatureTypeSchema *shared.FeatureTypeSchema
-	// The request data does not match what we expect.
-	UpdateFeatureTypeLifetime400ApplicationJSONObject *UpdateFeatureTypeLifetime400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateFeatureTypeLifetime401ApplicationJSONObject *UpdateFeatureTypeLifetime401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateFeatureTypeLifetime403ApplicationJSONObject *UpdateFeatureTypeLifetime403ApplicationJSON
-	// The requested resource was not found.
-	UpdateFeatureTypeLifetime404ApplicationJSONObject *UpdateFeatureTypeLifetime404ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	UpdateFeatureTypeLifetime409ApplicationJSONObject *UpdateFeatureTypeLifetime409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateFeatureTypeLifetime415ApplicationJSONObject *UpdateFeatureTypeLifetime415ApplicationJSON
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredApplicationJSONObject() *UpdateFeatureTypeLifetimeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateFeatureTypeLifetimeUnstableResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateFeatureTypeLifetimeUnstableResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredAndFourApplicationJSONObject() *UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredAndNineApplicationJSONObject() *UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *UpdateFeatureTypeLifetimeResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateFeatureTypeLifetimeResponse) GetContentType() string {
@@ -262,46 +304,4 @@ func (o *UpdateFeatureTypeLifetimeResponse) GetFeatureTypeSchema() *shared.Featu
 		return nil
 	}
 	return o.FeatureTypeSchema
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime400ApplicationJSONObject() *UpdateFeatureTypeLifetime400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime400ApplicationJSONObject
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime401ApplicationJSONObject() *UpdateFeatureTypeLifetime401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime401ApplicationJSONObject
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime403ApplicationJSONObject() *UpdateFeatureTypeLifetime403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime403ApplicationJSONObject
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime404ApplicationJSONObject() *UpdateFeatureTypeLifetime404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime404ApplicationJSONObject
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime409ApplicationJSONObject() *UpdateFeatureTypeLifetime409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime409ApplicationJSONObject
-}
-
-func (o *UpdateFeatureTypeLifetimeResponse) GetUpdateFeatureTypeLifetime415ApplicationJSONObject() *UpdateFeatureTypeLifetime415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeatureTypeLifetime415ApplicationJSONObject
 }

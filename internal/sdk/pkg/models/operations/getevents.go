@@ -19,8 +19,8 @@ func (o *GetEventsRequest) GetProject() *string {
 	return o.Project
 }
 
-// GetEvents401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetEvents401ApplicationJSON struct {
+// GetEventsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetEventsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -29,21 +29,21 @@ type GetEvents401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetEvents401ApplicationJSON) GetID() *string {
+func (o *GetEventsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetEvents401ApplicationJSON) GetMessage() *string {
+func (o *GetEventsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetEvents401ApplicationJSON) GetName() *string {
+func (o *GetEventsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -60,7 +60,7 @@ type GetEventsResponse struct {
 	// eventsSchema
 	EventsSchema *shared.EventsSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetEvents401ApplicationJSONObject *GetEvents401ApplicationJSON
+	Object *GetEventsResponseBody
 }
 
 func (o *GetEventsResponse) GetContentType() string {
@@ -91,9 +91,9 @@ func (o *GetEventsResponse) GetEventsSchema() *shared.EventsSchema {
 	return o.EventsSchema
 }
 
-func (o *GetEventsResponse) GetGetEvents401ApplicationJSONObject() *GetEvents401ApplicationJSON {
+func (o *GetEventsResponse) GetObject() *GetEventsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetEvents401ApplicationJSONObject
+	return o.Object
 }

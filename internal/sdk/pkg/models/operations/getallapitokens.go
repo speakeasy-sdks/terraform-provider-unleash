@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAllAPITokens403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetAllAPITokens403ApplicationJSON struct {
+// GetAllAPITokensAPITokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetAllAPITokensAPITokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetAllAPITokens403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllAPITokens403ApplicationJSON) GetID() *string {
+func (o *GetAllAPITokensAPITokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllAPITokens403ApplicationJSON) GetMessage() *string {
+func (o *GetAllAPITokensAPITokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllAPITokens403ApplicationJSON) GetName() *string {
+func (o *GetAllAPITokensAPITokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetAllAPITokens401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAllAPITokens401ApplicationJSON struct {
+// GetAllAPITokensResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllAPITokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetAllAPITokens401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllAPITokens401ApplicationJSON) GetID() *string {
+func (o *GetAllAPITokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllAPITokens401ApplicationJSON) GetMessage() *string {
+func (o *GetAllAPITokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllAPITokens401ApplicationJSON) GetName() *string {
+func (o *GetAllAPITokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *GetAllAPITokens401ApplicationJSON) GetName() *string {
 }
 
 type GetAllAPITokensResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetAllAPITokensResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetAllAPITokensAPITokensResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -78,10 +82,20 @@ type GetAllAPITokensResponse struct {
 	RawResponse *http.Response
 	// apiTokensSchema
 	APITokensSchema *shared.APITokensSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAllAPITokens401ApplicationJSONObject *GetAllAPITokens401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetAllAPITokens403ApplicationJSONObject *GetAllAPITokens403ApplicationJSON
+}
+
+func (o *GetAllAPITokensResponse) GetFourHundredAndOneApplicationJSONObject() *GetAllAPITokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetAllAPITokensResponse) GetFourHundredAndThreeApplicationJSONObject() *GetAllAPITokensAPITokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetAllAPITokensResponse) GetContentType() string {
@@ -110,18 +124,4 @@ func (o *GetAllAPITokensResponse) GetAPITokensSchema() *shared.APITokensSchema {
 		return nil
 	}
 	return o.APITokensSchema
-}
-
-func (o *GetAllAPITokensResponse) GetGetAllAPITokens401ApplicationJSONObject() *GetAllAPITokens401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllAPITokens401ApplicationJSONObject
-}
-
-func (o *GetAllAPITokensResponse) GetGetAllAPITokens403ApplicationJSONObject() *GetAllAPITokens403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllAPITokens403ApplicationJSONObject
 }

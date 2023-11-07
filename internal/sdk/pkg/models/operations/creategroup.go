@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateGroup409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type CreateGroup409ApplicationJSON struct {
+// CreateGroupUsersResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type CreateGroupUsersResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateGroup409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateGroup409ApplicationJSON) GetID() *string {
+func (o *CreateGroupUsersResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateGroup409ApplicationJSON) GetMessage() *string {
+func (o *CreateGroupUsersResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateGroup409ApplicationJSON) GetName() *string {
+func (o *CreateGroupUsersResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateGroup403ApplicationJSON struct {
+// CreateGroupUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateGroupUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateGroup403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateGroup403ApplicationJSON) GetID() *string {
+func (o *CreateGroupUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateGroup403ApplicationJSON) GetMessage() *string {
+func (o *CreateGroupUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateGroup403ApplicationJSON) GetName() *string {
+func (o *CreateGroupUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateGroup401ApplicationJSON struct {
+// CreateGroupUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateGroupUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type CreateGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateGroup401ApplicationJSON) GetID() *string {
+func (o *CreateGroupUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateGroup401ApplicationJSON) GetMessage() *string {
+func (o *CreateGroupUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateGroup401ApplicationJSON) GetName() *string {
+func (o *CreateGroupUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateGroup400ApplicationJSON - The request data does not match what we expect.
-type CreateGroup400ApplicationJSON struct {
+// CreateGroupResponseBody - The request data does not match what we expect.
+type CreateGroupResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,21 +110,21 @@ type CreateGroup400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateGroup400ApplicationJSON) GetID() *string {
+func (o *CreateGroupResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateGroup400ApplicationJSON) GetMessage() *string {
+func (o *CreateGroupResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateGroup400ApplicationJSON) GetName() *string {
+func (o *CreateGroupResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -132,22 +132,50 @@ func (o *CreateGroup400ApplicationJSON) GetName() *string {
 }
 
 type CreateGroupResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateGroupResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateGroupUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateGroupUsersResponseResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *CreateGroupUsersResponse409ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateGroup400ApplicationJSONObject *CreateGroup400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateGroup401ApplicationJSONObject *CreateGroup401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateGroup403ApplicationJSONObject *CreateGroup403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateGroup409ApplicationJSONObject *CreateGroup409ApplicationJSON
 	// groupSchema
 	GroupSchema *shared.GroupSchema
+}
+
+func (o *CreateGroupResponse) GetFourHundredApplicationJSONObject() *CreateGroupResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetFourHundredAndOneApplicationJSONObject() *CreateGroupUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateGroupUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateGroupResponse) GetFourHundredAndNineApplicationJSONObject() *CreateGroupUsersResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
 }
 
 func (o *CreateGroupResponse) GetContentType() string {
@@ -169,34 +197,6 @@ func (o *CreateGroupResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateGroupResponse) GetCreateGroup400ApplicationJSONObject() *CreateGroup400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateGroup400ApplicationJSONObject
-}
-
-func (o *CreateGroupResponse) GetCreateGroup401ApplicationJSONObject() *CreateGroup401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateGroup401ApplicationJSONObject
-}
-
-func (o *CreateGroupResponse) GetCreateGroup403ApplicationJSONObject() *CreateGroup403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateGroup403ApplicationJSONObject
-}
-
-func (o *CreateGroupResponse) GetCreateGroup409ApplicationJSONObject() *CreateGroup409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateGroup409ApplicationJSONObject
 }
 
 func (o *CreateGroupResponse) GetGroupSchema() *shared.GroupSchema {

@@ -27,8 +27,8 @@ func (o *UpdatePublicSignupTokenRequest) GetToken() string {
 	return o.Token
 }
 
-// UpdatePublicSignupToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdatePublicSignupToken403ApplicationJSON struct {
+// UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdatePublicSignupToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdatePublicSignupToken403ApplicationJSON) GetID() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdatePublicSignupToken403ApplicationJSON) GetMessage() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdatePublicSignupToken403ApplicationJSON) GetName() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdatePublicSignupToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdatePublicSignupToken401ApplicationJSON struct {
+// UpdatePublicSignupTokenPublicSignupTokensResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdatePublicSignupTokenPublicSignupTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdatePublicSignupToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdatePublicSignupToken401ApplicationJSON) GetID() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdatePublicSignupToken401ApplicationJSON) GetMessage() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdatePublicSignupToken401ApplicationJSON) GetName() *string {
+func (o *UpdatePublicSignupTokenPublicSignupTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdatePublicSignupToken400ApplicationJSON - The request data does not match what we expect.
-type UpdatePublicSignupToken400ApplicationJSON struct {
+// UpdatePublicSignupTokenResponseBody - The request data does not match what we expect.
+type UpdatePublicSignupTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type UpdatePublicSignupToken400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdatePublicSignupToken400ApplicationJSON) GetID() *string {
+func (o *UpdatePublicSignupTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdatePublicSignupToken400ApplicationJSON) GetMessage() *string {
+func (o *UpdatePublicSignupTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdatePublicSignupToken400ApplicationJSON) GetName() *string {
+func (o *UpdatePublicSignupTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,6 +121,12 @@ func (o *UpdatePublicSignupToken400ApplicationJSON) GetName() *string {
 }
 
 type UpdatePublicSignupTokenResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdatePublicSignupTokenResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdatePublicSignupTokenPublicSignupTokensResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -129,12 +135,27 @@ type UpdatePublicSignupTokenResponse struct {
 	RawResponse *http.Response
 	// publicSignupTokenSchema
 	PublicSignupTokenSchema *shared.PublicSignupTokenSchema
-	// The request data does not match what we expect.
-	UpdatePublicSignupToken400ApplicationJSONObject *UpdatePublicSignupToken400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdatePublicSignupToken401ApplicationJSONObject *UpdatePublicSignupToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdatePublicSignupToken403ApplicationJSONObject *UpdatePublicSignupToken403ApplicationJSON
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetFourHundredApplicationJSONObject() *UpdatePublicSignupTokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetFourHundredAndOneApplicationJSONObject() *UpdatePublicSignupTokenPublicSignupTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdatePublicSignupTokenResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *UpdatePublicSignupTokenResponse) GetContentType() string {
@@ -163,25 +184,4 @@ func (o *UpdatePublicSignupTokenResponse) GetPublicSignupTokenSchema() *shared.P
 		return nil
 	}
 	return o.PublicSignupTokenSchema
-}
-
-func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken400ApplicationJSONObject() *UpdatePublicSignupToken400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatePublicSignupToken400ApplicationJSONObject
-}
-
-func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken401ApplicationJSONObject() *UpdatePublicSignupToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatePublicSignupToken401ApplicationJSONObject
-}
-
-func (o *UpdatePublicSignupTokenResponse) GetUpdatePublicSignupToken403ApplicationJSONObject() *UpdatePublicSignupToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatePublicSignupToken403ApplicationJSONObject
 }

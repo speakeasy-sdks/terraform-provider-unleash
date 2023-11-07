@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAddons401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAddons401ApplicationJSON struct {
+// GetAddonsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAddonsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetAddons401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAddons401ApplicationJSON) GetID() *string {
+func (o *GetAddonsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAddons401ApplicationJSON) GetMessage() *string {
+func (o *GetAddonsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAddons401ApplicationJSON) GetName() *string {
+func (o *GetAddonsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type GetAddonsResponse struct {
 	// addonsSchema
 	AddonsSchema *shared.AddonsSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAddons401ApplicationJSONObject *GetAddons401ApplicationJSON
+	Object *GetAddonsResponseBody
 }
 
 func (o *GetAddonsResponse) GetContentType() string {
@@ -79,9 +79,9 @@ func (o *GetAddonsResponse) GetAddonsSchema() *shared.AddonsSchema {
 	return o.AddonsSchema
 }
 
-func (o *GetAddonsResponse) GetGetAddons401ApplicationJSONObject() *GetAddons401ApplicationJSON {
+func (o *GetAddonsResponse) GetObject() *GetAddonsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAddons401ApplicationJSONObject
+	return o.Object
 }

@@ -17,8 +17,8 @@ func (o *AddFavoriteProjectRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// AddFavoriteProject404ApplicationJSON - The requested resource was not found.
-type AddFavoriteProject404ApplicationJSON struct {
+// AddFavoriteProjectFeaturesResponseBody - The requested resource was not found.
+type AddFavoriteProjectFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type AddFavoriteProject404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddFavoriteProject404ApplicationJSON) GetID() *string {
+func (o *AddFavoriteProjectFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddFavoriteProject404ApplicationJSON) GetMessage() *string {
+func (o *AddFavoriteProjectFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddFavoriteProject404ApplicationJSON) GetName() *string {
+func (o *AddFavoriteProjectFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddFavoriteProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type AddFavoriteProject401ApplicationJSON struct {
+// AddFavoriteProjectResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type AddFavoriteProjectResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,21 +58,21 @@ type AddFavoriteProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddFavoriteProject401ApplicationJSON) GetID() *string {
+func (o *AddFavoriteProjectResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddFavoriteProject401ApplicationJSON) GetMessage() *string {
+func (o *AddFavoriteProjectResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddFavoriteProject401ApplicationJSON) GetName() *string {
+func (o *AddFavoriteProjectResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -80,16 +80,30 @@ func (o *AddFavoriteProject401ApplicationJSON) GetName() *string {
 }
 
 type AddFavoriteProjectResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *AddFavoriteProjectResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *AddFavoriteProjectFeaturesResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	AddFavoriteProject401ApplicationJSONObject *AddFavoriteProject401ApplicationJSON
-	// The requested resource was not found.
-	AddFavoriteProject404ApplicationJSONObject *AddFavoriteProject404ApplicationJSON
+}
+
+func (o *AddFavoriteProjectResponse) GetFourHundredAndOneApplicationJSONObject() *AddFavoriteProjectResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *AddFavoriteProjectResponse) GetFourHundredAndFourApplicationJSONObject() *AddFavoriteProjectFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *AddFavoriteProjectResponse) GetContentType() string {
@@ -111,18 +125,4 @@ func (o *AddFavoriteProjectResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *AddFavoriteProjectResponse) GetAddFavoriteProject401ApplicationJSONObject() *AddFavoriteProject401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddFavoriteProject401ApplicationJSONObject
-}
-
-func (o *AddFavoriteProjectResponse) GetAddFavoriteProject404ApplicationJSONObject() *AddFavoriteProject404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddFavoriteProject404ApplicationJSONObject
 }

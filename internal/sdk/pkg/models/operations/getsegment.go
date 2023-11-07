@@ -18,8 +18,8 @@ func (o *GetSegmentRequest) GetID() string {
 	return o.ID
 }
 
-// GetSegment404ApplicationJSON - The requested resource was not found.
-type GetSegment404ApplicationJSON struct {
+// GetSegmentResponseBody - The requested resource was not found.
+type GetSegmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,21 +28,21 @@ type GetSegment404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSegment404ApplicationJSON) GetID() *string {
+func (o *GetSegmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSegment404ApplicationJSON) GetMessage() *string {
+func (o *GetSegmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSegment404ApplicationJSON) GetName() *string {
+func (o *GetSegmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -59,7 +59,7 @@ type GetSegmentResponse struct {
 	// adminSegmentSchema
 	AdminSegmentSchema *shared.AdminSegmentSchema
 	// The requested resource was not found.
-	GetSegment404ApplicationJSONObject *GetSegment404ApplicationJSON
+	Object *GetSegmentResponseBody
 }
 
 func (o *GetSegmentResponse) GetContentType() string {
@@ -90,9 +90,9 @@ func (o *GetSegmentResponse) GetAdminSegmentSchema() *shared.AdminSegmentSchema 
 	return o.AdminSegmentSchema
 }
 
-func (o *GetSegmentResponse) GetGetSegment404ApplicationJSONObject() *GetSegment404ApplicationJSON {
+func (o *GetSegmentResponse) GetObject() *GetSegmentResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSegment404ApplicationJSONObject
+	return o.Object
 }

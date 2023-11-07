@@ -27,8 +27,8 @@ func (o *UpdateServiceAccountRequest) GetUpdateServiceAccountSchema() shared.Upd
 	return o.UpdateServiceAccountSchema
 }
 
-// UpdateServiceAccount415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateServiceAccount415ApplicationJSON struct {
+// UpdateServiceAccountServiceAccountsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateServiceAccountServiceAccountsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateServiceAccount415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateServiceAccount415ApplicationJSON) GetID() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateServiceAccount415ApplicationJSON) GetMessage() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateServiceAccount415ApplicationJSON) GetName() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateServiceAccount404ApplicationJSON - The requested resource was not found.
-type UpdateServiceAccount404ApplicationJSON struct {
+// UpdateServiceAccountServiceAccountsResponse404ResponseBody - The requested resource was not found.
+type UpdateServiceAccountServiceAccountsResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdateServiceAccount404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateServiceAccount404ApplicationJSON) GetID() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateServiceAccount404ApplicationJSON) GetMessage() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateServiceAccount404ApplicationJSON) GetName() *string {
+func (o *UpdateServiceAccountServiceAccountsResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateServiceAccount403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateServiceAccount403ApplicationJSON struct {
+// UpdateServiceAccountServiceAccountsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateServiceAccountServiceAccountsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type UpdateServiceAccount403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateServiceAccount403ApplicationJSON) GetID() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateServiceAccount403ApplicationJSON) GetMessage() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateServiceAccount403ApplicationJSON) GetName() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateServiceAccount401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateServiceAccount401ApplicationJSON struct {
+// UpdateServiceAccountServiceAccountsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateServiceAccountServiceAccountsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,29 +130,29 @@ type UpdateServiceAccount401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateServiceAccount401ApplicationJSON) GetID() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateServiceAccount401ApplicationJSON) GetMessage() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateServiceAccount401ApplicationJSON) GetName() *string {
+func (o *UpdateServiceAccountServiceAccountsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateServiceAccount400ApplicationJSON - The request data does not match what we expect.
-type UpdateServiceAccount400ApplicationJSON struct {
+// UpdateServiceAccountResponseBody - The request data does not match what we expect.
+type UpdateServiceAccountResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -161,21 +161,21 @@ type UpdateServiceAccount400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateServiceAccount400ApplicationJSON) GetID() *string {
+func (o *UpdateServiceAccountResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateServiceAccount400ApplicationJSON) GetMessage() *string {
+func (o *UpdateServiceAccountResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateServiceAccount400ApplicationJSON) GetName() *string {
+func (o *UpdateServiceAccountResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -183,6 +183,16 @@ func (o *UpdateServiceAccount400ApplicationJSON) GetName() *string {
 }
 
 type UpdateServiceAccountResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdateServiceAccountResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateServiceAccountServiceAccountsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateServiceAccountServiceAccountsResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *UpdateServiceAccountServiceAccountsResponse404ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateServiceAccountServiceAccountsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -191,16 +201,41 @@ type UpdateServiceAccountResponse struct {
 	RawResponse *http.Response
 	// serviceAccountSchema
 	ServiceAccountSchema *shared.ServiceAccountSchema
-	// The request data does not match what we expect.
-	UpdateServiceAccount400ApplicationJSONObject *UpdateServiceAccount400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateServiceAccount401ApplicationJSONObject *UpdateServiceAccount401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateServiceAccount403ApplicationJSONObject *UpdateServiceAccount403ApplicationJSON
-	// The requested resource was not found.
-	UpdateServiceAccount404ApplicationJSONObject *UpdateServiceAccount404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateServiceAccount415ApplicationJSONObject *UpdateServiceAccount415ApplicationJSON
+}
+
+func (o *UpdateServiceAccountResponse) GetFourHundredApplicationJSONObject() *UpdateServiceAccountResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdateServiceAccountResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateServiceAccountServiceAccountsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateServiceAccountResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateServiceAccountServiceAccountsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateServiceAccountResponse) GetFourHundredAndFourApplicationJSONObject() *UpdateServiceAccountServiceAccountsResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *UpdateServiceAccountResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateServiceAccountServiceAccountsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateServiceAccountResponse) GetContentType() string {
@@ -229,39 +264,4 @@ func (o *UpdateServiceAccountResponse) GetServiceAccountSchema() *shared.Service
 		return nil
 	}
 	return o.ServiceAccountSchema
-}
-
-func (o *UpdateServiceAccountResponse) GetUpdateServiceAccount400ApplicationJSONObject() *UpdateServiceAccount400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateServiceAccount400ApplicationJSONObject
-}
-
-func (o *UpdateServiceAccountResponse) GetUpdateServiceAccount401ApplicationJSONObject() *UpdateServiceAccount401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateServiceAccount401ApplicationJSONObject
-}
-
-func (o *UpdateServiceAccountResponse) GetUpdateServiceAccount403ApplicationJSONObject() *UpdateServiceAccount403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateServiceAccount403ApplicationJSONObject
-}
-
-func (o *UpdateServiceAccountResponse) GetUpdateServiceAccount404ApplicationJSONObject() *UpdateServiceAccount404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateServiceAccount404ApplicationJSONObject
-}
-
-func (o *UpdateServiceAccountResponse) GetUpdateServiceAccount415ApplicationJSONObject() *UpdateServiceAccount415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateServiceAccount415ApplicationJSONObject
 }

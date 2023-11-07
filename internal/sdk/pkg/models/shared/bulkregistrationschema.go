@@ -2,19 +2,19 @@
 
 package shared
 
-type BulkRegistrationSchemaConnectVia struct {
+type ConnectVia struct {
 	AppName    string `json:"appName"`
 	InstanceID string `json:"instanceId"`
 }
 
-func (o *BulkRegistrationSchemaConnectVia) GetAppName() string {
+func (o *ConnectVia) GetAppName() string {
 	if o == nil {
 		return ""
 	}
 	return o.AppName
 }
 
-func (o *BulkRegistrationSchemaConnectVia) GetInstanceID() string {
+func (o *ConnectVia) GetInstanceID() string {
 	if o == nil {
 		return ""
 	}
@@ -27,7 +27,7 @@ type BulkRegistrationSchema struct {
 	AppName string `json:"appName"`
 	// A list of applications this app registration has been registered through. If connected directly to Unleash, this is an empty list.
 	//  This can be used in later visualizations to tell how many levels of proxy or Edge instances our SDKs have connected through
-	ConnectVia []BulkRegistrationSchemaConnectVia `json:"connectVia,omitempty"`
+	ConnectVia []ConnectVia `json:"connectVia,omitempty"`
 	// Which environment the application is running in
 	Environment string `json:"environment"`
 	// A [(somewhat) unique identifier](https://docs.getunleash.io/reference/sdks/node#advanced-usage) for the application
@@ -48,7 +48,7 @@ func (o *BulkRegistrationSchema) GetAppName() string {
 	return o.AppName
 }
 
-func (o *BulkRegistrationSchema) GetConnectVia() []BulkRegistrationSchemaConnectVia {
+func (o *BulkRegistrationSchema) GetConnectVia() []ConnectVia {
 	if o == nil {
 		return nil
 	}

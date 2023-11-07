@@ -17,8 +17,8 @@ func (o *ReviveFeatureRequest) GetFeatureName() string {
 	return o.FeatureName
 }
 
-// ReviveFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ReviveFeature403ApplicationJSON struct {
+// ReviveFeatureArchiveResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ReviveFeatureArchiveResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type ReviveFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReviveFeature403ApplicationJSON) GetID() *string {
+func (o *ReviveFeatureArchiveResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReviveFeature403ApplicationJSON) GetMessage() *string {
+func (o *ReviveFeatureArchiveResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReviveFeature403ApplicationJSON) GetName() *string {
+func (o *ReviveFeatureArchiveResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ReviveFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ReviveFeature401ApplicationJSON struct {
+// ReviveFeatureArchiveResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ReviveFeatureArchiveResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type ReviveFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReviveFeature401ApplicationJSON) GetID() *string {
+func (o *ReviveFeatureArchiveResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReviveFeature401ApplicationJSON) GetMessage() *string {
+func (o *ReviveFeatureArchiveResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReviveFeature401ApplicationJSON) GetName() *string {
+func (o *ReviveFeatureArchiveResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ReviveFeature400ApplicationJSON - The request data does not match what we expect.
-type ReviveFeature400ApplicationJSON struct {
+// ReviveFeatureResponseBody - The request data does not match what we expect.
+type ReviveFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type ReviveFeature400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReviveFeature400ApplicationJSON) GetID() *string {
+func (o *ReviveFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReviveFeature400ApplicationJSON) GetMessage() *string {
+func (o *ReviveFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReviveFeature400ApplicationJSON) GetName() *string {
+func (o *ReviveFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *ReviveFeature400ApplicationJSON) GetName() *string {
 }
 
 type ReviveFeatureResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ReviveFeatureResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ReviveFeatureArchiveResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ReviveFeatureArchiveResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ReviveFeature400ApplicationJSONObject *ReviveFeature400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ReviveFeature401ApplicationJSONObject *ReviveFeature401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ReviveFeature403ApplicationJSONObject *ReviveFeature403ApplicationJSON
+}
+
+func (o *ReviveFeatureResponse) GetFourHundredApplicationJSONObject() *ReviveFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ReviveFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *ReviveFeatureArchiveResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ReviveFeatureResponse) GetFourHundredAndThreeApplicationJSONObject() *ReviveFeatureArchiveResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *ReviveFeatureResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *ReviveFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ReviveFeatureResponse) GetReviveFeature400ApplicationJSONObject() *ReviveFeature400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReviveFeature400ApplicationJSONObject
-}
-
-func (o *ReviveFeatureResponse) GetReviveFeature401ApplicationJSONObject() *ReviveFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReviveFeature401ApplicationJSONObject
-}
-
-func (o *ReviveFeatureResponse) GetReviveFeature403ApplicationJSONObject() *ReviveFeature403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReviveFeature403ApplicationJSONObject
 }

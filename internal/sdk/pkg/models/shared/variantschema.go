@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// VariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
-type VariantSchemaPayloadType string
+// VariantSchemaType - The type of the value. Commonly used types are string, json and csv.
+type VariantSchemaType string
 
 const (
-	VariantSchemaPayloadTypeJSON   VariantSchemaPayloadType = "json"
-	VariantSchemaPayloadTypeCsv    VariantSchemaPayloadType = "csv"
-	VariantSchemaPayloadTypeString VariantSchemaPayloadType = "string"
+	VariantSchemaTypeJSON   VariantSchemaType = "json"
+	VariantSchemaTypeCsv    VariantSchemaType = "csv"
+	VariantSchemaTypeString VariantSchemaType = "string"
 )
 
-func (e VariantSchemaPayloadType) ToPointer() *VariantSchemaPayloadType {
+func (e VariantSchemaType) ToPointer() *VariantSchemaType {
 	return &e
 }
 
-func (e *VariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
+func (e *VariantSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,24 +31,24 @@ func (e *VariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
 	case "csv":
 		fallthrough
 	case "string":
-		*e = VariantSchemaPayloadType(v)
+		*e = VariantSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for VariantSchemaPayloadType: %v", v)
+		return fmt.Errorf("invalid value for VariantSchemaType: %v", v)
 	}
 }
 
 // VariantSchemaPayload - Extra data configured for this variant
 type VariantSchemaPayload struct {
 	// The type of the value. Commonly used types are string, json and csv.
-	Type VariantSchemaPayloadType `json:"type"`
+	Type VariantSchemaType `json:"type"`
 	// The actual value of payload
 	Value string `json:"value"`
 }
 
-func (o *VariantSchemaPayload) GetType() VariantSchemaPayloadType {
+func (o *VariantSchemaPayload) GetType() VariantSchemaType {
 	if o == nil {
-		return VariantSchemaPayloadType("")
+		return VariantSchemaType("")
 	}
 	return o.Type
 }

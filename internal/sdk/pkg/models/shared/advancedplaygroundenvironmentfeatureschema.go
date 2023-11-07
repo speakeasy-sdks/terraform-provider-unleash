@@ -9,94 +9,94 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 - The cumulative results of all the feature's strategies. Can be `true`,
+// AdvancedPlaygroundEnvironmentFeatureSchema2 - The cumulative results of all the feature's strategies. Can be `true`,
 //
 //	`false`, or `unknown`.
 //	This property will only be `unknown`
 //	if one or more of the strategies can't be fully evaluated and the rest of the strategies
 //	all resolve to `false`.
-type AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 string
+type AdvancedPlaygroundEnvironmentFeatureSchema2 string
 
 const (
-	AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2Unknown AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 = "unknown"
+	AdvancedPlaygroundEnvironmentFeatureSchema2Unknown AdvancedPlaygroundEnvironmentFeatureSchema2 = "unknown"
 )
 
-func (e AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2) ToPointer() *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 {
+func (e AdvancedPlaygroundEnvironmentFeatureSchema2) ToPointer() *AdvancedPlaygroundEnvironmentFeatureSchema2 {
 	return &e
 }
 
-func (e *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2) UnmarshalJSON(data []byte) error {
+func (e *AdvancedPlaygroundEnvironmentFeatureSchema2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "unknown":
-		*e = AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2(v)
+		*e = AdvancedPlaygroundEnvironmentFeatureSchema2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2: %v", v)
+		return fmt.Errorf("invalid value for AdvancedPlaygroundEnvironmentFeatureSchema2: %v", v)
 	}
 }
 
-type AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultType string
+type AdvancedPlaygroundEnvironmentFeatureSchemaResultType string
 
 const (
-	AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeBoolean                                                     AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultType = "boolean"
-	AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultType = "advancedPlaygroundEnvironmentFeatureSchema_strategies_result_2"
+	AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeBoolean                                     AdvancedPlaygroundEnvironmentFeatureSchemaResultType = "boolean"
+	AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeAdvancedPlaygroundEnvironmentFeatureSchema2 AdvancedPlaygroundEnvironmentFeatureSchemaResultType = "advancedPlaygroundEnvironmentFeatureSchema_2"
 )
 
-type AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult struct {
-	Boolean                                                     *bool
-	AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
+type AdvancedPlaygroundEnvironmentFeatureSchemaResult struct {
+	Boolean                                     *bool
+	AdvancedPlaygroundEnvironmentFeatureSchema2 *AdvancedPlaygroundEnvironmentFeatureSchema2
 
-	Type AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultType
+	Type AdvancedPlaygroundEnvironmentFeatureSchemaResultType
 }
 
-func CreateAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultBoolean(boolean bool) AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult {
-	typ := AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeBoolean
+func CreateAdvancedPlaygroundEnvironmentFeatureSchemaResultBoolean(boolean bool) AdvancedPlaygroundEnvironmentFeatureSchemaResult {
+	typ := AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeBoolean
 
-	return AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult{
+	return AdvancedPlaygroundEnvironmentFeatureSchemaResult{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2(advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2) AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult {
-	typ := AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
+func CreateAdvancedPlaygroundEnvironmentFeatureSchemaResultAdvancedPlaygroundEnvironmentFeatureSchema2(advancedPlaygroundEnvironmentFeatureSchema2 AdvancedPlaygroundEnvironmentFeatureSchema2) AdvancedPlaygroundEnvironmentFeatureSchemaResult {
+	typ := AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeAdvancedPlaygroundEnvironmentFeatureSchema2
 
-	return AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult{
-		AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2: &advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2,
+	return AdvancedPlaygroundEnvironmentFeatureSchemaResult{
+		AdvancedPlaygroundEnvironmentFeatureSchema2: &advancedPlaygroundEnvironmentFeatureSchema2,
 		Type: typ,
 	}
 }
 
-func (u *AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult) UnmarshalJSON(data []byte) error {
+func (u *AdvancedPlaygroundEnvironmentFeatureSchemaResult) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeBoolean
+		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeBoolean
 		return nil
 	}
 
-	advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 := new(AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2)
-	if err := utils.UnmarshalJSON(data, &advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2, "", true, true); err == nil {
-		u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 = advancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
-		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResultTypeAdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2
+	advancedPlaygroundEnvironmentFeatureSchema2 := new(AdvancedPlaygroundEnvironmentFeatureSchema2)
+	if err := utils.UnmarshalJSON(data, &advancedPlaygroundEnvironmentFeatureSchema2, "", true, true); err == nil {
+		u.AdvancedPlaygroundEnvironmentFeatureSchema2 = advancedPlaygroundEnvironmentFeatureSchema2
+		u.Type = AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeAdvancedPlaygroundEnvironmentFeatureSchema2
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult) MarshalJSON() ([]byte, error) {
+func (u AdvancedPlaygroundEnvironmentFeatureSchemaResult) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
-	if u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2 != nil {
-		return utils.MarshalJSON(u.AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult2, "", true)
+	if u.AdvancedPlaygroundEnvironmentFeatureSchema2 != nil {
+		return utils.MarshalJSON(u.AdvancedPlaygroundEnvironmentFeatureSchema2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -111,7 +111,7 @@ type AdvancedPlaygroundEnvironmentFeatureSchemaStrategies struct {
 	//                                   This property will only be `unknown`
 	//                                   if one or more of the strategies can't be fully evaluated and the rest of the strategies
 	//                                   all resolve to `false`.
-	Result AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult `json:"result"`
+	Result AdvancedPlaygroundEnvironmentFeatureSchemaResult `json:"result"`
 }
 
 func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetData() []PlaygroundStrategySchema {
@@ -121,64 +121,64 @@ func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetData() []Playg
 	return o.Data
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetResult() AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult {
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaStrategies) GetResult() AdvancedPlaygroundEnvironmentFeatureSchemaResult {
 	if o == nil {
-		return AdvancedPlaygroundEnvironmentFeatureSchemaStrategiesResult{}
+		return AdvancedPlaygroundEnvironmentFeatureSchemaResult{}
 	}
 	return o.Result
 }
 
-// AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload - An optional payload attached to the variant.
-type AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload struct {
+// AdvancedPlaygroundEnvironmentFeatureSchemaPayload - An optional payload attached to the variant.
+type AdvancedPlaygroundEnvironmentFeatureSchemaPayload struct {
 	// The format of the payload.
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) GetType() string {
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaPayload) GetType() string {
 	if o == nil {
 		return ""
 	}
 	return o.Type
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload) GetValue() string {
+func (o *AdvancedPlaygroundEnvironmentFeatureSchemaPayload) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-// AdvancedPlaygroundEnvironmentFeatureSchemaVariant - The feature variant you receive based on the provided context or the _disabled
+// Variant - The feature variant you receive based on the provided context or the _disabled
 //
 //	variant_. If a feature is disabled or doesn't have any
 //	variants, you would get the _disabled variant_.
 //	Otherwise, you'll get one of the feature's defined variants.
-type AdvancedPlaygroundEnvironmentFeatureSchemaVariant struct {
+type Variant struct {
 	// Whether the variant is enabled or not. If the feature is disabled or if it doesn't have variants, this property will be `false`
 	Enabled bool `json:"enabled"`
 	// The variant's name. If there is no variant or if the toggle is disabled, this will be `disabled`
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
-	Payload *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload `json:"payload,omitempty"`
+	Payload *AdvancedPlaygroundEnvironmentFeatureSchemaPayload `json:"payload,omitempty"`
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetEnabled() bool {
+func (o *Variant) GetEnabled() bool {
 	if o == nil {
 		return false
 	}
 	return o.Enabled
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetName() string {
+func (o *Variant) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchemaVariant) GetPayload() *AdvancedPlaygroundEnvironmentFeatureSchemaVariantPayload {
+func (o *Variant) GetPayload() *AdvancedPlaygroundEnvironmentFeatureSchemaPayload {
 	if o == nil {
 		return nil
 	}
@@ -207,7 +207,7 @@ type AdvancedPlaygroundEnvironmentFeatureSchema struct {
 	//                           variant_. If a feature is disabled or doesn't have any
 	//                           variants, you would get the _disabled variant_.
 	//                           Otherwise, you'll get one of the feature's defined variants.
-	Variant *AdvancedPlaygroundEnvironmentFeatureSchemaVariant `json:"variant"`
+	Variant *Variant `json:"variant"`
 	// The feature variants.
 	Variants []VariantSchema `json:"variants"`
 }
@@ -261,7 +261,7 @@ func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetStrategies() AdvancedPla
 	return o.Strategies
 }
 
-func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetVariant() *AdvancedPlaygroundEnvironmentFeatureSchemaVariant {
+func (o *AdvancedPlaygroundEnvironmentFeatureSchema) GetVariant() *Variant {
 	if o == nil {
 		return nil
 	}

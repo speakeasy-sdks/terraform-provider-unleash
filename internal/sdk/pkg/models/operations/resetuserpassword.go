@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// ResetUserPassword404ApplicationJSON - The requested resource was not found.
-type ResetUserPassword404ApplicationJSON struct {
+// ResetUserPasswordUsersResponse404ResponseBody - The requested resource was not found.
+type ResetUserPasswordUsersResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type ResetUserPassword404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ResetUserPassword404ApplicationJSON) GetID() *string {
+func (o *ResetUserPasswordUsersResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ResetUserPassword404ApplicationJSON) GetMessage() *string {
+func (o *ResetUserPasswordUsersResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ResetUserPassword404ApplicationJSON) GetName() *string {
+func (o *ResetUserPasswordUsersResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ResetUserPassword403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ResetUserPassword403ApplicationJSON struct {
+// ResetUserPasswordUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ResetUserPasswordUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type ResetUserPassword403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ResetUserPassword403ApplicationJSON) GetID() *string {
+func (o *ResetUserPasswordUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ResetUserPassword403ApplicationJSON) GetMessage() *string {
+func (o *ResetUserPasswordUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ResetUserPassword403ApplicationJSON) GetName() *string {
+func (o *ResetUserPasswordUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ResetUserPassword401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ResetUserPassword401ApplicationJSON struct {
+// ResetUserPasswordUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ResetUserPasswordUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type ResetUserPassword401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ResetUserPassword401ApplicationJSON) GetID() *string {
+func (o *ResetUserPasswordUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ResetUserPassword401ApplicationJSON) GetMessage() *string {
+func (o *ResetUserPasswordUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ResetUserPassword401ApplicationJSON) GetName() *string {
+func (o *ResetUserPasswordUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ResetUserPassword400ApplicationJSON - The request data does not match what we expect.
-type ResetUserPassword400ApplicationJSON struct {
+// ResetUserPasswordResponseBody - The request data does not match what we expect.
+type ResetUserPasswordResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,21 +110,21 @@ type ResetUserPassword400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ResetUserPassword400ApplicationJSON) GetID() *string {
+func (o *ResetUserPasswordResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ResetUserPassword400ApplicationJSON) GetMessage() *string {
+func (o *ResetUserPasswordResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ResetUserPassword400ApplicationJSON) GetName() *string {
+func (o *ResetUserPasswordResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -132,6 +132,14 @@ func (o *ResetUserPassword400ApplicationJSON) GetName() *string {
 }
 
 type ResetUserPasswordResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ResetUserPasswordResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ResetUserPasswordUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ResetUserPasswordUsersResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ResetUserPasswordUsersResponse404ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -140,14 +148,34 @@ type ResetUserPasswordResponse struct {
 	RawResponse *http.Response
 	// resetPasswordSchema
 	ResetPasswordSchema *shared.ResetPasswordSchema
-	// The request data does not match what we expect.
-	ResetUserPassword400ApplicationJSONObject *ResetUserPassword400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ResetUserPassword401ApplicationJSONObject *ResetUserPassword401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ResetUserPassword403ApplicationJSONObject *ResetUserPassword403ApplicationJSON
-	// The requested resource was not found.
-	ResetUserPassword404ApplicationJSONObject *ResetUserPassword404ApplicationJSON
+}
+
+func (o *ResetUserPasswordResponse) GetFourHundredApplicationJSONObject() *ResetUserPasswordResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ResetUserPasswordResponse) GetFourHundredAndOneApplicationJSONObject() *ResetUserPasswordUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ResetUserPasswordResponse) GetFourHundredAndThreeApplicationJSONObject() *ResetUserPasswordUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ResetUserPasswordResponse) GetFourHundredAndFourApplicationJSONObject() *ResetUserPasswordUsersResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ResetUserPasswordResponse) GetContentType() string {
@@ -176,32 +204,4 @@ func (o *ResetUserPasswordResponse) GetResetPasswordSchema() *shared.ResetPasswo
 		return nil
 	}
 	return o.ResetPasswordSchema
-}
-
-func (o *ResetUserPasswordResponse) GetResetUserPassword400ApplicationJSONObject() *ResetUserPassword400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ResetUserPassword400ApplicationJSONObject
-}
-
-func (o *ResetUserPasswordResponse) GetResetUserPassword401ApplicationJSONObject() *ResetUserPassword401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ResetUserPassword401ApplicationJSONObject
-}
-
-func (o *ResetUserPasswordResponse) GetResetUserPassword403ApplicationJSONObject() *ResetUserPassword403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ResetUserPassword403ApplicationJSONObject
-}
-
-func (o *ResetUserPasswordResponse) GetResetUserPassword404ApplicationJSONObject() *ResetUserPassword404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ResetUserPassword404ApplicationJSONObject
 }

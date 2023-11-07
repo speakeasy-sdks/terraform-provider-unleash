@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// BulkMetrics415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type BulkMetrics415ApplicationJSON struct {
+// BulkMetricsEdgeResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type BulkMetricsEdgeResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type BulkMetrics415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BulkMetrics415ApplicationJSON) GetID() *string {
+func (o *BulkMetricsEdgeResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BulkMetrics415ApplicationJSON) GetMessage() *string {
+func (o *BulkMetricsEdgeResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *BulkMetrics415ApplicationJSON) GetName() *string {
+func (o *BulkMetricsEdgeResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// BulkMetrics413ApplicationJSON - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-type BulkMetrics413ApplicationJSON struct {
+// BulkMetricsEdgeResponseBody - The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+type BulkMetricsEdgeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type BulkMetrics413ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BulkMetrics413ApplicationJSON) GetID() *string {
+func (o *BulkMetricsEdgeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BulkMetrics413ApplicationJSON) GetMessage() *string {
+func (o *BulkMetricsEdgeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *BulkMetrics413ApplicationJSON) GetName() *string {
+func (o *BulkMetricsEdgeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// BulkMetrics400ApplicationJSON - The request data does not match what we expect.
-type BulkMetrics400ApplicationJSON struct {
+// BulkMetricsResponseBody - The request data does not match what we expect.
+type BulkMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type BulkMetrics400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *BulkMetrics400ApplicationJSON) GetID() *string {
+func (o *BulkMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BulkMetrics400ApplicationJSON) GetMessage() *string {
+func (o *BulkMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *BulkMetrics400ApplicationJSON) GetName() *string {
+func (o *BulkMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *BulkMetrics400ApplicationJSON) GetName() *string {
 }
 
 type BulkMetricsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *BulkMetricsResponseBody
+	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
+	FourHundredAndThirteenApplicationJSONObject *BulkMetricsEdgeResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *BulkMetricsEdgeResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	BulkMetrics400ApplicationJSONObject *BulkMetrics400ApplicationJSON
-	// The request body is larger than what we accept. By default we only accept bodies of 100kB or less
-	BulkMetrics413ApplicationJSONObject *BulkMetrics413ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	BulkMetrics415ApplicationJSONObject *BulkMetrics415ApplicationJSON
+}
+
+func (o *BulkMetricsResponse) GetFourHundredApplicationJSONObject() *BulkMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *BulkMetricsResponse) GetFourHundredAndThirteenApplicationJSONObject() *BulkMetricsEdgeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThirteenApplicationJSONObject
+}
+
+func (o *BulkMetricsResponse) GetFourHundredAndFifteenApplicationJSONObject() *BulkMetricsEdgeResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *BulkMetricsResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *BulkMetricsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *BulkMetricsResponse) GetBulkMetrics400ApplicationJSONObject() *BulkMetrics400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.BulkMetrics400ApplicationJSONObject
-}
-
-func (o *BulkMetricsResponse) GetBulkMetrics413ApplicationJSONObject() *BulkMetrics413ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.BulkMetrics413ApplicationJSONObject
-}
-
-func (o *BulkMetricsResponse) GetBulkMetrics415ApplicationJSONObject() *BulkMetrics415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.BulkMetrics415ApplicationJSONObject
 }

@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ChangePassword415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ChangePassword415ApplicationJSON struct {
+// ChangePasswordAuthResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ChangePasswordAuthResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ChangePassword415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangePassword415ApplicationJSON) GetID() *string {
+func (o *ChangePasswordAuthResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangePassword415ApplicationJSON) GetMessage() *string {
+func (o *ChangePasswordAuthResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangePassword415ApplicationJSON) GetName() *string {
+func (o *ChangePasswordAuthResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangePassword403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ChangePassword403ApplicationJSON struct {
+// ChangePasswordAuthResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ChangePasswordAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ChangePassword403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangePassword403ApplicationJSON) GetID() *string {
+func (o *ChangePasswordAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangePassword403ApplicationJSON) GetMessage() *string {
+func (o *ChangePasswordAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangePassword403ApplicationJSON) GetName() *string {
+func (o *ChangePasswordAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangePassword401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ChangePassword401ApplicationJSON struct {
+// ChangePasswordResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ChangePasswordResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type ChangePassword401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangePassword401ApplicationJSON) GetID() *string {
+func (o *ChangePasswordResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangePassword401ApplicationJSON) GetMessage() *string {
+func (o *ChangePasswordResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangePassword401ApplicationJSON) GetName() *string {
+func (o *ChangePasswordResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *ChangePassword401ApplicationJSON) GetName() *string {
 }
 
 type ChangePasswordResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ChangePasswordResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ChangePasswordAuthResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ChangePasswordAuthResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ChangePassword401ApplicationJSONObject *ChangePassword401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangePassword403ApplicationJSONObject *ChangePassword403ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ChangePassword415ApplicationJSONObject *ChangePassword415ApplicationJSON
+}
+
+func (o *ChangePasswordResponse) GetFourHundredAndOneApplicationJSONObject() *ChangePasswordResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ChangePasswordResponse) GetFourHundredAndThreeApplicationJSONObject() *ChangePasswordAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ChangePasswordResponse) GetFourHundredAndFifteenApplicationJSONObject() *ChangePasswordAuthResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ChangePasswordResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *ChangePasswordResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ChangePasswordResponse) GetChangePassword401ApplicationJSONObject() *ChangePassword401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangePassword401ApplicationJSONObject
-}
-
-func (o *ChangePasswordResponse) GetChangePassword403ApplicationJSONObject() *ChangePassword403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangePassword403ApplicationJSONObject
-}
-
-func (o *ChangePasswordResponse) GetChangePassword415ApplicationJSONObject() *ChangePassword415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangePassword415ApplicationJSONObject
 }

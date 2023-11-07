@@ -9,40 +9,40 @@ import (
 	"time"
 )
 
-type NotificationsSchemaCreatedBy struct {
+type CreatedBy struct {
 	// The avatar url of the user who triggered the notification
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// The name of the user who triggered the notification
 	Username *string `json:"username,omitempty"`
 }
 
-func (o *NotificationsSchemaCreatedBy) GetImageURL() *string {
+func (o *CreatedBy) GetImageURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ImageURL
 }
 
-func (o *NotificationsSchemaCreatedBy) GetUsername() *string {
+func (o *CreatedBy) GetUsername() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Username
 }
 
-// NotificationsSchemaNotificationType - The type of the notification used e.g. for the graphical hints
-type NotificationsSchemaNotificationType string
+// NotificationType - The type of the notification used e.g. for the graphical hints
+type NotificationType string
 
 const (
-	NotificationsSchemaNotificationTypeChangeRequest NotificationsSchemaNotificationType = "change-request"
-	NotificationsSchemaNotificationTypeToggle        NotificationsSchemaNotificationType = "toggle"
+	NotificationTypeChangeRequest NotificationType = "change-request"
+	NotificationTypeToggle        NotificationType = "toggle"
 )
 
-func (e NotificationsSchemaNotificationType) ToPointer() *NotificationsSchemaNotificationType {
+func (e NotificationType) ToPointer() *NotificationType {
 	return &e
 }
 
-func (e *NotificationsSchemaNotificationType) UnmarshalJSON(data []byte) error {
+func (e *NotificationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -51,17 +51,17 @@ func (e *NotificationsSchemaNotificationType) UnmarshalJSON(data []byte) error {
 	case "change-request":
 		fallthrough
 	case "toggle":
-		*e = NotificationsSchemaNotificationType(v)
+		*e = NotificationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for NotificationsSchemaNotificationType: %v", v)
+		return fmt.Errorf("invalid value for NotificationType: %v", v)
 	}
 }
 
 type NotificationsSchema struct {
 	// The date and time when the notification was created
-	CreatedAt time.Time                    `json:"createdAt"`
-	CreatedBy NotificationsSchemaCreatedBy `json:"createdBy"`
+	CreatedAt time.Time `json:"createdAt"`
+	CreatedBy CreatedBy `json:"createdBy"`
 	// The id of this notification
 	ID float64 `json:"id"`
 	// The link to change request or feature toggle the notification refers to
@@ -69,7 +69,7 @@ type NotificationsSchema struct {
 	// The actual notification message
 	Message string `json:"message"`
 	// The type of the notification used e.g. for the graphical hints
-	NotificationType NotificationsSchemaNotificationType `json:"notificationType"`
+	NotificationType NotificationType `json:"notificationType"`
 	// The date and time when the notification was read or marked as read, otherwise `null`
 	ReadAt *time.Time `json:"readAt"`
 }
@@ -92,9 +92,9 @@ func (o *NotificationsSchema) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
-func (o *NotificationsSchema) GetCreatedBy() NotificationsSchemaCreatedBy {
+func (o *NotificationsSchema) GetCreatedBy() CreatedBy {
 	if o == nil {
-		return NotificationsSchemaCreatedBy{}
+		return CreatedBy{}
 	}
 	return o.CreatedBy
 }
@@ -120,9 +120,9 @@ func (o *NotificationsSchema) GetMessage() string {
 	return o.Message
 }
 
-func (o *NotificationsSchema) GetNotificationType() NotificationsSchemaNotificationType {
+func (o *NotificationsSchema) GetNotificationType() NotificationType {
 	if o == nil {
-		return NotificationsSchemaNotificationType("")
+		return NotificationType("")
 	}
 	return o.NotificationType
 }

@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetUsers403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetUsers403ApplicationJSON struct {
+// GetUsersUsersResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetUsersUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetUsers403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetUsers403ApplicationJSON) GetID() *string {
+func (o *GetUsersUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetUsers403ApplicationJSON) GetMessage() *string {
+func (o *GetUsersUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetUsers403ApplicationJSON) GetName() *string {
+func (o *GetUsersUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetUsers401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetUsers401ApplicationJSON struct {
+// GetUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetUsers401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetUsers401ApplicationJSON) GetID() *string {
+func (o *GetUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetUsers401ApplicationJSON) GetMessage() *string {
+func (o *GetUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetUsers401ApplicationJSON) GetName() *string {
+func (o *GetUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetUsers401ApplicationJSON) GetName() *string {
 }
 
 type GetUsersResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetUsersUsersResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetUsers401ApplicationJSONObject *GetUsers401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetUsers403ApplicationJSONObject *GetUsers403ApplicationJSON
 	// usersSchema
 	UsersSchema *shared.UsersSchema
+}
+
+func (o *GetUsersResponse) GetFourHundredAndOneApplicationJSONObject() *GetUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetUsersResponse) GetFourHundredAndThreeApplicationJSONObject() *GetUsersUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetUsersResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetUsersResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetUsersResponse) GetGetUsers401ApplicationJSONObject() *GetUsers401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetUsers401ApplicationJSONObject
-}
-
-func (o *GetUsersResponse) GetGetUsers403ApplicationJSONObject() *GetUsers403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetUsers403ApplicationJSONObject
 }
 
 func (o *GetUsersResponse) GetUsersSchema() *shared.UsersSchema {

@@ -27,8 +27,8 @@ func (o *UpdateRoleRequest) GetRoleID() string {
 	return o.RoleID
 }
 
-// UpdateRole400ApplicationJSON - The request data does not match what we expect.
-type UpdateRole400ApplicationJSON struct {
+// UpdateRoleResponseBody - The request data does not match what we expect.
+type UpdateRoleResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,21 +37,21 @@ type UpdateRole400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateRole400ApplicationJSON) GetID() *string {
+func (o *UpdateRoleResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateRole400ApplicationJSON) GetMessage() *string {
+func (o *UpdateRoleResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateRole400ApplicationJSON) GetName() *string {
+func (o *UpdateRoleResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -65,10 +65,10 @@ type UpdateRoleResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// The request data does not match what we expect.
+	Object *UpdateRoleResponseBody
 	// roleWithVersionSchema
 	RoleWithVersionSchema *shared.RoleWithVersionSchema
-	// The request data does not match what we expect.
-	UpdateRole400ApplicationJSONObject *UpdateRole400ApplicationJSON
 }
 
 func (o *UpdateRoleResponse) GetContentType() string {
@@ -92,16 +92,16 @@ func (o *UpdateRoleResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
+func (o *UpdateRoleResponse) GetObject() *UpdateRoleResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
+}
+
 func (o *UpdateRoleResponse) GetRoleWithVersionSchema() *shared.RoleWithVersionSchema {
 	if o == nil {
 		return nil
 	}
 	return o.RoleWithVersionSchema
-}
-
-func (o *UpdateRoleResponse) GetUpdateRole400ApplicationJSONObject() *UpdateRole400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateRole400ApplicationJSONObject
 }

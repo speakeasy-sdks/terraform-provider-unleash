@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// ValidateToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateToken415ApplicationJSON struct {
+// ValidateTokenAuthResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateTokenAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type ValidateToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateToken415ApplicationJSON) GetID() *string {
+func (o *ValidateTokenAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateToken415ApplicationJSON) GetMessage() *string {
+func (o *ValidateTokenAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateToken415ApplicationJSON) GetName() *string {
+func (o *ValidateTokenAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateToken401ApplicationJSON struct {
+// ValidateTokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type ValidateToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateToken401ApplicationJSON) GetID() *string {
+func (o *ValidateTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateToken401ApplicationJSON) GetMessage() *string {
+func (o *ValidateTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateToken401ApplicationJSON) GetName() *string {
+func (o *ValidateTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *ValidateToken401ApplicationJSON) GetName() *string {
 }
 
 type ValidateTokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateTokenResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateTokenAuthResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -78,10 +82,20 @@ type ValidateTokenResponse struct {
 	RawResponse *http.Response
 	// tokenUserSchema
 	TokenUserSchema *shared.TokenUserSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateToken401ApplicationJSONObject *ValidateToken401ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateToken415ApplicationJSONObject *ValidateToken415ApplicationJSON
+}
+
+func (o *ValidateTokenResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateTokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateTokenResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateTokenAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateTokenResponse) GetContentType() string {
@@ -110,18 +124,4 @@ func (o *ValidateTokenResponse) GetTokenUserSchema() *shared.TokenUserSchema {
 		return nil
 	}
 	return o.TokenUserSchema
-}
-
-func (o *ValidateTokenResponse) GetValidateToken401ApplicationJSONObject() *ValidateToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateToken401ApplicationJSONObject
-}
-
-func (o *ValidateTokenResponse) GetValidateToken415ApplicationJSONObject() *ValidateToken415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateToken415ApplicationJSONObject
 }

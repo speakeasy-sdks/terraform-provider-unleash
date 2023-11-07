@@ -11,76 +11,76 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-type ExportDownloadType string
+type DownloadType string
 
 const (
-	ExportDownloadTypeBoolean ExportDownloadType = "boolean"
-	ExportDownloadTypeStr     ExportDownloadType = "str"
-	ExportDownloadTypeNumber  ExportDownloadType = "number"
+	DownloadTypeBoolean DownloadType = "boolean"
+	DownloadTypeStr     DownloadType = "str"
+	DownloadTypeNumber  DownloadType = "number"
 )
 
-type ExportDownload struct {
+type Download struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportDownloadType
+	Type DownloadType
 }
 
-func CreateExportDownloadBoolean(boolean bool) ExportDownload {
-	typ := ExportDownloadTypeBoolean
+func CreateDownloadBoolean(boolean bool) Download {
+	typ := DownloadTypeBoolean
 
-	return ExportDownload{
+	return Download{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportDownloadStr(str string) ExportDownload {
-	typ := ExportDownloadTypeStr
+func CreateDownloadStr(str string) Download {
+	typ := DownloadTypeStr
 
-	return ExportDownload{
+	return Download{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportDownloadNumber(number float64) ExportDownload {
-	typ := ExportDownloadTypeNumber
+func CreateDownloadNumber(number float64) Download {
+	typ := DownloadTypeNumber
 
-	return ExportDownload{
+	return Download{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportDownload) UnmarshalJSON(data []byte) error {
+func (u *Download) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportDownloadTypeBoolean
+		u.Type = DownloadTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportDownloadTypeStr
+		u.Type = DownloadTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportDownloadTypeNumber
+		u.Type = DownloadTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportDownload) MarshalJSON() ([]byte, error) {
+func (u Download) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -96,76 +96,76 @@ func (u ExportDownload) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-type ExportEnvironmentsType string
+type EnvironmentsType string
 
 const (
-	ExportEnvironmentsTypeBoolean ExportEnvironmentsType = "boolean"
-	ExportEnvironmentsTypeStr     ExportEnvironmentsType = "str"
-	ExportEnvironmentsTypeNumber  ExportEnvironmentsType = "number"
+	EnvironmentsTypeBoolean EnvironmentsType = "boolean"
+	EnvironmentsTypeStr     EnvironmentsType = "str"
+	EnvironmentsTypeNumber  EnvironmentsType = "number"
 )
 
-type ExportEnvironments struct {
+type Environments struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportEnvironmentsType
+	Type EnvironmentsType
 }
 
-func CreateExportEnvironmentsBoolean(boolean bool) ExportEnvironments {
-	typ := ExportEnvironmentsTypeBoolean
+func CreateEnvironmentsBoolean(boolean bool) Environments {
+	typ := EnvironmentsTypeBoolean
 
-	return ExportEnvironments{
+	return Environments{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportEnvironmentsStr(str string) ExportEnvironments {
-	typ := ExportEnvironmentsTypeStr
+func CreateEnvironmentsStr(str string) Environments {
+	typ := EnvironmentsTypeStr
 
-	return ExportEnvironments{
+	return Environments{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportEnvironmentsNumber(number float64) ExportEnvironments {
-	typ := ExportEnvironmentsTypeNumber
+func CreateEnvironmentsNumber(number float64) Environments {
+	typ := EnvironmentsTypeNumber
 
-	return ExportEnvironments{
+	return Environments{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportEnvironments) UnmarshalJSON(data []byte) error {
+func (u *Environments) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportEnvironmentsTypeBoolean
+		u.Type = EnvironmentsTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportEnvironmentsTypeStr
+		u.Type = EnvironmentsTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportEnvironmentsTypeNumber
+		u.Type = EnvironmentsTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportEnvironments) MarshalJSON() ([]byte, error) {
+func (u Environments) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -181,76 +181,76 @@ func (u ExportEnvironments) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-type ExportFeatureTogglesType string
+type FeatureTogglesType string
 
 const (
-	ExportFeatureTogglesTypeBoolean ExportFeatureTogglesType = "boolean"
-	ExportFeatureTogglesTypeStr     ExportFeatureTogglesType = "str"
-	ExportFeatureTogglesTypeNumber  ExportFeatureTogglesType = "number"
+	FeatureTogglesTypeBoolean FeatureTogglesType = "boolean"
+	FeatureTogglesTypeStr     FeatureTogglesType = "str"
+	FeatureTogglesTypeNumber  FeatureTogglesType = "number"
 )
 
-type ExportFeatureToggles struct {
+type FeatureToggles struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportFeatureTogglesType
+	Type FeatureTogglesType
 }
 
-func CreateExportFeatureTogglesBoolean(boolean bool) ExportFeatureToggles {
-	typ := ExportFeatureTogglesTypeBoolean
+func CreateFeatureTogglesBoolean(boolean bool) FeatureToggles {
+	typ := FeatureTogglesTypeBoolean
 
-	return ExportFeatureToggles{
+	return FeatureToggles{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportFeatureTogglesStr(str string) ExportFeatureToggles {
-	typ := ExportFeatureTogglesTypeStr
+func CreateFeatureTogglesStr(str string) FeatureToggles {
+	typ := FeatureTogglesTypeStr
 
-	return ExportFeatureToggles{
+	return FeatureToggles{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportFeatureTogglesNumber(number float64) ExportFeatureToggles {
-	typ := ExportFeatureTogglesTypeNumber
+func CreateFeatureTogglesNumber(number float64) FeatureToggles {
+	typ := FeatureTogglesTypeNumber
 
-	return ExportFeatureToggles{
+	return FeatureToggles{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportFeatureToggles) UnmarshalJSON(data []byte) error {
+func (u *FeatureToggles) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportFeatureTogglesTypeBoolean
+		u.Type = FeatureTogglesTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportFeatureTogglesTypeStr
+		u.Type = FeatureTogglesTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportFeatureTogglesTypeNumber
+		u.Type = FeatureTogglesTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportFeatureToggles) MarshalJSON() ([]byte, error) {
+func (u FeatureToggles) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -266,19 +266,19 @@ func (u ExportFeatureToggles) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-// ExportFormat - Desired export format. Must be either `json` or `yaml`.
-type ExportFormat string
+// Format - Desired export format. Must be either `json` or `yaml`.
+type Format string
 
 const (
-	ExportFormatJSON ExportFormat = "json"
-	ExportFormatYaml ExportFormat = "yaml"
+	FormatJSON Format = "json"
+	FormatYaml Format = "yaml"
 )
 
-func (e ExportFormat) ToPointer() *ExportFormat {
+func (e Format) ToPointer() *Format {
 	return &e
 }
 
-func (e *ExportFormat) UnmarshalJSON(data []byte) error {
+func (e *Format) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -287,83 +287,83 @@ func (e *ExportFormat) UnmarshalJSON(data []byte) error {
 	case "json":
 		fallthrough
 	case "yaml":
-		*e = ExportFormat(v)
+		*e = Format(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportFormat: %v", v)
+		return fmt.Errorf("invalid value for Format: %v", v)
 	}
 }
 
-type ExportProjectsType string
+type ProjectsType string
 
 const (
-	ExportProjectsTypeBoolean ExportProjectsType = "boolean"
-	ExportProjectsTypeStr     ExportProjectsType = "str"
-	ExportProjectsTypeNumber  ExportProjectsType = "number"
+	ProjectsTypeBoolean ProjectsType = "boolean"
+	ProjectsTypeStr     ProjectsType = "str"
+	ProjectsTypeNumber  ProjectsType = "number"
 )
 
-type ExportProjects struct {
+type Projects struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportProjectsType
+	Type ProjectsType
 }
 
-func CreateExportProjectsBoolean(boolean bool) ExportProjects {
-	typ := ExportProjectsTypeBoolean
+func CreateProjectsBoolean(boolean bool) Projects {
+	typ := ProjectsTypeBoolean
 
-	return ExportProjects{
+	return Projects{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportProjectsStr(str string) ExportProjects {
-	typ := ExportProjectsTypeStr
+func CreateProjectsStr(str string) Projects {
+	typ := ProjectsTypeStr
 
-	return ExportProjects{
+	return Projects{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportProjectsNumber(number float64) ExportProjects {
-	typ := ExportProjectsTypeNumber
+func CreateProjectsNumber(number float64) Projects {
+	typ := ProjectsTypeNumber
 
-	return ExportProjects{
+	return Projects{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportProjects) UnmarshalJSON(data []byte) error {
+func (u *Projects) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportProjectsTypeBoolean
+		u.Type = ProjectsTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportProjectsTypeStr
+		u.Type = ProjectsTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportProjectsTypeNumber
+		u.Type = ProjectsTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportProjects) MarshalJSON() ([]byte, error) {
+func (u Projects) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -379,76 +379,76 @@ func (u ExportProjects) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-type ExportStrategiesType string
+type StrategiesType string
 
 const (
-	ExportStrategiesTypeBoolean ExportStrategiesType = "boolean"
-	ExportStrategiesTypeStr     ExportStrategiesType = "str"
-	ExportStrategiesTypeNumber  ExportStrategiesType = "number"
+	StrategiesTypeBoolean StrategiesType = "boolean"
+	StrategiesTypeStr     StrategiesType = "str"
+	StrategiesTypeNumber  StrategiesType = "number"
 )
 
-type ExportStrategies struct {
+type Strategies struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportStrategiesType
+	Type StrategiesType
 }
 
-func CreateExportStrategiesBoolean(boolean bool) ExportStrategies {
-	typ := ExportStrategiesTypeBoolean
+func CreateStrategiesBoolean(boolean bool) Strategies {
+	typ := StrategiesTypeBoolean
 
-	return ExportStrategies{
+	return Strategies{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportStrategiesStr(str string) ExportStrategies {
-	typ := ExportStrategiesTypeStr
+func CreateStrategiesStr(str string) Strategies {
+	typ := StrategiesTypeStr
 
-	return ExportStrategies{
+	return Strategies{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportStrategiesNumber(number float64) ExportStrategies {
-	typ := ExportStrategiesTypeNumber
+func CreateStrategiesNumber(number float64) Strategies {
+	typ := StrategiesTypeNumber
 
-	return ExportStrategies{
+	return Strategies{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportStrategies) UnmarshalJSON(data []byte) error {
+func (u *Strategies) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportStrategiesTypeBoolean
+		u.Type = StrategiesTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportStrategiesTypeStr
+		u.Type = StrategiesTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportStrategiesTypeNumber
+		u.Type = StrategiesTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportStrategies) MarshalJSON() ([]byte, error) {
+func (u Strategies) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -464,76 +464,76 @@ func (u ExportStrategies) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-type ExportTagsType string
+type TagsType string
 
 const (
-	ExportTagsTypeBoolean ExportTagsType = "boolean"
-	ExportTagsTypeStr     ExportTagsType = "str"
-	ExportTagsTypeNumber  ExportTagsType = "number"
+	TagsTypeBoolean TagsType = "boolean"
+	TagsTypeStr     TagsType = "str"
+	TagsTypeNumber  TagsType = "number"
 )
 
-type ExportTags struct {
+type Tags struct {
 	Boolean *bool
 	Str     *string
 	Number  *float64
 
-	Type ExportTagsType
+	Type TagsType
 }
 
-func CreateExportTagsBoolean(boolean bool) ExportTags {
-	typ := ExportTagsTypeBoolean
+func CreateTagsBoolean(boolean bool) Tags {
+	typ := TagsTypeBoolean
 
-	return ExportTags{
+	return Tags{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateExportTagsStr(str string) ExportTags {
-	typ := ExportTagsTypeStr
+func CreateTagsStr(str string) Tags {
+	typ := TagsTypeStr
 
-	return ExportTags{
+	return Tags{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateExportTagsNumber(number float64) ExportTags {
-	typ := ExportTagsTypeNumber
+func CreateTagsNumber(number float64) Tags {
+	typ := TagsTypeNumber
 
-	return ExportTags{
+	return Tags{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *ExportTags) UnmarshalJSON(data []byte) error {
+func (u *Tags) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = ExportTagsTypeBoolean
+		u.Type = TagsTypeBoolean
 		return nil
 	}
 
 	str := new(string)
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = str
-		u.Type = ExportTagsTypeStr
+		u.Type = TagsTypeStr
 		return nil
 	}
 
 	number := new(float64)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = number
-		u.Type = ExportTagsTypeNumber
+		u.Type = TagsTypeNumber
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ExportTags) MarshalJSON() ([]byte, error) {
+func (u Tags) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
@@ -551,19 +551,19 @@ func (u ExportTags) MarshalJSON() ([]byte, error) {
 
 type ExportRequest struct {
 	// Whether exported data should be downloaded as a file.
-	Download *ExportDownload `queryParam:"style=form,explode=true,name=download"`
+	Download *Download `queryParam:"style=form,explode=true,name=download"`
 	// Whether environments should be included in the exported data.
-	Environments *ExportEnvironments `queryParam:"style=form,explode=true,name=environments"`
+	Environments *Environments `queryParam:"style=form,explode=true,name=environments"`
 	// Whether feature toggles should be included in the exported data.
-	FeatureToggles *ExportFeatureToggles `queryParam:"style=form,explode=true,name=featureToggles"`
+	FeatureToggles *FeatureToggles `queryParam:"style=form,explode=true,name=featureToggles"`
 	// Desired export format. Must be either `json` or `yaml`.
-	Format *ExportFormat `default:"json" queryParam:"style=form,explode=true,name=format"`
+	Format *Format `default:"json" queryParam:"style=form,explode=true,name=format"`
 	// Whether projects should be included in the exported data.
-	Projects *ExportProjects `queryParam:"style=form,explode=true,name=projects"`
+	Projects *Projects `queryParam:"style=form,explode=true,name=projects"`
 	// Whether strategies should be included in the exported data.
-	Strategies *ExportStrategies `queryParam:"style=form,explode=true,name=strategies"`
+	Strategies *Strategies `queryParam:"style=form,explode=true,name=strategies"`
 	// Whether tag types, tags, and feature_tags should be included in the exported data.
-	Tags *ExportTags `queryParam:"style=form,explode=true,name=tags"`
+	Tags *Tags `queryParam:"style=form,explode=true,name=tags"`
 }
 
 func (e ExportRequest) MarshalJSON() ([]byte, error) {
@@ -577,49 +577,49 @@ func (e *ExportRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ExportRequest) GetDownload() *ExportDownload {
+func (o *ExportRequest) GetDownload() *Download {
 	if o == nil {
 		return nil
 	}
 	return o.Download
 }
 
-func (o *ExportRequest) GetEnvironments() *ExportEnvironments {
+func (o *ExportRequest) GetEnvironments() *Environments {
 	if o == nil {
 		return nil
 	}
 	return o.Environments
 }
 
-func (o *ExportRequest) GetFeatureToggles() *ExportFeatureToggles {
+func (o *ExportRequest) GetFeatureToggles() *FeatureToggles {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureToggles
 }
 
-func (o *ExportRequest) GetFormat() *ExportFormat {
+func (o *ExportRequest) GetFormat() *Format {
 	if o == nil {
 		return nil
 	}
 	return o.Format
 }
 
-func (o *ExportRequest) GetProjects() *ExportProjects {
+func (o *ExportRequest) GetProjects() *Projects {
 	if o == nil {
 		return nil
 	}
 	return o.Projects
 }
 
-func (o *ExportRequest) GetStrategies() *ExportStrategies {
+func (o *ExportRequest) GetStrategies() *Strategies {
 	if o == nil {
 		return nil
 	}
 	return o.Strategies
 }
 
-func (o *ExportRequest) GetTags() *ExportTags {
+func (o *ExportRequest) GetTags() *Tags {
 	if o == nil {
 		return nil
 	}

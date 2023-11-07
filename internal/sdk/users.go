@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// Manage users and passwords.
-type users struct {
+// Users - Manage users and passwords.
+type Users struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUsers(sdkConfig sdkConfiguration) *users {
-	return &users{
+func newUsers(sdkConfig sdkConfiguration) *Users {
+	return &Users{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // ChangeMyPassword - Change your own password
 // Requires specifying old password and confirming new password
-func (s *users) ChangeMyPassword(ctx context.Context, request shared.PasswordSchema) (*operations.ChangeMyPasswordResponse, error) {
+func (s *Users) ChangeMyPassword(ctx context.Context, request shared.PasswordSchema) (*operations.ChangeMyPasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user/change-password"
 
@@ -90,7 +90,7 @@ func (s *users) ChangeMyPassword(ctx context.Context, request shared.PasswordSch
 
 // ChangeUserPassword - Change password for a user
 // Change password for a user as an admin
-func (s *users) ChangeUserPassword(ctx context.Context, request operations.ChangeUserPasswordRequest) (*operations.ChangeUserPasswordResponse, error) {
+func (s *Users) ChangeUserPassword(ctx context.Context, request operations.ChangeUserPasswordRequest) (*operations.ChangeUserPasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/user-admin/{id}/change-password", request, nil)
 	if err != nil {
@@ -147,36 +147,36 @@ func (s *users) ChangeUserPassword(ctx context.Context, request operations.Chang
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeUserPassword400ApplicationJSON
+			var out operations.ChangeUserPasswordResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeUserPassword400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeUserPassword401ApplicationJSON
+			var out operations.ChangeUserPasswordUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeUserPassword401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeUserPassword403ApplicationJSON
+			var out operations.ChangeUserPasswordUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeUserPassword403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -187,7 +187,7 @@ func (s *users) ChangeUserPassword(ctx context.Context, request operations.Chang
 
 // CreateGroup - Create a new group
 // Create a new user group for Role-Based Access Control
-func (s *users) CreateGroup(ctx context.Context, request shared.CreateGroupSchema) (*operations.CreateGroupResponse, error) {
+func (s *Users) CreateGroup(ctx context.Context, request shared.CreateGroupSchema) (*operations.CreateGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/groups"
 
@@ -252,48 +252,48 @@ func (s *users) CreateGroup(ctx context.Context, request shared.CreateGroupSchem
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateGroup400ApplicationJSON
+			var out operations.CreateGroupResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateGroup400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateGroup401ApplicationJSON
+			var out operations.CreateGroupUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateGroup401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateGroup403ApplicationJSON
+			var out operations.CreateGroupUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateGroup403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateGroup409ApplicationJSON
+			var out operations.CreateGroupUsersResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateGroup409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -302,7 +302,7 @@ func (s *users) CreateGroup(ctx context.Context, request shared.CreateGroupSchem
 	return res, nil
 }
 
-func (s *users) CreateRole(ctx context.Context, request shared.CreateRoleWithPermissionsSchema) (*operations.CreateRoleResponse, error) {
+func (s *Users) CreateRole(ctx context.Context, request shared.CreateRoleWithPermissionsSchema) (*operations.CreateRoleResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/roles"
 
@@ -367,12 +367,12 @@ func (s *users) CreateRole(ctx context.Context, request shared.CreateRoleWithPer
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateRole400ApplicationJSON
+			var out operations.CreateRoleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateRole400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -383,7 +383,7 @@ func (s *users) CreateRole(ctx context.Context, request shared.CreateRoleWithPer
 
 // CreateUser - Create a new user
 // Creates a new user with the given root role.
-func (s *users) CreateUser(ctx context.Context, request shared.CreateUserSchema) (*operations.CreateUserResponse, error) {
+func (s *Users) CreateUser(ctx context.Context, request shared.CreateUserSchema) (*operations.CreateUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin"
 
@@ -450,36 +450,36 @@ func (s *users) CreateUser(ctx context.Context, request shared.CreateUserSchema)
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateUser400ApplicationJSON
+			var out operations.CreateUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateUser400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateUser401ApplicationJSON
+			var out operations.CreateUserUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateUser401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateUser403ApplicationJSON
+			var out operations.CreateUserUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateUser403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -490,7 +490,7 @@ func (s *users) CreateUser(ctx context.Context, request shared.CreateUserSchema)
 
 // DeleteGroup - Delete a single group
 // Delete a single user group by group id
-func (s *users) DeleteGroup(ctx context.Context, request operations.DeleteGroupRequest) (*operations.DeleteGroupResponse, error) {
+func (s *Users) DeleteGroup(ctx context.Context, request operations.DeleteGroupRequest) (*operations.DeleteGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/groups/{groupId}", request, nil)
 	if err != nil {
@@ -533,36 +533,36 @@ func (s *users) DeleteGroup(ctx context.Context, request operations.DeleteGroupR
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteGroup400ApplicationJSON
+			var out operations.DeleteGroupResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteGroup400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteGroup401ApplicationJSON
+			var out operations.DeleteGroupUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteGroup401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteGroup403ApplicationJSON
+			var out operations.DeleteGroupUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteGroup403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -571,7 +571,7 @@ func (s *users) DeleteGroup(ctx context.Context, request operations.DeleteGroupR
 	return res, nil
 }
 
-func (s *users) DeleteRole(ctx context.Context, request operations.DeleteRoleRequest) (*operations.DeleteRoleResponse, error) {
+func (s *Users) DeleteRole(ctx context.Context, request operations.DeleteRoleRequest) (*operations.DeleteRoleResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/roles/{roleId}", request, nil)
 	if err != nil {
@@ -614,12 +614,12 @@ func (s *users) DeleteRole(ctx context.Context, request operations.DeleteRoleReq
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteRole409ApplicationJSON
+			var out operations.DeleteRoleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteRole409ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -630,7 +630,7 @@ func (s *users) DeleteRole(ctx context.Context, request operations.DeleteRoleReq
 
 // DeleteUser - Delete a user
 // Deletes the user with the given userId
-func (s *users) DeleteUser(ctx context.Context, request operations.DeleteUserRequest) (*operations.DeleteUserResponse, error) {
+func (s *Users) DeleteUser(ctx context.Context, request operations.DeleteUserRequest) (*operations.DeleteUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/user-admin/{id}", request, nil)
 	if err != nil {
@@ -673,36 +673,36 @@ func (s *users) DeleteUser(ctx context.Context, request operations.DeleteUserReq
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteUser401ApplicationJSON
+			var out operations.DeleteUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteUser401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteUser403ApplicationJSON
+			var out operations.DeleteUserUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteUser403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteUser404ApplicationJSON
+			var out operations.DeleteUserUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteUser404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -713,7 +713,7 @@ func (s *users) DeleteUser(ctx context.Context, request operations.DeleteUserReq
 
 // GetAdminCount - Get total count of admin accounts
 // Get a total count of admins with password, without password and admin service accounts
-func (s *users) GetAdminCount(ctx context.Context) (*operations.GetAdminCountResponse, error) {
+func (s *Users) GetAdminCount(ctx context.Context) (*operations.GetAdminCountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin/admin-count"
 
@@ -764,24 +764,24 @@ func (s *users) GetAdminCount(ctx context.Context) (*operations.GetAdminCountRes
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAdminCount401ApplicationJSON
+			var out operations.GetAdminCountResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAdminCount401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAdminCount403ApplicationJSON
+			var out operations.GetAdminCountUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAdminCount403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -792,7 +792,7 @@ func (s *users) GetAdminCount(ctx context.Context) (*operations.GetAdminCountRes
 
 // GetBaseUsersAndGroups - Get basic user and group information
 // Get a subset of user and group information eligible even for non-admin users
-func (s *users) GetBaseUsersAndGroups(ctx context.Context) (*operations.GetBaseUsersAndGroupsResponse, error) {
+func (s *Users) GetBaseUsersAndGroups(ctx context.Context) (*operations.GetBaseUsersAndGroupsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin/access"
 
@@ -843,12 +843,12 @@ func (s *users) GetBaseUsersAndGroups(ctx context.Context) (*operations.GetBaseU
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetBaseUsersAndGroups401ApplicationJSON
+			var out operations.GetBaseUsersAndGroupsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetBaseUsersAndGroups401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -859,7 +859,7 @@ func (s *users) GetBaseUsersAndGroups(ctx context.Context) (*operations.GetBaseU
 
 // GetGroup - Get a single group
 // Get a single user group by group id
-func (s *users) GetGroup(ctx context.Context, request operations.GetGroupRequest) (*operations.GetGroupResponse, error) {
+func (s *Users) GetGroup(ctx context.Context, request operations.GetGroupRequest) (*operations.GetGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/groups/{groupId}", request, nil)
 	if err != nil {
@@ -913,48 +913,48 @@ func (s *users) GetGroup(ctx context.Context, request operations.GetGroupRequest
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroup400ApplicationJSON
+			var out operations.GetGroupResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroup400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroup401ApplicationJSON
+			var out operations.GetGroupUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroup401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroup403ApplicationJSON
+			var out operations.GetGroupUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroup403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroup404ApplicationJSON
+			var out operations.GetGroupUsersResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroup404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -965,7 +965,7 @@ func (s *users) GetGroup(ctx context.Context, request operations.GetGroupRequest
 
 // GetGroups - Get a list of groups
 // Get a list of user groups for Role-Based Access Control
-func (s *users) GetGroups(ctx context.Context) (*operations.GetGroupsResponse, error) {
+func (s *Users) GetGroups(ctx context.Context) (*operations.GetGroupsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/groups"
 
@@ -1016,24 +1016,24 @@ func (s *users) GetGroups(ctx context.Context) (*operations.GetGroupsResponse, e
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroups401ApplicationJSON
+			var out operations.GetGroupsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroups401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGroups403ApplicationJSON
+			var out operations.GetGroupsUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGroups403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1044,7 +1044,7 @@ func (s *users) GetGroups(ctx context.Context) (*operations.GetGroupsResponse, e
 
 // GetMe - Get your own user details
 // Detailed information about the current user, user permissions and user feedback
-func (s *users) GetMe(ctx context.Context) (*operations.GetMeResponse, error) {
+func (s *Users) GetMe(ctx context.Context) (*operations.GetMeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user"
 
@@ -1095,12 +1095,12 @@ func (s *users) GetMe(ctx context.Context) (*operations.GetMeResponse, error) {
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMe401ApplicationJSON
+			var out operations.GetMeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMe401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1111,7 +1111,7 @@ func (s *users) GetMe(ctx context.Context) (*operations.GetMeResponse, error) {
 
 // GetProfile - Get your own user profile
 // Detailed information about the current user root role and project membership
-func (s *users) GetProfile(ctx context.Context) (*operations.GetProfileResponse, error) {
+func (s *Users) GetProfile(ctx context.Context) (*operations.GetProfileResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user/profile"
 
@@ -1162,12 +1162,12 @@ func (s *users) GetProfile(ctx context.Context) (*operations.GetProfileResponse,
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProfile401ApplicationJSON
+			var out operations.GetProfileResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProfile401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1176,7 +1176,7 @@ func (s *users) GetProfile(ctx context.Context) (*operations.GetProfileResponse,
 	return res, nil
 }
 
-func (s *users) GetRoleByID(ctx context.Context, request operations.GetRoleByIDRequest) (*operations.GetRoleByIDResponse, error) {
+func (s *Users) GetRoleByID(ctx context.Context, request operations.GetRoleByIDRequest) (*operations.GetRoleByIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/roles/{roleId}", request, nil)
 	if err != nil {
@@ -1232,7 +1232,7 @@ func (s *users) GetRoleByID(ctx context.Context, request operations.GetRoleByIDR
 	return res, nil
 }
 
-func (s *users) GetRoles(ctx context.Context) (*operations.GetRolesResponse, error) {
+func (s *Users) GetRoles(ctx context.Context) (*operations.GetRolesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/roles"
 
@@ -1287,7 +1287,7 @@ func (s *users) GetRoles(ctx context.Context) (*operations.GetRolesResponse, err
 
 // GetUser - Get user
 // Will return a single user by id
-func (s *users) GetUser(ctx context.Context, request operations.GetUserRequest) (*operations.GetUserResponse, error) {
+func (s *Users) GetUser(ctx context.Context, request operations.GetUserRequest) (*operations.GetUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/user-admin/{id}", request, nil)
 	if err != nil {
@@ -1341,36 +1341,36 @@ func (s *users) GetUser(ctx context.Context, request operations.GetUserRequest) 
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUser400ApplicationJSON
+			var out operations.GetUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUser400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUser401ApplicationJSON
+			var out operations.GetUserUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUser401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUser404ApplicationJSON
+			var out operations.GetUserUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUser404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1381,7 +1381,7 @@ func (s *users) GetUser(ctx context.Context, request operations.GetUserRequest) 
 
 // GetUsers - Get all users and [root roles](https://docs.getunleash.io/reference/rbac#standard-roles)
 // Will return all users and all available root roles for the Unleash instance.
-func (s *users) GetUsers(ctx context.Context) (*operations.GetUsersResponse, error) {
+func (s *Users) GetUsers(ctx context.Context) (*operations.GetUsersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin"
 
@@ -1432,24 +1432,24 @@ func (s *users) GetUsers(ctx context.Context) (*operations.GetUsersResponse, err
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUsers401ApplicationJSON
+			var out operations.GetUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUsers401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUsers403ApplicationJSON
+			var out operations.GetUsersUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUsers403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1460,7 +1460,7 @@ func (s *users) GetUsers(ctx context.Context) (*operations.GetUsersResponse, err
 
 // ResetUserPassword - Reset user password
 // Reset user password as an admin
-func (s *users) ResetUserPassword(ctx context.Context, request shared.IDSchema) (*operations.ResetUserPasswordResponse, error) {
+func (s *Users) ResetUserPassword(ctx context.Context, request shared.IDSchema) (*operations.ResetUserPasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin/reset-password"
 
@@ -1525,48 +1525,48 @@ func (s *users) ResetUserPassword(ctx context.Context, request shared.IDSchema) 
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ResetUserPassword400ApplicationJSON
+			var out operations.ResetUserPasswordResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ResetUserPassword400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ResetUserPassword401ApplicationJSON
+			var out operations.ResetUserPasswordUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ResetUserPassword401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ResetUserPassword403ApplicationJSON
+			var out operations.ResetUserPasswordUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ResetUserPassword403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ResetUserPassword404ApplicationJSON
+			var out operations.ResetUserPasswordUsersResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ResetUserPassword404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1578,7 +1578,7 @@ func (s *users) ResetUserPassword(ctx context.Context, request shared.IDSchema) 
 // SearchUsers - Search users
 //
 //	It will preform a simple search based on name and email matching the given query. Requires minimum 2 characters
-func (s *users) SearchUsers(ctx context.Context, request operations.SearchUsersRequest) (*operations.SearchUsersResponse, error) {
+func (s *Users) SearchUsers(ctx context.Context, request operations.SearchUsersRequest) (*operations.SearchUsersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin/search"
 
@@ -1633,12 +1633,12 @@ func (s *users) SearchUsers(ctx context.Context, request operations.SearchUsersR
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SearchUsers401ApplicationJSON
+			var out operations.SearchUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SearchUsers401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1649,7 +1649,7 @@ func (s *users) SearchUsers(ctx context.Context, request operations.SearchUsersR
 
 // UpdateGroup - Update a group
 // Update existing user group by group id. It overrides previous group details.
-func (s *users) UpdateGroup(ctx context.Context, request operations.UpdateGroupRequest) (*operations.UpdateGroupResponse, error) {
+func (s *Users) UpdateGroup(ctx context.Context, request operations.UpdateGroupRequest) (*operations.UpdateGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/groups/{groupId}", request, nil)
 	if err != nil {
@@ -1717,60 +1717,60 @@ func (s *users) UpdateGroup(ctx context.Context, request operations.UpdateGroupR
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateGroup400ApplicationJSON
+			var out operations.UpdateGroupResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateGroup400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateGroup401ApplicationJSON
+			var out operations.UpdateGroupUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateGroup401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateGroup403ApplicationJSON
+			var out operations.UpdateGroupUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateGroup403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateGroup404ApplicationJSON
+			var out operations.UpdateGroupUsersResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateGroup404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateGroup409ApplicationJSON
+			var out operations.UpdateGroupUsersResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateGroup409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1779,7 +1779,7 @@ func (s *users) UpdateGroup(ctx context.Context, request operations.UpdateGroupR
 	return res, nil
 }
 
-func (s *users) UpdateRole(ctx context.Context, request operations.UpdateRoleRequest) (*operations.UpdateRoleResponse, error) {
+func (s *Users) UpdateRole(ctx context.Context, request operations.UpdateRoleRequest) (*operations.UpdateRoleResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/roles/{roleId}", request, nil)
 	if err != nil {
@@ -1847,12 +1847,12 @@ func (s *users) UpdateRole(ctx context.Context, request operations.UpdateRoleReq
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateRole400ApplicationJSON
+			var out operations.UpdateRoleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateRole400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1863,7 +1863,7 @@ func (s *users) UpdateRole(ctx context.Context, request operations.UpdateRoleReq
 
 // UpdateUser - Update a user
 // Only the explicitly specified fields get updated.
-func (s *users) UpdateUser(ctx context.Context, request operations.UpdateUserRequest) (*operations.UpdateUserResponse, error) {
+func (s *Users) UpdateUser(ctx context.Context, request operations.UpdateUserRequest) (*operations.UpdateUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/user-admin/{id}", request, nil)
 	if err != nil {
@@ -1931,48 +1931,48 @@ func (s *users) UpdateUser(ctx context.Context, request operations.UpdateUserReq
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateUser400ApplicationJSON
+			var out operations.UpdateUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateUser400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateUser401ApplicationJSON
+			var out operations.UpdateUserUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateUser401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateUser403ApplicationJSON
+			var out operations.UpdateUserUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateUser403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateUser404ApplicationJSON
+			var out operations.UpdateUserUsersResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateUser404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1981,7 +1981,7 @@ func (s *users) UpdateUser(ctx context.Context, request operations.UpdateUserReq
 	return res, nil
 }
 
-func (s *users) ValidateRole(ctx context.Context, request shared.CreateRoleWithPermissionsSchema) (*operations.ValidateRoleResponse, error) {
+func (s *Users) ValidateRole(ctx context.Context, request shared.CreateRoleWithPermissionsSchema) (*operations.ValidateRoleResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/roles/validate"
 
@@ -2035,12 +2035,12 @@ func (s *users) ValidateRole(ctx context.Context, request shared.CreateRoleWithP
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateRole400ApplicationJSON
+			var out operations.ValidateRoleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateRole400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2051,7 +2051,7 @@ func (s *users) ValidateRole(ctx context.Context, request shared.CreateRoleWithP
 
 // ValidateUserPassword - Validate password for a user
 // Validate the password strength. Minimum 10 characters, uppercase letter, number, special character.
-func (s *users) ValidateUserPassword(ctx context.Context, request shared.PasswordSchema) (*operations.ValidateUserPasswordResponse, error) {
+func (s *Users) ValidateUserPassword(ctx context.Context, request shared.PasswordSchema) (*operations.ValidateUserPasswordResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/user-admin/validate-password"
 
@@ -2105,36 +2105,36 @@ func (s *users) ValidateUserPassword(ctx context.Context, request shared.Passwor
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateUserPassword400ApplicationJSON
+			var out operations.ValidateUserPasswordResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateUserPassword400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateUserPassword401ApplicationJSON
+			var out operations.ValidateUserPasswordUsersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateUserPassword401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateUserPassword415ApplicationJSON
+			var out operations.ValidateUserPasswordUsersResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateUserPassword415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

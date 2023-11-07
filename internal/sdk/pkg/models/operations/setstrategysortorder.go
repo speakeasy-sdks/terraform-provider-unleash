@@ -43,8 +43,8 @@ func (o *SetStrategySortOrderRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// SetStrategySortOrder403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type SetStrategySortOrder403ApplicationJSON struct {
+// SetStrategySortOrderFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type SetStrategySortOrderFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -53,29 +53,29 @@ type SetStrategySortOrder403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SetStrategySortOrder403ApplicationJSON) GetID() *string {
+func (o *SetStrategySortOrderFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SetStrategySortOrder403ApplicationJSON) GetMessage() *string {
+func (o *SetStrategySortOrderFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SetStrategySortOrder403ApplicationJSON) GetName() *string {
+func (o *SetStrategySortOrderFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// SetStrategySortOrder401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type SetStrategySortOrder401ApplicationJSON struct {
+// SetStrategySortOrderFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type SetStrategySortOrderFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -84,29 +84,29 @@ type SetStrategySortOrder401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SetStrategySortOrder401ApplicationJSON) GetID() *string {
+func (o *SetStrategySortOrderFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SetStrategySortOrder401ApplicationJSON) GetMessage() *string {
+func (o *SetStrategySortOrderFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SetStrategySortOrder401ApplicationJSON) GetName() *string {
+func (o *SetStrategySortOrderFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// SetStrategySortOrder400ApplicationJSON - The request data does not match what we expect.
-type SetStrategySortOrder400ApplicationJSON struct {
+// SetStrategySortOrderResponseBody - The request data does not match what we expect.
+type SetStrategySortOrderResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -115,21 +115,21 @@ type SetStrategySortOrder400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SetStrategySortOrder400ApplicationJSON) GetID() *string {
+func (o *SetStrategySortOrderResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SetStrategySortOrder400ApplicationJSON) GetMessage() *string {
+func (o *SetStrategySortOrderResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SetStrategySortOrder400ApplicationJSON) GetName() *string {
+func (o *SetStrategySortOrderResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -137,18 +137,39 @@ func (o *SetStrategySortOrder400ApplicationJSON) GetName() *string {
 }
 
 type SetStrategySortOrderResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *SetStrategySortOrderResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *SetStrategySortOrderFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *SetStrategySortOrderFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	SetStrategySortOrder400ApplicationJSONObject *SetStrategySortOrder400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	SetStrategySortOrder401ApplicationJSONObject *SetStrategySortOrder401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	SetStrategySortOrder403ApplicationJSONObject *SetStrategySortOrder403ApplicationJSON
+}
+
+func (o *SetStrategySortOrderResponse) GetFourHundredApplicationJSONObject() *SetStrategySortOrderResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *SetStrategySortOrderResponse) GetFourHundredAndOneApplicationJSONObject() *SetStrategySortOrderFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *SetStrategySortOrderResponse) GetFourHundredAndThreeApplicationJSONObject() *SetStrategySortOrderFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *SetStrategySortOrderResponse) GetContentType() string {
@@ -170,25 +191,4 @@ func (o *SetStrategySortOrderResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *SetStrategySortOrderResponse) GetSetStrategySortOrder400ApplicationJSONObject() *SetStrategySortOrder400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SetStrategySortOrder400ApplicationJSONObject
-}
-
-func (o *SetStrategySortOrderResponse) GetSetStrategySortOrder401ApplicationJSONObject() *SetStrategySortOrder401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SetStrategySortOrder401ApplicationJSONObject
-}
-
-func (o *SetStrategySortOrderResponse) GetSetStrategySortOrder403ApplicationJSONObject() *SetStrategySortOrder403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SetStrategySortOrder403ApplicationJSONObject
 }

@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// archive - Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).
-type archive struct {
+// Archive - Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).
+type Archive struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newArchive(sdkConfig sdkConfiguration) *archive {
-	return &archive{
+func newArchive(sdkConfig sdkConfiguration) *Archive {
+	return &Archive{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteFeature - Archives a feature
 // This endpoint archives the specified feature.
-func (s *archive) DeleteFeature(ctx context.Context, request operations.DeleteFeatureRequest) (*operations.DeleteFeatureResponse, error) {
+func (s *Archive) DeleteFeature(ctx context.Context, request operations.DeleteFeatureRequest) (*operations.DeleteFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/archive/{featureName}", request, nil)
 	if err != nil {
@@ -71,24 +71,24 @@ func (s *archive) DeleteFeature(ctx context.Context, request operations.DeleteFe
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeature401ApplicationJSON
+			var out operations.DeleteFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeature403ApplicationJSON
+			var out operations.DeleteFeatureArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -99,7 +99,7 @@ func (s *archive) DeleteFeature(ctx context.Context, request operations.DeleteFe
 
 // DeleteFeatures - Deletes a list of features
 // This endpoint deletes the specified features, that are in archive.
-func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteFeaturesRequest) (*operations.DeleteFeaturesResponse, error) {
+func (s *Archive) DeleteFeatures(ctx context.Context, request operations.DeleteFeaturesRequest) (*operations.DeleteFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/delete", request, nil)
 	if err != nil {
@@ -156,36 +156,36 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatures400ApplicationJSON
+			var out operations.DeleteFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatures400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatures401ApplicationJSON
+			var out operations.DeleteFeaturesArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatures403ApplicationJSON
+			var out operations.DeleteFeaturesArchiveResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -197,7 +197,7 @@ func (s *archive) DeleteFeatures(ctx context.Context, request operations.DeleteF
 // GetArchivedFeatures
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchivedFeaturesResponse, error) {
+func (s *Archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchivedFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/archive/features"
 
@@ -248,24 +248,24 @@ func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchi
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArchivedFeatures401ApplicationJSON
+			var out operations.GetArchivedFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArchivedFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArchivedFeatures403ApplicationJSON
+			var out operations.GetArchivedFeaturesArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArchivedFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -277,7 +277,7 @@ func (s *archive) GetArchivedFeatures(ctx context.Context) (*operations.GetArchi
 // GetArchivedFeaturesByProjectID
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request operations.GetArchivedFeaturesByProjectIDRequest) (*operations.GetArchivedFeaturesByProjectIDResponse, error) {
+func (s *Archive) GetArchivedFeaturesByProjectID(ctx context.Context, request operations.GetArchivedFeaturesByProjectIDRequest) (*operations.GetArchivedFeaturesByProjectIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/archive/features/{projectId}", request, nil)
 	if err != nil {
@@ -331,24 +331,24 @@ func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request op
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArchivedFeaturesByProjectID401ApplicationJSON
+			var out operations.GetArchivedFeaturesByProjectIDResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArchivedFeaturesByProjectID401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArchivedFeaturesByProjectID403ApplicationJSON
+			var out operations.GetArchivedFeaturesByProjectIDArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArchivedFeaturesByProjectID403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -359,7 +359,7 @@ func (s *archive) GetArchivedFeaturesByProjectID(ctx context.Context, request op
 
 // ReviveFeature - Revives a feature
 // This endpoint revives the specified feature from archive.
-func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFeatureRequest) (*operations.ReviveFeatureResponse, error) {
+func (s *Archive) ReviveFeature(ctx context.Context, request operations.ReviveFeatureRequest) (*operations.ReviveFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/archive/revive/{featureName}", request, nil)
 	if err != nil {
@@ -402,36 +402,36 @@ func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFe
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeature400ApplicationJSON
+			var out operations.ReviveFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeature400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeature401ApplicationJSON
+			var out operations.ReviveFeatureArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeature403ApplicationJSON
+			var out operations.ReviveFeatureArchiveResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -442,7 +442,7 @@ func (s *archive) ReviveFeature(ctx context.Context, request operations.ReviveFe
 
 // ReviveFeatures - Revives a list of features
 // This endpoint revives the specified features.
-func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveFeaturesRequest) (*operations.ReviveFeaturesResponse, error) {
+func (s *Archive) ReviveFeatures(ctx context.Context, request operations.ReviveFeaturesRequest) (*operations.ReviveFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/revive", request, nil)
 	if err != nil {
@@ -499,36 +499,36 @@ func (s *archive) ReviveFeatures(ctx context.Context, request operations.ReviveF
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeatures400ApplicationJSON
+			var out operations.ReviveFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeatures400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeatures401ApplicationJSON
+			var out operations.ReviveFeaturesArchiveResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReviveFeatures403ApplicationJSON
+			var out operations.ReviveFeaturesArchiveResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReviveFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

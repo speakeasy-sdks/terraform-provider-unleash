@@ -18,8 +18,8 @@ func (o *GetFeaturesRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// GetFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetFeatures403ApplicationJSON struct {
+// GetFeaturesFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeaturesFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetFeatures403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatures403ApplicationJSON) GetID() *string {
+func (o *GetFeaturesFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatures403ApplicationJSON) GetMessage() *string {
+func (o *GetFeaturesFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatures403ApplicationJSON) GetName() *string {
+func (o *GetFeaturesFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetFeatures401ApplicationJSON struct {
+// GetFeaturesFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeaturesFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetFeatures401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatures401ApplicationJSON) GetID() *string {
+func (o *GetFeaturesFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatures401ApplicationJSON) GetMessage() *string {
+func (o *GetFeaturesFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatures401ApplicationJSON) GetName() *string {
+func (o *GetFeaturesFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatures400ApplicationJSON - The request data does not match what we expect.
-type GetFeatures400ApplicationJSON struct {
+// GetFeaturesResponseBody - The request data does not match what we expect.
+type GetFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type GetFeatures400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatures400ApplicationJSON) GetID() *string {
+func (o *GetFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatures400ApplicationJSON) GetMessage() *string {
+func (o *GetFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatures400ApplicationJSON) GetName() *string {
+func (o *GetFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,6 +112,12 @@ func (o *GetFeatures400ApplicationJSON) GetName() *string {
 }
 
 type GetFeaturesResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetFeaturesResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetFeaturesFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetFeaturesFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -120,12 +126,27 @@ type GetFeaturesResponse struct {
 	RawResponse *http.Response
 	// featuresSchema
 	FeaturesSchema *shared.FeaturesSchema
-	// The request data does not match what we expect.
-	GetFeatures400ApplicationJSONObject *GetFeatures400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetFeatures401ApplicationJSONObject *GetFeatures401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetFeatures403ApplicationJSONObject *GetFeatures403ApplicationJSON
+}
+
+func (o *GetFeaturesResponse) GetFourHundredApplicationJSONObject() *GetFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetFeaturesResponse) GetFourHundredAndOneApplicationJSONObject() *GetFeaturesFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetFeaturesResponse) GetFourHundredAndThreeApplicationJSONObject() *GetFeaturesFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetFeaturesResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *GetFeaturesResponse) GetFeaturesSchema() *shared.FeaturesSchema {
 		return nil
 	}
 	return o.FeaturesSchema
-}
-
-func (o *GetFeaturesResponse) GetGetFeatures400ApplicationJSONObject() *GetFeatures400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatures400ApplicationJSONObject
-}
-
-func (o *GetFeaturesResponse) GetGetFeatures401ApplicationJSONObject() *GetFeatures401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatures401ApplicationJSONObject
-}
-
-func (o *GetFeaturesResponse) GetGetFeatures403ApplicationJSONObject() *GetFeatures403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatures403ApplicationJSONObject
 }

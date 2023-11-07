@@ -18,8 +18,8 @@ func (o *GetApplicationRequest) GetAppName() string {
 	return o.AppName
 }
 
-// GetApplication404ApplicationJSON - The requested resource was not found.
-type GetApplication404ApplicationJSON struct {
+// GetApplicationResponseBody - The requested resource was not found.
+type GetApplicationResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,21 +28,21 @@ type GetApplication404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetApplication404ApplicationJSON) GetID() *string {
+func (o *GetApplicationResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetApplication404ApplicationJSON) GetMessage() *string {
+func (o *GetApplicationResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetApplication404ApplicationJSON) GetName() *string {
+func (o *GetApplicationResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -59,7 +59,7 @@ type GetApplicationResponse struct {
 	// applicationSchema
 	ApplicationSchema *shared.ApplicationSchema
 	// The requested resource was not found.
-	GetApplication404ApplicationJSONObject *GetApplication404ApplicationJSON
+	Object *GetApplicationResponseBody
 }
 
 func (o *GetApplicationResponse) GetContentType() string {
@@ -90,9 +90,9 @@ func (o *GetApplicationResponse) GetApplicationSchema() *shared.ApplicationSchem
 	return o.ApplicationSchema
 }
 
-func (o *GetApplicationResponse) GetGetApplication404ApplicationJSONObject() *GetApplication404ApplicationJSON {
+func (o *GetApplicationResponse) GetObject() *GetApplicationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetApplication404ApplicationJSONObject
+	return o.Object
 }

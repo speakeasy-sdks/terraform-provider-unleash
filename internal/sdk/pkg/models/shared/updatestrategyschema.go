@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// UpdateStrategySchemaParametersType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
-type UpdateStrategySchemaParametersType string
+// UpdateStrategySchemaType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+type UpdateStrategySchemaType string
 
 const (
-	UpdateStrategySchemaParametersTypeString     UpdateStrategySchemaParametersType = "string"
-	UpdateStrategySchemaParametersTypePercentage UpdateStrategySchemaParametersType = "percentage"
-	UpdateStrategySchemaParametersTypeList       UpdateStrategySchemaParametersType = "list"
-	UpdateStrategySchemaParametersTypeNumber     UpdateStrategySchemaParametersType = "number"
-	UpdateStrategySchemaParametersTypeBoolean    UpdateStrategySchemaParametersType = "boolean"
+	UpdateStrategySchemaTypeString     UpdateStrategySchemaType = "string"
+	UpdateStrategySchemaTypePercentage UpdateStrategySchemaType = "percentage"
+	UpdateStrategySchemaTypeList       UpdateStrategySchemaType = "list"
+	UpdateStrategySchemaTypeNumber     UpdateStrategySchemaType = "number"
+	UpdateStrategySchemaTypeBoolean    UpdateStrategySchemaType = "boolean"
 )
 
-func (e UpdateStrategySchemaParametersType) ToPointer() *UpdateStrategySchemaParametersType {
+func (e UpdateStrategySchemaType) ToPointer() *UpdateStrategySchemaType {
 	return &e
 }
 
-func (e *UpdateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
+func (e *UpdateStrategySchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,10 +37,10 @@ func (e *UpdateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
 	case "number":
 		fallthrough
 	case "boolean":
-		*e = UpdateStrategySchemaParametersType(v)
+		*e = UpdateStrategySchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdateStrategySchemaParametersType: %v", v)
+		return fmt.Errorf("invalid value for UpdateStrategySchemaType: %v", v)
 	}
 }
 
@@ -52,7 +52,7 @@ type UpdateStrategySchemaParameters struct {
 	// Whether this parameter must be configured when using the strategy. Defaults to `false`
 	Required *bool `json:"required,omitempty"`
 	// The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
-	Type UpdateStrategySchemaParametersType `json:"type"`
+	Type UpdateStrategySchemaType `json:"type"`
 }
 
 func (o *UpdateStrategySchemaParameters) GetDescription() *string {
@@ -76,9 +76,9 @@ func (o *UpdateStrategySchemaParameters) GetRequired() *bool {
 	return o.Required
 }
 
-func (o *UpdateStrategySchemaParameters) GetType() UpdateStrategySchemaParametersType {
+func (o *UpdateStrategySchemaParameters) GetType() UpdateStrategySchemaType {
 	if o == nil {
-		return UpdateStrategySchemaParametersType("")
+		return UpdateStrategySchemaType("")
 	}
 	return o.Type
 }

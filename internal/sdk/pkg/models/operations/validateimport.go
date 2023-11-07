@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// ValidateImport404ApplicationJSON - The requested resource was not found.
-type ValidateImport404ApplicationJSON struct {
+// ValidateImportResponseBody - The requested resource was not found.
+type ValidateImportResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type ValidateImport404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateImport404ApplicationJSON) GetID() *string {
+func (o *ValidateImportResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateImport404ApplicationJSON) GetMessage() *string {
+func (o *ValidateImportResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateImport404ApplicationJSON) GetName() *string {
+func (o *ValidateImportResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type ValidateImportResponse struct {
 	// importTogglesValidateSchema
 	ImportTogglesValidateSchema *shared.ImportTogglesValidateSchema
 	// The requested resource was not found.
-	ValidateImport404ApplicationJSONObject *ValidateImport404ApplicationJSON
+	Object *ValidateImportResponseBody
 }
 
 func (o *ValidateImportResponse) GetContentType() string {
@@ -79,9 +79,9 @@ func (o *ValidateImportResponse) GetImportTogglesValidateSchema() *shared.Import
 	return o.ImportTogglesValidateSchema
 }
 
-func (o *ValidateImportResponse) GetValidateImport404ApplicationJSONObject() *ValidateImport404ApplicationJSON {
+func (o *ValidateImportResponse) GetObject() *ValidateImportResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateImport404ApplicationJSONObject
+	return o.Object
 }

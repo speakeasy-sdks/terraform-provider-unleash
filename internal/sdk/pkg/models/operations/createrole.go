@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateRole400ApplicationJSON - The request data does not match what we expect.
-type CreateRole400ApplicationJSON struct {
+// CreateRoleResponseBody - The request data does not match what we expect.
+type CreateRoleResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type CreateRole400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateRole400ApplicationJSON) GetID() *string {
+func (o *CreateRoleResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateRole400ApplicationJSON) GetMessage() *string {
+func (o *CreateRoleResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateRole400ApplicationJSON) GetName() *string {
+func (o *CreateRoleResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ type CreateRoleResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The request data does not match what we expect.
-	CreateRole400ApplicationJSONObject *CreateRole400ApplicationJSON
+	Object *CreateRoleResponseBody
 	// roleWithVersionSchema
 	RoleWithVersionSchema *shared.RoleWithVersionSchema
 }
@@ -72,11 +72,11 @@ func (o *CreateRoleResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CreateRoleResponse) GetCreateRole400ApplicationJSONObject() *CreateRole400ApplicationJSON {
+func (o *CreateRoleResponse) GetObject() *CreateRoleResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.CreateRole400ApplicationJSONObject
+	return o.Object
 }
 
 func (o *CreateRoleResponse) GetRoleWithVersionSchema() *shared.RoleWithVersionSchema {

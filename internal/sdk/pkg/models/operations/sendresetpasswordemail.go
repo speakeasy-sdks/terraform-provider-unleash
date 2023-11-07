@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// SendResetPasswordEmail415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type SendResetPasswordEmail415ApplicationJSON struct {
+// SendResetPasswordEmailAuthResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type SendResetPasswordEmailAuthResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type SendResetPasswordEmail415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SendResetPasswordEmail415ApplicationJSON) GetID() *string {
+func (o *SendResetPasswordEmailAuthResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SendResetPasswordEmail415ApplicationJSON) GetMessage() *string {
+func (o *SendResetPasswordEmailAuthResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SendResetPasswordEmail415ApplicationJSON) GetName() *string {
+func (o *SendResetPasswordEmailAuthResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// SendResetPasswordEmail404ApplicationJSON - The requested resource was not found.
-type SendResetPasswordEmail404ApplicationJSON struct {
+// SendResetPasswordEmailAuthResponseBody - The requested resource was not found.
+type SendResetPasswordEmailAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type SendResetPasswordEmail404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SendResetPasswordEmail404ApplicationJSON) GetID() *string {
+func (o *SendResetPasswordEmailAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SendResetPasswordEmail404ApplicationJSON) GetMessage() *string {
+func (o *SendResetPasswordEmailAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SendResetPasswordEmail404ApplicationJSON) GetName() *string {
+func (o *SendResetPasswordEmailAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// SendResetPasswordEmail401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type SendResetPasswordEmail401ApplicationJSON struct {
+// SendResetPasswordEmailResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type SendResetPasswordEmailResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type SendResetPasswordEmail401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SendResetPasswordEmail401ApplicationJSON) GetID() *string {
+func (o *SendResetPasswordEmailResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SendResetPasswordEmail401ApplicationJSON) GetMessage() *string {
+func (o *SendResetPasswordEmailResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SendResetPasswordEmail401ApplicationJSON) GetName() *string {
+func (o *SendResetPasswordEmailResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *SendResetPasswordEmail401ApplicationJSON) GetName() *string {
 }
 
 type SendResetPasswordEmailResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *SendResetPasswordEmailResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *SendResetPasswordEmailAuthResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *SendResetPasswordEmailAuthResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	SendResetPasswordEmail401ApplicationJSONObject *SendResetPasswordEmail401ApplicationJSON
-	// The requested resource was not found.
-	SendResetPasswordEmail404ApplicationJSONObject *SendResetPasswordEmail404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	SendResetPasswordEmail415ApplicationJSONObject *SendResetPasswordEmail415ApplicationJSON
+}
+
+func (o *SendResetPasswordEmailResponse) GetFourHundredAndOneApplicationJSONObject() *SendResetPasswordEmailResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *SendResetPasswordEmailResponse) GetFourHundredAndFourApplicationJSONObject() *SendResetPasswordEmailAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *SendResetPasswordEmailResponse) GetFourHundredAndFifteenApplicationJSONObject() *SendResetPasswordEmailAuthResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *SendResetPasswordEmailResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *SendResetPasswordEmailResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *SendResetPasswordEmailResponse) GetSendResetPasswordEmail401ApplicationJSONObject() *SendResetPasswordEmail401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SendResetPasswordEmail401ApplicationJSONObject
-}
-
-func (o *SendResetPasswordEmailResponse) GetSendResetPasswordEmail404ApplicationJSONObject() *SendResetPasswordEmail404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SendResetPasswordEmail404ApplicationJSONObject
-}
-
-func (o *SendResetPasswordEmailResponse) GetSendResetPasswordEmail415ApplicationJSONObject() *SendResetPasswordEmail415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.SendResetPasswordEmail415ApplicationJSONObject
 }

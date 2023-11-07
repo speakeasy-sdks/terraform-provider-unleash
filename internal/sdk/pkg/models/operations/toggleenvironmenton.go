@@ -17,8 +17,8 @@ func (o *ToggleEnvironmentOnRequest) GetName() string {
 	return o.Name
 }
 
-// ToggleEnvironmentOn404ApplicationJSON - The requested resource was not found.
-type ToggleEnvironmentOn404ApplicationJSON struct {
+// ToggleEnvironmentOnEnvironmentsResponseResponseBody - The requested resource was not found.
+type ToggleEnvironmentOnEnvironmentsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type ToggleEnvironmentOn404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleEnvironmentOn404ApplicationJSON) GetID() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleEnvironmentOn404ApplicationJSON) GetMessage() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleEnvironmentOn404ApplicationJSON) GetName() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleEnvironmentOn403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ToggleEnvironmentOn403ApplicationJSON struct {
+// ToggleEnvironmentOnEnvironmentsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ToggleEnvironmentOnEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type ToggleEnvironmentOn403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleEnvironmentOn403ApplicationJSON) GetID() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleEnvironmentOn403ApplicationJSON) GetMessage() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleEnvironmentOn403ApplicationJSON) GetName() *string {
+func (o *ToggleEnvironmentOnEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleEnvironmentOn401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ToggleEnvironmentOn401ApplicationJSON struct {
+// ToggleEnvironmentOnResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ToggleEnvironmentOnResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type ToggleEnvironmentOn401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleEnvironmentOn401ApplicationJSON) GetID() *string {
+func (o *ToggleEnvironmentOnResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleEnvironmentOn401ApplicationJSON) GetMessage() *string {
+func (o *ToggleEnvironmentOnResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleEnvironmentOn401ApplicationJSON) GetName() *string {
+func (o *ToggleEnvironmentOnResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *ToggleEnvironmentOn401ApplicationJSON) GetName() *string {
 }
 
 type ToggleEnvironmentOnResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ToggleEnvironmentOnResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ToggleEnvironmentOnEnvironmentsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ToggleEnvironmentOnEnvironmentsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ToggleEnvironmentOn401ApplicationJSONObject *ToggleEnvironmentOn401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ToggleEnvironmentOn403ApplicationJSONObject *ToggleEnvironmentOn403ApplicationJSON
-	// The requested resource was not found.
-	ToggleEnvironmentOn404ApplicationJSONObject *ToggleEnvironmentOn404ApplicationJSON
+}
+
+func (o *ToggleEnvironmentOnResponse) GetFourHundredAndOneApplicationJSONObject() *ToggleEnvironmentOnResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ToggleEnvironmentOnResponse) GetFourHundredAndThreeApplicationJSONObject() *ToggleEnvironmentOnEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ToggleEnvironmentOnResponse) GetFourHundredAndFourApplicationJSONObject() *ToggleEnvironmentOnEnvironmentsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ToggleEnvironmentOnResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *ToggleEnvironmentOnResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ToggleEnvironmentOnResponse) GetToggleEnvironmentOn401ApplicationJSONObject() *ToggleEnvironmentOn401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleEnvironmentOn401ApplicationJSONObject
-}
-
-func (o *ToggleEnvironmentOnResponse) GetToggleEnvironmentOn403ApplicationJSONObject() *ToggleEnvironmentOn403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleEnvironmentOn403ApplicationJSONObject
-}
-
-func (o *ToggleEnvironmentOnResponse) GetToggleEnvironmentOn404ApplicationJSONObject() *ToggleEnvironmentOn404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleEnvironmentOn404ApplicationJSONObject
 }

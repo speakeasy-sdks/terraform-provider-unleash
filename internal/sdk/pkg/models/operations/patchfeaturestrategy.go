@@ -51,8 +51,8 @@ func (o *PatchFeatureStrategyRequest) GetStrategyID() string {
 	return o.StrategyID
 }
 
-// PatchFeatureStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type PatchFeatureStrategy415ApplicationJSON struct {
+// PatchFeatureStrategyFeaturesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type PatchFeatureStrategyFeaturesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -61,29 +61,29 @@ type PatchFeatureStrategy415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *PatchFeatureStrategy415ApplicationJSON) GetID() *string {
+func (o *PatchFeatureStrategyFeaturesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PatchFeatureStrategy415ApplicationJSON) GetMessage() *string {
+func (o *PatchFeatureStrategyFeaturesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *PatchFeatureStrategy415ApplicationJSON) GetName() *string {
+func (o *PatchFeatureStrategyFeaturesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// PatchFeatureStrategy404ApplicationJSON - The requested resource was not found.
-type PatchFeatureStrategy404ApplicationJSON struct {
+// PatchFeatureStrategyFeaturesResponse404ResponseBody - The requested resource was not found.
+type PatchFeatureStrategyFeaturesResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -92,29 +92,29 @@ type PatchFeatureStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *PatchFeatureStrategy404ApplicationJSON) GetID() *string {
+func (o *PatchFeatureStrategyFeaturesResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PatchFeatureStrategy404ApplicationJSON) GetMessage() *string {
+func (o *PatchFeatureStrategyFeaturesResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *PatchFeatureStrategy404ApplicationJSON) GetName() *string {
+func (o *PatchFeatureStrategyFeaturesResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// PatchFeatureStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type PatchFeatureStrategy403ApplicationJSON struct {
+// PatchFeatureStrategyFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type PatchFeatureStrategyFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -123,29 +123,29 @@ type PatchFeatureStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *PatchFeatureStrategy403ApplicationJSON) GetID() *string {
+func (o *PatchFeatureStrategyFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PatchFeatureStrategy403ApplicationJSON) GetMessage() *string {
+func (o *PatchFeatureStrategyFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *PatchFeatureStrategy403ApplicationJSON) GetName() *string {
+func (o *PatchFeatureStrategyFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// PatchFeatureStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type PatchFeatureStrategy401ApplicationJSON struct {
+// PatchFeatureStrategyFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type PatchFeatureStrategyFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -154,29 +154,29 @@ type PatchFeatureStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *PatchFeatureStrategy401ApplicationJSON) GetID() *string {
+func (o *PatchFeatureStrategyFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PatchFeatureStrategy401ApplicationJSON) GetMessage() *string {
+func (o *PatchFeatureStrategyFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *PatchFeatureStrategy401ApplicationJSON) GetName() *string {
+func (o *PatchFeatureStrategyFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// PatchFeatureStrategy400ApplicationJSON - The request data does not match what we expect.
-type PatchFeatureStrategy400ApplicationJSON struct {
+// PatchFeatureStrategyResponseBody - The request data does not match what we expect.
+type PatchFeatureStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -185,21 +185,21 @@ type PatchFeatureStrategy400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *PatchFeatureStrategy400ApplicationJSON) GetID() *string {
+func (o *PatchFeatureStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PatchFeatureStrategy400ApplicationJSON) GetMessage() *string {
+func (o *PatchFeatureStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *PatchFeatureStrategy400ApplicationJSON) GetName() *string {
+func (o *PatchFeatureStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -207,6 +207,16 @@ func (o *PatchFeatureStrategy400ApplicationJSON) GetName() *string {
 }
 
 type PatchFeatureStrategyResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *PatchFeatureStrategyResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *PatchFeatureStrategyFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *PatchFeatureStrategyFeaturesResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *PatchFeatureStrategyFeaturesResponse404ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *PatchFeatureStrategyFeaturesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -215,16 +225,41 @@ type PatchFeatureStrategyResponse struct {
 	RawResponse *http.Response
 	// featureStrategySchema
 	FeatureStrategySchema *shared.FeatureStrategySchema
-	// The request data does not match what we expect.
-	PatchFeatureStrategy400ApplicationJSONObject *PatchFeatureStrategy400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	PatchFeatureStrategy401ApplicationJSONObject *PatchFeatureStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	PatchFeatureStrategy403ApplicationJSONObject *PatchFeatureStrategy403ApplicationJSON
-	// The requested resource was not found.
-	PatchFeatureStrategy404ApplicationJSONObject *PatchFeatureStrategy404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	PatchFeatureStrategy415ApplicationJSONObject *PatchFeatureStrategy415ApplicationJSON
+}
+
+func (o *PatchFeatureStrategyResponse) GetFourHundredApplicationJSONObject() *PatchFeatureStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *PatchFeatureStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *PatchFeatureStrategyFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *PatchFeatureStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *PatchFeatureStrategyFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *PatchFeatureStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *PatchFeatureStrategyFeaturesResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *PatchFeatureStrategyResponse) GetFourHundredAndFifteenApplicationJSONObject() *PatchFeatureStrategyFeaturesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *PatchFeatureStrategyResponse) GetContentType() string {
@@ -253,39 +288,4 @@ func (o *PatchFeatureStrategyResponse) GetFeatureStrategySchema() *shared.Featur
 		return nil
 	}
 	return o.FeatureStrategySchema
-}
-
-func (o *PatchFeatureStrategyResponse) GetPatchFeatureStrategy400ApplicationJSONObject() *PatchFeatureStrategy400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.PatchFeatureStrategy400ApplicationJSONObject
-}
-
-func (o *PatchFeatureStrategyResponse) GetPatchFeatureStrategy401ApplicationJSONObject() *PatchFeatureStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.PatchFeatureStrategy401ApplicationJSONObject
-}
-
-func (o *PatchFeatureStrategyResponse) GetPatchFeatureStrategy403ApplicationJSONObject() *PatchFeatureStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.PatchFeatureStrategy403ApplicationJSONObject
-}
-
-func (o *PatchFeatureStrategyResponse) GetPatchFeatureStrategy404ApplicationJSONObject() *PatchFeatureStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.PatchFeatureStrategy404ApplicationJSONObject
-}
-
-func (o *PatchFeatureStrategyResponse) GetPatchFeatureStrategy415ApplicationJSONObject() *PatchFeatureStrategy415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.PatchFeatureStrategy415ApplicationJSONObject
 }

@@ -17,8 +17,8 @@ func (o *DeletePatRequest) GetID() string {
 	return o.ID
 }
 
-// DeletePat404ApplicationJSON - The requested resource was not found.
-type DeletePat404ApplicationJSON struct {
+// DeletePatPersonalAccessTokensResponseResponseBody - The requested resource was not found.
+type DeletePatPersonalAccessTokensResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type DeletePat404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeletePat404ApplicationJSON) GetID() *string {
+func (o *DeletePatPersonalAccessTokensResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeletePat404ApplicationJSON) GetMessage() *string {
+func (o *DeletePatPersonalAccessTokensResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeletePat404ApplicationJSON) GetName() *string {
+func (o *DeletePatPersonalAccessTokensResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeletePat403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeletePat403ApplicationJSON struct {
+// DeletePatPersonalAccessTokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeletePatPersonalAccessTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type DeletePat403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeletePat403ApplicationJSON) GetID() *string {
+func (o *DeletePatPersonalAccessTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeletePat403ApplicationJSON) GetMessage() *string {
+func (o *DeletePatPersonalAccessTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeletePat403ApplicationJSON) GetName() *string {
+func (o *DeletePatPersonalAccessTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeletePat401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeletePat401ApplicationJSON struct {
+// DeletePatResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeletePatResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type DeletePat401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeletePat401ApplicationJSON) GetID() *string {
+func (o *DeletePatResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeletePat401ApplicationJSON) GetMessage() *string {
+func (o *DeletePatResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeletePat401ApplicationJSON) GetName() *string {
+func (o *DeletePatResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *DeletePat401ApplicationJSON) GetName() *string {
 }
 
 type DeletePatResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeletePatResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeletePatPersonalAccessTokensResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *DeletePatPersonalAccessTokensResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeletePat401ApplicationJSONObject *DeletePat401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeletePat403ApplicationJSONObject *DeletePat403ApplicationJSON
-	// The requested resource was not found.
-	DeletePat404ApplicationJSONObject *DeletePat404ApplicationJSON
+}
+
+func (o *DeletePatResponse) GetFourHundredAndOneApplicationJSONObject() *DeletePatResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeletePatResponse) GetFourHundredAndThreeApplicationJSONObject() *DeletePatPersonalAccessTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *DeletePatResponse) GetFourHundredAndFourApplicationJSONObject() *DeletePatPersonalAccessTokensResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *DeletePatResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *DeletePatResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeletePatResponse) GetDeletePat401ApplicationJSONObject() *DeletePat401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeletePat401ApplicationJSONObject
-}
-
-func (o *DeletePatResponse) GetDeletePat403ApplicationJSONObject() *DeletePat403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeletePat403ApplicationJSONObject
-}
-
-func (o *DeletePatResponse) GetDeletePat404ApplicationJSONObject() *DeletePat404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeletePat404ApplicationJSONObject
 }

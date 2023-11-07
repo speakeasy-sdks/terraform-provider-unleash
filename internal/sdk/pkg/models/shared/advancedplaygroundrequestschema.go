@@ -9,89 +9,89 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// AdvancedPlaygroundRequestSchemaProjects2 - Check toggles in all projects.
-type AdvancedPlaygroundRequestSchemaProjects2 string
+// Two - Check toggles in all projects.
+type Two string
 
 const (
-	AdvancedPlaygroundRequestSchemaProjects2Wildcard AdvancedPlaygroundRequestSchemaProjects2 = "*"
+	TwoWildcard Two = "*"
 )
 
-func (e AdvancedPlaygroundRequestSchemaProjects2) ToPointer() *AdvancedPlaygroundRequestSchemaProjects2 {
+func (e Two) ToPointer() *Two {
 	return &e
 }
 
-func (e *AdvancedPlaygroundRequestSchemaProjects2) UnmarshalJSON(data []byte) error {
+func (e *Two) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "*":
-		*e = AdvancedPlaygroundRequestSchemaProjects2(v)
+		*e = Two(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AdvancedPlaygroundRequestSchemaProjects2: %v", v)
+		return fmt.Errorf("invalid value for Two: %v", v)
 	}
 }
 
-type AdvancedPlaygroundRequestSchemaProjectsType string
+type ProjectsType string
 
 const (
-	AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr                               AdvancedPlaygroundRequestSchemaProjectsType = "arrayOfstr"
-	AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2 AdvancedPlaygroundRequestSchemaProjectsType = "advancedPlaygroundRequestSchema_projects_2"
+	ProjectsTypeArrayOfstr ProjectsType = "arrayOfstr"
+	ProjectsTypeTwo        ProjectsType = "2"
 )
 
-type AdvancedPlaygroundRequestSchemaProjects struct {
-	ArrayOfstr                               []string
-	AdvancedPlaygroundRequestSchemaProjects2 *AdvancedPlaygroundRequestSchemaProjects2
+type Projects struct {
+	ArrayOfstr []string
+	Two        *Two
 
-	Type AdvancedPlaygroundRequestSchemaProjectsType
+	Type ProjectsType
 }
 
-func CreateAdvancedPlaygroundRequestSchemaProjectsArrayOfstr(arrayOfstr []string) AdvancedPlaygroundRequestSchemaProjects {
-	typ := AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr
+func CreateProjectsArrayOfstr(arrayOfstr []string) Projects {
+	typ := ProjectsTypeArrayOfstr
 
-	return AdvancedPlaygroundRequestSchemaProjects{
+	return Projects{
 		ArrayOfstr: arrayOfstr,
 		Type:       typ,
 	}
 }
 
-func CreateAdvancedPlaygroundRequestSchemaProjectsAdvancedPlaygroundRequestSchemaProjects2(advancedPlaygroundRequestSchemaProjects2 AdvancedPlaygroundRequestSchemaProjects2) AdvancedPlaygroundRequestSchemaProjects {
-	typ := AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2
+func CreateProjectsTwo(two Two) Projects {
+	typ := ProjectsTypeTwo
 
-	return AdvancedPlaygroundRequestSchemaProjects{
-		AdvancedPlaygroundRequestSchemaProjects2: &advancedPlaygroundRequestSchemaProjects2,
-		Type:                                     typ,
+	return Projects{
+		Two:  &two,
+		Type: typ,
 	}
 }
 
-func (u *AdvancedPlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
+func (u *Projects) UnmarshalJSON(data []byte) error {
 
 	arrayOfstr := []string{}
 	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
 		u.ArrayOfstr = arrayOfstr
-		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeArrayOfstr
+		u.Type = ProjectsTypeArrayOfstr
 		return nil
 	}
 
-	advancedPlaygroundRequestSchemaProjects2 := new(AdvancedPlaygroundRequestSchemaProjects2)
-	if err := utils.UnmarshalJSON(data, &advancedPlaygroundRequestSchemaProjects2, "", true, true); err == nil {
-		u.AdvancedPlaygroundRequestSchemaProjects2 = advancedPlaygroundRequestSchemaProjects2
-		u.Type = AdvancedPlaygroundRequestSchemaProjectsTypeAdvancedPlaygroundRequestSchemaProjects2
+	two := new(Two)
+	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
+		u.Two = two
+		u.Type = ProjectsTypeTwo
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u AdvancedPlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
+func (u Projects) MarshalJSON() ([]byte, error) {
 	if u.ArrayOfstr != nil {
 		return utils.MarshalJSON(u.ArrayOfstr, "", true)
 	}
 
-	if u.AdvancedPlaygroundRequestSchemaProjects2 != nil {
-		return utils.MarshalJSON(u.AdvancedPlaygroundRequestSchemaProjects2, "", true)
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -104,7 +104,7 @@ type AdvancedPlaygroundRequestSchema struct {
 	// The environments to evaluate toggles in.
 	Environments []string `json:"environments"`
 	// A list of projects to check for toggles in.
-	Projects *AdvancedPlaygroundRequestSchemaProjects `json:"projects,omitempty"`
+	Projects *Projects `json:"projects,omitempty"`
 }
 
 func (o *AdvancedPlaygroundRequestSchema) GetContext() SDKContextSchema {
@@ -121,7 +121,7 @@ func (o *AdvancedPlaygroundRequestSchema) GetEnvironments() []string {
 	return o.Environments
 }
 
-func (o *AdvancedPlaygroundRequestSchema) GetProjects() *AdvancedPlaygroundRequestSchemaProjects {
+func (o *AdvancedPlaygroundRequestSchema) GetProjects() *Projects {
 	if o == nil {
 		return nil
 	}

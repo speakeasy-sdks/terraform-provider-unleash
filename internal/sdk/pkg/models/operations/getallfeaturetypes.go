@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAllFeatureTypes401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAllFeatureTypes401ApplicationJSON struct {
+// GetAllFeatureTypesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllFeatureTypesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetAllFeatureTypes401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllFeatureTypes401ApplicationJSON) GetID() *string {
+func (o *GetAllFeatureTypesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllFeatureTypes401ApplicationJSON) GetMessage() *string {
+func (o *GetAllFeatureTypesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllFeatureTypes401ApplicationJSON) GetName() *string {
+func (o *GetAllFeatureTypesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type GetAllFeatureTypesResponse struct {
 	// featureTypesSchema
 	FeatureTypesSchema *shared.FeatureTypesSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAllFeatureTypes401ApplicationJSONObject *GetAllFeatureTypes401ApplicationJSON
+	Object *GetAllFeatureTypesResponseBody
 }
 
 func (o *GetAllFeatureTypesResponse) GetContentType() string {
@@ -79,9 +79,9 @@ func (o *GetAllFeatureTypesResponse) GetFeatureTypesSchema() *shared.FeatureType
 	return o.FeatureTypesSchema
 }
 
-func (o *GetAllFeatureTypesResponse) GetGetAllFeatureTypes401ApplicationJSONObject() *GetAllFeatureTypes401ApplicationJSON {
+func (o *GetAllFeatureTypesResponse) GetObject() *GetAllFeatureTypesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllFeatureTypes401ApplicationJSONObject
+	return o.Object
 }

@@ -8,20 +8,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// CreateStrategyVariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
-type CreateStrategyVariantSchemaPayloadType string
+// CreateStrategyVariantSchemaType - The type of the value. Commonly used types are string, json and csv.
+type CreateStrategyVariantSchemaType string
 
 const (
-	CreateStrategyVariantSchemaPayloadTypeJSON   CreateStrategyVariantSchemaPayloadType = "json"
-	CreateStrategyVariantSchemaPayloadTypeCsv    CreateStrategyVariantSchemaPayloadType = "csv"
-	CreateStrategyVariantSchemaPayloadTypeString CreateStrategyVariantSchemaPayloadType = "string"
+	CreateStrategyVariantSchemaTypeJSON   CreateStrategyVariantSchemaType = "json"
+	CreateStrategyVariantSchemaTypeCsv    CreateStrategyVariantSchemaType = "csv"
+	CreateStrategyVariantSchemaTypeString CreateStrategyVariantSchemaType = "string"
 )
 
-func (e CreateStrategyVariantSchemaPayloadType) ToPointer() *CreateStrategyVariantSchemaPayloadType {
+func (e CreateStrategyVariantSchemaType) ToPointer() *CreateStrategyVariantSchemaType {
 	return &e
 }
 
-func (e *CreateStrategyVariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
+func (e *CreateStrategyVariantSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,48 +32,48 @@ func (e *CreateStrategyVariantSchemaPayloadType) UnmarshalJSON(data []byte) erro
 	case "csv":
 		fallthrough
 	case "string":
-		*e = CreateStrategyVariantSchemaPayloadType(v)
+		*e = CreateStrategyVariantSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateStrategyVariantSchemaPayloadType: %v", v)
+		return fmt.Errorf("invalid value for CreateStrategyVariantSchemaType: %v", v)
 	}
 }
 
-// CreateStrategyVariantSchemaPayload - Extra data configured for this variant
-type CreateStrategyVariantSchemaPayload struct {
+// Payload - Extra data configured for this variant
+type Payload struct {
 	// The type of the value. Commonly used types are string, json and csv.
-	Type CreateStrategyVariantSchemaPayloadType `json:"type"`
+	Type CreateStrategyVariantSchemaType `json:"type"`
 	// The actual value of payload
 	Value string `json:"value"`
 }
 
-func (o *CreateStrategyVariantSchemaPayload) GetType() CreateStrategyVariantSchemaPayloadType {
+func (o *Payload) GetType() CreateStrategyVariantSchemaType {
 	if o == nil {
-		return CreateStrategyVariantSchemaPayloadType("")
+		return CreateStrategyVariantSchemaType("")
 	}
 	return o.Type
 }
 
-func (o *CreateStrategyVariantSchemaPayload) GetValue() string {
+func (o *Payload) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-// CreateStrategyVariantSchemaWeightType - Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
-type CreateStrategyVariantSchemaWeightType string
+// WeightType - Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
+type WeightType string
 
 const (
-	CreateStrategyVariantSchemaWeightTypeVariable CreateStrategyVariantSchemaWeightType = "variable"
-	CreateStrategyVariantSchemaWeightTypeFix      CreateStrategyVariantSchemaWeightType = "fix"
+	WeightTypeVariable WeightType = "variable"
+	WeightTypeFix      WeightType = "fix"
 )
 
-func (e CreateStrategyVariantSchemaWeightType) ToPointer() *CreateStrategyVariantSchemaWeightType {
+func (e WeightType) ToPointer() *WeightType {
 	return &e
 }
 
-func (e *CreateStrategyVariantSchemaWeightType) UnmarshalJSON(data []byte) error {
+func (e *WeightType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -82,10 +82,10 @@ func (e *CreateStrategyVariantSchemaWeightType) UnmarshalJSON(data []byte) error
 	case "variable":
 		fallthrough
 	case "fix":
-		*e = CreateStrategyVariantSchemaWeightType(v)
+		*e = WeightType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateStrategyVariantSchemaWeightType: %v", v)
+		return fmt.Errorf("invalid value for WeightType: %v", v)
 	}
 }
 
@@ -95,13 +95,13 @@ type CreateStrategyVariantSchema struct {
 	// The variant name. Must be unique for this feature toggle
 	Name string `json:"name"`
 	// Extra data configured for this variant
-	Payload *CreateStrategyVariantSchemaPayload `json:"payload,omitempty"`
+	Payload *Payload `json:"payload,omitempty"`
 	// The [stickiness](https://docs.getunleash.io/reference/feature-toggle-variants#variant-stickiness) to use for distribution of this variant. Stickiness is how Unleash guarantees that the same user gets the same variant every time
 	Stickiness string `json:"stickiness"`
 	// The weight is the likelihood of any one user getting this variant. It is an integer between 0 and 1000. See the section on [variant weights](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight) for more information
 	Weight int64 `json:"weight"`
 	// Set to `fix` if this variant must have exactly the weight allocated to it. If the type is `variable`, the weight will adjust so that the total weight of all variants adds up to 1000. Refer to the [variant weight documentation](https://docs.getunleash.io/reference/feature-toggle-variants#variant-weight).
-	WeightType CreateStrategyVariantSchemaWeightType `json:"weightType"`
+	WeightType WeightType `json:"weightType"`
 }
 
 func (c CreateStrategyVariantSchema) MarshalJSON() ([]byte, error) {
@@ -129,7 +129,7 @@ func (o *CreateStrategyVariantSchema) GetName() string {
 	return o.Name
 }
 
-func (o *CreateStrategyVariantSchema) GetPayload() *CreateStrategyVariantSchemaPayload {
+func (o *CreateStrategyVariantSchema) GetPayload() *Payload {
 	if o == nil {
 		return nil
 	}
@@ -150,9 +150,9 @@ func (o *CreateStrategyVariantSchema) GetWeight() int64 {
 	return o.Weight
 }
 
-func (o *CreateStrategyVariantSchema) GetWeightType() CreateStrategyVariantSchemaWeightType {
+func (o *CreateStrategyVariantSchema) GetWeightType() WeightType {
 	if o == nil {
-		return CreateStrategyVariantSchemaWeightType("")
+		return WeightType("")
 	}
 	return o.WeightType
 }

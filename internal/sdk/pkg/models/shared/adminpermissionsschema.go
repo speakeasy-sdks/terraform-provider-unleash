@@ -7,71 +7,71 @@ import (
 	"fmt"
 )
 
-type AdminPermissionsSchemaPermissionsEnvironments struct {
+type Environments struct {
 	// The name of the environment
 	Name string `json:"name"`
 	// Permissions available for this environment
 	Permissions []AdminPermissionSchema `json:"permissions"`
 }
 
-func (o *AdminPermissionsSchemaPermissionsEnvironments) GetName() string {
+func (o *Environments) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *AdminPermissionsSchemaPermissionsEnvironments) GetPermissions() []AdminPermissionSchema {
+func (o *Environments) GetPermissions() []AdminPermissionSchema {
 	if o == nil {
 		return []AdminPermissionSchema{}
 	}
 	return o.Permissions
 }
 
-// AdminPermissionsSchemaPermissions - Returns permissions available at all three levels (root|project|environment)
-type AdminPermissionsSchemaPermissions struct {
+// Permissions - Returns permissions available at all three levels (root|project|environment)
+type Permissions struct {
 	// A list of environments with available permissions per environment
-	Environments []AdminPermissionsSchemaPermissionsEnvironments `json:"environments"`
+	Environments []Environments `json:"environments"`
 	// Permissions available at the project level
 	Project []AdminPermissionSchema `json:"project"`
 	// Permissions available at the root level, i.e. not connected to any specific project or environment
 	Root []AdminPermissionSchema `json:"root,omitempty"`
 }
 
-func (o *AdminPermissionsSchemaPermissions) GetEnvironments() []AdminPermissionsSchemaPermissionsEnvironments {
+func (o *Permissions) GetEnvironments() []Environments {
 	if o == nil {
-		return []AdminPermissionsSchemaPermissionsEnvironments{}
+		return []Environments{}
 	}
 	return o.Environments
 }
 
-func (o *AdminPermissionsSchemaPermissions) GetProject() []AdminPermissionSchema {
+func (o *Permissions) GetProject() []AdminPermissionSchema {
 	if o == nil {
 		return []AdminPermissionSchema{}
 	}
 	return o.Project
 }
 
-func (o *AdminPermissionsSchemaPermissions) GetRoot() []AdminPermissionSchema {
+func (o *Permissions) GetRoot() []AdminPermissionSchema {
 	if o == nil {
 		return nil
 	}
 	return o.Root
 }
 
-// AdminPermissionsSchemaVersion - The api version of this response. A natural increasing number. Only increases if format changes
-type AdminPermissionsSchemaVersion int64
+// Version - The api version of this response. A natural increasing number. Only increases if format changes
+type Version int64
 
 const (
-	AdminPermissionsSchemaVersionOne AdminPermissionsSchemaVersion = 1
-	AdminPermissionsSchemaVersionTwo AdminPermissionsSchemaVersion = 2
+	VersionOne Version = 1
+	VersionTwo Version = 2
 )
 
-func (e AdminPermissionsSchemaVersion) ToPointer() *AdminPermissionsSchemaVersion {
+func (e Version) ToPointer() *Version {
 	return &e
 }
 
-func (e *AdminPermissionsSchemaVersion) UnmarshalJSON(data []byte) error {
+func (e *Version) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -80,31 +80,31 @@ func (e *AdminPermissionsSchemaVersion) UnmarshalJSON(data []byte) error {
 	case 1:
 		fallthrough
 	case 2:
-		*e = AdminPermissionsSchemaVersion(v)
+		*e = Version(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AdminPermissionsSchemaVersion: %v", v)
+		return fmt.Errorf("invalid value for Version: %v", v)
 	}
 }
 
 // AdminPermissionsSchema - What kind of permissions are available
 type AdminPermissionsSchema struct {
 	// Returns permissions available at all three levels (root|project|environment)
-	Permissions AdminPermissionsSchemaPermissions `json:"permissions"`
+	Permissions Permissions `json:"permissions"`
 	// The api version of this response. A natural increasing number. Only increases if format changes
-	Version AdminPermissionsSchemaVersion `json:"version"`
+	Version Version `json:"version"`
 }
 
-func (o *AdminPermissionsSchema) GetPermissions() AdminPermissionsSchemaPermissions {
+func (o *AdminPermissionsSchema) GetPermissions() Permissions {
 	if o == nil {
-		return AdminPermissionsSchemaPermissions{}
+		return Permissions{}
 	}
 	return o.Permissions
 }
 
-func (o *AdminPermissionsSchema) GetVersion() AdminPermissionsSchemaVersion {
+func (o *AdminPermissionsSchema) GetVersion() Version {
 	if o == nil {
-		return AdminPermissionsSchemaVersion(0)
+		return Version(0)
 	}
 	return o.Version
 }

@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateProject401ApplicationJSON struct {
+// CreateProjectProjectsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateProjectProjectsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateProject401ApplicationJSON) GetID() *string {
+func (o *CreateProjectProjectsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateProject401ApplicationJSON) GetMessage() *string {
+func (o *CreateProjectProjectsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateProject401ApplicationJSON) GetName() *string {
+func (o *CreateProjectProjectsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateProject400ApplicationJSON - The request data does not match what we expect.
-type CreateProject400ApplicationJSON struct {
+// CreateProjectResponseBody - The request data does not match what we expect.
+type CreateProjectResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type CreateProject400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateProject400ApplicationJSON) GetID() *string {
+func (o *CreateProjectResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateProject400ApplicationJSON) GetMessage() *string {
+func (o *CreateProjectResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateProject400ApplicationJSON) GetName() *string {
+func (o *CreateProjectResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *CreateProject400ApplicationJSON) GetName() *string {
 }
 
 type CreateProjectResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateProjectResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateProjectProjectsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -77,12 +81,22 @@ type CreateProjectResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateProject400ApplicationJSONObject *CreateProject400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateProject401ApplicationJSONObject *CreateProject401ApplicationJSON
 	// The resource was successfully created.
 	ProjectCreatedSchema *shared.ProjectCreatedSchema
+}
+
+func (o *CreateProjectResponse) GetFourHundredApplicationJSONObject() *CreateProjectResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateProjectResponse) GetFourHundredAndOneApplicationJSONObject() *CreateProjectProjectsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }
 
 func (o *CreateProjectResponse) GetContentType() string {
@@ -111,20 +125,6 @@ func (o *CreateProjectResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateProjectResponse) GetCreateProject400ApplicationJSONObject() *CreateProject400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateProject400ApplicationJSONObject
-}
-
-func (o *CreateProjectResponse) GetCreateProject401ApplicationJSONObject() *CreateProject401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateProject401ApplicationJSONObject
 }
 
 func (o *CreateProjectResponse) GetProjectCreatedSchema() *shared.ProjectCreatedSchema {

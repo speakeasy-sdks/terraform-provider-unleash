@@ -27,8 +27,8 @@ func (o *UpdateStrategyRequest) GetUpdateStrategySchema() shared.UpdateStrategyS
 	return o.UpdateStrategySchema
 }
 
-// UpdateStrategy415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateStrategy415ApplicationJSON struct {
+// UpdateStrategyStrategiesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateStrategyStrategiesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateStrategy415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateStrategy415ApplicationJSON) GetID() *string {
+func (o *UpdateStrategyStrategiesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateStrategy415ApplicationJSON) GetMessage() *string {
+func (o *UpdateStrategyStrategiesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateStrategy415ApplicationJSON) GetName() *string {
+func (o *UpdateStrategyStrategiesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateStrategy404ApplicationJSON - The requested resource was not found.
-type UpdateStrategy404ApplicationJSON struct {
+// UpdateStrategyStrategiesResponseResponseBody - The requested resource was not found.
+type UpdateStrategyStrategiesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdateStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateStrategy404ApplicationJSON) GetID() *string {
+func (o *UpdateStrategyStrategiesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateStrategy404ApplicationJSON) GetMessage() *string {
+func (o *UpdateStrategyStrategiesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateStrategy404ApplicationJSON) GetName() *string {
+func (o *UpdateStrategyStrategiesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateStrategy403ApplicationJSON struct {
+// UpdateStrategyStrategiesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type UpdateStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateStrategy403ApplicationJSON) GetID() *string {
+func (o *UpdateStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateStrategy403ApplicationJSON) GetMessage() *string {
+func (o *UpdateStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateStrategy403ApplicationJSON) GetName() *string {
+func (o *UpdateStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateStrategy401ApplicationJSON struct {
+// UpdateStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,21 +130,21 @@ type UpdateStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateStrategy401ApplicationJSON) GetID() *string {
+func (o *UpdateStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateStrategy401ApplicationJSON) GetMessage() *string {
+func (o *UpdateStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateStrategy401ApplicationJSON) GetName() *string {
+func (o *UpdateStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -152,20 +152,48 @@ func (o *UpdateStrategy401ApplicationJSON) GetName() *string {
 }
 
 type UpdateStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateStrategyStrategiesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *UpdateStrategyStrategiesResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateStrategyStrategiesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateStrategy401ApplicationJSONObject *UpdateStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateStrategy403ApplicationJSONObject *UpdateStrategy403ApplicationJSON
-	// The requested resource was not found.
-	UpdateStrategy404ApplicationJSONObject *UpdateStrategy404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateStrategy415ApplicationJSONObject *UpdateStrategy415ApplicationJSON
+}
+
+func (o *UpdateStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *UpdateStrategyStrategiesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *UpdateStrategyResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateStrategyStrategiesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateStrategyResponse) GetContentType() string {
@@ -187,32 +215,4 @@ func (o *UpdateStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateStrategyResponse) GetUpdateStrategy401ApplicationJSONObject() *UpdateStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateStrategy401ApplicationJSONObject
-}
-
-func (o *UpdateStrategyResponse) GetUpdateStrategy403ApplicationJSONObject() *UpdateStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateStrategy403ApplicationJSONObject
-}
-
-func (o *UpdateStrategyResponse) GetUpdateStrategy404ApplicationJSONObject() *UpdateStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateStrategy404ApplicationJSONObject
-}
-
-func (o *UpdateStrategyResponse) GetUpdateStrategy415ApplicationJSONObject() *UpdateStrategy415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateStrategy415ApplicationJSONObject
 }

@@ -17,8 +17,8 @@ func (o *DeleteGroupRequest) GetGroupID() string {
 	return o.GroupID
 }
 
-// DeleteGroup403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeleteGroup403ApplicationJSON struct {
+// DeleteGroupUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteGroupUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type DeleteGroup403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteGroup403ApplicationJSON) GetID() *string {
+func (o *DeleteGroupUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteGroup403ApplicationJSON) GetMessage() *string {
+func (o *DeleteGroupUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteGroup403ApplicationJSON) GetName() *string {
+func (o *DeleteGroupUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteGroup401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeleteGroup401ApplicationJSON struct {
+// DeleteGroupUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteGroupUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type DeleteGroup401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteGroup401ApplicationJSON) GetID() *string {
+func (o *DeleteGroupUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteGroup401ApplicationJSON) GetMessage() *string {
+func (o *DeleteGroupUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteGroup401ApplicationJSON) GetName() *string {
+func (o *DeleteGroupUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteGroup400ApplicationJSON - The request data does not match what we expect.
-type DeleteGroup400ApplicationJSON struct {
+// DeleteGroupResponseBody - The request data does not match what we expect.
+type DeleteGroupResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type DeleteGroup400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteGroup400ApplicationJSON) GetID() *string {
+func (o *DeleteGroupResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteGroup400ApplicationJSON) GetMessage() *string {
+func (o *DeleteGroupResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteGroup400ApplicationJSON) GetName() *string {
+func (o *DeleteGroupResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *DeleteGroup400ApplicationJSON) GetName() *string {
 }
 
 type DeleteGroupResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *DeleteGroupResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeleteGroupUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeleteGroupUsersResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	DeleteGroup400ApplicationJSONObject *DeleteGroup400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeleteGroup401ApplicationJSONObject *DeleteGroup401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeleteGroup403ApplicationJSONObject *DeleteGroup403ApplicationJSON
+}
+
+func (o *DeleteGroupResponse) GetFourHundredApplicationJSONObject() *DeleteGroupResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *DeleteGroupResponse) GetFourHundredAndOneApplicationJSONObject() *DeleteGroupUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeleteGroupResponse) GetFourHundredAndThreeApplicationJSONObject() *DeleteGroupUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *DeleteGroupResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *DeleteGroupResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteGroupResponse) GetDeleteGroup400ApplicationJSONObject() *DeleteGroup400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteGroup400ApplicationJSONObject
-}
-
-func (o *DeleteGroupResponse) GetDeleteGroup401ApplicationJSONObject() *DeleteGroup401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteGroup401ApplicationJSONObject
-}
-
-func (o *DeleteGroupResponse) GetDeleteGroup403ApplicationJSONObject() *DeleteGroup403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteGroup403ApplicationJSONObject
 }

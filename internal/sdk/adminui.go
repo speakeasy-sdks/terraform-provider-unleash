@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// adminUI - Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
-type adminUI struct {
+// AdminUI - Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
+type AdminUI struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAdminUI(sdkConfig sdkConfiguration) *adminUI {
-	return &adminUI{
+func newAdminUI(sdkConfig sdkConfiguration) *AdminUI {
+	return &AdminUI{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateFeedback - Send Unleash feedback
 // Sends feedback gathered from the Unleash UI to the Unleash server. Must be called with a token with an identifiable user (either from being sent from the UI or from using a [PAT](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens)).
-func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCreateSchema) (*operations.CreateFeedbackResponse, error) {
+func (s *AdminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCreateSchema) (*operations.CreateFeedbackResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/feedback"
 
@@ -93,36 +93,36 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeedback400ApplicationJSON
+			var out operations.CreateFeedbackResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeedback400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeedback401ApplicationJSON
+			var out operations.CreateFeedbackAdminUIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeedback401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeedback415ApplicationJSON
+			var out operations.CreateFeedbackAdminUIResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeedback415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -133,7 +133,7 @@ func (s *adminUI) CreateFeedback(ctx context.Context, request shared.FeedbackCre
 
 // GetUIConfig - Get UI configuration
 // Retrieves the full configuration used to set up the Unleash Admin UI.
-func (s *adminUI) GetUIConfig(ctx context.Context) (*operations.GetUIConfigResponse, error) {
+func (s *AdminUI) GetUIConfig(ctx context.Context) (*operations.GetUIConfigResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/ui-config"
 
@@ -188,7 +188,7 @@ func (s *adminUI) GetUIConfig(ctx context.Context) (*operations.GetUIConfigRespo
 
 // SetUIConfig - Set UI configuration
 // Sets the UI configuration for this Unleash instance.
-func (s *adminUI) SetUIConfig(ctx context.Context, request shared.SetUIConfigSchema) (*operations.SetUIConfigResponse, error) {
+func (s *AdminUI) SetUIConfig(ctx context.Context, request shared.SetUIConfigSchema) (*operations.SetUIConfigResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/ui-config"
 
@@ -246,7 +246,7 @@ func (s *adminUI) SetUIConfig(ctx context.Context, request shared.SetUIConfigSch
 
 // UpdateFeedback - Update Unleash feedback
 // Updates the feedback with the provided ID. Only provided fields are updated. Fields left out are left untouched. Must be called with a token with an identifiable user (either from being sent from the UI or from using a [PAT](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens)).
-func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateFeedbackRequest) (*operations.UpdateFeedbackResponse, error) {
+func (s *AdminUI) UpdateFeedback(ctx context.Context, request operations.UpdateFeedbackRequest) (*operations.UpdateFeedbackResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/feedback/{id}", request, nil)
 	if err != nil {
@@ -314,36 +314,36 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeedback400ApplicationJSON
+			var out operations.UpdateFeedbackResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeedback400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeedback401ApplicationJSON
+			var out operations.UpdateFeedbackAdminUIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeedback401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeedback415ApplicationJSON
+			var out operations.UpdateFeedbackAdminUIResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeedback415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -354,7 +354,7 @@ func (s *adminUI) UpdateFeedback(ctx context.Context, request operations.UpdateF
 
 // UpdateSplashSettings - Update splash settings
 // This operation updates splash settings for a user, indicating that they have seen a particualar splash screen.
-func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.UpdateSplashSettingsRequest) (*operations.UpdateSplashSettingsResponse, error) {
+func (s *AdminUI) UpdateSplashSettings(ctx context.Context, request operations.UpdateSplashSettingsRequest) (*operations.UpdateSplashSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/splash/{id}", request, nil)
 	if err != nil {
@@ -408,48 +408,48 @@ func (s *adminUI) UpdateSplashSettings(ctx context.Context, request operations.U
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSplashSettings400ApplicationJSON
+			var out operations.UpdateSplashSettingsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSplashSettings400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSplashSettings401ApplicationJSON
+			var out operations.UpdateSplashSettingsAdminUIResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSplashSettings401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSplashSettings403ApplicationJSON
+			var out operations.UpdateSplashSettingsAdminUIResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSplashSettings403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSplashSettings415ApplicationJSON
+			var out operations.UpdateSplashSettingsAdminUIResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSplashSettings415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

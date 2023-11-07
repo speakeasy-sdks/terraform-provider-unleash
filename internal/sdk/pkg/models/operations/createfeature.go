@@ -27,8 +27,8 @@ func (o *CreateFeatureRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// CreateFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateFeature415ApplicationJSON struct {
+// CreateFeatureFeaturesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateFeatureFeaturesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type CreateFeature415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeature415ApplicationJSON) GetID() *string {
+func (o *CreateFeatureFeaturesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeature415ApplicationJSON) GetMessage() *string {
+func (o *CreateFeatureFeaturesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeature415ApplicationJSON) GetName() *string {
+func (o *CreateFeatureFeaturesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateFeature404ApplicationJSON - The requested resource was not found.
-type CreateFeature404ApplicationJSON struct {
+// CreateFeatureFeaturesResponseResponseBody - The requested resource was not found.
+type CreateFeatureFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type CreateFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeature404ApplicationJSON) GetID() *string {
+func (o *CreateFeatureFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeature404ApplicationJSON) GetMessage() *string {
+func (o *CreateFeatureFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeature404ApplicationJSON) GetName() *string {
+func (o *CreateFeatureFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateFeature403ApplicationJSON struct {
+// CreateFeatureFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateFeatureFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type CreateFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeature403ApplicationJSON) GetID() *string {
+func (o *CreateFeatureFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeature403ApplicationJSON) GetMessage() *string {
+func (o *CreateFeatureFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeature403ApplicationJSON) GetName() *string {
+func (o *CreateFeatureFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateFeature401ApplicationJSON struct {
+// CreateFeatureResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,21 +130,21 @@ type CreateFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeature401ApplicationJSON) GetID() *string {
+func (o *CreateFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeature401ApplicationJSON) GetMessage() *string {
+func (o *CreateFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeature401ApplicationJSON) GetName() *string {
+func (o *CreateFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -152,22 +152,50 @@ func (o *CreateFeature401ApplicationJSON) GetName() *string {
 }
 
 type CreateFeatureResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateFeatureResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateFeatureFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *CreateFeatureFeaturesResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateFeatureFeaturesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateFeature401ApplicationJSONObject *CreateFeature401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateFeature403ApplicationJSONObject *CreateFeature403ApplicationJSON
-	// The requested resource was not found.
-	CreateFeature404ApplicationJSONObject *CreateFeature404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateFeature415ApplicationJSONObject *CreateFeature415ApplicationJSON
 	// featureSchema
 	FeatureSchema *shared.FeatureSchema
+}
+
+func (o *CreateFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *CreateFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateFeatureResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateFeatureFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateFeatureResponse) GetFourHundredAndFourApplicationJSONObject() *CreateFeatureFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *CreateFeatureResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateFeatureFeaturesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateFeatureResponse) GetContentType() string {
@@ -189,34 +217,6 @@ func (o *CreateFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateFeatureResponse) GetCreateFeature401ApplicationJSONObject() *CreateFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeature401ApplicationJSONObject
-}
-
-func (o *CreateFeatureResponse) GetCreateFeature403ApplicationJSONObject() *CreateFeature403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeature403ApplicationJSONObject
-}
-
-func (o *CreateFeatureResponse) GetCreateFeature404ApplicationJSONObject() *CreateFeature404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeature404ApplicationJSONObject
-}
-
-func (o *CreateFeatureResponse) GetCreateFeature415ApplicationJSONObject() *CreateFeature415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeature415ApplicationJSONObject
 }
 
 func (o *CreateFeatureResponse) GetFeatureSchema() *shared.FeatureSchema {

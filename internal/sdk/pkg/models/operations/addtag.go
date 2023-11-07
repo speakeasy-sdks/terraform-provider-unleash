@@ -27,8 +27,8 @@ func (o *AddTagRequest) GetTagSchema() shared.TagSchema {
 	return o.TagSchema
 }
 
-// AddTag404ApplicationJSON - The requested resource was not found.
-type AddTag404ApplicationJSON struct {
+// AddTagFeaturesResponse404ResponseBody - The requested resource was not found.
+type AddTagFeaturesResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type AddTag404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTag404ApplicationJSON) GetID() *string {
+func (o *AddTagFeaturesResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTag404ApplicationJSON) GetMessage() *string {
+func (o *AddTagFeaturesResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTag404ApplicationJSON) GetName() *string {
+func (o *AddTagFeaturesResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTag403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type AddTag403ApplicationJSON struct {
+// AddTagFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type AddTagFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type AddTag403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTag403ApplicationJSON) GetID() *string {
+func (o *AddTagFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTag403ApplicationJSON) GetMessage() *string {
+func (o *AddTagFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTag403ApplicationJSON) GetName() *string {
+func (o *AddTagFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTag401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type AddTag401ApplicationJSON struct {
+// AddTagFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type AddTagFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type AddTag401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTag401ApplicationJSON) GetID() *string {
+func (o *AddTagFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTag401ApplicationJSON) GetMessage() *string {
+func (o *AddTagFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTag401ApplicationJSON) GetName() *string {
+func (o *AddTagFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTag400ApplicationJSON - The request data does not match what we expect.
-type AddTag400ApplicationJSON struct {
+// AddTagResponseBody - The request data does not match what we expect.
+type AddTagResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,21 +130,21 @@ type AddTag400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTag400ApplicationJSON) GetID() *string {
+func (o *AddTagResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTag400ApplicationJSON) GetMessage() *string {
+func (o *AddTagResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTag400ApplicationJSON) GetName() *string {
+func (o *AddTagResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -152,6 +152,14 @@ func (o *AddTag400ApplicationJSON) GetName() *string {
 }
 
 type AddTagResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *AddTagResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *AddTagFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *AddTagFeaturesResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *AddTagFeaturesResponse404ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -159,16 +167,36 @@ type AddTagResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	AddTag400ApplicationJSONObject *AddTag400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	AddTag401ApplicationJSONObject *AddTag401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	AddTag403ApplicationJSONObject *AddTag403ApplicationJSON
-	// The requested resource was not found.
-	AddTag404ApplicationJSONObject *AddTag404ApplicationJSON
 	// The resource was successfully created.
 	TagSchema *shared.TagSchema
+}
+
+func (o *AddTagResponse) GetFourHundredApplicationJSONObject() *AddTagResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *AddTagResponse) GetFourHundredAndOneApplicationJSONObject() *AddTagFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *AddTagResponse) GetFourHundredAndThreeApplicationJSONObject() *AddTagFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *AddTagResponse) GetFourHundredAndFourApplicationJSONObject() *AddTagFeaturesResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *AddTagResponse) GetContentType() string {
@@ -197,34 +225,6 @@ func (o *AddTagResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *AddTagResponse) GetAddTag400ApplicationJSONObject() *AddTag400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTag400ApplicationJSONObject
-}
-
-func (o *AddTagResponse) GetAddTag401ApplicationJSONObject() *AddTag401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTag401ApplicationJSONObject
-}
-
-func (o *AddTagResponse) GetAddTag403ApplicationJSONObject() *AddTag403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTag403ApplicationJSONObject
-}
-
-func (o *AddTagResponse) GetAddTag404ApplicationJSONObject() *AddTag404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTag404ApplicationJSONObject
 }
 
 func (o *AddTagResponse) GetTagSchema() *shared.TagSchema {

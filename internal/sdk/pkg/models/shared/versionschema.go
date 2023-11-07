@@ -2,44 +2,44 @@
 
 package shared
 
-// VersionSchemaCurrent - The current version of Unleash.
-type VersionSchemaCurrent struct {
+// Current - The current version of Unleash.
+type Current struct {
 	// The Enterpris version of Unleash used to build this instance, represented as a git revision belonging to the [Unleash Enterprise](https://github.com/ivarconr/unleash-enterprise) repository. Will be an empty string if no enterprise version was used,
 	Enterprise *string `json:"enterprise,omitempty"`
 	// The OSS version used when building this Unleash instance, represented as a git revision belonging to the [main Unleash git repo](https://github.com/Unleash/unleash/)
 	Oss *string `json:"oss,omitempty"`
 }
 
-func (o *VersionSchemaCurrent) GetEnterprise() *string {
+func (o *Current) GetEnterprise() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Enterprise
 }
 
-func (o *VersionSchemaCurrent) GetOss() *string {
+func (o *Current) GetOss() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Oss
 }
 
-// VersionSchemaLatest - Information about the latest available Unleash releases. Will be an empty object if no data is available.
-type VersionSchemaLatest struct {
+// Latest - Information about the latest available Unleash releases. Will be an empty object if no data is available.
+type Latest struct {
 	// The latest available Enterprise version of Unleash
 	Enterprise *string `json:"enterprise,omitempty"`
 	// The latest available OSS version of Unleash
 	Oss *string `json:"oss,omitempty"`
 }
 
-func (o *VersionSchemaLatest) GetEnterprise() *string {
+func (o *Latest) GetEnterprise() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Enterprise
 }
 
-func (o *VersionSchemaLatest) GetOss() *string {
+func (o *Latest) GetOss() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,18 +49,18 @@ func (o *VersionSchemaLatest) GetOss() *string {
 // VersionSchema - Detailed information about an Unleash version
 type VersionSchema struct {
 	// The current version of Unleash.
-	Current VersionSchemaCurrent `json:"current"`
+	Current Current `json:"current"`
 	// The instance identifier of the Unleash instance
 	InstanceID *string `json:"instanceId,omitempty"`
 	// Whether the Unleash server is running the latest release (`true`) or if there are updates available (`false`)
 	IsLatest bool `json:"isLatest"`
 	// Information about the latest available Unleash releases. Will be an empty object if no data is available.
-	Latest VersionSchemaLatest `json:"latest"`
+	Latest Latest `json:"latest"`
 }
 
-func (o *VersionSchema) GetCurrent() VersionSchemaCurrent {
+func (o *VersionSchema) GetCurrent() Current {
 	if o == nil {
-		return VersionSchemaCurrent{}
+		return Current{}
 	}
 	return o.Current
 }
@@ -79,9 +79,9 @@ func (o *VersionSchema) GetIsLatest() bool {
 	return o.IsLatest
 }
 
-func (o *VersionSchema) GetLatest() VersionSchemaLatest {
+func (o *VersionSchema) GetLatest() Latest {
 	if o == nil {
-		return VersionSchemaLatest{}
+		return Latest{}
 	}
 	return o.Latest
 }

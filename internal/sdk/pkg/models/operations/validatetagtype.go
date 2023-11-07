@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// ValidateTagType415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateTagType415ApplicationJSON struct {
+// ValidateTagTypeTagsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateTagTypeTagsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type ValidateTagType415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateTagType415ApplicationJSON) GetID() *string {
+func (o *ValidateTagTypeTagsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateTagType415ApplicationJSON) GetMessage() *string {
+func (o *ValidateTagTypeTagsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateTagType415ApplicationJSON) GetName() *string {
+func (o *ValidateTagTypeTagsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateTagType409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type ValidateTagType409ApplicationJSON struct {
+// ValidateTagTypeTagsResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type ValidateTagTypeTagsResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type ValidateTagType409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateTagType409ApplicationJSON) GetID() *string {
+func (o *ValidateTagTypeTagsResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateTagType409ApplicationJSON) GetMessage() *string {
+func (o *ValidateTagTypeTagsResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateTagType409ApplicationJSON) GetName() *string {
+func (o *ValidateTagTypeTagsResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ValidateTagType403ApplicationJSON struct {
+// ValidateTagTypeTagsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ValidateTagTypeTagsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type ValidateTagType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateTagType403ApplicationJSON) GetID() *string {
+func (o *ValidateTagTypeTagsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateTagType403ApplicationJSON) GetMessage() *string {
+func (o *ValidateTagTypeTagsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateTagType403ApplicationJSON) GetName() *string {
+func (o *ValidateTagTypeTagsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateTagType401ApplicationJSON struct {
+// ValidateTagTypeTagsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateTagTypeTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,29 +110,29 @@ type ValidateTagType401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateTagType401ApplicationJSON) GetID() *string {
+func (o *ValidateTagTypeTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateTagType401ApplicationJSON) GetMessage() *string {
+func (o *ValidateTagTypeTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateTagType401ApplicationJSON) GetName() *string {
+func (o *ValidateTagTypeTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateTagType400ApplicationJSON - The request data does not match what we expect.
-type ValidateTagType400ApplicationJSON struct {
+// ValidateTagTypeResponseBody - The request data does not match what we expect.
+type ValidateTagTypeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -141,21 +141,21 @@ type ValidateTagType400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateTagType400ApplicationJSON) GetID() *string {
+func (o *ValidateTagTypeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateTagType400ApplicationJSON) GetMessage() *string {
+func (o *ValidateTagTypeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateTagType400ApplicationJSON) GetName() *string {
+func (o *ValidateTagTypeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -163,6 +163,16 @@ func (o *ValidateTagType400ApplicationJSON) GetName() *string {
 }
 
 type ValidateTagTypeResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateTagTypeResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateTagTypeTagsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ValidateTagTypeTagsResponseResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *ValidateTagTypeTagsResponse409ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateTagTypeTagsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -171,16 +181,41 @@ type ValidateTagTypeResponse struct {
 	RawResponse *http.Response
 	// validateTagTypeSchema
 	ValidateTagTypeSchema *shared.ValidateTagTypeSchema
-	// The request data does not match what we expect.
-	ValidateTagType400ApplicationJSONObject *ValidateTagType400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateTagType401ApplicationJSONObject *ValidateTagType401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ValidateTagType403ApplicationJSONObject *ValidateTagType403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	ValidateTagType409ApplicationJSONObject *ValidateTagType409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateTagType415ApplicationJSONObject *ValidateTagType415ApplicationJSON
+}
+
+func (o *ValidateTagTypeResponse) GetFourHundredApplicationJSONObject() *ValidateTagTypeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateTagTypeResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateTagTypeTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateTagTypeResponse) GetFourHundredAndThreeApplicationJSONObject() *ValidateTagTypeTagsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ValidateTagTypeResponse) GetFourHundredAndNineApplicationJSONObject() *ValidateTagTypeTagsResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *ValidateTagTypeResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateTagTypeTagsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateTagTypeResponse) GetContentType() string {
@@ -209,39 +244,4 @@ func (o *ValidateTagTypeResponse) GetValidateTagTypeSchema() *shared.ValidateTag
 		return nil
 	}
 	return o.ValidateTagTypeSchema
-}
-
-func (o *ValidateTagTypeResponse) GetValidateTagType400ApplicationJSONObject() *ValidateTagType400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateTagType400ApplicationJSONObject
-}
-
-func (o *ValidateTagTypeResponse) GetValidateTagType401ApplicationJSONObject() *ValidateTagType401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateTagType401ApplicationJSONObject
-}
-
-func (o *ValidateTagTypeResponse) GetValidateTagType403ApplicationJSONObject() *ValidateTagType403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateTagType403ApplicationJSONObject
-}
-
-func (o *ValidateTagTypeResponse) GetValidateTagType409ApplicationJSONObject() *ValidateTagType409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateTagType409ApplicationJSONObject
-}
-
-func (o *ValidateTagTypeResponse) GetValidateTagType415ApplicationJSONObject() *ValidateTagType415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateTagType415ApplicationJSONObject
 }

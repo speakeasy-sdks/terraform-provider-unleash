@@ -17,8 +17,8 @@ func (o *DeleteRoleRequest) GetRoleID() string {
 	return o.RoleID
 }
 
-// DeleteRole409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type DeleteRole409ApplicationJSON struct {
+// DeleteRoleResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type DeleteRoleResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,21 +27,21 @@ type DeleteRole409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteRole409ApplicationJSON) GetID() *string {
+func (o *DeleteRoleResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteRole409ApplicationJSON) GetMessage() *string {
+func (o *DeleteRoleResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteRole409ApplicationJSON) GetName() *string {
+func (o *DeleteRoleResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -56,7 +56,7 @@ type DeleteRoleResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	DeleteRole409ApplicationJSONObject *DeleteRole409ApplicationJSON
+	Object *DeleteRoleResponseBody
 }
 
 func (o *DeleteRoleResponse) GetContentType() string {
@@ -80,9 +80,9 @@ func (o *DeleteRoleResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *DeleteRoleResponse) GetDeleteRole409ApplicationJSONObject() *DeleteRole409ApplicationJSON {
+func (o *DeleteRoleResponse) GetObject() *DeleteRoleResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.DeleteRole409ApplicationJSONObject
+	return o.Object
 }

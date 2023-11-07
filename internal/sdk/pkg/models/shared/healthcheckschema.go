@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// HealthCheckSchemaHealth - The state this Unleash instance is in. GOOD if everything is ok, BAD if the instance should be restarted
-type HealthCheckSchemaHealth string
+// Health - The state this Unleash instance is in. GOOD if everything is ok, BAD if the instance should be restarted
+type Health string
 
 const (
-	HealthCheckSchemaHealthGood HealthCheckSchemaHealth = "GOOD"
-	HealthCheckSchemaHealthBad  HealthCheckSchemaHealth = "BAD"
+	HealthGood Health = "GOOD"
+	HealthBad  Health = "BAD"
 )
 
-func (e HealthCheckSchemaHealth) ToPointer() *HealthCheckSchemaHealth {
+func (e Health) ToPointer() *Health {
 	return &e
 }
 
-func (e *HealthCheckSchemaHealth) UnmarshalJSON(data []byte) error {
+func (e *Health) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,22 +28,22 @@ func (e *HealthCheckSchemaHealth) UnmarshalJSON(data []byte) error {
 	case "GOOD":
 		fallthrough
 	case "BAD":
-		*e = HealthCheckSchemaHealth(v)
+		*e = Health(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for HealthCheckSchemaHealth: %v", v)
+		return fmt.Errorf("invalid value for Health: %v", v)
 	}
 }
 
 // HealthCheckSchema - Used by service orchestrators to decide whether this Unleash instance should be marked as healthy or unhealthy
 type HealthCheckSchema struct {
 	// The state this Unleash instance is in. GOOD if everything is ok, BAD if the instance should be restarted
-	Health HealthCheckSchemaHealth `json:"health"`
+	Health Health `json:"health"`
 }
 
-func (o *HealthCheckSchema) GetHealth() HealthCheckSchemaHealth {
+func (o *HealthCheckSchema) GetHealth() Health {
 	if o == nil {
-		return HealthCheckSchemaHealth("")
+		return Health("")
 	}
 	return o.Health
 }

@@ -18,8 +18,8 @@ func (o *GetStrategiesByContextFieldRequest) GetContextField() string {
 	return o.ContextField
 }
 
-// GetStrategiesByContextField401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetStrategiesByContextField401ApplicationJSON struct {
+// GetStrategiesByContextFieldResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetStrategiesByContextFieldResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,21 +28,21 @@ type GetStrategiesByContextField401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetStrategiesByContextField401ApplicationJSON) GetID() *string {
+func (o *GetStrategiesByContextFieldResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetStrategiesByContextField401ApplicationJSON) GetMessage() *string {
+func (o *GetStrategiesByContextFieldResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetStrategiesByContextField401ApplicationJSON) GetName() *string {
+func (o *GetStrategiesByContextFieldResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -59,7 +59,7 @@ type GetStrategiesByContextFieldResponse struct {
 	// contextFieldStrategiesSchema
 	ContextFieldStrategiesSchema *shared.ContextFieldStrategiesSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetStrategiesByContextField401ApplicationJSONObject *GetStrategiesByContextField401ApplicationJSON
+	Object *GetStrategiesByContextFieldResponseBody
 }
 
 func (o *GetStrategiesByContextFieldResponse) GetContentType() string {
@@ -90,9 +90,9 @@ func (o *GetStrategiesByContextFieldResponse) GetContextFieldStrategiesSchema() 
 	return o.ContextFieldStrategiesSchema
 }
 
-func (o *GetStrategiesByContextFieldResponse) GetGetStrategiesByContextField401ApplicationJSONObject() *GetStrategiesByContextField401ApplicationJSON {
+func (o *GetStrategiesByContextFieldResponse) GetObject() *GetStrategiesByContextFieldResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetStrategiesByContextField401ApplicationJSONObject
+	return o.Object
 }

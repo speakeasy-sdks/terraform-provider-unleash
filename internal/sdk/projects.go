@@ -15,18 +15,18 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// projects - Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
-type projects struct {
+// Projects - Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
+type Projects struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newProjects(sdkConfig sdkConfiguration) *projects {
-	return &projects{
+func newProjects(sdkConfig sdkConfiguration) *Projects {
+	return &Projects{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *projects) AddAccessToProject(ctx context.Context, request operations.AddAccessToProjectRequest) (*operations.AddAccessToProjectResponse, error) {
+func (s *Projects) AddAccessToProject(ctx context.Context, request operations.AddAccessToProjectRequest) (*operations.AddAccessToProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/role/{roleId}/access", request, nil)
 	if err != nil {
@@ -72,7 +72,7 @@ func (s *projects) AddAccessToProject(ctx context.Context, request operations.Ad
 }
 
 // AddDefaultStrategyToProjectEnvironment - Adds a default strategy for this environment. Unleash will use this strategy by default when enabling a toggle. Use the wild card "*" for `:environment` to add to all environments.
-func (s *projects) AddDefaultStrategyToProjectEnvironment(ctx context.Context, request operations.AddDefaultStrategyToProjectEnvironmentRequest) (*operations.AddDefaultStrategyToProjectEnvironmentResponse, error) {
+func (s *Projects) AddDefaultStrategyToProjectEnvironment(ctx context.Context, request operations.AddDefaultStrategyToProjectEnvironmentRequest) (*operations.AddDefaultStrategyToProjectEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/environments/{environment}/default-strategy", request, nil)
 	if err != nil {
@@ -140,12 +140,12 @@ func (s *projects) AddDefaultStrategyToProjectEnvironment(ctx context.Context, r
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddDefaultStrategyToProjectEnvironment400ApplicationJSON
+			var out operations.AddDefaultStrategyToProjectEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddDefaultStrategyToProjectEnvironment400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -156,7 +156,7 @@ func (s *projects) AddDefaultStrategyToProjectEnvironment(ctx context.Context, r
 
 // AddEnvironmentToProject - Add an environment to a project.
 // This endpoint adds the provided environment to the specified project, with optional support for enabling and disabling change requests for the environment and project.
-func (s *projects) AddEnvironmentToProject(ctx context.Context, request operations.AddEnvironmentToProjectRequest) (*operations.AddEnvironmentToProjectResponse, error) {
+func (s *Projects) AddEnvironmentToProject(ctx context.Context, request operations.AddEnvironmentToProjectRequest) (*operations.AddEnvironmentToProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/environments", request, nil)
 	if err != nil {
@@ -213,36 +213,36 @@ func (s *projects) AddEnvironmentToProject(ctx context.Context, request operatio
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddEnvironmentToProject401ApplicationJSON
+			var out operations.AddEnvironmentToProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddEnvironmentToProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddEnvironmentToProject403ApplicationJSON
+			var out operations.AddEnvironmentToProjectProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddEnvironmentToProject403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddEnvironmentToProject409ApplicationJSON
+			var out operations.AddEnvironmentToProjectProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddEnvironmentToProject409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -251,7 +251,7 @@ func (s *projects) AddEnvironmentToProject(ctx context.Context, request operatio
 	return res, nil
 }
 
-func (s *projects) AddRoleToUser(ctx context.Context, request operations.AddRoleToUserRequest) (*operations.AddRoleToUserResponse, error) {
+func (s *Projects) AddRoleToUser(ctx context.Context, request operations.AddRoleToUserRequest) (*operations.AddRoleToUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/users/{userId}/roles/{roleId}", request, nil)
 	if err != nil {
@@ -296,7 +296,7 @@ func (s *projects) AddRoleToUser(ctx context.Context, request operations.AddRole
 	return res, nil
 }
 
-func (s *projects) ChangeRoleForGroup(ctx context.Context, request operations.ChangeRoleForGroupRequest) (*operations.ChangeRoleForGroupResponse, error) {
+func (s *Projects) ChangeRoleForGroup(ctx context.Context, request operations.ChangeRoleForGroupRequest) (*operations.ChangeRoleForGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/groups/{groupId}/roles/{roleId}", request, nil)
 	if err != nil {
@@ -341,7 +341,7 @@ func (s *projects) ChangeRoleForGroup(ctx context.Context, request operations.Ch
 	return res, nil
 }
 
-func (s *projects) ChangeRoleForUser(ctx context.Context, request operations.ChangeRoleForUserRequest) (*operations.ChangeRoleForUserResponse, error) {
+func (s *Projects) ChangeRoleForUser(ctx context.Context, request operations.ChangeRoleForUserRequest) (*operations.ChangeRoleForUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/users/{userId}/roles/{roleId}", request, nil)
 	if err != nil {
@@ -386,7 +386,7 @@ func (s *projects) ChangeRoleForUser(ctx context.Context, request operations.Cha
 	return res, nil
 }
 
-func (s *projects) CreateProject(ctx context.Context, request shared.CreateProjectSchema) (*operations.CreateProjectResponse, error) {
+func (s *Projects) CreateProject(ctx context.Context, request shared.CreateProjectSchema) (*operations.CreateProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/projects"
 
@@ -453,24 +453,24 @@ func (s *projects) CreateProject(ctx context.Context, request shared.CreateProje
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateProject400ApplicationJSON
+			var out operations.CreateProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateProject400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateProject401ApplicationJSON
+			var out operations.CreateProjectProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -481,7 +481,7 @@ func (s *projects) CreateProject(ctx context.Context, request shared.CreateProje
 
 // CreateProjectAPIToken - Create a project API token.
 // Endpoint that allows creation of [project API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#api-token-visibility) for the specified project.
-func (s *projects) CreateProjectAPIToken(ctx context.Context, request operations.CreateProjectAPITokenRequest) (*operations.CreateProjectAPITokenResponse, error) {
+func (s *Projects) CreateProjectAPIToken(ctx context.Context, request operations.CreateProjectAPITokenRequest) (*operations.CreateProjectAPITokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/api-tokens", request, nil)
 	if err != nil {
@@ -551,36 +551,36 @@ func (s *projects) CreateProjectAPIToken(ctx context.Context, request operations
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateProjectAPIToken400ApplicationJSON
+			var out operations.CreateProjectAPITokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateProjectAPIToken400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateProjectAPIToken401ApplicationJSON
+			var out operations.CreateProjectAPITokenProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateProjectAPIToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateProjectAPIToken403ApplicationJSON
+			var out operations.CreateProjectAPITokenProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateProjectAPIToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -589,7 +589,7 @@ func (s *projects) CreateProjectAPIToken(ctx context.Context, request operations
 	return res, nil
 }
 
-func (s *projects) DeleteProject(ctx context.Context, request operations.DeleteProjectRequest) (*operations.DeleteProjectResponse, error) {
+func (s *Projects) DeleteProject(ctx context.Context, request operations.DeleteProjectRequest) (*operations.DeleteProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}", request, nil)
 	if err != nil {
@@ -636,7 +636,7 @@ func (s *projects) DeleteProject(ctx context.Context, request operations.DeleteP
 
 // DeleteProjectAPIToken - Delete a project API token.
 // This operation deletes the API token specified in the request URL. If the token doesn't exist, returns an OK response (status code 200).
-func (s *projects) DeleteProjectAPIToken(ctx context.Context, request operations.DeleteProjectAPITokenRequest) (*operations.DeleteProjectAPITokenResponse, error) {
+func (s *Projects) DeleteProjectAPIToken(ctx context.Context, request operations.DeleteProjectAPITokenRequest) (*operations.DeleteProjectAPITokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/api-tokens/{token}", request, nil)
 	if err != nil {
@@ -679,24 +679,24 @@ func (s *projects) DeleteProjectAPIToken(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteProjectAPIToken401ApplicationJSON
+			var out operations.DeleteProjectAPITokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteProjectAPIToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteProjectAPIToken403ApplicationJSON
+			var out operations.DeleteProjectAPITokenProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteProjectAPIToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -705,7 +705,7 @@ func (s *projects) DeleteProjectAPIToken(ctx context.Context, request operations
 	return res, nil
 }
 
-func (s *projects) GetProjectAccess(ctx context.Context, request operations.GetProjectAccessRequest) (*operations.GetProjectAccessResponse, error) {
+func (s *Projects) GetProjectAccess(ctx context.Context, request operations.GetProjectAccessRequest) (*operations.GetProjectAccessResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/access", request, nil)
 	if err != nil {
@@ -763,7 +763,7 @@ func (s *projects) GetProjectAccess(ctx context.Context, request operations.GetP
 
 // GetProjectAPITokens - Get api tokens for project.
 // Returns the [project API tokens](https://docs.getunleash.io/how-to/how-to-create-project-api-tokens) that have been created for this project.
-func (s *projects) GetProjectAPITokens(ctx context.Context, request operations.GetProjectAPITokensRequest) (*operations.GetProjectAPITokensResponse, error) {
+func (s *Projects) GetProjectAPITokens(ctx context.Context, request operations.GetProjectAPITokensRequest) (*operations.GetProjectAPITokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/api-tokens", request, nil)
 	if err != nil {
@@ -817,36 +817,36 @@ func (s *projects) GetProjectAPITokens(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectAPITokens401ApplicationJSON
+			var out operations.GetProjectAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectAPITokens401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectAPITokens403ApplicationJSON
+			var out operations.GetProjectAPITokensProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectAPITokens403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectAPITokens404ApplicationJSON
+			var out operations.GetProjectAPITokensProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectAPITokens404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -857,7 +857,7 @@ func (s *projects) GetProjectAPITokens(ctx context.Context, request operations.G
 
 // GetProjectHealthReport - Get a health report for a project.
 // This endpoint returns a health report for the specified project. This data is used for [the technical debt dashboard](https://docs.getunleash.io/reference/technical-debt#the-technical-debt-dashboard)
-func (s *projects) GetProjectHealthReport(ctx context.Context, request operations.GetProjectHealthReportRequest) (*operations.GetProjectHealthReportResponse, error) {
+func (s *Projects) GetProjectHealthReport(ctx context.Context, request operations.GetProjectHealthReportRequest) (*operations.GetProjectHealthReportResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/health-report", request, nil)
 	if err != nil {
@@ -911,36 +911,36 @@ func (s *projects) GetProjectHealthReport(ctx context.Context, request operation
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectHealthReport401ApplicationJSON
+			var out operations.GetProjectHealthReportResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectHealthReport401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectHealthReport403ApplicationJSON
+			var out operations.GetProjectHealthReportProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectHealthReport403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectHealthReport404ApplicationJSON
+			var out operations.GetProjectHealthReportProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectHealthReport404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -951,7 +951,7 @@ func (s *projects) GetProjectHealthReport(ctx context.Context, request operation
 
 // GetProjectOverview - Get an overview of a project.
 // This endpoint returns an overview of the specified projects stats, project health, number of members, which environments are configured, and the features in the project.
-func (s *projects) GetProjectOverview(ctx context.Context, request operations.GetProjectOverviewRequest) (*operations.GetProjectOverviewResponse, error) {
+func (s *Projects) GetProjectOverview(ctx context.Context, request operations.GetProjectOverviewRequest) (*operations.GetProjectOverviewResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}", request, nil)
 	if err != nil {
@@ -1005,36 +1005,36 @@ func (s *projects) GetProjectOverview(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectOverview401ApplicationJSON
+			var out operations.GetProjectOverviewResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectOverview401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectOverview403ApplicationJSON
+			var out operations.GetProjectOverviewProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectOverview403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectOverview404ApplicationJSON
+			var out operations.GetProjectOverviewProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectOverview404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1046,7 +1046,7 @@ func (s *projects) GetProjectOverview(ctx context.Context, request operations.Ge
 // GetProjectUsers
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *projects) GetProjectUsers(ctx context.Context, request operations.GetProjectUsersRequest) (*operations.GetProjectUsersResponse, error) {
+func (s *Projects) GetProjectUsers(ctx context.Context, request operations.GetProjectUsersRequest) (*operations.GetProjectUsersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/users", request, nil)
 	if err != nil {
@@ -1104,7 +1104,7 @@ func (s *projects) GetProjectUsers(ctx context.Context, request operations.GetPr
 
 // GetProjects - Get a list of all projects.
 // This endpoint returns an list of all the projects in the Unleash instance.
-func (s *projects) GetProjects(ctx context.Context) (*operations.GetProjectsResponse, error) {
+func (s *Projects) GetProjects(ctx context.Context) (*operations.GetProjectsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/projects"
 
@@ -1155,24 +1155,24 @@ func (s *projects) GetProjects(ctx context.Context) (*operations.GetProjectsResp
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjects401ApplicationJSON
+			var out operations.GetProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjects401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjects403ApplicationJSON
+			var out operations.GetProjectsProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjects403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1183,7 +1183,7 @@ func (s *projects) GetProjects(ctx context.Context) (*operations.GetProjectsResp
 
 // RemoveEnvironmentFromProject - Remove an environment from a project.
 // This endpoint removes the specified environment from the project.
-func (s *projects) RemoveEnvironmentFromProject(ctx context.Context, request operations.RemoveEnvironmentFromProjectRequest) (*operations.RemoveEnvironmentFromProjectResponse, error) {
+func (s *Projects) RemoveEnvironmentFromProject(ctx context.Context, request operations.RemoveEnvironmentFromProjectRequest) (*operations.RemoveEnvironmentFromProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/environments/{environment}", request, nil)
 	if err != nil {
@@ -1226,36 +1226,36 @@ func (s *projects) RemoveEnvironmentFromProject(ctx context.Context, request ope
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveEnvironmentFromProject400ApplicationJSON
+			var out operations.RemoveEnvironmentFromProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveEnvironmentFromProject400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveEnvironmentFromProject401ApplicationJSON
+			var out operations.RemoveEnvironmentFromProjectProjectsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveEnvironmentFromProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveEnvironmentFromProject403ApplicationJSON
+			var out operations.RemoveEnvironmentFromProjectProjectsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveEnvironmentFromProject403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1264,7 +1264,7 @@ func (s *projects) RemoveEnvironmentFromProject(ctx context.Context, request ope
 	return res, nil
 }
 
-func (s *projects) RemoveRoleForUser(ctx context.Context, request operations.RemoveRoleForUserRequest) (*operations.RemoveRoleForUserResponse, error) {
+func (s *Projects) RemoveRoleForUser(ctx context.Context, request operations.RemoveRoleForUserRequest) (*operations.RemoveRoleForUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/users/{userId}/roles/{roleId}", request, nil)
 	if err != nil {
@@ -1309,7 +1309,7 @@ func (s *projects) RemoveRoleForUser(ctx context.Context, request operations.Rem
 	return res, nil
 }
 
-func (s *projects) RemoveRoleFromGroup(ctx context.Context, request operations.RemoveRoleFromGroupRequest) (*operations.RemoveRoleFromGroupResponse, error) {
+func (s *Projects) RemoveRoleFromGroup(ctx context.Context, request operations.RemoveRoleFromGroupRequest) (*operations.RemoveRoleFromGroupResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/groups/{groupId}/roles/{roleId}", request, nil)
 	if err != nil {
@@ -1354,7 +1354,7 @@ func (s *projects) RemoveRoleFromGroup(ctx context.Context, request operations.R
 	return res, nil
 }
 
-func (s *projects) UpdateProject(ctx context.Context, request operations.UpdateProjectRequest) (*operations.UpdateProjectResponse, error) {
+func (s *Projects) UpdateProject(ctx context.Context, request operations.UpdateProjectRequest) (*operations.UpdateProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}", request, nil)
 	if err != nil {
@@ -1413,7 +1413,7 @@ func (s *projects) UpdateProject(ctx context.Context, request operations.UpdateP
 	return res, nil
 }
 
-func (s *projects) ValidateProject(ctx context.Context, request shared.ValidateProjectSchema) (*operations.ValidateProjectResponse, error) {
+func (s *Projects) ValidateProject(ctx context.Context, request shared.ValidateProjectSchema) (*operations.ValidateProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/projects/validate"
 

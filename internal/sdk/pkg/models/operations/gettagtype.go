@@ -18,8 +18,8 @@ func (o *GetTagTypeRequest) GetName() string {
 	return o.Name
 }
 
-// GetTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetTagType403ApplicationJSON struct {
+// GetTagTypeTagsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetTagTypeTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetTagType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetTagType403ApplicationJSON) GetID() *string {
+func (o *GetTagTypeTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetTagType403ApplicationJSON) GetMessage() *string {
+func (o *GetTagTypeTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetTagType403ApplicationJSON) GetName() *string {
+func (o *GetTagTypeTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetTagType401ApplicationJSON struct {
+// GetTagTypeResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetTagTypeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,21 +59,21 @@ type GetTagType401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetTagType401ApplicationJSON) GetID() *string {
+func (o *GetTagTypeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetTagType401ApplicationJSON) GetMessage() *string {
+func (o *GetTagTypeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetTagType401ApplicationJSON) GetName() *string {
+func (o *GetTagTypeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,18 +81,32 @@ func (o *GetTagType401ApplicationJSON) GetName() *string {
 }
 
 type GetTagTypeResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetTagTypeResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetTagTypeTagsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetTagType401ApplicationJSONObject *GetTagType401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetTagType403ApplicationJSONObject *GetTagType403ApplicationJSON
 	// tagTypeSchema
 	TagTypeSchema *shared.TagTypeSchema
+}
+
+func (o *GetTagTypeResponse) GetFourHundredAndOneApplicationJSONObject() *GetTagTypeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetTagTypeResponse) GetFourHundredAndThreeApplicationJSONObject() *GetTagTypeTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetTagTypeResponse) GetContentType() string {
@@ -114,20 +128,6 @@ func (o *GetTagTypeResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetTagTypeResponse) GetGetTagType401ApplicationJSONObject() *GetTagType401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTagType401ApplicationJSONObject
-}
-
-func (o *GetTagTypeResponse) GetGetTagType403ApplicationJSONObject() *GetTagType403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTagType403ApplicationJSONObject
 }
 
 func (o *GetTagTypeResponse) GetTagTypeSchema() *shared.TagTypeSchema {

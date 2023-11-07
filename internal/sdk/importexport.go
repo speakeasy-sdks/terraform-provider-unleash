@@ -15,13 +15,13 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// importExport - [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
-type importExport struct {
+// ImportExport - [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
+type ImportExport struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newImportExport(sdkConfig sdkConfiguration) *importExport {
-	return &importExport{
+func newImportExport(sdkConfig sdkConfiguration) *ImportExport {
+	return &ImportExport{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -30,7 +30,7 @@ func newImportExport(sdkConfig sdkConfiguration) *importExport {
 // Exports the current state of the system. Deprecated in favor of /api/admin/features-batch/export
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *importExport) Export(ctx context.Context, request operations.ExportRequest) (*operations.ExportResponse, error) {
+func (s *ImportExport) Export(ctx context.Context, request operations.ExportRequest) (*operations.ExportResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/state/export"
 
@@ -89,7 +89,7 @@ func (s *importExport) Export(ctx context.Context, request operations.ExportRequ
 
 // ExportFeatures - Export feature toggles from an environment
 // Exports all features listed in the `features` property from the environment specified in the request body. If set to `true`, the `downloadFile` property will let you download a file with the exported data. Otherwise, the export data is returned directly as JSON. Refer to the documentation for more information about [Unleash's export functionality](https://docs.getunleash.io/reference/deploy/environment-import-export#export).
-func (s *importExport) ExportFeatures(ctx context.Context, request shared.ExportQuerySchema) (*operations.ExportFeaturesResponse, error) {
+func (s *ImportExport) ExportFeatures(ctx context.Context, request shared.ExportQuerySchema) (*operations.ExportFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/features-batch/export"
 
@@ -154,12 +154,12 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ExportFeatures404ApplicationJSON
+			var out operations.ExportFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ExportFeatures404ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -172,7 +172,7 @@ func (s *importExport) ExportFeatures(ctx context.Context, request shared.Export
 // Imports state into the system. Deprecated in favor of /api/admin/features-batch/import
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *importExport) Import(ctx context.Context, request shared.StateSchema) (*operations.ImportResponse, error) {
+func (s *ImportExport) Import(ctx context.Context, request shared.StateSchema) (*operations.ImportResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/state/import"
 
@@ -230,7 +230,7 @@ func (s *importExport) Import(ctx context.Context, request shared.StateSchema) (
 
 // ImportToggles - Import feature toggles
 // [Import feature toggles](https://docs.getunleash.io/reference/deploy/environment-import-export#import) into a specific project and environment.
-func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportTogglesSchema) (*operations.ImportTogglesResponse, error) {
+func (s *ImportExport) ImportToggles(ctx context.Context, request shared.ImportTogglesSchema) (*operations.ImportTogglesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/features-batch/import"
 
@@ -284,12 +284,12 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ImportToggles404ApplicationJSON
+			var out operations.ImportTogglesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ImportToggles404ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -300,7 +300,7 @@ func (s *importExport) ImportToggles(ctx context.Context, request shared.ImportT
 
 // ValidateImport - Validate feature import data
 // Validates a feature toggle data set. Checks whether the data can be imported into the specified project and environment. The returned value is an object that contains errors, warnings, and permissions required to perform the import, as described in the [import documentation](https://docs.getunleash.io/reference/deploy/environment-import-export#import).
-func (s *importExport) ValidateImport(ctx context.Context, request shared.ImportTogglesSchema) (*operations.ValidateImportResponse, error) {
+func (s *ImportExport) ValidateImport(ctx context.Context, request shared.ImportTogglesSchema) (*operations.ValidateImportResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/features-batch/validate"
 
@@ -365,12 +365,12 @@ func (s *importExport) ValidateImport(ctx context.Context, request shared.Import
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateImport404ApplicationJSON
+			var out operations.ValidateImportResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateImport404ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

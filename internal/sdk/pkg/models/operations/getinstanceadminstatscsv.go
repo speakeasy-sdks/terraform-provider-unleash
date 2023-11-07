@@ -14,7 +14,7 @@ type GetInstanceAdminStatsCsvResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// instanceAdminStatsSchemaCsv
-	GetInstanceAdminStatsCsv200TextCsvString *string
+	Res *string
 }
 
 func (o *GetInstanceAdminStatsCsvResponse) GetContentType() string {
@@ -38,9 +38,9 @@ func (o *GetInstanceAdminStatsCsvResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetInstanceAdminStatsCsvResponse) GetGetInstanceAdminStatsCsv200TextCsvString() *string {
+func (o *GetInstanceAdminStatsCsvResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GetInstanceAdminStatsCsv200TextCsvString
+	return o.Res
 }

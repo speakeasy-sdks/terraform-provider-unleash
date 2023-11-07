@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// RegisterFrontendMetrics404ApplicationJSON - The requested resource was not found.
-type RegisterFrontendMetrics404ApplicationJSON struct {
+// RegisterFrontendMetricsFrontendAPIResponseResponseBody - The requested resource was not found.
+type RegisterFrontendMetricsFrontendAPIResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type RegisterFrontendMetrics404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RegisterFrontendMetrics404ApplicationJSON) GetID() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RegisterFrontendMetrics404ApplicationJSON) GetMessage() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RegisterFrontendMetrics404ApplicationJSON) GetName() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RegisterFrontendMetrics401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RegisterFrontendMetrics401ApplicationJSON struct {
+// RegisterFrontendMetricsFrontendAPIResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RegisterFrontendMetricsFrontendAPIResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type RegisterFrontendMetrics401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RegisterFrontendMetrics401ApplicationJSON) GetID() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RegisterFrontendMetrics401ApplicationJSON) GetMessage() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RegisterFrontendMetrics401ApplicationJSON) GetName() *string {
+func (o *RegisterFrontendMetricsFrontendAPIResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RegisterFrontendMetrics400ApplicationJSON - The request data does not match what we expect.
-type RegisterFrontendMetrics400ApplicationJSON struct {
+// RegisterFrontendMetricsResponseBody - The request data does not match what we expect.
+type RegisterFrontendMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type RegisterFrontendMetrics400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RegisterFrontendMetrics400ApplicationJSON) GetID() *string {
+func (o *RegisterFrontendMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RegisterFrontendMetrics400ApplicationJSON) GetMessage() *string {
+func (o *RegisterFrontendMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RegisterFrontendMetrics400ApplicationJSON) GetName() *string {
+func (o *RegisterFrontendMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *RegisterFrontendMetrics400ApplicationJSON) GetName() *string {
 }
 
 type RegisterFrontendMetricsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *RegisterFrontendMetricsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RegisterFrontendMetricsFrontendAPIResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *RegisterFrontendMetricsFrontendAPIResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	RegisterFrontendMetrics400ApplicationJSONObject *RegisterFrontendMetrics400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RegisterFrontendMetrics401ApplicationJSONObject *RegisterFrontendMetrics401ApplicationJSON
-	// The requested resource was not found.
-	RegisterFrontendMetrics404ApplicationJSONObject *RegisterFrontendMetrics404ApplicationJSON
+}
+
+func (o *RegisterFrontendMetricsResponse) GetFourHundredApplicationJSONObject() *RegisterFrontendMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *RegisterFrontendMetricsResponse) GetFourHundredAndOneApplicationJSONObject() *RegisterFrontendMetricsFrontendAPIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *RegisterFrontendMetricsResponse) GetFourHundredAndFourApplicationJSONObject() *RegisterFrontendMetricsFrontendAPIResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *RegisterFrontendMetricsResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *RegisterFrontendMetricsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics400ApplicationJSONObject() *RegisterFrontendMetrics400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RegisterFrontendMetrics400ApplicationJSONObject
-}
-
-func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics401ApplicationJSONObject() *RegisterFrontendMetrics401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RegisterFrontendMetrics401ApplicationJSONObject
-}
-
-func (o *RegisterFrontendMetricsResponse) GetRegisterFrontendMetrics404ApplicationJSONObject() *RegisterFrontendMetrics404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RegisterFrontendMetrics404ApplicationJSONObject
 }

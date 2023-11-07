@@ -9,41 +9,41 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// PlaygroundRequestSchemaProjects2 - Check toggles in all projects.
-type PlaygroundRequestSchemaProjects2 string
+// PlaygroundRequestSchema2 - Check toggles in all projects.
+type PlaygroundRequestSchema2 string
 
 const (
-	PlaygroundRequestSchemaProjects2Wildcard PlaygroundRequestSchemaProjects2 = "*"
+	PlaygroundRequestSchema2Wildcard PlaygroundRequestSchema2 = "*"
 )
 
-func (e PlaygroundRequestSchemaProjects2) ToPointer() *PlaygroundRequestSchemaProjects2 {
+func (e PlaygroundRequestSchema2) ToPointer() *PlaygroundRequestSchema2 {
 	return &e
 }
 
-func (e *PlaygroundRequestSchemaProjects2) UnmarshalJSON(data []byte) error {
+func (e *PlaygroundRequestSchema2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "*":
-		*e = PlaygroundRequestSchemaProjects2(v)
+		*e = PlaygroundRequestSchema2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PlaygroundRequestSchemaProjects2: %v", v)
+		return fmt.Errorf("invalid value for PlaygroundRequestSchema2: %v", v)
 	}
 }
 
 type PlaygroundRequestSchemaProjectsType string
 
 const (
-	PlaygroundRequestSchemaProjectsTypeArrayOfstr                       PlaygroundRequestSchemaProjectsType = "arrayOfstr"
-	PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2 PlaygroundRequestSchemaProjectsType = "playgroundRequestSchema_projects_2"
+	PlaygroundRequestSchemaProjectsTypeArrayOfstr               PlaygroundRequestSchemaProjectsType = "arrayOfstr"
+	PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchema2 PlaygroundRequestSchemaProjectsType = "playgroundRequestSchema_2"
 )
 
 type PlaygroundRequestSchemaProjects struct {
-	ArrayOfstr                       []string
-	PlaygroundRequestSchemaProjects2 *PlaygroundRequestSchemaProjects2
+	ArrayOfstr               []string
+	PlaygroundRequestSchema2 *PlaygroundRequestSchema2
 
 	Type PlaygroundRequestSchemaProjectsType
 }
@@ -57,12 +57,12 @@ func CreatePlaygroundRequestSchemaProjectsArrayOfstr(arrayOfstr []string) Playgr
 	}
 }
 
-func CreatePlaygroundRequestSchemaProjectsPlaygroundRequestSchemaProjects2(playgroundRequestSchemaProjects2 PlaygroundRequestSchemaProjects2) PlaygroundRequestSchemaProjects {
-	typ := PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2
+func CreatePlaygroundRequestSchemaProjectsPlaygroundRequestSchema2(playgroundRequestSchema2 PlaygroundRequestSchema2) PlaygroundRequestSchemaProjects {
+	typ := PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchema2
 
 	return PlaygroundRequestSchemaProjects{
-		PlaygroundRequestSchemaProjects2: &playgroundRequestSchemaProjects2,
-		Type:                             typ,
+		PlaygroundRequestSchema2: &playgroundRequestSchema2,
+		Type:                     typ,
 	}
 }
 
@@ -75,10 +75,10 @@ func (u *PlaygroundRequestSchemaProjects) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	playgroundRequestSchemaProjects2 := new(PlaygroundRequestSchemaProjects2)
-	if err := utils.UnmarshalJSON(data, &playgroundRequestSchemaProjects2, "", true, true); err == nil {
-		u.PlaygroundRequestSchemaProjects2 = playgroundRequestSchemaProjects2
-		u.Type = PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchemaProjects2
+	playgroundRequestSchema2 := new(PlaygroundRequestSchema2)
+	if err := utils.UnmarshalJSON(data, &playgroundRequestSchema2, "", true, true); err == nil {
+		u.PlaygroundRequestSchema2 = playgroundRequestSchema2
+		u.Type = PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchema2
 		return nil
 	}
 
@@ -90,8 +90,8 @@ func (u PlaygroundRequestSchemaProjects) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ArrayOfstr, "", true)
 	}
 
-	if u.PlaygroundRequestSchemaProjects2 != nil {
-		return utils.MarshalJSON(u.PlaygroundRequestSchemaProjects2, "", true)
+	if u.PlaygroundRequestSchema2 != nil {
+		return utils.MarshalJSON(u.PlaygroundRequestSchema2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")

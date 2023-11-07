@@ -15,13 +15,13 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// instanceAdmin - Instance admin endpoints used to manage the Unleash instance itself.
-type instanceAdmin struct {
+// InstanceAdmin - Instance admin endpoints used to manage the Unleash instance itself.
+type InstanceAdmin struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newInstanceAdmin(sdkConfig sdkConfiguration) *instanceAdmin {
-	return &instanceAdmin{
+func newInstanceAdmin(sdkConfig sdkConfiguration) *InstanceAdmin {
+	return &InstanceAdmin{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -30,7 +30,7 @@ func newInstanceAdmin(sdkConfig sdkConfiguration) *instanceAdmin {
 // Provides statistics about various features of Unleash to allow for reporting of usage for self-hosted customers. The response contains data such as the number of users, groups, features, strategies, versions, etc.
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *instanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.GetInstanceAdminStatsResponse, error) {
+func (s *InstanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.GetInstanceAdminStatsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/instance-admin/statistics"
 
@@ -85,7 +85,7 @@ func (s *instanceAdmin) GetInstanceAdminStats(ctx context.Context) (*operations.
 
 // GetInstanceAdminStatsCsv - Instance usage statistics
 // Provides statistics about various features of Unleash to allow for reporting of usage for self-hosted customers. The response contains data such as the number of users, groups, features, strategies, versions, etc.
-func (s *instanceAdmin) GetInstanceAdminStatsCsv(ctx context.Context) (*operations.GetInstanceAdminStatsCsvResponse, error) {
+func (s *InstanceAdmin) GetInstanceAdminStatsCsv(ctx context.Context) (*operations.GetInstanceAdminStatsCsvResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/instance-admin/statistics/csv"
 
@@ -125,7 +125,7 @@ func (s *instanceAdmin) GetInstanceAdminStatsCsv(ctx context.Context) (*operatio
 		switch {
 		case utils.MatchContentType(contentType, `text/csv`):
 			out := string(rawBody)
-			res.GetInstanceAdminStatsCsv200TextCsvString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

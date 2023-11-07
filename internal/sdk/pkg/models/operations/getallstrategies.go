@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAllStrategies401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAllStrategies401ApplicationJSON struct {
+// GetAllStrategiesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetAllStrategies401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllStrategies401ApplicationJSON) GetID() *string {
+func (o *GetAllStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllStrategies401ApplicationJSON) GetMessage() *string {
+func (o *GetAllStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllStrategies401ApplicationJSON) GetName() *string {
+func (o *GetAllStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ type GetAllStrategiesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAllStrategies401ApplicationJSONObject *GetAllStrategies401ApplicationJSON
+	Object *GetAllStrategiesResponseBody
 	// strategiesSchema
 	StrategiesSchema *shared.StrategiesSchema
 }
@@ -72,11 +72,11 @@ func (o *GetAllStrategiesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllStrategiesResponse) GetGetAllStrategies401ApplicationJSONObject() *GetAllStrategies401ApplicationJSON {
+func (o *GetAllStrategiesResponse) GetObject() *GetAllStrategiesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllStrategies401ApplicationJSONObject
+	return o.Object
 }
 
 func (o *GetAllStrategiesResponse) GetStrategiesSchema() *shared.StrategiesSchema {

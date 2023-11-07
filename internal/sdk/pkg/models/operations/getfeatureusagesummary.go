@@ -18,8 +18,8 @@ func (o *GetFeatureUsageSummaryRequest) GetName() string {
 	return o.Name
 }
 
-// GetFeatureUsageSummary404ApplicationJSON - The requested resource was not found.
-type GetFeatureUsageSummary404ApplicationJSON struct {
+// GetFeatureUsageSummaryMetricsResponseResponseBody - The requested resource was not found.
+type GetFeatureUsageSummaryMetricsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetFeatureUsageSummary404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureUsageSummary404ApplicationJSON) GetID() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureUsageSummary404ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureUsageSummary404ApplicationJSON) GetName() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureUsageSummary403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetFeatureUsageSummary403ApplicationJSON struct {
+// GetFeatureUsageSummaryMetricsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeatureUsageSummaryMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetFeatureUsageSummary403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureUsageSummary403ApplicationJSON) GetID() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureUsageSummary403ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureUsageSummary403ApplicationJSON) GetName() *string {
+func (o *GetFeatureUsageSummaryMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureUsageSummary401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetFeatureUsageSummary401ApplicationJSON struct {
+// GetFeatureUsageSummaryResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeatureUsageSummaryResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type GetFeatureUsageSummary401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureUsageSummary401ApplicationJSON) GetID() *string {
+func (o *GetFeatureUsageSummaryResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureUsageSummary401ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureUsageSummaryResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureUsageSummary401ApplicationJSON) GetName() *string {
+func (o *GetFeatureUsageSummaryResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,6 +112,12 @@ func (o *GetFeatureUsageSummary401ApplicationJSON) GetName() *string {
 }
 
 type GetFeatureUsageSummaryResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetFeatureUsageSummaryResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetFeatureUsageSummaryMetricsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetFeatureUsageSummaryMetricsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -120,12 +126,27 @@ type GetFeatureUsageSummaryResponse struct {
 	RawResponse *http.Response
 	// featureUsageSchema
 	FeatureUsageSchema *shared.FeatureUsageSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetFeatureUsageSummary401ApplicationJSONObject *GetFeatureUsageSummary401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetFeatureUsageSummary403ApplicationJSONObject *GetFeatureUsageSummary403ApplicationJSON
-	// The requested resource was not found.
-	GetFeatureUsageSummary404ApplicationJSONObject *GetFeatureUsageSummary404ApplicationJSON
+}
+
+func (o *GetFeatureUsageSummaryResponse) GetFourHundredAndOneApplicationJSONObject() *GetFeatureUsageSummaryResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetFeatureUsageSummaryResponse) GetFourHundredAndThreeApplicationJSONObject() *GetFeatureUsageSummaryMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetFeatureUsageSummaryResponse) GetFourHundredAndFourApplicationJSONObject() *GetFeatureUsageSummaryMetricsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetFeatureUsageSummaryResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *GetFeatureUsageSummaryResponse) GetFeatureUsageSchema() *shared.Feature
 		return nil
 	}
 	return o.FeatureUsageSchema
-}
-
-func (o *GetFeatureUsageSummaryResponse) GetGetFeatureUsageSummary401ApplicationJSONObject() *GetFeatureUsageSummary401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureUsageSummary401ApplicationJSONObject
-}
-
-func (o *GetFeatureUsageSummaryResponse) GetGetFeatureUsageSummary403ApplicationJSONObject() *GetFeatureUsageSummary403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureUsageSummary403ApplicationJSONObject
-}
-
-func (o *GetFeatureUsageSummaryResponse) GetGetFeatureUsageSummary404ApplicationJSONObject() *GetFeatureUsageSummary404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureUsageSummary404ApplicationJSONObject
 }

@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// playground - Evaluate an Unleash context against your feature toggles.
-type playground struct {
+// Playground - Evaluate an Unleash context against your feature toggles.
+type Playground struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPlayground(sdkConfig sdkConfiguration) *playground {
-	return &playground{
+func newPlayground(sdkConfig sdkConfiguration) *Playground {
+	return &Playground{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetPlayground - Evaluate an Unleash context against a set of environments and projects.
 // Deprecated. Will be removed in the next Unleash major update. Use the provided `context`, `environment`, and `projects` to evaluate toggles on this Unleash instance. Returns a list of all toggles that match the parameters and what they evaluate to. The response also contains the input parameters that were provided.
-func (s *playground) GetPlayground(ctx context.Context, request shared.PlaygroundRequestSchema) (*operations.GetPlaygroundResponse, error) {
+func (s *Playground) GetPlayground(ctx context.Context, request shared.PlaygroundRequestSchema) (*operations.GetPlaygroundResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/playground"
 
@@ -93,24 +93,24 @@ func (s *playground) GetPlayground(ctx context.Context, request shared.Playgroun
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPlayground400ApplicationJSON
+			var out operations.GetPlaygroundResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPlayground400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPlayground401ApplicationJSON
+			var out operations.GetPlaygroundPlaygroundResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPlayground401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

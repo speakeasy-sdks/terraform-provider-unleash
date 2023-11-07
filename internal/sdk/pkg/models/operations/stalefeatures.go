@@ -27,8 +27,8 @@ func (o *StaleFeaturesRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// StaleFeatures415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type StaleFeatures415ApplicationJSON struct {
+// StaleFeaturesFeaturesResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type StaleFeaturesFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type StaleFeatures415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *StaleFeatures415ApplicationJSON) GetID() *string {
+func (o *StaleFeaturesFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *StaleFeatures415ApplicationJSON) GetMessage() *string {
+func (o *StaleFeaturesFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *StaleFeatures415ApplicationJSON) GetName() *string {
+func (o *StaleFeaturesFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// StaleFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type StaleFeatures403ApplicationJSON struct {
+// StaleFeaturesFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type StaleFeaturesFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type StaleFeatures403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *StaleFeatures403ApplicationJSON) GetID() *string {
+func (o *StaleFeaturesFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *StaleFeatures403ApplicationJSON) GetMessage() *string {
+func (o *StaleFeaturesFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *StaleFeatures403ApplicationJSON) GetName() *string {
+func (o *StaleFeaturesFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// StaleFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type StaleFeatures401ApplicationJSON struct {
+// StaleFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type StaleFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type StaleFeatures401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *StaleFeatures401ApplicationJSON) GetID() *string {
+func (o *StaleFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *StaleFeatures401ApplicationJSON) GetMessage() *string {
+func (o *StaleFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *StaleFeatures401ApplicationJSON) GetName() *string {
+func (o *StaleFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,18 +121,39 @@ func (o *StaleFeatures401ApplicationJSON) GetName() *string {
 }
 
 type StaleFeaturesResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *StaleFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *StaleFeaturesFeaturesResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *StaleFeaturesFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	StaleFeatures401ApplicationJSONObject *StaleFeatures401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	StaleFeatures403ApplicationJSONObject *StaleFeatures403ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	StaleFeatures415ApplicationJSONObject *StaleFeatures415ApplicationJSON
+}
+
+func (o *StaleFeaturesResponse) GetFourHundredAndOneApplicationJSONObject() *StaleFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *StaleFeaturesResponse) GetFourHundredAndThreeApplicationJSONObject() *StaleFeaturesFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *StaleFeaturesResponse) GetFourHundredAndFifteenApplicationJSONObject() *StaleFeaturesFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *StaleFeaturesResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *StaleFeaturesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *StaleFeaturesResponse) GetStaleFeatures401ApplicationJSONObject() *StaleFeatures401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.StaleFeatures401ApplicationJSONObject
-}
-
-func (o *StaleFeaturesResponse) GetStaleFeatures403ApplicationJSONObject() *StaleFeatures403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.StaleFeatures403ApplicationJSONObject
-}
-
-func (o *StaleFeaturesResponse) GetStaleFeatures415ApplicationJSONObject() *StaleFeatures415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.StaleFeatures415ApplicationJSONObject
 }

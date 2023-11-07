@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateFeedback415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateFeedback415ApplicationJSON struct {
+// CreateFeedbackAdminUIResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateFeedbackAdminUIResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateFeedback415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeedback415ApplicationJSON) GetID() *string {
+func (o *CreateFeedbackAdminUIResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeedback415ApplicationJSON) GetMessage() *string {
+func (o *CreateFeedbackAdminUIResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeedback415ApplicationJSON) GetName() *string {
+func (o *CreateFeedbackAdminUIResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateFeedback401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateFeedback401ApplicationJSON struct {
+// CreateFeedbackAdminUIResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateFeedbackAdminUIResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateFeedback401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeedback401ApplicationJSON) GetID() *string {
+func (o *CreateFeedbackAdminUIResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeedback401ApplicationJSON) GetMessage() *string {
+func (o *CreateFeedbackAdminUIResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeedback401ApplicationJSON) GetName() *string {
+func (o *CreateFeedbackAdminUIResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateFeedback400ApplicationJSON - The request data does not match what we expect.
-type CreateFeedback400ApplicationJSON struct {
+// CreateFeedbackResponseBody - The request data does not match what we expect.
+type CreateFeedbackResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type CreateFeedback400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateFeedback400ApplicationJSON) GetID() *string {
+func (o *CreateFeedbackResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateFeedback400ApplicationJSON) GetMessage() *string {
+func (o *CreateFeedbackResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateFeedback400ApplicationJSON) GetName() *string {
+func (o *CreateFeedbackResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *CreateFeedback400ApplicationJSON) GetName() *string {
 }
 
 type CreateFeedbackResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateFeedbackResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateFeedbackAdminUIResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateFeedbackAdminUIResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateFeedback400ApplicationJSONObject *CreateFeedback400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateFeedback401ApplicationJSONObject *CreateFeedback401ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateFeedback415ApplicationJSONObject *CreateFeedback415ApplicationJSON
 	// feedbackResponseSchema
 	FeedbackResponseSchema *shared.FeedbackResponseSchema
+}
+
+func (o *CreateFeedbackResponse) GetFourHundredApplicationJSONObject() *CreateFeedbackResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateFeedbackResponse) GetFourHundredAndOneApplicationJSONObject() *CreateFeedbackAdminUIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateFeedbackResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateFeedbackAdminUIResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateFeedbackResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *CreateFeedbackResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateFeedbackResponse) GetCreateFeedback400ApplicationJSONObject() *CreateFeedback400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeedback400ApplicationJSONObject
-}
-
-func (o *CreateFeedbackResponse) GetCreateFeedback401ApplicationJSONObject() *CreateFeedback401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeedback401ApplicationJSONObject
-}
-
-func (o *CreateFeedbackResponse) GetCreateFeedback415ApplicationJSONObject() *CreateFeedback415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateFeedback415ApplicationJSONObject
 }
 
 func (o *CreateFeedbackResponse) GetFeedbackResponseSchema() *shared.FeedbackResponseSchema {

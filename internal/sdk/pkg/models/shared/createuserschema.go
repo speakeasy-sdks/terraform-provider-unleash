@@ -9,22 +9,22 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// CreateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
-type CreateUserSchemaRootRole2 string
+// CreateUserSchema2 - The role to assign to the user. Can be either the role's ID or its unique name.
+type CreateUserSchema2 string
 
 const (
-	CreateUserSchemaRootRole2Admin  CreateUserSchemaRootRole2 = "Admin"
-	CreateUserSchemaRootRole2Editor CreateUserSchemaRootRole2 = "Editor"
-	CreateUserSchemaRootRole2Viewer CreateUserSchemaRootRole2 = "Viewer"
-	CreateUserSchemaRootRole2Owner  CreateUserSchemaRootRole2 = "Owner"
-	CreateUserSchemaRootRole2Member CreateUserSchemaRootRole2 = "Member"
+	CreateUserSchema2Admin  CreateUserSchema2 = "Admin"
+	CreateUserSchema2Editor CreateUserSchema2 = "Editor"
+	CreateUserSchema2Viewer CreateUserSchema2 = "Viewer"
+	CreateUserSchema2Owner  CreateUserSchema2 = "Owner"
+	CreateUserSchema2Member CreateUserSchema2 = "Member"
 )
 
-func (e CreateUserSchemaRootRole2) ToPointer() *CreateUserSchemaRootRole2 {
+func (e CreateUserSchema2) ToPointer() *CreateUserSchema2 {
 	return &e
 }
 
-func (e *CreateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
+func (e *CreateUserSchema2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,23 +39,23 @@ func (e *CreateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
 	case "Owner":
 		fallthrough
 	case "Member":
-		*e = CreateUserSchemaRootRole2(v)
+		*e = CreateUserSchema2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateUserSchemaRootRole2: %v", v)
+		return fmt.Errorf("invalid value for CreateUserSchema2: %v", v)
 	}
 }
 
 type CreateUserSchemaRootRoleType string
 
 const (
-	CreateUserSchemaRootRoleTypeInteger                   CreateUserSchemaRootRoleType = "integer"
-	CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2 CreateUserSchemaRootRoleType = "createUserSchema_rootRole_2"
+	CreateUserSchemaRootRoleTypeInteger           CreateUserSchemaRootRoleType = "integer"
+	CreateUserSchemaRootRoleTypeCreateUserSchema2 CreateUserSchemaRootRoleType = "createUserSchema_2"
 )
 
 type CreateUserSchemaRootRole struct {
-	Integer                   *int64
-	CreateUserSchemaRootRole2 *CreateUserSchemaRootRole2
+	Integer           *int64
+	CreateUserSchema2 *CreateUserSchema2
 
 	Type CreateUserSchemaRootRoleType
 }
@@ -69,12 +69,12 @@ func CreateCreateUserSchemaRootRoleInteger(integer int64) CreateUserSchemaRootRo
 	}
 }
 
-func CreateCreateUserSchemaRootRoleCreateUserSchemaRootRole2(createUserSchemaRootRole2 CreateUserSchemaRootRole2) CreateUserSchemaRootRole {
-	typ := CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2
+func CreateCreateUserSchemaRootRoleCreateUserSchema2(createUserSchema2 CreateUserSchema2) CreateUserSchemaRootRole {
+	typ := CreateUserSchemaRootRoleTypeCreateUserSchema2
 
 	return CreateUserSchemaRootRole{
-		CreateUserSchemaRootRole2: &createUserSchemaRootRole2,
-		Type:                      typ,
+		CreateUserSchema2: &createUserSchema2,
+		Type:              typ,
 	}
 }
 
@@ -87,10 +87,10 @@ func (u *CreateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	createUserSchemaRootRole2 := new(CreateUserSchemaRootRole2)
-	if err := utils.UnmarshalJSON(data, &createUserSchemaRootRole2, "", true, true); err == nil {
-		u.CreateUserSchemaRootRole2 = createUserSchemaRootRole2
-		u.Type = CreateUserSchemaRootRoleTypeCreateUserSchemaRootRole2
+	createUserSchema2 := new(CreateUserSchema2)
+	if err := utils.UnmarshalJSON(data, &createUserSchema2, "", true, true); err == nil {
+		u.CreateUserSchema2 = createUserSchema2
+		u.Type = CreateUserSchemaRootRoleTypeCreateUserSchema2
 		return nil
 	}
 
@@ -102,8 +102,8 @@ func (u CreateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Integer, "", true)
 	}
 
-	if u.CreateUserSchemaRootRole2 != nil {
-		return utils.MarshalJSON(u.CreateUserSchemaRootRole2, "", true)
+	if u.CreateUserSchema2 != nil {
+		return utils.MarshalJSON(u.CreateUserSchema2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")

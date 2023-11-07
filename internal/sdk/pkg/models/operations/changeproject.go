@@ -35,8 +35,8 @@ func (o *ChangeProjectRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// ChangeProject415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ChangeProject415ApplicationJSON struct {
+// ChangeProjectFeaturesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ChangeProjectFeaturesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -45,29 +45,29 @@ type ChangeProject415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeProject415ApplicationJSON) GetID() *string {
+func (o *ChangeProjectFeaturesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeProject415ApplicationJSON) GetMessage() *string {
+func (o *ChangeProjectFeaturesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeProject415ApplicationJSON) GetName() *string {
+func (o *ChangeProjectFeaturesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeProject404ApplicationJSON - The requested resource was not found.
-type ChangeProject404ApplicationJSON struct {
+// ChangeProjectFeaturesResponse404ResponseBody - The requested resource was not found.
+type ChangeProjectFeaturesResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -76,29 +76,29 @@ type ChangeProject404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeProject404ApplicationJSON) GetID() *string {
+func (o *ChangeProjectFeaturesResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeProject404ApplicationJSON) GetMessage() *string {
+func (o *ChangeProjectFeaturesResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeProject404ApplicationJSON) GetName() *string {
+func (o *ChangeProjectFeaturesResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeProject403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ChangeProject403ApplicationJSON struct {
+// ChangeProjectFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ChangeProjectFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -107,29 +107,29 @@ type ChangeProject403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeProject403ApplicationJSON) GetID() *string {
+func (o *ChangeProjectFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeProject403ApplicationJSON) GetMessage() *string {
+func (o *ChangeProjectFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeProject403ApplicationJSON) GetName() *string {
+func (o *ChangeProjectFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ChangeProject401ApplicationJSON struct {
+// ChangeProjectFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ChangeProjectFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -138,29 +138,29 @@ type ChangeProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeProject401ApplicationJSON) GetID() *string {
+func (o *ChangeProjectFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeProject401ApplicationJSON) GetMessage() *string {
+func (o *ChangeProjectFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeProject401ApplicationJSON) GetName() *string {
+func (o *ChangeProjectFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeProject400ApplicationJSON - The request data does not match what we expect.
-type ChangeProject400ApplicationJSON struct {
+// ChangeProjectResponseBody - The request data does not match what we expect.
+type ChangeProjectResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -169,21 +169,21 @@ type ChangeProject400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeProject400ApplicationJSON) GetID() *string {
+func (o *ChangeProjectResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeProject400ApplicationJSON) GetMessage() *string {
+func (o *ChangeProjectResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeProject400ApplicationJSON) GetName() *string {
+func (o *ChangeProjectResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -191,22 +191,57 @@ func (o *ChangeProject400ApplicationJSON) GetName() *string {
 }
 
 type ChangeProjectResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ChangeProjectResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ChangeProjectFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ChangeProjectFeaturesResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ChangeProjectFeaturesResponse404ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ChangeProjectFeaturesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ChangeProject400ApplicationJSONObject *ChangeProject400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ChangeProject401ApplicationJSONObject *ChangeProject401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangeProject403ApplicationJSONObject *ChangeProject403ApplicationJSON
-	// The requested resource was not found.
-	ChangeProject404ApplicationJSONObject *ChangeProject404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ChangeProject415ApplicationJSONObject *ChangeProject415ApplicationJSON
+}
+
+func (o *ChangeProjectResponse) GetFourHundredApplicationJSONObject() *ChangeProjectResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetFourHundredAndOneApplicationJSONObject() *ChangeProjectFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetFourHundredAndThreeApplicationJSONObject() *ChangeProjectFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetFourHundredAndFourApplicationJSONObject() *ChangeProjectFeaturesResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *ChangeProjectResponse) GetFourHundredAndFifteenApplicationJSONObject() *ChangeProjectFeaturesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ChangeProjectResponse) GetContentType() string {
@@ -228,39 +263,4 @@ func (o *ChangeProjectResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ChangeProjectResponse) GetChangeProject400ApplicationJSONObject() *ChangeProject400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeProject400ApplicationJSONObject
-}
-
-func (o *ChangeProjectResponse) GetChangeProject401ApplicationJSONObject() *ChangeProject401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeProject401ApplicationJSONObject
-}
-
-func (o *ChangeProjectResponse) GetChangeProject403ApplicationJSONObject() *ChangeProject403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeProject403ApplicationJSONObject
-}
-
-func (o *ChangeProjectResponse) GetChangeProject404ApplicationJSONObject() *ChangeProject404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeProject404ApplicationJSONObject
-}
-
-func (o *ChangeProjectResponse) GetChangeProject415ApplicationJSONObject() *ChangeProject415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeProject415ApplicationJSONObject
 }

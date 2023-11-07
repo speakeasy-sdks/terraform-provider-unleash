@@ -27,8 +27,8 @@ func (o *AddEnvironmentToProjectRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// AddEnvironmentToProject409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type AddEnvironmentToProject409ApplicationJSON struct {
+// AddEnvironmentToProjectProjectsResponseResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type AddEnvironmentToProjectProjectsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type AddEnvironmentToProject409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddEnvironmentToProject409ApplicationJSON) GetID() *string {
+func (o *AddEnvironmentToProjectProjectsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddEnvironmentToProject409ApplicationJSON) GetMessage() *string {
+func (o *AddEnvironmentToProjectProjectsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddEnvironmentToProject409ApplicationJSON) GetName() *string {
+func (o *AddEnvironmentToProjectProjectsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddEnvironmentToProject403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type AddEnvironmentToProject403ApplicationJSON struct {
+// AddEnvironmentToProjectProjectsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type AddEnvironmentToProjectProjectsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type AddEnvironmentToProject403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddEnvironmentToProject403ApplicationJSON) GetID() *string {
+func (o *AddEnvironmentToProjectProjectsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddEnvironmentToProject403ApplicationJSON) GetMessage() *string {
+func (o *AddEnvironmentToProjectProjectsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddEnvironmentToProject403ApplicationJSON) GetName() *string {
+func (o *AddEnvironmentToProjectProjectsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddEnvironmentToProject401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type AddEnvironmentToProject401ApplicationJSON struct {
+// AddEnvironmentToProjectResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type AddEnvironmentToProjectResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type AddEnvironmentToProject401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddEnvironmentToProject401ApplicationJSON) GetID() *string {
+func (o *AddEnvironmentToProjectResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddEnvironmentToProject401ApplicationJSON) GetMessage() *string {
+func (o *AddEnvironmentToProjectResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddEnvironmentToProject401ApplicationJSON) GetName() *string {
+func (o *AddEnvironmentToProjectResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,18 +121,39 @@ func (o *AddEnvironmentToProject401ApplicationJSON) GetName() *string {
 }
 
 type AddEnvironmentToProjectResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *AddEnvironmentToProjectResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *AddEnvironmentToProjectProjectsResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *AddEnvironmentToProjectProjectsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	AddEnvironmentToProject401ApplicationJSONObject *AddEnvironmentToProject401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	AddEnvironmentToProject403ApplicationJSONObject *AddEnvironmentToProject403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	AddEnvironmentToProject409ApplicationJSONObject *AddEnvironmentToProject409ApplicationJSON
+}
+
+func (o *AddEnvironmentToProjectResponse) GetFourHundredAndOneApplicationJSONObject() *AddEnvironmentToProjectResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *AddEnvironmentToProjectResponse) GetFourHundredAndThreeApplicationJSONObject() *AddEnvironmentToProjectProjectsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *AddEnvironmentToProjectResponse) GetFourHundredAndNineApplicationJSONObject() *AddEnvironmentToProjectProjectsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
 }
 
 func (o *AddEnvironmentToProjectResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *AddEnvironmentToProjectResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *AddEnvironmentToProjectResponse) GetAddEnvironmentToProject401ApplicationJSONObject() *AddEnvironmentToProject401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddEnvironmentToProject401ApplicationJSONObject
-}
-
-func (o *AddEnvironmentToProjectResponse) GetAddEnvironmentToProject403ApplicationJSONObject() *AddEnvironmentToProject403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddEnvironmentToProject403ApplicationJSONObject
-}
-
-func (o *AddEnvironmentToProjectResponse) GetAddEnvironmentToProject409ApplicationJSONObject() *AddEnvironmentToProject409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddEnvironmentToProject409ApplicationJSONObject
 }

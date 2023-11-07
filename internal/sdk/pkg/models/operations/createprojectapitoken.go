@@ -27,8 +27,8 @@ func (o *CreateProjectAPITokenRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// CreateProjectAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateProjectAPIToken403ApplicationJSON struct {
+// CreateProjectAPITokenProjectsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateProjectAPITokenProjectsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type CreateProjectAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateProjectAPIToken403ApplicationJSON) GetID() *string {
+func (o *CreateProjectAPITokenProjectsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateProjectAPIToken403ApplicationJSON) GetMessage() *string {
+func (o *CreateProjectAPITokenProjectsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateProjectAPIToken403ApplicationJSON) GetName() *string {
+func (o *CreateProjectAPITokenProjectsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateProjectAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateProjectAPIToken401ApplicationJSON struct {
+// CreateProjectAPITokenProjectsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateProjectAPITokenProjectsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type CreateProjectAPIToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateProjectAPIToken401ApplicationJSON) GetID() *string {
+func (o *CreateProjectAPITokenProjectsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateProjectAPIToken401ApplicationJSON) GetMessage() *string {
+func (o *CreateProjectAPITokenProjectsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateProjectAPIToken401ApplicationJSON) GetName() *string {
+func (o *CreateProjectAPITokenProjectsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateProjectAPIToken400ApplicationJSON - The request data does not match what we expect.
-type CreateProjectAPIToken400ApplicationJSON struct {
+// CreateProjectAPITokenResponseBody - The request data does not match what we expect.
+type CreateProjectAPITokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type CreateProjectAPIToken400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateProjectAPIToken400ApplicationJSON) GetID() *string {
+func (o *CreateProjectAPITokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateProjectAPIToken400ApplicationJSON) GetMessage() *string {
+func (o *CreateProjectAPITokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateProjectAPIToken400ApplicationJSON) GetName() *string {
+func (o *CreateProjectAPITokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,6 +121,12 @@ func (o *CreateProjectAPIToken400ApplicationJSON) GetName() *string {
 }
 
 type CreateProjectAPITokenResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateProjectAPITokenResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateProjectAPITokenProjectsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateProjectAPITokenProjectsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -130,12 +136,27 @@ type CreateProjectAPITokenResponse struct {
 	RawResponse *http.Response
 	// The resource was successfully created.
 	APITokenSchema *shared.APITokenSchema
-	// The request data does not match what we expect.
-	CreateProjectAPIToken400ApplicationJSONObject *CreateProjectAPIToken400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateProjectAPIToken401ApplicationJSONObject *CreateProjectAPIToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateProjectAPIToken403ApplicationJSONObject *CreateProjectAPIToken403ApplicationJSON
+}
+
+func (o *CreateProjectAPITokenResponse) GetFourHundredApplicationJSONObject() *CreateProjectAPITokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateProjectAPITokenResponse) GetFourHundredAndOneApplicationJSONObject() *CreateProjectAPITokenProjectsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateProjectAPITokenResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateProjectAPITokenProjectsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *CreateProjectAPITokenResponse) GetContentType() string {
@@ -171,25 +192,4 @@ func (o *CreateProjectAPITokenResponse) GetAPITokenSchema() *shared.APITokenSche
 		return nil
 	}
 	return o.APITokenSchema
-}
-
-func (o *CreateProjectAPITokenResponse) GetCreateProjectAPIToken400ApplicationJSONObject() *CreateProjectAPIToken400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateProjectAPIToken400ApplicationJSONObject
-}
-
-func (o *CreateProjectAPITokenResponse) GetCreateProjectAPIToken401ApplicationJSONObject() *CreateProjectAPIToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateProjectAPIToken401ApplicationJSONObject
-}
-
-func (o *CreateProjectAPITokenResponse) GetCreateProjectAPIToken403ApplicationJSONObject() *CreateProjectAPIToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateProjectAPIToken403ApplicationJSONObject
 }

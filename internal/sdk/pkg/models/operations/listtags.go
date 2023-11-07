@@ -18,8 +18,8 @@ func (o *ListTagsRequest) GetFeatureName() string {
 	return o.FeatureName
 }
 
-// ListTags404ApplicationJSON - The requested resource was not found.
-type ListTags404ApplicationJSON struct {
+// ListTagsFeaturesResponseResponseBody - The requested resource was not found.
+type ListTagsFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type ListTags404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ListTags404ApplicationJSON) GetID() *string {
+func (o *ListTagsFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ListTags404ApplicationJSON) GetMessage() *string {
+func (o *ListTagsFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ListTags404ApplicationJSON) GetName() *string {
+func (o *ListTagsFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ListTags403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ListTags403ApplicationJSON struct {
+// ListTagsFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ListTagsFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type ListTags403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ListTags403ApplicationJSON) GetID() *string {
+func (o *ListTagsFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ListTags403ApplicationJSON) GetMessage() *string {
+func (o *ListTagsFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ListTags403ApplicationJSON) GetName() *string {
+func (o *ListTagsFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ListTags401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ListTags401ApplicationJSON struct {
+// ListTagsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ListTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type ListTags401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ListTags401ApplicationJSON) GetID() *string {
+func (o *ListTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ListTags401ApplicationJSON) GetMessage() *string {
+func (o *ListTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ListTags401ApplicationJSON) GetName() *string {
+func (o *ListTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,20 +112,41 @@ func (o *ListTags401ApplicationJSON) GetName() *string {
 }
 
 type ListTagsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ListTagsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ListTagsFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ListTagsFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ListTags401ApplicationJSONObject *ListTags401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ListTags403ApplicationJSONObject *ListTags403ApplicationJSON
-	// The requested resource was not found.
-	ListTags404ApplicationJSONObject *ListTags404ApplicationJSON
 	// tagsSchema
 	TagsSchema *shared.TagsSchema
+}
+
+func (o *ListTagsResponse) GetFourHundredAndOneApplicationJSONObject() *ListTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ListTagsResponse) GetFourHundredAndThreeApplicationJSONObject() *ListTagsFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ListTagsResponse) GetFourHundredAndFourApplicationJSONObject() *ListTagsFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ListTagsResponse) GetContentType() string {
@@ -147,27 +168,6 @@ func (o *ListTagsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ListTagsResponse) GetListTags401ApplicationJSONObject() *ListTags401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTags401ApplicationJSONObject
-}
-
-func (o *ListTagsResponse) GetListTags403ApplicationJSONObject() *ListTags403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTags403ApplicationJSONObject
-}
-
-func (o *ListTagsResponse) GetListTags404ApplicationJSONObject() *ListTags404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListTags404ApplicationJSONObject
 }
 
 func (o *ListTagsResponse) GetTagsSchema() *shared.TagsSchema {

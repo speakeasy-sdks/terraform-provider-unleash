@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// edge - Endpoints related to Unleash on the Edge.
-type edge struct {
+// Edge - Endpoints related to Unleash on the Edge.
+type Edge struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEdge(sdkConfig sdkConfiguration) *edge {
-	return &edge{
+func newEdge(sdkConfig sdkConfiguration) *Edge {
+	return &Edge{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // BulkMetrics - Send metrics from Edge
 // This operation accepts batched metrics from Edge. Metrics will be inserted into Unleash's metrics storage
-func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema) (*operations.BulkMetricsResponse, error) {
+func (s *Edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema) (*operations.BulkMetricsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/edge/metrics"
 
@@ -82,36 +82,36 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkMetrics400ApplicationJSON
+			var out operations.BulkMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkMetrics400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkMetrics413ApplicationJSON
+			var out operations.BulkMetricsEdgeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkMetrics413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkMetrics415ApplicationJSON
+			var out operations.BulkMetricsEdgeResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkMetrics415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -122,7 +122,7 @@ func (s *edge) BulkMetrics(ctx context.Context, request shared.BulkMetricsSchema
 
 // GetValidTokens - Check which tokens are valid
 // This operation accepts a list of tokens to validate. Unleash will validate each token you provide. For each valid token you provide, Unleash will return the token along with its type and which projects it has access to.
-func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringListSchema) (*operations.GetValidTokensResponse, error) {
+func (s *Edge) GetValidTokens(ctx context.Context, request shared.TokenStringListSchema) (*operations.GetValidTokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/edge/validate"
 
@@ -187,36 +187,36 @@ func (s *edge) GetValidTokens(ctx context.Context, request shared.TokenStringLis
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetValidTokens400ApplicationJSON
+			var out operations.GetValidTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetValidTokens400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetValidTokens413ApplicationJSON
+			var out operations.GetValidTokensEdgeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetValidTokens413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetValidTokens415ApplicationJSON
+			var out operations.GetValidTokensEdgeResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetValidTokens415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

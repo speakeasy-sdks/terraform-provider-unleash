@@ -34,8 +34,8 @@ func (o *ToggleFeatureEnvironmentOffRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// ToggleFeatureEnvironmentOff404ApplicationJSON - The requested resource was not found.
-type ToggleFeatureEnvironmentOff404ApplicationJSON struct {
+// ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody - The requested resource was not found.
+type ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -44,29 +44,29 @@ type ToggleFeatureEnvironmentOff404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleFeatureEnvironmentOff404ApplicationJSON) GetID() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleFeatureEnvironmentOff404ApplicationJSON) GetMessage() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleFeatureEnvironmentOff404ApplicationJSON) GetName() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleFeatureEnvironmentOff403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ToggleFeatureEnvironmentOff403ApplicationJSON struct {
+// ToggleFeatureEnvironmentOffFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ToggleFeatureEnvironmentOffFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -75,29 +75,29 @@ type ToggleFeatureEnvironmentOff403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleFeatureEnvironmentOff403ApplicationJSON) GetID() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleFeatureEnvironmentOff403ApplicationJSON) GetMessage() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleFeatureEnvironmentOff403ApplicationJSON) GetName() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleFeatureEnvironmentOff401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ToggleFeatureEnvironmentOff401ApplicationJSON struct {
+// ToggleFeatureEnvironmentOffFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ToggleFeatureEnvironmentOffFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -106,29 +106,29 @@ type ToggleFeatureEnvironmentOff401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleFeatureEnvironmentOff401ApplicationJSON) GetID() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleFeatureEnvironmentOff401ApplicationJSON) GetMessage() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleFeatureEnvironmentOff401ApplicationJSON) GetName() *string {
+func (o *ToggleFeatureEnvironmentOffFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleFeatureEnvironmentOff400ApplicationJSON - The request data does not match what we expect.
-type ToggleFeatureEnvironmentOff400ApplicationJSON struct {
+// ToggleFeatureEnvironmentOffResponseBody - The request data does not match what we expect.
+type ToggleFeatureEnvironmentOffResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -137,21 +137,21 @@ type ToggleFeatureEnvironmentOff400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleFeatureEnvironmentOff400ApplicationJSON) GetID() *string {
+func (o *ToggleFeatureEnvironmentOffResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleFeatureEnvironmentOff400ApplicationJSON) GetMessage() *string {
+func (o *ToggleFeatureEnvironmentOffResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleFeatureEnvironmentOff400ApplicationJSON) GetName() *string {
+func (o *ToggleFeatureEnvironmentOffResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -159,6 +159,14 @@ func (o *ToggleFeatureEnvironmentOff400ApplicationJSON) GetName() *string {
 }
 
 type ToggleFeatureEnvironmentOffResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ToggleFeatureEnvironmentOffResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ToggleFeatureEnvironmentOffFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ToggleFeatureEnvironmentOffFeaturesResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -167,14 +175,34 @@ type ToggleFeatureEnvironmentOffResponse struct {
 	RawResponse *http.Response
 	// featureSchema
 	FeatureSchema *shared.FeatureSchema
-	// The request data does not match what we expect.
-	ToggleFeatureEnvironmentOff400ApplicationJSONObject *ToggleFeatureEnvironmentOff400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ToggleFeatureEnvironmentOff401ApplicationJSONObject *ToggleFeatureEnvironmentOff401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ToggleFeatureEnvironmentOff403ApplicationJSONObject *ToggleFeatureEnvironmentOff403ApplicationJSON
-	// The requested resource was not found.
-	ToggleFeatureEnvironmentOff404ApplicationJSONObject *ToggleFeatureEnvironmentOff404ApplicationJSON
+}
+
+func (o *ToggleFeatureEnvironmentOffResponse) GetFourHundredApplicationJSONObject() *ToggleFeatureEnvironmentOffResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOffResponse) GetFourHundredAndOneApplicationJSONObject() *ToggleFeatureEnvironmentOffFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOffResponse) GetFourHundredAndThreeApplicationJSONObject() *ToggleFeatureEnvironmentOffFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ToggleFeatureEnvironmentOffResponse) GetFourHundredAndFourApplicationJSONObject() *ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ToggleFeatureEnvironmentOffResponse) GetContentType() string {
@@ -203,32 +231,4 @@ func (o *ToggleFeatureEnvironmentOffResponse) GetFeatureSchema() *shared.Feature
 		return nil
 	}
 	return o.FeatureSchema
-}
-
-func (o *ToggleFeatureEnvironmentOffResponse) GetToggleFeatureEnvironmentOff400ApplicationJSONObject() *ToggleFeatureEnvironmentOff400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleFeatureEnvironmentOff400ApplicationJSONObject
-}
-
-func (o *ToggleFeatureEnvironmentOffResponse) GetToggleFeatureEnvironmentOff401ApplicationJSONObject() *ToggleFeatureEnvironmentOff401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleFeatureEnvironmentOff401ApplicationJSONObject
-}
-
-func (o *ToggleFeatureEnvironmentOffResponse) GetToggleFeatureEnvironmentOff403ApplicationJSONObject() *ToggleFeatureEnvironmentOff403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleFeatureEnvironmentOff403ApplicationJSONObject
-}
-
-func (o *ToggleFeatureEnvironmentOffResponse) GetToggleFeatureEnvironmentOff404ApplicationJSONObject() *ToggleFeatureEnvironmentOff404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleFeatureEnvironmentOff404ApplicationJSONObject
 }

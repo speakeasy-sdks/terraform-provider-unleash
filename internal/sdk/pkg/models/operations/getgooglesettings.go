@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetGoogleSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetGoogleSettings403ApplicationJSON struct {
+// GetGoogleSettingsAuthResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetGoogleSettingsAuthResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetGoogleSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGoogleSettings403ApplicationJSON) GetID() *string {
+func (o *GetGoogleSettingsAuthResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGoogleSettings403ApplicationJSON) GetMessage() *string {
+func (o *GetGoogleSettingsAuthResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGoogleSettings403ApplicationJSON) GetName() *string {
+func (o *GetGoogleSettingsAuthResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGoogleSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetGoogleSettings401ApplicationJSON struct {
+// GetGoogleSettingsAuthResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetGoogleSettingsAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type GetGoogleSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGoogleSettings401ApplicationJSON) GetID() *string {
+func (o *GetGoogleSettingsAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGoogleSettings401ApplicationJSON) GetMessage() *string {
+func (o *GetGoogleSettingsAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGoogleSettings401ApplicationJSON) GetName() *string {
+func (o *GetGoogleSettingsAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGoogleSettings400ApplicationJSON - The request data does not match what we expect.
-type GetGoogleSettings400ApplicationJSON struct {
+// GetGoogleSettingsResponseBody - The request data does not match what we expect.
+type GetGoogleSettingsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type GetGoogleSettings400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGoogleSettings400ApplicationJSON) GetID() *string {
+func (o *GetGoogleSettingsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGoogleSettings400ApplicationJSON) GetMessage() *string {
+func (o *GetGoogleSettingsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGoogleSettings400ApplicationJSON) GetName() *string {
+func (o *GetGoogleSettingsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *GetGoogleSettings400ApplicationJSON) GetName() *string {
 }
 
 type GetGoogleSettingsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetGoogleSettingsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetGoogleSettingsAuthResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetGoogleSettingsAuthResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetGoogleSettings400ApplicationJSONObject *GetGoogleSettings400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetGoogleSettings401ApplicationJSONObject *GetGoogleSettings401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGoogleSettings403ApplicationJSONObject *GetGoogleSettings403ApplicationJSON
 	// googleSettingsSchema
 	GoogleSettingsSchema *shared.GoogleSettingsSchema
+}
+
+func (o *GetGoogleSettingsResponse) GetFourHundredApplicationJSONObject() *GetGoogleSettingsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetGoogleSettingsResponse) GetFourHundredAndOneApplicationJSONObject() *GetGoogleSettingsAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetGoogleSettingsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetGoogleSettingsAuthResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetGoogleSettingsResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *GetGoogleSettingsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetGoogleSettingsResponse) GetGetGoogleSettings400ApplicationJSONObject() *GetGoogleSettings400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGoogleSettings400ApplicationJSONObject
-}
-
-func (o *GetGoogleSettingsResponse) GetGetGoogleSettings401ApplicationJSONObject() *GetGoogleSettings401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGoogleSettings401ApplicationJSONObject
-}
-
-func (o *GetGoogleSettingsResponse) GetGetGoogleSettings403ApplicationJSONObject() *GetGoogleSettings403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGoogleSettings403ApplicationJSONObject
 }
 
 func (o *GetGoogleSettingsResponse) GetGoogleSettingsSchema() *shared.GoogleSettingsSchema {

@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetMaintenance403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetMaintenance403ApplicationJSON struct {
+// GetMaintenanceMaintenanceResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetMaintenanceMaintenanceResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetMaintenance403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetMaintenance403ApplicationJSON) GetID() *string {
+func (o *GetMaintenanceMaintenanceResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetMaintenance403ApplicationJSON) GetMessage() *string {
+func (o *GetMaintenanceMaintenanceResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetMaintenance403ApplicationJSON) GetName() *string {
+func (o *GetMaintenanceMaintenanceResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetMaintenance401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetMaintenance401ApplicationJSON struct {
+// GetMaintenanceResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetMaintenanceResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetMaintenance401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetMaintenance401ApplicationJSON) GetID() *string {
+func (o *GetMaintenanceResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetMaintenance401ApplicationJSON) GetMessage() *string {
+func (o *GetMaintenanceResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetMaintenance401ApplicationJSON) GetName() *string {
+func (o *GetMaintenanceResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetMaintenance401ApplicationJSON) GetName() *string {
 }
 
 type GetMaintenanceResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetMaintenanceResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetMaintenanceMaintenanceResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetMaintenance401ApplicationJSONObject *GetMaintenance401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetMaintenance403ApplicationJSONObject *GetMaintenance403ApplicationJSON
 	// maintenanceSchema
 	MaintenanceSchema *shared.MaintenanceSchema
+}
+
+func (o *GetMaintenanceResponse) GetFourHundredAndOneApplicationJSONObject() *GetMaintenanceResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetMaintenanceResponse) GetFourHundredAndThreeApplicationJSONObject() *GetMaintenanceMaintenanceResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetMaintenanceResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetMaintenanceResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetMaintenanceResponse) GetGetMaintenance401ApplicationJSONObject() *GetMaintenance401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetMaintenance401ApplicationJSONObject
-}
-
-func (o *GetMaintenanceResponse) GetGetMaintenance403ApplicationJSONObject() *GetMaintenance403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetMaintenance403ApplicationJSONObject
 }
 
 func (o *GetMaintenanceResponse) GetMaintenanceSchema() *shared.MaintenanceSchema {

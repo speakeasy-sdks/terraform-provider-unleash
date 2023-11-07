@@ -15,13 +15,13 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// Read events from this Unleash instance.
-type events struct {
+// Events - Read events from this Unleash instance.
+type Events struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEvents(sdkConfig sdkConfiguration) *events {
-	return &events{
+func newEvents(sdkConfig sdkConfiguration) *Events {
+	return &Events{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -30,7 +30,7 @@ func newEvents(sdkConfig sdkConfiguration) *events {
 // Returns **the last 100** events from the Unleash instance when called without a query parameter. When called with a `project` parameter, returns **all events** for the specified project.
 //
 // If the provided project does not exist, the list of events will be empty.
-func (s *events) GetEvents(ctx context.Context, request operations.GetEventsRequest) (*operations.GetEventsResponse, error) {
+func (s *Events) GetEvents(ctx context.Context, request operations.GetEventsRequest) (*operations.GetEventsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/events"
 
@@ -85,12 +85,12 @@ func (s *events) GetEvents(ctx context.Context, request operations.GetEventsRequ
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEvents401ApplicationJSON
+			var out operations.GetEventsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEvents401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -101,7 +101,7 @@ func (s *events) GetEvents(ctx context.Context, request operations.GetEventsRequ
 
 // GetEventsForToggle - Get all events related to a specific feature toggle.
 // Returns all events related to the specified feature toggle. If the feature toggle does not exist, the list of events will be empty.
-func (s *events) GetEventsForToggle(ctx context.Context, request operations.GetEventsForToggleRequest) (*operations.GetEventsForToggleResponse, error) {
+func (s *Events) GetEventsForToggle(ctx context.Context, request operations.GetEventsForToggleRequest) (*operations.GetEventsForToggleResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/events/{featureName}", request, nil)
 	if err != nil {
@@ -155,12 +155,12 @@ func (s *events) GetEventsForToggle(ctx context.Context, request operations.GetE
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEventsForToggle401ApplicationJSON
+			var out operations.GetEventsForToggleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEventsForToggle401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -171,7 +171,7 @@ func (s *events) GetEventsForToggle(ctx context.Context, request operations.GetE
 
 // SearchEvents - Search for events
 // Allows searching for events matching the search criteria in the request body
-func (s *events) SearchEvents(ctx context.Context, request shared.SearchEventsSchema) (*operations.SearchEventsResponse, error) {
+func (s *Events) SearchEvents(ctx context.Context, request shared.SearchEventsSchema) (*operations.SearchEventsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/events/search"
 

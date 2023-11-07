@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetTags403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetTags403ApplicationJSON struct {
+// GetTagsTagsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetTagsTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetTags403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetTags403ApplicationJSON) GetID() *string {
+func (o *GetTagsTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetTags403ApplicationJSON) GetMessage() *string {
+func (o *GetTagsTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetTags403ApplicationJSON) GetName() *string {
+func (o *GetTagsTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetTags401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetTags401ApplicationJSON struct {
+// GetTagsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetTags401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetTags401ApplicationJSON) GetID() *string {
+func (o *GetTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetTags401ApplicationJSON) GetMessage() *string {
+func (o *GetTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetTags401ApplicationJSON) GetName() *string {
+func (o *GetTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetTags401ApplicationJSON) GetName() *string {
 }
 
 type GetTagsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetTagsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetTagsTagsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetTags401ApplicationJSONObject *GetTags401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetTags403ApplicationJSONObject *GetTags403ApplicationJSON
 	// tagsSchema
 	TagsSchema *shared.TagsSchema
+}
+
+func (o *GetTagsResponse) GetFourHundredAndOneApplicationJSONObject() *GetTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetTagsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetTagsTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetTagsResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetTagsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetTagsResponse) GetGetTags401ApplicationJSONObject() *GetTags401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTags401ApplicationJSONObject
-}
-
-func (o *GetTagsResponse) GetGetTags403ApplicationJSONObject() *GetTags403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetTags403ApplicationJSONObject
 }
 
 func (o *GetTagsResponse) GetTagsSchema() *shared.TagsSchema {

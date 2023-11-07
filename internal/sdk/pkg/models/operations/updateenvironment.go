@@ -27,8 +27,8 @@ func (o *UpdateEnvironmentRequest) GetUpdateEnvironmentSchema() shared.UpdateEnv
 	return o.UpdateEnvironmentSchema
 }
 
-// UpdateEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateEnvironment401ApplicationJSON struct {
+// UpdateEnvironmentEnvironmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateEnvironmentEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateEnvironment401ApplicationJSON) GetID() *string {
+func (o *UpdateEnvironmentEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateEnvironment401ApplicationJSON) GetMessage() *string {
+func (o *UpdateEnvironmentEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateEnvironment401ApplicationJSON) GetName() *string {
+func (o *UpdateEnvironmentEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateEnvironment400ApplicationJSON - The request data does not match what we expect.
-type UpdateEnvironment400ApplicationJSON struct {
+// UpdateEnvironmentResponseBody - The request data does not match what we expect.
+type UpdateEnvironmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,21 +68,21 @@ type UpdateEnvironment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateEnvironment400ApplicationJSON) GetID() *string {
+func (o *UpdateEnvironmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateEnvironment400ApplicationJSON) GetMessage() *string {
+func (o *UpdateEnvironmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateEnvironment400ApplicationJSON) GetName() *string {
+func (o *UpdateEnvironmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -90,6 +90,10 @@ func (o *UpdateEnvironment400ApplicationJSON) GetName() *string {
 }
 
 type UpdateEnvironmentResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdateEnvironmentResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateEnvironmentEnvironmentsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -98,10 +102,20 @@ type UpdateEnvironmentResponse struct {
 	RawResponse *http.Response
 	// environmentSchema
 	EnvironmentSchema *shared.EnvironmentSchema
-	// The request data does not match what we expect.
-	UpdateEnvironment400ApplicationJSONObject *UpdateEnvironment400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateEnvironment401ApplicationJSONObject *UpdateEnvironment401ApplicationJSON
+}
+
+func (o *UpdateEnvironmentResponse) GetFourHundredApplicationJSONObject() *UpdateEnvironmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdateEnvironmentResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateEnvironmentEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }
 
 func (o *UpdateEnvironmentResponse) GetContentType() string {
@@ -130,18 +144,4 @@ func (o *UpdateEnvironmentResponse) GetEnvironmentSchema() *shared.EnvironmentSc
 		return nil
 	}
 	return o.EnvironmentSchema
-}
-
-func (o *UpdateEnvironmentResponse) GetUpdateEnvironment400ApplicationJSONObject() *UpdateEnvironment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateEnvironment400ApplicationJSONObject
-}
-
-func (o *UpdateEnvironmentResponse) GetUpdateEnvironment401ApplicationJSONObject() *UpdateEnvironment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateEnvironment401ApplicationJSONObject
 }

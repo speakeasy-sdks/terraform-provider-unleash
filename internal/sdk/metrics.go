@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// metrics - Register, read, or delete metrics recorded by Unleash.
-type metrics struct {
+// Metrics - Register, read, or delete metrics recorded by Unleash.
+type Metrics struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMetrics(sdkConfig sdkConfiguration) *metrics {
-	return &metrics{
+func newMetrics(sdkConfig sdkConfiguration) *Metrics {
+	return &Metrics{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateApplication - Create an application to connect reported metrics
 // Is used to report usage as well which sdk the application uses
-func (s *metrics) CreateApplication(ctx context.Context, request operations.CreateApplicationRequest) (*operations.CreateApplicationResponse, error) {
+func (s *Metrics) CreateApplication(ctx context.Context, request operations.CreateApplicationRequest) (*operations.CreateApplicationResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/metrics/applications/{appName}", request, nil)
 	if err != nil {
@@ -85,36 +85,36 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateApplication400ApplicationJSON
+			var out operations.CreateApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateApplication400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateApplication401ApplicationJSON
+			var out operations.CreateApplicationMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateApplication401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateApplication403ApplicationJSON
+			var out operations.CreateApplicationMetricsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateApplication403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -125,7 +125,7 @@ func (s *metrics) CreateApplication(ctx context.Context, request operations.Crea
 
 // DeleteApplication - Delete an application
 // Delete the application specified in the request URL. Returns 200 OK if the application was successfully deleted or if it didn't exist
-func (s *metrics) DeleteApplication(ctx context.Context, request operations.DeleteApplicationRequest) (*operations.DeleteApplicationResponse, error) {
+func (s *Metrics) DeleteApplication(ctx context.Context, request operations.DeleteApplicationRequest) (*operations.DeleteApplicationResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/metrics/applications/{appName}", request, nil)
 	if err != nil {
@@ -168,24 +168,24 @@ func (s *metrics) DeleteApplication(ctx context.Context, request operations.Dele
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteApplication401ApplicationJSON
+			var out operations.DeleteApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteApplication401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteApplication403ApplicationJSON
+			var out operations.DeleteApplicationMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteApplication403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -196,7 +196,7 @@ func (s *metrics) DeleteApplication(ctx context.Context, request operations.Dele
 
 // GetApplication - Get application data
 // Returns data about the specified application (`appName`). The data contains information on the name of the application, sdkVersion (which sdk reported these metrics, typically `unleash-client-node:3.4.1` or `unleash-client-java:7.1.0`), as well as data about how to display this application in a list.
-func (s *metrics) GetApplication(ctx context.Context, request operations.GetApplicationRequest) (*operations.GetApplicationResponse, error) {
+func (s *Metrics) GetApplication(ctx context.Context, request operations.GetApplicationRequest) (*operations.GetApplicationResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/metrics/applications/{appName}", request, nil)
 	if err != nil {
@@ -250,12 +250,12 @@ func (s *metrics) GetApplication(ctx context.Context, request operations.GetAppl
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetApplication404ApplicationJSON
+			var out operations.GetApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetApplication404ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -266,7 +266,7 @@ func (s *metrics) GetApplication(ctx context.Context, request operations.GetAppl
 
 // GetApplications - Get all applications
 // Returns all applications registered with Unleash. Applications can be created via metrics reporting or manual creation
-func (s *metrics) GetApplications(ctx context.Context) (*operations.GetApplicationsResponse, error) {
+func (s *Metrics) GetApplications(ctx context.Context) (*operations.GetApplicationsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/metrics/applications"
 
@@ -321,7 +321,7 @@ func (s *metrics) GetApplications(ctx context.Context) (*operations.GetApplicati
 
 // GetFeatureUsageSummary - Last hour of usage and a list of applications that have reported seeing this feature toggle
 // Separate counts for yes (enabled), no (disabled), as well as how many times each variant was selected during the last hour
-func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations.GetFeatureUsageSummaryRequest) (*operations.GetFeatureUsageSummaryResponse, error) {
+func (s *Metrics) GetFeatureUsageSummary(ctx context.Context, request operations.GetFeatureUsageSummaryRequest) (*operations.GetFeatureUsageSummaryResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/client-metrics/features/{name}", request, nil)
 	if err != nil {
@@ -375,36 +375,36 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureUsageSummary401ApplicationJSON
+			var out operations.GetFeatureUsageSummaryResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureUsageSummary401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureUsageSummary403ApplicationJSON
+			var out operations.GetFeatureUsageSummaryMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureUsageSummary403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureUsageSummary404ApplicationJSON
+			var out operations.GetFeatureUsageSummaryMetricsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureUsageSummary404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -414,7 +414,7 @@ func (s *metrics) GetFeatureUsageSummary(ctx context.Context, request operations
 }
 
 // GetRawFeatureMetrics - Feature usage metrics for the last 48 hours, grouped by hour
-func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.GetRawFeatureMetricsRequest) (*operations.GetRawFeatureMetricsResponse, error) {
+func (s *Metrics) GetRawFeatureMetrics(ctx context.Context, request operations.GetRawFeatureMetricsRequest) (*operations.GetRawFeatureMetricsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/client-metrics/features/{name}/raw", request, nil)
 	if err != nil {
@@ -468,36 +468,36 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetRawFeatureMetrics401ApplicationJSON
+			var out operations.GetRawFeatureMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetRawFeatureMetrics401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetRawFeatureMetrics403ApplicationJSON
+			var out operations.GetRawFeatureMetricsMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetRawFeatureMetrics403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetRawFeatureMetrics404ApplicationJSON
+			var out operations.GetRawFeatureMetricsMetricsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetRawFeatureMetrics404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -508,7 +508,7 @@ func (s *metrics) GetRawFeatureMetrics(ctx context.Context, request operations.G
 
 // GetRequestsPerSecond - Gets usage data
 // Gets usage data per app/endpoint from a prometheus compatible metrics endpoint
-func (s *metrics) GetRequestsPerSecond(ctx context.Context) (*operations.GetRequestsPerSecondResponse, error) {
+func (s *Metrics) GetRequestsPerSecond(ctx context.Context) (*operations.GetRequestsPerSecondResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/metrics/rps"
 

@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// serviceAccounts - Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
-type serviceAccounts struct {
+// ServiceAccounts - Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
+type ServiceAccounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newServiceAccounts(sdkConfig sdkConfiguration) *serviceAccounts {
-	return &serviceAccounts{
+func newServiceAccounts(sdkConfig sdkConfiguration) *ServiceAccounts {
+	return &ServiceAccounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateServiceAccount - Create a service account.
 // Creates a new service account.
-func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shared.CreateServiceAccountSchema) (*operations.CreateServiceAccountResponse, error) {
+func (s *ServiceAccounts) CreateServiceAccount(ctx context.Context, request shared.CreateServiceAccountSchema) (*operations.CreateServiceAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/service-account"
 
@@ -95,60 +95,60 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccount400ApplicationJSON
+			var out operations.CreateServiceAccountResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccount400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccount401ApplicationJSON
+			var out operations.CreateServiceAccountServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccount401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccount403ApplicationJSON
+			var out operations.CreateServiceAccountServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccount403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccount409ApplicationJSON
+			var out operations.CreateServiceAccountServiceAccountsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccount409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccount415ApplicationJSON
+			var out operations.CreateServiceAccountServiceAccountsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccount415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -159,7 +159,7 @@ func (s *serviceAccounts) CreateServiceAccount(ctx context.Context, request shar
 
 // CreateServiceAccountToken - Create a token for a service account.
 // Creates a new token for the service account identified by the id.
-func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request operations.CreateServiceAccountTokenRequest) (*operations.CreateServiceAccountTokenResponse, error) {
+func (s *ServiceAccounts) CreateServiceAccountToken(ctx context.Context, request operations.CreateServiceAccountTokenRequest) (*operations.CreateServiceAccountTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/service-account/{id}/token", request, nil)
 	if err != nil {
@@ -229,60 +229,60 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccountToken401ApplicationJSON
+			var out operations.CreateServiceAccountTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccountToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccountToken403ApplicationJSON
+			var out operations.CreateServiceAccountTokenServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccountToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccountToken404ApplicationJSON
+			var out operations.CreateServiceAccountTokenServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccountToken404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccountToken409ApplicationJSON
+			var out operations.CreateServiceAccountTokenServiceAccountsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccountToken409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateServiceAccountToken415ApplicationJSON
+			var out operations.CreateServiceAccountTokenServiceAccountsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateServiceAccountToken415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -293,7 +293,7 @@ func (s *serviceAccounts) CreateServiceAccountToken(ctx context.Context, request
 
 // DeleteServiceAccount - Delete a service account.
 // Deletes an existing service account identified by its id.
-func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request operations.DeleteServiceAccountRequest) (*operations.DeleteServiceAccountResponse, error) {
+func (s *ServiceAccounts) DeleteServiceAccount(ctx context.Context, request operations.DeleteServiceAccountRequest) (*operations.DeleteServiceAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/service-account/{id}", request, nil)
 	if err != nil {
@@ -336,36 +336,36 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccount401ApplicationJSON
+			var out operations.DeleteServiceAccountResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccount401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccount403ApplicationJSON
+			var out operations.DeleteServiceAccountServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccount403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccount404ApplicationJSON
+			var out operations.DeleteServiceAccountServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccount404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -376,7 +376,7 @@ func (s *serviceAccounts) DeleteServiceAccount(ctx context.Context, request oper
 
 // DeleteServiceAccountToken - Delete a token for a service account.
 // Deletes a token for the service account identified both by the service account's id and the token's id.
-func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request operations.DeleteServiceAccountTokenRequest) (*operations.DeleteServiceAccountTokenResponse, error) {
+func (s *ServiceAccounts) DeleteServiceAccountToken(ctx context.Context, request operations.DeleteServiceAccountTokenRequest) (*operations.DeleteServiceAccountTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/service-account/{id}/token/{tokenId}", request, nil)
 	if err != nil {
@@ -419,36 +419,36 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccountToken401ApplicationJSON
+			var out operations.DeleteServiceAccountTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccountToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccountToken403ApplicationJSON
+			var out operations.DeleteServiceAccountTokenServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccountToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteServiceAccountToken404ApplicationJSON
+			var out operations.DeleteServiceAccountTokenServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteServiceAccountToken404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -459,7 +459,7 @@ func (s *serviceAccounts) DeleteServiceAccountToken(ctx context.Context, request
 
 // GetServiceAccountTokens - List all tokens for a service account.
 // Returns the list of all tokens for a service account identified by the id.
-func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request operations.GetServiceAccountTokensRequest) (*operations.GetServiceAccountTokensResponse, error) {
+func (s *ServiceAccounts) GetServiceAccountTokens(ctx context.Context, request operations.GetServiceAccountTokensRequest) (*operations.GetServiceAccountTokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/service-account/{id}/token", request, nil)
 	if err != nil {
@@ -513,36 +513,36 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetServiceAccountTokens401ApplicationJSON
+			var out operations.GetServiceAccountTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetServiceAccountTokens401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetServiceAccountTokens403ApplicationJSON
+			var out operations.GetServiceAccountTokensServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetServiceAccountTokens403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetServiceAccountTokens404ApplicationJSON
+			var out operations.GetServiceAccountTokensServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetServiceAccountTokens404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -553,7 +553,7 @@ func (s *serviceAccounts) GetServiceAccountTokens(ctx context.Context, request o
 
 // GetServiceAccounts - List service accounts.
 // Returns the list of all service accounts.
-func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.GetServiceAccountsResponse, error) {
+func (s *ServiceAccounts) GetServiceAccounts(ctx context.Context) (*operations.GetServiceAccountsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/service-account"
 
@@ -604,24 +604,24 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetServiceAccounts401ApplicationJSON
+			var out operations.GetServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetServiceAccounts401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetServiceAccounts403ApplicationJSON
+			var out operations.GetServiceAccountsServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetServiceAccounts403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -632,7 +632,7 @@ func (s *serviceAccounts) GetServiceAccounts(ctx context.Context) (*operations.G
 
 // UpdateServiceAccount - Update a service account.
 // Updates an existing service account identified by its id.
-func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request operations.UpdateServiceAccountRequest) (*operations.UpdateServiceAccountResponse, error) {
+func (s *ServiceAccounts) UpdateServiceAccount(ctx context.Context, request operations.UpdateServiceAccountRequest) (*operations.UpdateServiceAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/service-account/{id}", request, nil)
 	if err != nil {
@@ -700,60 +700,60 @@ func (s *serviceAccounts) UpdateServiceAccount(ctx context.Context, request oper
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateServiceAccount400ApplicationJSON
+			var out operations.UpdateServiceAccountResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateServiceAccount400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateServiceAccount401ApplicationJSON
+			var out operations.UpdateServiceAccountServiceAccountsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateServiceAccount401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateServiceAccount403ApplicationJSON
+			var out operations.UpdateServiceAccountServiceAccountsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateServiceAccount403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateServiceAccount404ApplicationJSON
+			var out operations.UpdateServiceAccountServiceAccountsResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateServiceAccount404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateServiceAccount415ApplicationJSON
+			var out operations.UpdateServiceAccountServiceAccountsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateServiceAccount415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

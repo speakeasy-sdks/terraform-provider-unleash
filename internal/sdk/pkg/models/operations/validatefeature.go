@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateFeature415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateFeature415ApplicationJSON struct {
+// ValidateFeatureFeaturesResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateFeatureFeaturesResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidateFeature415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateFeature415ApplicationJSON) GetID() *string {
+func (o *ValidateFeatureFeaturesResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateFeature415ApplicationJSON) GetMessage() *string {
+func (o *ValidateFeatureFeaturesResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateFeature415ApplicationJSON) GetName() *string {
+func (o *ValidateFeatureFeaturesResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateFeature409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type ValidateFeature409ApplicationJSON struct {
+// ValidateFeatureFeaturesResponseResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type ValidateFeatureFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ValidateFeature409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateFeature409ApplicationJSON) GetID() *string {
+func (o *ValidateFeatureFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateFeature409ApplicationJSON) GetMessage() *string {
+func (o *ValidateFeatureFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateFeature409ApplicationJSON) GetName() *string {
+func (o *ValidateFeatureFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateFeature401ApplicationJSON struct {
+// ValidateFeatureFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateFeatureFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,29 +78,29 @@ type ValidateFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateFeature401ApplicationJSON) GetID() *string {
+func (o *ValidateFeatureFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateFeature401ApplicationJSON) GetMessage() *string {
+func (o *ValidateFeatureFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateFeature401ApplicationJSON) GetName() *string {
+func (o *ValidateFeatureFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateFeature400ApplicationJSON - The request data does not match what we expect.
-type ValidateFeature400ApplicationJSON struct {
+// ValidateFeatureResponseBody - The request data does not match what we expect.
+type ValidateFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -109,21 +109,21 @@ type ValidateFeature400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateFeature400ApplicationJSON) GetID() *string {
+func (o *ValidateFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateFeature400ApplicationJSON) GetMessage() *string {
+func (o *ValidateFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateFeature400ApplicationJSON) GetName() *string {
+func (o *ValidateFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -131,20 +131,48 @@ func (o *ValidateFeature400ApplicationJSON) GetName() *string {
 }
 
 type ValidateFeatureResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateFeatureResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateFeatureFeaturesResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *ValidateFeatureFeaturesResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateFeatureFeaturesResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidateFeature400ApplicationJSONObject *ValidateFeature400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateFeature401ApplicationJSONObject *ValidateFeature401ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	ValidateFeature409ApplicationJSONObject *ValidateFeature409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateFeature415ApplicationJSONObject *ValidateFeature415ApplicationJSON
+}
+
+func (o *ValidateFeatureResponse) GetFourHundredApplicationJSONObject() *ValidateFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateFeatureFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetFourHundredAndNineApplicationJSONObject() *ValidateFeatureFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *ValidateFeatureResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateFeatureFeaturesResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateFeatureResponse) GetContentType() string {
@@ -166,32 +194,4 @@ func (o *ValidateFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidateFeatureResponse) GetValidateFeature400ApplicationJSONObject() *ValidateFeature400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateFeature400ApplicationJSONObject
-}
-
-func (o *ValidateFeatureResponse) GetValidateFeature401ApplicationJSONObject() *ValidateFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateFeature401ApplicationJSONObject
-}
-
-func (o *ValidateFeatureResponse) GetValidateFeature409ApplicationJSONObject() *ValidateFeature409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateFeature409ApplicationJSONObject
-}
-
-func (o *ValidateFeatureResponse) GetValidateFeature415ApplicationJSONObject() *ValidateFeature415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateFeature415ApplicationJSONObject
 }

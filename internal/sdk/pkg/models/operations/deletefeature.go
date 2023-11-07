@@ -17,8 +17,8 @@ func (o *DeleteFeatureRequest) GetFeatureName() string {
 	return o.FeatureName
 }
 
-// DeleteFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeleteFeature403ApplicationJSON struct {
+// DeleteFeatureArchiveResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteFeatureArchiveResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type DeleteFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteFeature403ApplicationJSON) GetID() *string {
+func (o *DeleteFeatureArchiveResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteFeature403ApplicationJSON) GetMessage() *string {
+func (o *DeleteFeatureArchiveResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteFeature403ApplicationJSON) GetName() *string {
+func (o *DeleteFeatureArchiveResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeleteFeature401ApplicationJSON struct {
+// DeleteFeatureResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,21 +58,21 @@ type DeleteFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteFeature401ApplicationJSON) GetID() *string {
+func (o *DeleteFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteFeature401ApplicationJSON) GetMessage() *string {
+func (o *DeleteFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteFeature401ApplicationJSON) GetName() *string {
+func (o *DeleteFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -80,16 +80,30 @@ func (o *DeleteFeature401ApplicationJSON) GetName() *string {
 }
 
 type DeleteFeatureResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeleteFeatureResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeleteFeatureArchiveResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeleteFeature401ApplicationJSONObject *DeleteFeature401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeleteFeature403ApplicationJSONObject *DeleteFeature403ApplicationJSON
+}
+
+func (o *DeleteFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *DeleteFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeleteFeatureResponse) GetFourHundredAndThreeApplicationJSONObject() *DeleteFeatureArchiveResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *DeleteFeatureResponse) GetContentType() string {
@@ -111,18 +125,4 @@ func (o *DeleteFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteFeatureResponse) GetDeleteFeature401ApplicationJSONObject() *DeleteFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteFeature401ApplicationJSONObject
-}
-
-func (o *DeleteFeatureResponse) GetDeleteFeature403ApplicationJSONObject() *DeleteFeature403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteFeature403ApplicationJSONObject
 }

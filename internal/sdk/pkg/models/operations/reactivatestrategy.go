@@ -17,8 +17,8 @@ func (o *ReactivateStrategyRequest) GetStrategyName() string {
 	return o.StrategyName
 }
 
-// ReactivateStrategy404ApplicationJSON - The requested resource was not found.
-type ReactivateStrategy404ApplicationJSON struct {
+// ReactivateStrategyStrategiesResponseResponseBody - The requested resource was not found.
+type ReactivateStrategyStrategiesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type ReactivateStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReactivateStrategy404ApplicationJSON) GetID() *string {
+func (o *ReactivateStrategyStrategiesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReactivateStrategy404ApplicationJSON) GetMessage() *string {
+func (o *ReactivateStrategyStrategiesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReactivateStrategy404ApplicationJSON) GetName() *string {
+func (o *ReactivateStrategyStrategiesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ReactivateStrategy403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ReactivateStrategy403ApplicationJSON struct {
+// ReactivateStrategyStrategiesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ReactivateStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type ReactivateStrategy403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReactivateStrategy403ApplicationJSON) GetID() *string {
+func (o *ReactivateStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReactivateStrategy403ApplicationJSON) GetMessage() *string {
+func (o *ReactivateStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReactivateStrategy403ApplicationJSON) GetName() *string {
+func (o *ReactivateStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ReactivateStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ReactivateStrategy401ApplicationJSON struct {
+// ReactivateStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ReactivateStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,21 +89,21 @@ type ReactivateStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ReactivateStrategy401ApplicationJSON) GetID() *string {
+func (o *ReactivateStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReactivateStrategy401ApplicationJSON) GetMessage() *string {
+func (o *ReactivateStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ReactivateStrategy401ApplicationJSON) GetName() *string {
+func (o *ReactivateStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,18 +111,39 @@ func (o *ReactivateStrategy401ApplicationJSON) GetName() *string {
 }
 
 type ReactivateStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ReactivateStrategyResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ReactivateStrategyStrategiesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ReactivateStrategyStrategiesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ReactivateStrategy401ApplicationJSONObject *ReactivateStrategy401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ReactivateStrategy403ApplicationJSONObject *ReactivateStrategy403ApplicationJSON
-	// The requested resource was not found.
-	ReactivateStrategy404ApplicationJSONObject *ReactivateStrategy404ApplicationJSON
+}
+
+func (o *ReactivateStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *ReactivateStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ReactivateStrategyResponse) GetFourHundredAndThreeApplicationJSONObject() *ReactivateStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ReactivateStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *ReactivateStrategyStrategiesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ReactivateStrategyResponse) GetContentType() string {
@@ -144,25 +165,4 @@ func (o *ReactivateStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ReactivateStrategyResponse) GetReactivateStrategy401ApplicationJSONObject() *ReactivateStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReactivateStrategy401ApplicationJSONObject
-}
-
-func (o *ReactivateStrategyResponse) GetReactivateStrategy403ApplicationJSONObject() *ReactivateStrategy403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReactivateStrategy403ApplicationJSONObject
-}
-
-func (o *ReactivateStrategyResponse) GetReactivateStrategy404ApplicationJSONObject() *ReactivateStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ReactivateStrategy404ApplicationJSONObject
 }

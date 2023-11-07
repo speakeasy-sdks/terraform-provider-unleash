@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAllToggles403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetAllToggles403ApplicationJSON struct {
+// GetAllTogglesFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetAllTogglesFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetAllToggles403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllToggles403ApplicationJSON) GetID() *string {
+func (o *GetAllTogglesFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllToggles403ApplicationJSON) GetMessage() *string {
+func (o *GetAllTogglesFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllToggles403ApplicationJSON) GetName() *string {
+func (o *GetAllTogglesFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetAllToggles401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAllToggles401ApplicationJSON struct {
+// GetAllTogglesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllTogglesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetAllToggles401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllToggles401ApplicationJSON) GetID() *string {
+func (o *GetAllTogglesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllToggles401ApplicationJSON) GetMessage() *string {
+func (o *GetAllTogglesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllToggles401ApplicationJSON) GetName() *string {
+func (o *GetAllTogglesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *GetAllToggles401ApplicationJSON) GetName() *string {
 }
 
 type GetAllTogglesResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetAllTogglesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetAllTogglesFeaturesResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -78,10 +82,20 @@ type GetAllTogglesResponse struct {
 	RawResponse *http.Response
 	// featuresSchema
 	FeaturesSchema *shared.FeaturesSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAllToggles401ApplicationJSONObject *GetAllToggles401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetAllToggles403ApplicationJSONObject *GetAllToggles403ApplicationJSON
+}
+
+func (o *GetAllTogglesResponse) GetFourHundredAndOneApplicationJSONObject() *GetAllTogglesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetAllTogglesResponse) GetFourHundredAndThreeApplicationJSONObject() *GetAllTogglesFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetAllTogglesResponse) GetContentType() string {
@@ -110,18 +124,4 @@ func (o *GetAllTogglesResponse) GetFeaturesSchema() *shared.FeaturesSchema {
 		return nil
 	}
 	return o.FeaturesSchema
-}
-
-func (o *GetAllTogglesResponse) GetGetAllToggles401ApplicationJSONObject() *GetAllToggles401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllToggles401ApplicationJSONObject
-}
-
-func (o *GetAllTogglesResponse) GetGetAllToggles403ApplicationJSONObject() *GetAllToggles403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllToggles403ApplicationJSONObject
 }

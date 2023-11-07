@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetProjects403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetProjects403ApplicationJSON struct {
+// GetProjectsProjectsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetProjectsProjectsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetProjects403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetProjects403ApplicationJSON) GetID() *string {
+func (o *GetProjectsProjectsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetProjects403ApplicationJSON) GetMessage() *string {
+func (o *GetProjectsProjectsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetProjects403ApplicationJSON) GetName() *string {
+func (o *GetProjectsProjectsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetProjects401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetProjects401ApplicationJSON struct {
+// GetProjectsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetProjectsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetProjects401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetProjects401ApplicationJSON) GetID() *string {
+func (o *GetProjectsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetProjects401ApplicationJSON) GetMessage() *string {
+func (o *GetProjectsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetProjects401ApplicationJSON) GetName() *string {
+func (o *GetProjectsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetProjects401ApplicationJSON) GetName() *string {
 }
 
 type GetProjectsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetProjectsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetProjectsProjectsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetProjects401ApplicationJSONObject *GetProjects401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetProjects403ApplicationJSONObject *GetProjects403ApplicationJSON
 	// projectsSchema
 	ProjectsSchema *shared.ProjectsSchema
+}
+
+func (o *GetProjectsResponse) GetFourHundredAndOneApplicationJSONObject() *GetProjectsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetProjectsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetProjectsProjectsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetProjectsResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetProjectsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetProjectsResponse) GetGetProjects401ApplicationJSONObject() *GetProjects401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetProjects401ApplicationJSONObject
-}
-
-func (o *GetProjectsResponse) GetGetProjects403ApplicationJSONObject() *GetProjects403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetProjects403ApplicationJSONObject
 }
 
 func (o *GetProjectsResponse) GetProjectsSchema() *shared.ProjectsSchema {

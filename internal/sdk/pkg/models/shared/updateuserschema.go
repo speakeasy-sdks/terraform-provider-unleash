@@ -9,22 +9,22 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// UpdateUserSchemaRootRole2 - The role to assign to the user. Can be either the role's ID or its unique name.
-type UpdateUserSchemaRootRole2 string
+// UpdateUserSchema2 - The role to assign to the user. Can be either the role's ID or its unique name.
+type UpdateUserSchema2 string
 
 const (
-	UpdateUserSchemaRootRole2Admin  UpdateUserSchemaRootRole2 = "Admin"
-	UpdateUserSchemaRootRole2Editor UpdateUserSchemaRootRole2 = "Editor"
-	UpdateUserSchemaRootRole2Viewer UpdateUserSchemaRootRole2 = "Viewer"
-	UpdateUserSchemaRootRole2Owner  UpdateUserSchemaRootRole2 = "Owner"
-	UpdateUserSchemaRootRole2Member UpdateUserSchemaRootRole2 = "Member"
+	UpdateUserSchema2Admin  UpdateUserSchema2 = "Admin"
+	UpdateUserSchema2Editor UpdateUserSchema2 = "Editor"
+	UpdateUserSchema2Viewer UpdateUserSchema2 = "Viewer"
+	UpdateUserSchema2Owner  UpdateUserSchema2 = "Owner"
+	UpdateUserSchema2Member UpdateUserSchema2 = "Member"
 )
 
-func (e UpdateUserSchemaRootRole2) ToPointer() *UpdateUserSchemaRootRole2 {
+func (e UpdateUserSchema2) ToPointer() *UpdateUserSchema2 {
 	return &e
 }
 
-func (e *UpdateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
+func (e *UpdateUserSchema2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,23 +39,23 @@ func (e *UpdateUserSchemaRootRole2) UnmarshalJSON(data []byte) error {
 	case "Owner":
 		fallthrough
 	case "Member":
-		*e = UpdateUserSchemaRootRole2(v)
+		*e = UpdateUserSchema2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdateUserSchemaRootRole2: %v", v)
+		return fmt.Errorf("invalid value for UpdateUserSchema2: %v", v)
 	}
 }
 
 type UpdateUserSchemaRootRoleType string
 
 const (
-	UpdateUserSchemaRootRoleTypeInteger                   UpdateUserSchemaRootRoleType = "integer"
-	UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2 UpdateUserSchemaRootRoleType = "updateUserSchema_rootRole_2"
+	UpdateUserSchemaRootRoleTypeInteger           UpdateUserSchemaRootRoleType = "integer"
+	UpdateUserSchemaRootRoleTypeUpdateUserSchema2 UpdateUserSchemaRootRoleType = "updateUserSchema_2"
 )
 
 type UpdateUserSchemaRootRole struct {
-	Integer                   *int64
-	UpdateUserSchemaRootRole2 *UpdateUserSchemaRootRole2
+	Integer           *int64
+	UpdateUserSchema2 *UpdateUserSchema2
 
 	Type UpdateUserSchemaRootRoleType
 }
@@ -69,12 +69,12 @@ func CreateUpdateUserSchemaRootRoleInteger(integer int64) UpdateUserSchemaRootRo
 	}
 }
 
-func CreateUpdateUserSchemaRootRoleUpdateUserSchemaRootRole2(updateUserSchemaRootRole2 UpdateUserSchemaRootRole2) UpdateUserSchemaRootRole {
-	typ := UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2
+func CreateUpdateUserSchemaRootRoleUpdateUserSchema2(updateUserSchema2 UpdateUserSchema2) UpdateUserSchemaRootRole {
+	typ := UpdateUserSchemaRootRoleTypeUpdateUserSchema2
 
 	return UpdateUserSchemaRootRole{
-		UpdateUserSchemaRootRole2: &updateUserSchemaRootRole2,
-		Type:                      typ,
+		UpdateUserSchema2: &updateUserSchema2,
+		Type:              typ,
 	}
 }
 
@@ -87,10 +87,10 @@ func (u *UpdateUserSchemaRootRole) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	updateUserSchemaRootRole2 := new(UpdateUserSchemaRootRole2)
-	if err := utils.UnmarshalJSON(data, &updateUserSchemaRootRole2, "", true, true); err == nil {
-		u.UpdateUserSchemaRootRole2 = updateUserSchemaRootRole2
-		u.Type = UpdateUserSchemaRootRoleTypeUpdateUserSchemaRootRole2
+	updateUserSchema2 := new(UpdateUserSchema2)
+	if err := utils.UnmarshalJSON(data, &updateUserSchema2, "", true, true); err == nil {
+		u.UpdateUserSchema2 = updateUserSchema2
+		u.Type = UpdateUserSchemaRootRoleTypeUpdateUserSchema2
 		return nil
 	}
 
@@ -102,8 +102,8 @@ func (u UpdateUserSchemaRootRole) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Integer, "", true)
 	}
 
-	if u.UpdateUserSchemaRootRole2 != nil {
-		return utils.MarshalJSON(u.UpdateUserSchemaRootRole2, "", true)
+	if u.UpdateUserSchema2 != nil {
+		return utils.MarshalJSON(u.UpdateUserSchema2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")

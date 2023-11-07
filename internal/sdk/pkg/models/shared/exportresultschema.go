@@ -2,19 +2,19 @@
 
 package shared
 
-type ExportResultSchemaSegments struct {
+type Segments struct {
 	ID   float64 `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ExportResultSchemaSegments) GetID() float64 {
+func (o *Segments) GetID() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.ID
 }
 
-func (o *ExportResultSchemaSegments) GetName() *string {
+func (o *Segments) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -34,7 +34,7 @@ type ExportResultSchema struct {
 	// All the exported features.
 	Features []FeatureSchema `json:"features"`
 	// A list of all the segments that are used by the strategies in the `featureStrategies` list.
-	Segments []ExportResultSchemaSegments `json:"segments,omitempty"`
+	Segments []Segments `json:"segments,omitempty"`
 	// A list of all of the tag types that are used in the `featureTags` list.
 	TagTypes []TagTypeSchema `json:"tagTypes"`
 }
@@ -74,7 +74,7 @@ func (o *ExportResultSchema) GetFeatures() []FeatureSchema {
 	return o.Features
 }
 
-func (o *ExportResultSchema) GetSegments() []ExportResultSchemaSegments {
+func (o *ExportResultSchema) GetSegments() []Segments {
 	if o == nil {
 		return nil
 	}

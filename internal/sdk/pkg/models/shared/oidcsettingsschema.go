@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// OidcSettingsSchemaDefaultRootRole - [Default role](https://docs.getunleash.io/reference/rbac#standard-roles) granted to users auto-created from email. Only relevant if autoCreate is `true`
-type OidcSettingsSchemaDefaultRootRole string
+// DefaultRootRole - [Default role](https://docs.getunleash.io/reference/rbac#standard-roles) granted to users auto-created from email. Only relevant if autoCreate is `true`
+type DefaultRootRole string
 
 const (
-	OidcSettingsSchemaDefaultRootRoleViewer OidcSettingsSchemaDefaultRootRole = "Viewer"
-	OidcSettingsSchemaDefaultRootRoleEditor OidcSettingsSchemaDefaultRootRole = "Editor"
-	OidcSettingsSchemaDefaultRootRoleAdmin  OidcSettingsSchemaDefaultRootRole = "Admin"
+	DefaultRootRoleViewer DefaultRootRole = "Viewer"
+	DefaultRootRoleEditor DefaultRootRole = "Editor"
+	DefaultRootRoleAdmin  DefaultRootRole = "Admin"
 )
 
-func (e OidcSettingsSchemaDefaultRootRole) ToPointer() *OidcSettingsSchemaDefaultRootRole {
+func (e DefaultRootRole) ToPointer() *DefaultRootRole {
 	return &e
 }
 
-func (e *OidcSettingsSchemaDefaultRootRole) UnmarshalJSON(data []byte) error {
+func (e *DefaultRootRole) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,27 +31,27 @@ func (e *OidcSettingsSchemaDefaultRootRole) UnmarshalJSON(data []byte) error {
 	case "Editor":
 		fallthrough
 	case "Admin":
-		*e = OidcSettingsSchemaDefaultRootRole(v)
+		*e = DefaultRootRole(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OidcSettingsSchemaDefaultRootRole: %v", v)
+		return fmt.Errorf("invalid value for DefaultRootRole: %v", v)
 	}
 }
 
-// OidcSettingsSchemaIDTokenSigningAlgorithm - The signing algorithm used to sign our token. Refer to the [JWT signatures](https://jwt.io/introduction) documentation for more information.
-type OidcSettingsSchemaIDTokenSigningAlgorithm string
+// IDTokenSigningAlgorithm - The signing algorithm used to sign our token. Refer to the [JWT signatures](https://jwt.io/introduction) documentation for more information.
+type IDTokenSigningAlgorithm string
 
 const (
-	OidcSettingsSchemaIDTokenSigningAlgorithmRs256 OidcSettingsSchemaIDTokenSigningAlgorithm = "RS256"
-	OidcSettingsSchemaIDTokenSigningAlgorithmRs384 OidcSettingsSchemaIDTokenSigningAlgorithm = "RS384"
-	OidcSettingsSchemaIDTokenSigningAlgorithmRs512 OidcSettingsSchemaIDTokenSigningAlgorithm = "RS512"
+	IDTokenSigningAlgorithmRs256 IDTokenSigningAlgorithm = "RS256"
+	IDTokenSigningAlgorithmRs384 IDTokenSigningAlgorithm = "RS384"
+	IDTokenSigningAlgorithmRs512 IDTokenSigningAlgorithm = "RS512"
 )
 
-func (e OidcSettingsSchemaIDTokenSigningAlgorithm) ToPointer() *OidcSettingsSchemaIDTokenSigningAlgorithm {
+func (e IDTokenSigningAlgorithm) ToPointer() *IDTokenSigningAlgorithm {
 	return &e
 }
 
-func (e *OidcSettingsSchemaIDTokenSigningAlgorithm) UnmarshalJSON(data []byte) error {
+func (e *IDTokenSigningAlgorithm) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -62,10 +62,10 @@ func (e *OidcSettingsSchemaIDTokenSigningAlgorithm) UnmarshalJSON(data []byte) e
 	case "RS384":
 		fallthrough
 	case "RS512":
-		*e = OidcSettingsSchemaIDTokenSigningAlgorithm(v)
+		*e = IDTokenSigningAlgorithm(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OidcSettingsSchemaIDTokenSigningAlgorithm: %v", v)
+		return fmt.Errorf("invalid value for IDTokenSigningAlgorithm: %v", v)
 	}
 }
 
@@ -80,7 +80,7 @@ type OidcSettingsSchema struct {
 	// The OIDC client ID of this application.
 	ClientID string `json:"clientId"`
 	// [Default role](https://docs.getunleash.io/reference/rbac#standard-roles) granted to users auto-created from email. Only relevant if autoCreate is `true`
-	DefaultRootRole *OidcSettingsSchemaDefaultRootRole `json:"defaultRootRole,omitempty"`
+	DefaultRootRole *DefaultRootRole `json:"defaultRootRole,omitempty"`
 	// The [.well-known OpenID discover URL](https://swagger.io/docs/specification/authentication/openid-connect-discovery/)
 	DiscoverURL *string `json:"discoverUrl,omitempty"`
 	// Comma separated list of email domains that are automatically approved for an account in the server. Only relevant if autoCreate is `true`
@@ -90,7 +90,7 @@ type OidcSettingsSchema struct {
 	// `true` if OpenID connect is turned on for this instance, otherwise `false`
 	Enabled *bool `json:"enabled,omitempty"`
 	// The signing algorithm used to sign our token. Refer to the [JWT signatures](https://jwt.io/introduction) documentation for more information.
-	IDTokenSigningAlgorithm *OidcSettingsSchemaIDTokenSigningAlgorithm `json:"idTokenSigningAlgorithm,omitempty"`
+	IDTokenSigningAlgorithm *IDTokenSigningAlgorithm `json:"idTokenSigningAlgorithm,omitempty"`
 	// Shared secret from OpenID server. Used to authenticate login requests
 	Secret string `json:"secret"`
 }
@@ -116,7 +116,7 @@ func (o *OidcSettingsSchema) GetClientID() string {
 	return o.ClientID
 }
 
-func (o *OidcSettingsSchema) GetDefaultRootRole() *OidcSettingsSchemaDefaultRootRole {
+func (o *OidcSettingsSchema) GetDefaultRootRole() *DefaultRootRole {
 	if o == nil {
 		return nil
 	}
@@ -151,7 +151,7 @@ func (o *OidcSettingsSchema) GetEnabled() *bool {
 	return o.Enabled
 }
 
-func (o *OidcSettingsSchema) GetIDTokenSigningAlgorithm() *OidcSettingsSchemaIDTokenSigningAlgorithm {
+func (o *OidcSettingsSchema) GetIDTokenSigningAlgorithm() *IDTokenSigningAlgorithm {
 	if o == nil {
 		return nil
 	}

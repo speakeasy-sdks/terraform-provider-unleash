@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// client - Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
-type client struct {
+// Client - Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
+type Client struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newClient(sdkConfig sdkConfiguration) *client {
-	return &client{
+func newClient(sdkConfig sdkConfiguration) *Client {
+	return &Client{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllClientFeatures - Get all toggles (SDK)
 // Returns the SDK configuration for all feature toggles that are available to the provided API key. Used by SDKs to configure local evaluation
-func (s *client) GetAllClientFeatures(ctx context.Context) (*operations.GetAllClientFeaturesResponse, error) {
+func (s *Client) GetAllClientFeatures(ctx context.Context) (*operations.GetAllClientFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/client/features"
 
@@ -83,7 +83,7 @@ func (s *client) GetAllClientFeatures(ctx context.Context) (*operations.GetAllCl
 
 // GetClientFeature - Get a single feature toggle
 // Gets all the client data for a single toggle. Contains the exact same information about a toggle as the `/api/client/features` endpoint does, but only contains data about the specified toggle. All SDKs should use `/api/client/features`
-func (s *client) GetClientFeature(ctx context.Context, request operations.GetClientFeatureRequest) (*operations.GetClientFeatureResponse, error) {
+func (s *Client) GetClientFeature(ctx context.Context, request operations.GetClientFeatureRequest) (*operations.GetClientFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/client/features/{featureName}", request, nil)
 	if err != nil {
@@ -141,7 +141,7 @@ func (s *client) GetClientFeature(ctx context.Context, request operations.GetCli
 
 // RegisterClientApplication - Register a client SDK
 // Register a client SDK with Unleash. SDKs call this endpoint on startup to tell Unleash about their existence. Used to track custom strategies in use as well as SDK versions.
-func (s *client) RegisterClientApplication(ctx context.Context, request shared.ClientApplicationSchema) (*operations.RegisterClientApplicationResponse, error) {
+func (s *Client) RegisterClientApplication(ctx context.Context, request shared.ClientApplicationSchema) (*operations.RegisterClientApplicationResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/client/register"
 
@@ -199,7 +199,7 @@ func (s *client) RegisterClientApplication(ctx context.Context, request shared.C
 
 // RegisterClientMetrics - Register client usage metrics
 // Registers usage metrics. Stores information about how many times each toggle was evaluated to enabled and disabled within a time frame. If provided, this operation will also store data on how many times each feature toggle's variants were displayed to the end user.
-func (s *client) RegisterClientMetrics(ctx context.Context, request shared.ClientMetricsSchema) (*operations.RegisterClientMetricsResponse, error) {
+func (s *Client) RegisterClientMetrics(ctx context.Context, request shared.ClientMetricsSchema) (*operations.RegisterClientMetricsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/client/metrics"
 
@@ -253,12 +253,12 @@ func (s *client) RegisterClientMetrics(ctx context.Context, request shared.Clien
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RegisterClientMetrics400ApplicationJSON
+			var out operations.RegisterClientMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RegisterClientMetrics400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

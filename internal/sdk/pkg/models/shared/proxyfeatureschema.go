@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// ProxyFeatureSchemaVariantPayloadType - The format of the payload.
-type ProxyFeatureSchemaVariantPayloadType string
+// ProxyFeatureSchemaType - The format of the payload.
+type ProxyFeatureSchemaType string
 
 const (
-	ProxyFeatureSchemaVariantPayloadTypeJSON   ProxyFeatureSchemaVariantPayloadType = "json"
-	ProxyFeatureSchemaVariantPayloadTypeCsv    ProxyFeatureSchemaVariantPayloadType = "csv"
-	ProxyFeatureSchemaVariantPayloadTypeString ProxyFeatureSchemaVariantPayloadType = "string"
+	ProxyFeatureSchemaTypeJSON   ProxyFeatureSchemaType = "json"
+	ProxyFeatureSchemaTypeCsv    ProxyFeatureSchemaType = "csv"
+	ProxyFeatureSchemaTypeString ProxyFeatureSchemaType = "string"
 )
 
-func (e ProxyFeatureSchemaVariantPayloadType) ToPointer() *ProxyFeatureSchemaVariantPayloadType {
+func (e ProxyFeatureSchemaType) ToPointer() *ProxyFeatureSchemaType {
 	return &e
 }
 
-func (e *ProxyFeatureSchemaVariantPayloadType) UnmarshalJSON(data []byte) error {
+func (e *ProxyFeatureSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,29 +31,29 @@ func (e *ProxyFeatureSchemaVariantPayloadType) UnmarshalJSON(data []byte) error 
 	case "csv":
 		fallthrough
 	case "string":
-		*e = ProxyFeatureSchemaVariantPayloadType(v)
+		*e = ProxyFeatureSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ProxyFeatureSchemaVariantPayloadType: %v", v)
+		return fmt.Errorf("invalid value for ProxyFeatureSchemaType: %v", v)
 	}
 }
 
-// ProxyFeatureSchemaVariantPayload - Extra data configured for this variant
-type ProxyFeatureSchemaVariantPayload struct {
+// ProxyFeatureSchemaPayload - Extra data configured for this variant
+type ProxyFeatureSchemaPayload struct {
 	// The format of the payload.
-	Type ProxyFeatureSchemaVariantPayloadType `json:"type"`
+	Type ProxyFeatureSchemaType `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
 }
 
-func (o *ProxyFeatureSchemaVariantPayload) GetType() ProxyFeatureSchemaVariantPayloadType {
+func (o *ProxyFeatureSchemaPayload) GetType() ProxyFeatureSchemaType {
 	if o == nil {
-		return ProxyFeatureSchemaVariantPayloadType("")
+		return ProxyFeatureSchemaType("")
 	}
 	return o.Type
 }
 
-func (o *ProxyFeatureSchemaVariantPayload) GetValue() string {
+func (o *ProxyFeatureSchemaPayload) GetValue() string {
 	if o == nil {
 		return ""
 	}
@@ -67,7 +67,7 @@ type ProxyFeatureSchemaVariant struct {
 	// The variants name. Is unique for this feature toggle
 	Name string `json:"name"`
 	// Extra data configured for this variant
-	Payload *ProxyFeatureSchemaVariantPayload `json:"payload,omitempty"`
+	Payload *ProxyFeatureSchemaPayload `json:"payload,omitempty"`
 }
 
 func (o *ProxyFeatureSchemaVariant) GetEnabled() bool {
@@ -84,7 +84,7 @@ func (o *ProxyFeatureSchemaVariant) GetName() string {
 	return o.Name
 }
 
-func (o *ProxyFeatureSchemaVariant) GetPayload() *ProxyFeatureSchemaVariantPayload {
+func (o *ProxyFeatureSchemaVariant) GetPayload() *ProxyFeatureSchemaPayload {
 	if o == nil {
 		return nil
 	}

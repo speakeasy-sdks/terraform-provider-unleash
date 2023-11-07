@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateUser403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateUser403ApplicationJSON struct {
+// CreateUserUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateUserUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateUser403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateUser403ApplicationJSON) GetID() *string {
+func (o *CreateUserUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateUser403ApplicationJSON) GetMessage() *string {
+func (o *CreateUserUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateUser403ApplicationJSON) GetName() *string {
+func (o *CreateUserUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateUser401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateUser401ApplicationJSON struct {
+// CreateUserUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateUserUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateUser401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateUser401ApplicationJSON) GetID() *string {
+func (o *CreateUserUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateUser401ApplicationJSON) GetMessage() *string {
+func (o *CreateUserUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateUser401ApplicationJSON) GetName() *string {
+func (o *CreateUserUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateUser400ApplicationJSON - The request data does not match what we expect.
-type CreateUser400ApplicationJSON struct {
+// CreateUserResponseBody - The request data does not match what we expect.
+type CreateUserResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type CreateUser400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateUser400ApplicationJSON) GetID() *string {
+func (o *CreateUserResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateUser400ApplicationJSON) GetMessage() *string {
+func (o *CreateUserResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateUser400ApplicationJSON) GetName() *string {
+func (o *CreateUserResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,6 +101,12 @@ func (o *CreateUser400ApplicationJSON) GetName() *string {
 }
 
 type CreateUserResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateUserResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateUserUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateUserUsersResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -110,12 +116,27 @@ type CreateUserResponse struct {
 	RawResponse *http.Response
 	// The resource was successfully created.
 	CreateUserResponseSchema *shared.CreateUserResponseSchema
-	// The request data does not match what we expect.
-	CreateUser400ApplicationJSONObject *CreateUser400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateUser401ApplicationJSONObject *CreateUser401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateUser403ApplicationJSONObject *CreateUser403ApplicationJSON
+}
+
+func (o *CreateUserResponse) GetFourHundredApplicationJSONObject() *CreateUserResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateUserResponse) GetFourHundredAndOneApplicationJSONObject() *CreateUserUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateUserResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateUserUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *CreateUserResponse) GetContentType() string {
@@ -151,25 +172,4 @@ func (o *CreateUserResponse) GetCreateUserResponseSchema() *shared.CreateUserRes
 		return nil
 	}
 	return o.CreateUserResponseSchema
-}
-
-func (o *CreateUserResponse) GetCreateUser400ApplicationJSONObject() *CreateUser400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateUser400ApplicationJSONObject
-}
-
-func (o *CreateUserResponse) GetCreateUser401ApplicationJSONObject() *CreateUser401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateUser401ApplicationJSONObject
-}
-
-func (o *CreateUserResponse) GetCreateUser403ApplicationJSONObject() *CreateUser403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateUser403ApplicationJSONObject
 }

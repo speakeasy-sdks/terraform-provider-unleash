@@ -9,94 +9,94 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// PlaygroundFeatureSchemaStrategiesResult2 - The cumulative results of all the feature's strategies. Can be `true`,
+// PlaygroundFeatureSchema2 - The cumulative results of all the feature's strategies. Can be `true`,
 //
 //	`false`, or `unknown`.
 //	This property will only be `unknown`
 //	if one or more of the strategies can't be fully evaluated and the rest of the strategies
 //	all resolve to `false`.
-type PlaygroundFeatureSchemaStrategiesResult2 string
+type PlaygroundFeatureSchema2 string
 
 const (
-	PlaygroundFeatureSchemaStrategiesResult2Unknown PlaygroundFeatureSchemaStrategiesResult2 = "unknown"
+	PlaygroundFeatureSchema2Unknown PlaygroundFeatureSchema2 = "unknown"
 )
 
-func (e PlaygroundFeatureSchemaStrategiesResult2) ToPointer() *PlaygroundFeatureSchemaStrategiesResult2 {
+func (e PlaygroundFeatureSchema2) ToPointer() *PlaygroundFeatureSchema2 {
 	return &e
 }
 
-func (e *PlaygroundFeatureSchemaStrategiesResult2) UnmarshalJSON(data []byte) error {
+func (e *PlaygroundFeatureSchema2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "unknown":
-		*e = PlaygroundFeatureSchemaStrategiesResult2(v)
+		*e = PlaygroundFeatureSchema2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PlaygroundFeatureSchemaStrategiesResult2: %v", v)
+		return fmt.Errorf("invalid value for PlaygroundFeatureSchema2: %v", v)
 	}
 }
 
-type PlaygroundFeatureSchemaStrategiesResultType string
+type PlaygroundFeatureSchemaResultType string
 
 const (
-	PlaygroundFeatureSchemaStrategiesResultTypeBoolean                                  PlaygroundFeatureSchemaStrategiesResultType = "boolean"
-	PlaygroundFeatureSchemaStrategiesResultTypePlaygroundFeatureSchemaStrategiesResult2 PlaygroundFeatureSchemaStrategiesResultType = "playgroundFeatureSchema_strategies_result_2"
+	PlaygroundFeatureSchemaResultTypeBoolean                  PlaygroundFeatureSchemaResultType = "boolean"
+	PlaygroundFeatureSchemaResultTypePlaygroundFeatureSchema2 PlaygroundFeatureSchemaResultType = "playgroundFeatureSchema_2"
 )
 
-type PlaygroundFeatureSchemaStrategiesResult struct {
-	Boolean                                  *bool
-	PlaygroundFeatureSchemaStrategiesResult2 *PlaygroundFeatureSchemaStrategiesResult2
+type PlaygroundFeatureSchemaResult struct {
+	Boolean                  *bool
+	PlaygroundFeatureSchema2 *PlaygroundFeatureSchema2
 
-	Type PlaygroundFeatureSchemaStrategiesResultType
+	Type PlaygroundFeatureSchemaResultType
 }
 
-func CreatePlaygroundFeatureSchemaStrategiesResultBoolean(boolean bool) PlaygroundFeatureSchemaStrategiesResult {
-	typ := PlaygroundFeatureSchemaStrategiesResultTypeBoolean
+func CreatePlaygroundFeatureSchemaResultBoolean(boolean bool) PlaygroundFeatureSchemaResult {
+	typ := PlaygroundFeatureSchemaResultTypeBoolean
 
-	return PlaygroundFeatureSchemaStrategiesResult{
+	return PlaygroundFeatureSchemaResult{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreatePlaygroundFeatureSchemaStrategiesResultPlaygroundFeatureSchemaStrategiesResult2(playgroundFeatureSchemaStrategiesResult2 PlaygroundFeatureSchemaStrategiesResult2) PlaygroundFeatureSchemaStrategiesResult {
-	typ := PlaygroundFeatureSchemaStrategiesResultTypePlaygroundFeatureSchemaStrategiesResult2
+func CreatePlaygroundFeatureSchemaResultPlaygroundFeatureSchema2(playgroundFeatureSchema2 PlaygroundFeatureSchema2) PlaygroundFeatureSchemaResult {
+	typ := PlaygroundFeatureSchemaResultTypePlaygroundFeatureSchema2
 
-	return PlaygroundFeatureSchemaStrategiesResult{
-		PlaygroundFeatureSchemaStrategiesResult2: &playgroundFeatureSchemaStrategiesResult2,
-		Type:                                     typ,
+	return PlaygroundFeatureSchemaResult{
+		PlaygroundFeatureSchema2: &playgroundFeatureSchema2,
+		Type:                     typ,
 	}
 }
 
-func (u *PlaygroundFeatureSchemaStrategiesResult) UnmarshalJSON(data []byte) error {
+func (u *PlaygroundFeatureSchemaResult) UnmarshalJSON(data []byte) error {
 
 	boolean := new(bool)
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = boolean
-		u.Type = PlaygroundFeatureSchemaStrategiesResultTypeBoolean
+		u.Type = PlaygroundFeatureSchemaResultTypeBoolean
 		return nil
 	}
 
-	playgroundFeatureSchemaStrategiesResult2 := new(PlaygroundFeatureSchemaStrategiesResult2)
-	if err := utils.UnmarshalJSON(data, &playgroundFeatureSchemaStrategiesResult2, "", true, true); err == nil {
-		u.PlaygroundFeatureSchemaStrategiesResult2 = playgroundFeatureSchemaStrategiesResult2
-		u.Type = PlaygroundFeatureSchemaStrategiesResultTypePlaygroundFeatureSchemaStrategiesResult2
+	playgroundFeatureSchema2 := new(PlaygroundFeatureSchema2)
+	if err := utils.UnmarshalJSON(data, &playgroundFeatureSchema2, "", true, true); err == nil {
+		u.PlaygroundFeatureSchema2 = playgroundFeatureSchema2
+		u.Type = PlaygroundFeatureSchemaResultTypePlaygroundFeatureSchema2
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u PlaygroundFeatureSchemaStrategiesResult) MarshalJSON() ([]byte, error) {
+func (u PlaygroundFeatureSchemaResult) MarshalJSON() ([]byte, error) {
 	if u.Boolean != nil {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
-	if u.PlaygroundFeatureSchemaStrategiesResult2 != nil {
-		return utils.MarshalJSON(u.PlaygroundFeatureSchemaStrategiesResult2, "", true)
+	if u.PlaygroundFeatureSchema2 != nil {
+		return utils.MarshalJSON(u.PlaygroundFeatureSchema2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -111,7 +111,7 @@ type PlaygroundFeatureSchemaStrategies struct {
 	//                                   This property will only be `unknown`
 	//                                   if one or more of the strategies can't be fully evaluated and the rest of the strategies
 	//                                   all resolve to `false`.
-	Result PlaygroundFeatureSchemaStrategiesResult `json:"result"`
+	Result PlaygroundFeatureSchemaResult `json:"result"`
 }
 
 func (o *PlaygroundFeatureSchemaStrategies) GetData() []PlaygroundStrategySchema {
@@ -121,29 +121,29 @@ func (o *PlaygroundFeatureSchemaStrategies) GetData() []PlaygroundStrategySchema
 	return o.Data
 }
 
-func (o *PlaygroundFeatureSchemaStrategies) GetResult() PlaygroundFeatureSchemaStrategiesResult {
+func (o *PlaygroundFeatureSchemaStrategies) GetResult() PlaygroundFeatureSchemaResult {
 	if o == nil {
-		return PlaygroundFeatureSchemaStrategiesResult{}
+		return PlaygroundFeatureSchemaResult{}
 	}
 	return o.Result
 }
 
-// PlaygroundFeatureSchemaVariantPayload - An optional payload attached to the variant.
-type PlaygroundFeatureSchemaVariantPayload struct {
+// PlaygroundFeatureSchemaPayload - An optional payload attached to the variant.
+type PlaygroundFeatureSchemaPayload struct {
 	// The format of the payload.
 	Type string `json:"type"`
 	// The payload value stringified.
 	Value string `json:"value"`
 }
 
-func (o *PlaygroundFeatureSchemaVariantPayload) GetType() string {
+func (o *PlaygroundFeatureSchemaPayload) GetType() string {
 	if o == nil {
 		return ""
 	}
 	return o.Type
 }
 
-func (o *PlaygroundFeatureSchemaVariantPayload) GetValue() string {
+func (o *PlaygroundFeatureSchemaPayload) GetValue() string {
 	if o == nil {
 		return ""
 	}
@@ -161,7 +161,7 @@ type PlaygroundFeatureSchemaVariant struct {
 	// The variant's name. If there is no variant or if the toggle is disabled, this will be `disabled`
 	Name string `json:"name"`
 	// An optional payload attached to the variant.
-	Payload *PlaygroundFeatureSchemaVariantPayload `json:"payload,omitempty"`
+	Payload *PlaygroundFeatureSchemaPayload `json:"payload,omitempty"`
 }
 
 func (o *PlaygroundFeatureSchemaVariant) GetEnabled() bool {
@@ -178,7 +178,7 @@ func (o *PlaygroundFeatureSchemaVariant) GetName() string {
 	return o.Name
 }
 
-func (o *PlaygroundFeatureSchemaVariant) GetPayload() *PlaygroundFeatureSchemaVariantPayload {
+func (o *PlaygroundFeatureSchemaVariant) GetPayload() *PlaygroundFeatureSchemaPayload {
 	if o == nil {
 		return nil
 	}

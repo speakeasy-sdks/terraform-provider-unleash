@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// CreateProjectSchemaMode - A mode of the project affecting what actions are possible in this project
-type CreateProjectSchemaMode string
+// Mode - A mode of the project affecting what actions are possible in this project
+type Mode string
 
 const (
-	CreateProjectSchemaModeOpen      CreateProjectSchemaMode = "open"
-	CreateProjectSchemaModeProtected CreateProjectSchemaMode = "protected"
+	ModeOpen      Mode = "open"
+	ModeProtected Mode = "protected"
 )
 
-func (e CreateProjectSchemaMode) ToPointer() *CreateProjectSchemaMode {
+func (e Mode) ToPointer() *Mode {
 	return &e
 }
 
-func (e *CreateProjectSchemaMode) UnmarshalJSON(data []byte) error {
+func (e *Mode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *CreateProjectSchemaMode) UnmarshalJSON(data []byte) error {
 	case "open":
 		fallthrough
 	case "protected":
-		*e = CreateProjectSchemaMode(v)
+		*e = Mode(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateProjectSchemaMode: %v", v)
+		return fmt.Errorf("invalid value for Mode: %v", v)
 	}
 }
 
@@ -45,7 +45,7 @@ type CreateProjectSchema struct {
 	// The project's identifier.
 	ID string `json:"id"`
 	// A mode of the project affecting what actions are possible in this project
-	Mode *CreateProjectSchemaMode `json:"mode,omitempty"`
+	Mode *Mode `json:"mode,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
 }
@@ -78,7 +78,7 @@ func (o *CreateProjectSchema) GetID() string {
 	return o.ID
 }
 
-func (o *CreateProjectSchema) GetMode() *CreateProjectSchemaMode {
+func (o *CreateProjectSchema) GetMode() *Mode {
 	if o == nil {
 		return nil
 	}

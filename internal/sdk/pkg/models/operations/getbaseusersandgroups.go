@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetBaseUsersAndGroups401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetBaseUsersAndGroups401ApplicationJSON struct {
+// GetBaseUsersAndGroupsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetBaseUsersAndGroupsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetBaseUsersAndGroups401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetBaseUsersAndGroups401ApplicationJSON) GetID() *string {
+func (o *GetBaseUsersAndGroupsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetBaseUsersAndGroups401ApplicationJSON) GetMessage() *string {
+func (o *GetBaseUsersAndGroupsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetBaseUsersAndGroups401ApplicationJSON) GetName() *string {
+func (o *GetBaseUsersAndGroupsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ type GetBaseUsersAndGroupsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetBaseUsersAndGroups401ApplicationJSONObject *GetBaseUsersAndGroups401ApplicationJSON
+	Object *GetBaseUsersAndGroupsResponseBody
 	// usersGroupsBaseSchema
 	UsersGroupsBaseSchema *shared.UsersGroupsBaseSchema
 }
@@ -72,11 +72,11 @@ func (o *GetBaseUsersAndGroupsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetBaseUsersAndGroupsResponse) GetGetBaseUsersAndGroups401ApplicationJSONObject() *GetBaseUsersAndGroups401ApplicationJSON {
+func (o *GetBaseUsersAndGroupsResponse) GetObject() *GetBaseUsersAndGroupsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetBaseUsersAndGroups401ApplicationJSONObject
+	return o.Object
 }
 
 func (o *GetBaseUsersAndGroupsResponse) GetUsersGroupsBaseSchema() *shared.UsersGroupsBaseSchema {

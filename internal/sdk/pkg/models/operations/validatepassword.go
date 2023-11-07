@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidatePassword415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidatePassword415ApplicationJSON struct {
+// ValidatePasswordAuthResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidatePasswordAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidatePassword415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidatePassword415ApplicationJSON) GetID() *string {
+func (o *ValidatePasswordAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidatePassword415ApplicationJSON) GetMessage() *string {
+func (o *ValidatePasswordAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidatePassword415ApplicationJSON) GetName() *string {
+func (o *ValidatePasswordAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidatePassword400ApplicationJSON - The request data does not match what we expect.
-type ValidatePassword400ApplicationJSON struct {
+// ValidatePasswordResponseBody - The request data does not match what we expect.
+type ValidatePasswordResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,21 +47,21 @@ type ValidatePassword400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidatePassword400ApplicationJSON) GetID() *string {
+func (o *ValidatePasswordResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidatePassword400ApplicationJSON) GetMessage() *string {
+func (o *ValidatePasswordResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidatePassword400ApplicationJSON) GetName() *string {
+func (o *ValidatePasswordResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -69,16 +69,30 @@ func (o *ValidatePassword400ApplicationJSON) GetName() *string {
 }
 
 type ValidatePasswordResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidatePasswordResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidatePasswordAuthResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidatePassword400ApplicationJSONObject *ValidatePassword400ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidatePassword415ApplicationJSONObject *ValidatePassword415ApplicationJSON
+}
+
+func (o *ValidatePasswordResponse) GetFourHundredApplicationJSONObject() *ValidatePasswordResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidatePasswordResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidatePasswordAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidatePasswordResponse) GetContentType() string {
@@ -100,18 +114,4 @@ func (o *ValidatePasswordResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidatePasswordResponse) GetValidatePassword400ApplicationJSONObject() *ValidatePassword400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidatePassword400ApplicationJSONObject
-}
-
-func (o *ValidatePasswordResponse) GetValidatePassword415ApplicationJSONObject() *ValidatePassword415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidatePassword415ApplicationJSONObject
 }

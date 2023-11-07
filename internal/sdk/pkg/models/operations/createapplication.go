@@ -27,8 +27,8 @@ func (o *CreateApplicationRequest) GetCreateApplicationSchema() shared.CreateApp
 	return o.CreateApplicationSchema
 }
 
-// CreateApplication403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateApplication403ApplicationJSON struct {
+// CreateApplicationMetricsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateApplicationMetricsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type CreateApplication403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateApplication403ApplicationJSON) GetID() *string {
+func (o *CreateApplicationMetricsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateApplication403ApplicationJSON) GetMessage() *string {
+func (o *CreateApplicationMetricsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateApplication403ApplicationJSON) GetName() *string {
+func (o *CreateApplicationMetricsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateApplication401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateApplication401ApplicationJSON struct {
+// CreateApplicationMetricsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateApplicationMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type CreateApplication401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateApplication401ApplicationJSON) GetID() *string {
+func (o *CreateApplicationMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateApplication401ApplicationJSON) GetMessage() *string {
+func (o *CreateApplicationMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateApplication401ApplicationJSON) GetName() *string {
+func (o *CreateApplicationMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateApplication400ApplicationJSON - The request data does not match what we expect.
-type CreateApplication400ApplicationJSON struct {
+// CreateApplicationResponseBody - The request data does not match what we expect.
+type CreateApplicationResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type CreateApplication400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateApplication400ApplicationJSON) GetID() *string {
+func (o *CreateApplicationResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateApplication400ApplicationJSON) GetMessage() *string {
+func (o *CreateApplicationResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateApplication400ApplicationJSON) GetName() *string {
+func (o *CreateApplicationResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,18 +121,39 @@ func (o *CreateApplication400ApplicationJSON) GetName() *string {
 }
 
 type CreateApplicationResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateApplicationResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateApplicationMetricsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateApplicationMetricsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateApplication400ApplicationJSONObject *CreateApplication400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateApplication401ApplicationJSONObject *CreateApplication401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateApplication403ApplicationJSONObject *CreateApplication403ApplicationJSON
+}
+
+func (o *CreateApplicationResponse) GetFourHundredApplicationJSONObject() *CreateApplicationResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateApplicationResponse) GetFourHundredAndOneApplicationJSONObject() *CreateApplicationMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateApplicationResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateApplicationMetricsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *CreateApplicationResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *CreateApplicationResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateApplicationResponse) GetCreateApplication400ApplicationJSONObject() *CreateApplication400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateApplication400ApplicationJSONObject
-}
-
-func (o *CreateApplicationResponse) GetCreateApplication401ApplicationJSONObject() *CreateApplication401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateApplication401ApplicationJSONObject
-}
-
-func (o *CreateApplicationResponse) GetCreateApplication403ApplicationJSONObject() *CreateApplication403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateApplication403ApplicationJSONObject
 }

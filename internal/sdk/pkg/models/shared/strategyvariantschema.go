@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// StrategyVariantSchemaPayloadType - The type of the value. Commonly used types are string, json and csv.
-type StrategyVariantSchemaPayloadType string
+// StrategyVariantSchemaType - The type of the value. Commonly used types are string, json and csv.
+type StrategyVariantSchemaType string
 
 const (
-	StrategyVariantSchemaPayloadTypeJSON   StrategyVariantSchemaPayloadType = "json"
-	StrategyVariantSchemaPayloadTypeCsv    StrategyVariantSchemaPayloadType = "csv"
-	StrategyVariantSchemaPayloadTypeString StrategyVariantSchemaPayloadType = "string"
+	StrategyVariantSchemaTypeJSON   StrategyVariantSchemaType = "json"
+	StrategyVariantSchemaTypeCsv    StrategyVariantSchemaType = "csv"
+	StrategyVariantSchemaTypeString StrategyVariantSchemaType = "string"
 )
 
-func (e StrategyVariantSchemaPayloadType) ToPointer() *StrategyVariantSchemaPayloadType {
+func (e StrategyVariantSchemaType) ToPointer() *StrategyVariantSchemaType {
 	return &e
 }
 
-func (e *StrategyVariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
+func (e *StrategyVariantSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,24 +31,24 @@ func (e *StrategyVariantSchemaPayloadType) UnmarshalJSON(data []byte) error {
 	case "csv":
 		fallthrough
 	case "string":
-		*e = StrategyVariantSchemaPayloadType(v)
+		*e = StrategyVariantSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for StrategyVariantSchemaPayloadType: %v", v)
+		return fmt.Errorf("invalid value for StrategyVariantSchemaType: %v", v)
 	}
 }
 
 // StrategyVariantSchemaPayload - Extra data configured for this variant
 type StrategyVariantSchemaPayload struct {
 	// The type of the value. Commonly used types are string, json and csv.
-	Type StrategyVariantSchemaPayloadType `json:"type"`
+	Type StrategyVariantSchemaType `json:"type"`
 	// The actual value of payload
 	Value string `json:"value"`
 }
 
-func (o *StrategyVariantSchemaPayload) GetType() StrategyVariantSchemaPayloadType {
+func (o *StrategyVariantSchemaPayload) GetType() StrategyVariantSchemaType {
 	if o == nil {
-		return StrategyVariantSchemaPayloadType("")
+		return StrategyVariantSchemaType("")
 	}
 	return o.Type
 }

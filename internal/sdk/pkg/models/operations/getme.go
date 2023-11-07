@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetMe401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetMe401ApplicationJSON struct {
+// GetMeResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetMeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type GetMe401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetMe401ApplicationJSON) GetID() *string {
+func (o *GetMeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetMe401ApplicationJSON) GetMessage() *string {
+func (o *GetMeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetMe401ApplicationJSON) GetName() *string {
+func (o *GetMeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,10 +45,10 @@ type GetMeResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetMe401ApplicationJSONObject *GetMe401ApplicationJSON
 	// meSchema
 	MeSchema *shared.MeSchema
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	Object *GetMeResponseBody
 }
 
 func (o *GetMeResponse) GetContentType() string {
@@ -72,16 +72,16 @@ func (o *GetMeResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMeResponse) GetGetMe401ApplicationJSONObject() *GetMe401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetMe401ApplicationJSONObject
-}
-
 func (o *GetMeResponse) GetMeSchema() *shared.MeSchema {
 	if o == nil {
 		return nil
 	}
 	return o.MeSchema
+}
+
+func (o *GetMeResponse) GetObject() *GetMeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

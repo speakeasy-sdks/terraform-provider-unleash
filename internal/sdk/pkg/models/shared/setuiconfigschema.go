@@ -2,13 +2,13 @@
 
 package shared
 
-// SetUIConfigSchemaFrontendSettings - Settings related to the front-end API.
-type SetUIConfigSchemaFrontendSettings struct {
+// FrontendSettings - Settings related to the front-end API.
+type FrontendSettings struct {
 	// The list of origins that the front-end API should accept requests from.
 	FrontendAPIOrigins []string `json:"frontendApiOrigins"`
 }
 
-func (o *SetUIConfigSchemaFrontendSettings) GetFrontendAPIOrigins() []string {
+func (o *FrontendSettings) GetFrontendAPIOrigins() []string {
 	if o == nil {
 		return []string{}
 	}
@@ -18,10 +18,10 @@ func (o *SetUIConfigSchemaFrontendSettings) GetFrontendAPIOrigins() []string {
 // SetUIConfigSchema - Unleash configuration settings affect the admin UI.
 type SetUIConfigSchema struct {
 	// Settings related to the front-end API.
-	FrontendSettings *SetUIConfigSchemaFrontendSettings `json:"frontendSettings,omitempty"`
+	FrontendSettings *FrontendSettings `json:"frontendSettings,omitempty"`
 }
 
-func (o *SetUIConfigSchema) GetFrontendSettings() *SetUIConfigSchemaFrontendSettings {
+func (o *SetUIConfigSchema) GetFrontendSettings() *FrontendSettings {
 	if o == nil {
 		return nil
 	}

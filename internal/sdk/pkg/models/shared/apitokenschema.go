@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-// APITokenSchemaType - The type of API token
-type APITokenSchemaType string
+// Type - The type of API token
+type Type string
 
 const (
-	APITokenSchemaTypeClient   APITokenSchemaType = "client"
-	APITokenSchemaTypeAdmin    APITokenSchemaType = "admin"
-	APITokenSchemaTypeFrontend APITokenSchemaType = "frontend"
+	TypeClient   Type = "client"
+	TypeAdmin    Type = "admin"
+	TypeFrontend Type = "frontend"
 )
 
-func (e APITokenSchemaType) ToPointer() *APITokenSchemaType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *APITokenSchemaType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *APITokenSchemaType) UnmarshalJSON(data []byte) error {
 	case "admin":
 		fallthrough
 	case "frontend":
-		*e = APITokenSchemaType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for APITokenSchemaType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -61,7 +61,7 @@ type APITokenSchema struct {
 	// A unique name for this particular token
 	TokenName string `json:"tokenName"`
 	// The type of API token
-	Type APITokenSchemaType `json:"type"`
+	Type Type `json:"type"`
 	// This property was deprecated in Unleash v5. Prefer the `tokenName` property instead.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -142,9 +142,9 @@ func (o *APITokenSchema) GetTokenName() string {
 	return o.TokenName
 }
 
-func (o *APITokenSchema) GetType() APITokenSchemaType {
+func (o *APITokenSchema) GetType() Type {
 	if o == nil {
-		return APITokenSchemaType("")
+		return Type("")
 	}
 	return o.Type
 }

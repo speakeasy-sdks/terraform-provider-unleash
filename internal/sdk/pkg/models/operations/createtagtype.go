@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateTagType415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateTagType415ApplicationJSON struct {
+// CreateTagTypeTagsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateTagTypeTagsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateTagType415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateTagType415ApplicationJSON) GetID() *string {
+func (o *CreateTagTypeTagsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateTagType415ApplicationJSON) GetMessage() *string {
+func (o *CreateTagTypeTagsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateTagType415ApplicationJSON) GetName() *string {
+func (o *CreateTagTypeTagsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateTagType409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type CreateTagType409ApplicationJSON struct {
+// CreateTagTypeTagsResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type CreateTagTypeTagsResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type CreateTagType409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateTagType409ApplicationJSON) GetID() *string {
+func (o *CreateTagTypeTagsResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateTagType409ApplicationJSON) GetMessage() *string {
+func (o *CreateTagTypeTagsResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateTagType409ApplicationJSON) GetName() *string {
+func (o *CreateTagTypeTagsResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateTagType403ApplicationJSON struct {
+// CreateTagTypeTagsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateTagTypeTagsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,29 +79,29 @@ type CreateTagType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateTagType403ApplicationJSON) GetID() *string {
+func (o *CreateTagTypeTagsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateTagType403ApplicationJSON) GetMessage() *string {
+func (o *CreateTagTypeTagsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateTagType403ApplicationJSON) GetName() *string {
+func (o *CreateTagTypeTagsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateTagType401ApplicationJSON struct {
+// CreateTagTypeTagsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateTagTypeTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -110,29 +110,29 @@ type CreateTagType401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateTagType401ApplicationJSON) GetID() *string {
+func (o *CreateTagTypeTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateTagType401ApplicationJSON) GetMessage() *string {
+func (o *CreateTagTypeTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateTagType401ApplicationJSON) GetName() *string {
+func (o *CreateTagTypeTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateTagType400ApplicationJSON - The request data does not match what we expect.
-type CreateTagType400ApplicationJSON struct {
+// CreateTagTypeResponseBody - The request data does not match what we expect.
+type CreateTagTypeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -141,21 +141,21 @@ type CreateTagType400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateTagType400ApplicationJSON) GetID() *string {
+func (o *CreateTagTypeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateTagType400ApplicationJSON) GetMessage() *string {
+func (o *CreateTagTypeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateTagType400ApplicationJSON) GetName() *string {
+func (o *CreateTagTypeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -163,6 +163,16 @@ func (o *CreateTagType400ApplicationJSON) GetName() *string {
 }
 
 type CreateTagTypeResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateTagTypeResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateTagTypeTagsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateTagTypeTagsResponseResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *CreateTagTypeTagsResponse409ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateTagTypeTagsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -170,18 +180,43 @@ type CreateTagTypeResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateTagType400ApplicationJSONObject *CreateTagType400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateTagType401ApplicationJSONObject *CreateTagType401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateTagType403ApplicationJSONObject *CreateTagType403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateTagType409ApplicationJSONObject *CreateTagType409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateTagType415ApplicationJSONObject *CreateTagType415ApplicationJSON
 	// The resource was successfully created.
 	TagTypeSchema *shared.TagTypeSchema
+}
+
+func (o *CreateTagTypeResponse) GetFourHundredApplicationJSONObject() *CreateTagTypeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateTagTypeResponse) GetFourHundredAndOneApplicationJSONObject() *CreateTagTypeTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateTagTypeResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateTagTypeTagsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateTagTypeResponse) GetFourHundredAndNineApplicationJSONObject() *CreateTagTypeTagsResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *CreateTagTypeResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateTagTypeTagsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateTagTypeResponse) GetContentType() string {
@@ -210,41 +245,6 @@ func (o *CreateTagTypeResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateTagTypeResponse) GetCreateTagType400ApplicationJSONObject() *CreateTagType400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateTagType400ApplicationJSONObject
-}
-
-func (o *CreateTagTypeResponse) GetCreateTagType401ApplicationJSONObject() *CreateTagType401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateTagType401ApplicationJSONObject
-}
-
-func (o *CreateTagTypeResponse) GetCreateTagType403ApplicationJSONObject() *CreateTagType403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateTagType403ApplicationJSONObject
-}
-
-func (o *CreateTagTypeResponse) GetCreateTagType409ApplicationJSONObject() *CreateTagType409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateTagType409ApplicationJSONObject
-}
-
-func (o *CreateTagTypeResponse) GetCreateTagType415ApplicationJSONObject() *CreateTagType415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateTagType415ApplicationJSONObject
 }
 
 func (o *CreateTagTypeResponse) GetTagTypeSchema() *shared.TagTypeSchema {

@@ -18,8 +18,8 @@ func (o *GetStrategyRequest) GetName() string {
 	return o.Name
 }
 
-// GetStrategy404ApplicationJSON - The requested resource was not found.
-type GetStrategy404ApplicationJSON struct {
+// GetStrategyStrategiesResponseBody - The requested resource was not found.
+type GetStrategyStrategiesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetStrategy404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetStrategy404ApplicationJSON) GetID() *string {
+func (o *GetStrategyStrategiesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetStrategy404ApplicationJSON) GetMessage() *string {
+func (o *GetStrategyStrategiesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetStrategy404ApplicationJSON) GetName() *string {
+func (o *GetStrategyStrategiesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetStrategy401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetStrategy401ApplicationJSON struct {
+// GetStrategyResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetStrategyResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,21 +59,21 @@ type GetStrategy401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetStrategy401ApplicationJSON) GetID() *string {
+func (o *GetStrategyResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetStrategy401ApplicationJSON) GetMessage() *string {
+func (o *GetStrategyResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetStrategy401ApplicationJSON) GetName() *string {
+func (o *GetStrategyResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,18 +81,32 @@ func (o *GetStrategy401ApplicationJSON) GetName() *string {
 }
 
 type GetStrategyResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetStrategyResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetStrategyStrategiesResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetStrategy401ApplicationJSONObject *GetStrategy401ApplicationJSON
-	// The requested resource was not found.
-	GetStrategy404ApplicationJSONObject *GetStrategy404ApplicationJSON
 	// strategySchema
 	StrategySchema *shared.StrategySchema
+}
+
+func (o *GetStrategyResponse) GetFourHundredAndOneApplicationJSONObject() *GetStrategyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetStrategyResponse) GetFourHundredAndFourApplicationJSONObject() *GetStrategyStrategiesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetStrategyResponse) GetContentType() string {
@@ -114,20 +128,6 @@ func (o *GetStrategyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetStrategyResponse) GetGetStrategy401ApplicationJSONObject() *GetStrategy401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetStrategy401ApplicationJSONObject
-}
-
-func (o *GetStrategyResponse) GetGetStrategy404ApplicationJSONObject() *GetStrategy404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetStrategy404ApplicationJSONObject
 }
 
 func (o *GetStrategyResponse) GetStrategySchema() *shared.StrategySchema {

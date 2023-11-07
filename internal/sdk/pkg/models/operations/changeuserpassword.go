@@ -27,8 +27,8 @@ func (o *ChangeUserPasswordRequest) GetPasswordSchema() shared.PasswordSchema {
 	return o.PasswordSchema
 }
 
-// ChangeUserPassword403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ChangeUserPassword403ApplicationJSON struct {
+// ChangeUserPasswordUsersResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ChangeUserPasswordUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type ChangeUserPassword403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeUserPassword403ApplicationJSON) GetID() *string {
+func (o *ChangeUserPasswordUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeUserPassword403ApplicationJSON) GetMessage() *string {
+func (o *ChangeUserPasswordUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeUserPassword403ApplicationJSON) GetName() *string {
+func (o *ChangeUserPasswordUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeUserPassword401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ChangeUserPassword401ApplicationJSON struct {
+// ChangeUserPasswordUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ChangeUserPasswordUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type ChangeUserPassword401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeUserPassword401ApplicationJSON) GetID() *string {
+func (o *ChangeUserPasswordUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeUserPassword401ApplicationJSON) GetMessage() *string {
+func (o *ChangeUserPasswordUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeUserPassword401ApplicationJSON) GetName() *string {
+func (o *ChangeUserPasswordUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ChangeUserPassword400ApplicationJSON - The request data does not match what we expect.
-type ChangeUserPassword400ApplicationJSON struct {
+// ChangeUserPasswordResponseBody - The request data does not match what we expect.
+type ChangeUserPasswordResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type ChangeUserPassword400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ChangeUserPassword400ApplicationJSON) GetID() *string {
+func (o *ChangeUserPasswordResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ChangeUserPassword400ApplicationJSON) GetMessage() *string {
+func (o *ChangeUserPasswordResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ChangeUserPassword400ApplicationJSON) GetName() *string {
+func (o *ChangeUserPasswordResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,18 +121,39 @@ func (o *ChangeUserPassword400ApplicationJSON) GetName() *string {
 }
 
 type ChangeUserPasswordResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ChangeUserPasswordResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ChangeUserPasswordUsersResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ChangeUserPasswordUsersResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ChangeUserPassword400ApplicationJSONObject *ChangeUserPassword400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ChangeUserPassword401ApplicationJSONObject *ChangeUserPassword401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ChangeUserPassword403ApplicationJSONObject *ChangeUserPassword403ApplicationJSON
+}
+
+func (o *ChangeUserPasswordResponse) GetFourHundredApplicationJSONObject() *ChangeUserPasswordResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ChangeUserPasswordResponse) GetFourHundredAndOneApplicationJSONObject() *ChangeUserPasswordUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ChangeUserPasswordResponse) GetFourHundredAndThreeApplicationJSONObject() *ChangeUserPasswordUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *ChangeUserPasswordResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *ChangeUserPasswordResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ChangeUserPasswordResponse) GetChangeUserPassword400ApplicationJSONObject() *ChangeUserPassword400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeUserPassword400ApplicationJSONObject
-}
-
-func (o *ChangeUserPasswordResponse) GetChangeUserPassword401ApplicationJSONObject() *ChangeUserPassword401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeUserPassword401ApplicationJSONObject
-}
-
-func (o *ChangeUserPasswordResponse) GetChangeUserPassword403ApplicationJSONObject() *ChangeUserPassword403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ChangeUserPassword403ApplicationJSONObject
 }

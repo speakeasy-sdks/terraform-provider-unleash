@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// unstable - Experimental endpoints that may change or disappear at any time.
-type unstable struct {
+// Unstable - Experimental endpoints that may change or disappear at any time.
+type Unstable struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUnstable(sdkConfig sdkConfiguration) *unstable {
-	return &unstable{
+func newUnstable(sdkConfig sdkConfiguration) *Unstable {
+	return &Unstable{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAdvancedPlayground - Batch evaluate an Unleash context against a set of environments and projects.
 // Use the provided `context`, `environments`, and `projects` to evaluate toggles on this Unleash instance. You can use comma-separated values to provide multiple values to each context field. Returns a combinatorial list of all toggles that match the parameters and what they evaluate to. The response also contains the input parameters that were provided.
-func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.AdvancedPlaygroundRequestSchema) (*operations.GetAdvancedPlaygroundResponse, error) {
+func (s *Unstable) GetAdvancedPlayground(ctx context.Context, request shared.AdvancedPlaygroundRequestSchema) (*operations.GetAdvancedPlaygroundResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/playground/advanced"
 
@@ -93,24 +93,24 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAdvancedPlayground400ApplicationJSON
+			var out operations.GetAdvancedPlaygroundResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAdvancedPlayground400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAdvancedPlayground401ApplicationJSON
+			var out operations.GetAdvancedPlaygroundUnstableResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAdvancedPlayground401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -121,7 +121,7 @@ func (s *unstable) GetAdvancedPlayground(ctx context.Context, request shared.Adv
 
 // GetLoginHistory - Get all login events.
 // Returns **all** login events in the Unleash system. You can optionally get them in CSV format by specifying the `Accept` header as `text/csv`.
-func (s *unstable) GetLoginHistory(ctx context.Context, opts ...operations.Option) (*operations.GetLoginHistoryResponse, error) {
+func (s *Unstable) GetLoginHistory(ctx context.Context, opts ...operations.Option) (*operations.GetLoginHistoryResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionAcceptHeaderOverride,
@@ -183,7 +183,7 @@ func (s *unstable) GetLoginHistory(ctx context.Context, opts ...operations.Optio
 			res.LoginHistorySchema = &out
 		case utils.MatchContentType(contentType, `text/csv`):
 			out := string(rawBody)
-			res.GetLoginHistory200TextCsvString = &out
+			res.TwoHundredTextCsvRes = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -191,24 +191,24 @@ func (s *unstable) GetLoginHistory(ctx context.Context, opts ...operations.Optio
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetLoginHistory401ApplicationJSON
+			var out operations.GetLoginHistoryResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetLoginHistory401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetLoginHistory404ApplicationJSON
+			var out operations.GetLoginHistoryUnstableResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetLoginHistory404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -219,7 +219,7 @@ func (s *unstable) GetLoginHistory(ctx context.Context, opts ...operations.Optio
 
 // GetNotifications - Retrieves a list of notifications
 // A user may get relevant notifications from the projects they are a member of
-func (s *unstable) GetNotifications(ctx context.Context) (*operations.GetNotificationsResponse, error) {
+func (s *Unstable) GetNotifications(ctx context.Context) (*operations.GetNotificationsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/notifications"
 
@@ -274,7 +274,7 @@ func (s *unstable) GetNotifications(ctx context.Context) (*operations.GetNotific
 
 // MarkNotificationsAsRead - Mark notifications as read
 // Allow to select which notifications were read and saving a read date
-func (s *unstable) MarkNotificationsAsRead(ctx context.Context, request shared.MarkNotificationsAsReadSchema) (*operations.MarkNotificationsAsReadResponse, error) {
+func (s *Unstable) MarkNotificationsAsRead(ctx context.Context, request shared.MarkNotificationsAsReadSchema) (*operations.MarkNotificationsAsReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/notifications/read"
 
@@ -334,7 +334,7 @@ func (s *unstable) MarkNotificationsAsRead(ctx context.Context, request shared.M
 // Updates the lifetime configuration for the specified [feature toggle type](https://docs.getunleash.io/reference/feature-toggle-types). The expected lifetime is an integer representing the number of days before Unleash marks a feature toggle of that type as potentially stale. If set to `null` or `0`, then feature toggles of that particular type will never be marked as potentially stale.
 //
 // When a feature toggle type's expected lifetime is changed, this will also cause any feature toggles of this type to be reevaluated for potential staleness.
-func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operations.UpdateFeatureTypeLifetimeRequest) (*operations.UpdateFeatureTypeLifetimeResponse, error) {
+func (s *Unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operations.UpdateFeatureTypeLifetimeRequest) (*operations.UpdateFeatureTypeLifetimeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/feature-types/{id}/lifetime", request, nil)
 	if err != nil {
@@ -402,72 +402,72 @@ func (s *unstable) UpdateFeatureTypeLifetime(ctx context.Context, request operat
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime400ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime401ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeUnstableResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime403ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeUnstableResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime404ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeUnstableResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime409ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeUnstableResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureTypeLifetime415ApplicationJSON
+			var out operations.UpdateFeatureTypeLifetimeUnstableResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureTypeLifetime415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

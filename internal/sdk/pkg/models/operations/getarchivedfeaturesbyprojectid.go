@@ -18,8 +18,8 @@ func (o *GetArchivedFeaturesByProjectIDRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// GetArchivedFeaturesByProjectID403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetArchivedFeaturesByProjectID403ApplicationJSON struct {
+// GetArchivedFeaturesByProjectIDArchiveResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetArchivedFeaturesByProjectIDArchiveResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetArchivedFeaturesByProjectID403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetArchivedFeaturesByProjectID403ApplicationJSON) GetID() *string {
+func (o *GetArchivedFeaturesByProjectIDArchiveResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetArchivedFeaturesByProjectID403ApplicationJSON) GetMessage() *string {
+func (o *GetArchivedFeaturesByProjectIDArchiveResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetArchivedFeaturesByProjectID403ApplicationJSON) GetName() *string {
+func (o *GetArchivedFeaturesByProjectIDArchiveResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetArchivedFeaturesByProjectID401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetArchivedFeaturesByProjectID401ApplicationJSON struct {
+// GetArchivedFeaturesByProjectIDResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetArchivedFeaturesByProjectIDResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,21 +59,21 @@ type GetArchivedFeaturesByProjectID401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetArchivedFeaturesByProjectID401ApplicationJSON) GetID() *string {
+func (o *GetArchivedFeaturesByProjectIDResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetArchivedFeaturesByProjectID401ApplicationJSON) GetMessage() *string {
+func (o *GetArchivedFeaturesByProjectIDResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetArchivedFeaturesByProjectID401ApplicationJSON) GetName() *string {
+func (o *GetArchivedFeaturesByProjectIDResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,6 +81,10 @@ func (o *GetArchivedFeaturesByProjectID401ApplicationJSON) GetName() *string {
 }
 
 type GetArchivedFeaturesByProjectIDResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetArchivedFeaturesByProjectIDResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetArchivedFeaturesByProjectIDArchiveResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -89,10 +93,20 @@ type GetArchivedFeaturesByProjectIDResponse struct {
 	RawResponse *http.Response
 	// featuresSchema
 	FeaturesSchema *shared.FeaturesSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetArchivedFeaturesByProjectID401ApplicationJSONObject *GetArchivedFeaturesByProjectID401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetArchivedFeaturesByProjectID403ApplicationJSONObject *GetArchivedFeaturesByProjectID403ApplicationJSON
+}
+
+func (o *GetArchivedFeaturesByProjectIDResponse) GetFourHundredAndOneApplicationJSONObject() *GetArchivedFeaturesByProjectIDResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetArchivedFeaturesByProjectIDResponse) GetFourHundredAndThreeApplicationJSONObject() *GetArchivedFeaturesByProjectIDArchiveResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetArchivedFeaturesByProjectIDResponse) GetContentType() string {
@@ -121,18 +135,4 @@ func (o *GetArchivedFeaturesByProjectIDResponse) GetFeaturesSchema() *shared.Fea
 		return nil
 	}
 	return o.FeaturesSchema
-}
-
-func (o *GetArchivedFeaturesByProjectIDResponse) GetGetArchivedFeaturesByProjectID401ApplicationJSONObject() *GetArchivedFeaturesByProjectID401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetArchivedFeaturesByProjectID401ApplicationJSONObject
-}
-
-func (o *GetArchivedFeaturesByProjectIDResponse) GetGetArchivedFeaturesByProjectID403ApplicationJSONObject() *GetArchivedFeaturesByProjectID403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetArchivedFeaturesByProjectID403ApplicationJSONObject
 }

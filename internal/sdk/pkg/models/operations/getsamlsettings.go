@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetSamlSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetSamlSettings403ApplicationJSON struct {
+// GetSamlSettingsAuthResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetSamlSettingsAuthResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetSamlSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSamlSettings403ApplicationJSON) GetID() *string {
+func (o *GetSamlSettingsAuthResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSamlSettings403ApplicationJSON) GetMessage() *string {
+func (o *GetSamlSettingsAuthResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSamlSettings403ApplicationJSON) GetName() *string {
+func (o *GetSamlSettingsAuthResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetSamlSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetSamlSettings401ApplicationJSON struct {
+// GetSamlSettingsAuthResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetSamlSettingsAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type GetSamlSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSamlSettings401ApplicationJSON) GetID() *string {
+func (o *GetSamlSettingsAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSamlSettings401ApplicationJSON) GetMessage() *string {
+func (o *GetSamlSettingsAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSamlSettings401ApplicationJSON) GetName() *string {
+func (o *GetSamlSettingsAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetSamlSettings400ApplicationJSON - The request data does not match what we expect.
-type GetSamlSettings400ApplicationJSON struct {
+// GetSamlSettingsResponseBody - The request data does not match what we expect.
+type GetSamlSettingsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type GetSamlSettings400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSamlSettings400ApplicationJSON) GetID() *string {
+func (o *GetSamlSettingsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSamlSettings400ApplicationJSON) GetMessage() *string {
+func (o *GetSamlSettingsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSamlSettings400ApplicationJSON) GetName() *string {
+func (o *GetSamlSettingsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *GetSamlSettings400ApplicationJSON) GetName() *string {
 }
 
 type GetSamlSettingsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetSamlSettingsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetSamlSettingsAuthResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetSamlSettingsAuthResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetSamlSettings400ApplicationJSONObject *GetSamlSettings400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetSamlSettings401ApplicationJSONObject *GetSamlSettings401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetSamlSettings403ApplicationJSONObject *GetSamlSettings403ApplicationJSON
 	// samlSettingsSchema
 	SamlSettingsSchema *shared.SamlSettingsSchema
+}
+
+func (o *GetSamlSettingsResponse) GetFourHundredApplicationJSONObject() *GetSamlSettingsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetSamlSettingsResponse) GetFourHundredAndOneApplicationJSONObject() *GetSamlSettingsAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetSamlSettingsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetSamlSettingsAuthResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetSamlSettingsResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *GetSamlSettingsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetSamlSettingsResponse) GetGetSamlSettings400ApplicationJSONObject() *GetSamlSettings400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSamlSettings400ApplicationJSONObject
-}
-
-func (o *GetSamlSettingsResponse) GetGetSamlSettings401ApplicationJSONObject() *GetSamlSettings401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSamlSettings401ApplicationJSONObject
-}
-
-func (o *GetSamlSettingsResponse) GetGetSamlSettings403ApplicationJSONObject() *GetSamlSettings403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSamlSettings403ApplicationJSONObject
 }
 
 func (o *GetSamlSettingsResponse) GetSamlSettingsSchema() *shared.SamlSettingsSchema {

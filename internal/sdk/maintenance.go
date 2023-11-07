@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// maintenance - Enable/disable the maintenance mode of Unleash.
-type maintenance struct {
+// Maintenance - Enable/disable the maintenance mode of Unleash.
+type Maintenance struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMaintenance(sdkConfig sdkConfiguration) *maintenance {
-	return &maintenance{
+func newMaintenance(sdkConfig sdkConfiguration) *Maintenance {
+	return &Maintenance{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetMaintenance - Get maintenance mode status
 // Tells you whether maintenance mode is enabled or disabled
-func (s *maintenance) GetMaintenance(ctx context.Context) (*operations.GetMaintenanceResponse, error) {
+func (s *Maintenance) GetMaintenance(ctx context.Context) (*operations.GetMaintenanceResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/maintenance"
 
@@ -79,24 +79,24 @@ func (s *maintenance) GetMaintenance(ctx context.Context) (*operations.GetMainte
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMaintenance401ApplicationJSON
+			var out operations.GetMaintenanceResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMaintenance401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMaintenance403ApplicationJSON
+			var out operations.GetMaintenanceMaintenanceResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMaintenance403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -107,7 +107,7 @@ func (s *maintenance) GetMaintenance(ctx context.Context) (*operations.GetMainte
 
 // ToggleMaintenance - Enabled/disabled maintenance mode
 // Lets administrators put Unleash into a mostly read-only mode. While Unleash is in maintenance mode, users can not change any configuration settings
-func (s *maintenance) ToggleMaintenance(ctx context.Context, request shared.ToggleMaintenanceSchema) (*operations.ToggleMaintenanceResponse, error) {
+func (s *Maintenance) ToggleMaintenance(ctx context.Context, request shared.ToggleMaintenanceSchema) (*operations.ToggleMaintenanceResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/maintenance"
 
@@ -161,36 +161,36 @@ func (s *maintenance) ToggleMaintenance(ctx context.Context, request shared.Togg
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleMaintenance400ApplicationJSON
+			var out operations.ToggleMaintenanceResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleMaintenance400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleMaintenance401ApplicationJSON
+			var out operations.ToggleMaintenanceMaintenanceResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleMaintenance401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleMaintenance403ApplicationJSON
+			var out operations.ToggleMaintenanceMaintenanceResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleMaintenance403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

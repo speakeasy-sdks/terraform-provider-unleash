@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetGroups403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetGroups403ApplicationJSON struct {
+// GetGroupsUsersResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetGroupsUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetGroups403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroups403ApplicationJSON) GetID() *string {
+func (o *GetGroupsUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroups403ApplicationJSON) GetMessage() *string {
+func (o *GetGroupsUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroups403ApplicationJSON) GetName() *string {
+func (o *GetGroupsUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetGroups401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetGroups401ApplicationJSON struct {
+// GetGroupsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetGroupsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetGroups401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetGroups401ApplicationJSON) GetID() *string {
+func (o *GetGroupsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetGroups401ApplicationJSON) GetMessage() *string {
+func (o *GetGroupsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetGroups401ApplicationJSON) GetName() *string {
+func (o *GetGroupsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetGroups401ApplicationJSON) GetName() *string {
 }
 
 type GetGroupsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetGroupsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetGroupsUsersResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetGroups401ApplicationJSONObject *GetGroups401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetGroups403ApplicationJSONObject *GetGroups403ApplicationJSON
 	// groupsSchema
 	GroupsSchema *shared.GroupsSchema
+}
+
+func (o *GetGroupsResponse) GetFourHundredAndOneApplicationJSONObject() *GetGroupsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetGroupsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetGroupsUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetGroupsResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetGroupsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetGroupsResponse) GetGetGroups401ApplicationJSONObject() *GetGroups401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroups401ApplicationJSONObject
-}
-
-func (o *GetGroupsResponse) GetGetGroups403ApplicationJSONObject() *GetGroups403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetGroups403ApplicationJSONObject
 }
 
 func (o *GetGroupsResponse) GetGroupsSchema() *shared.GroupsSchema {

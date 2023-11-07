@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// features - Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
-type features struct {
+// Features - Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
+type Features struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newFeatures(sdkConfig sdkConfiguration) *features {
-	return &features{
+func newFeatures(sdkConfig sdkConfiguration) *Features {
+	return &Features{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // AddFavoriteFeature - Add feature to favorites
 // This endpoint marks the feature in the url as favorite
-func (s *features) AddFavoriteFeature(ctx context.Context, request operations.AddFavoriteFeatureRequest) (*operations.AddFavoriteFeatureResponse, error) {
+func (s *Features) AddFavoriteFeature(ctx context.Context, request operations.AddFavoriteFeatureRequest) (*operations.AddFavoriteFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/favorites", request, nil)
 	if err != nil {
@@ -71,24 +71,24 @@ func (s *features) AddFavoriteFeature(ctx context.Context, request operations.Ad
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFavoriteFeature401ApplicationJSON
+			var out operations.AddFavoriteFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFavoriteFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFavoriteFeature404ApplicationJSON
+			var out operations.AddFavoriteFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFavoriteFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -99,7 +99,7 @@ func (s *features) AddFavoriteFeature(ctx context.Context, request operations.Ad
 
 // AddFavoriteProject - Add project to favorites
 // This endpoint marks the project in the url as favorite
-func (s *features) AddFavoriteProject(ctx context.Context, request operations.AddFavoriteProjectRequest) (*operations.AddFavoriteProjectResponse, error) {
+func (s *Features) AddFavoriteProject(ctx context.Context, request operations.AddFavoriteProjectRequest) (*operations.AddFavoriteProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/favorites", request, nil)
 	if err != nil {
@@ -142,24 +142,24 @@ func (s *features) AddFavoriteProject(ctx context.Context, request operations.Ad
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFavoriteProject401ApplicationJSON
+			var out operations.AddFavoriteProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFavoriteProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFavoriteProject404ApplicationJSON
+			var out operations.AddFavoriteProjectFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFavoriteProject404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -170,7 +170,7 @@ func (s *features) AddFavoriteProject(ctx context.Context, request operations.Ad
 
 // AddFeatureStrategy - Add a strategy to a feature toggle
 // Add a strategy to a feature toggle in the specified environment.
-func (s *features) AddFeatureStrategy(ctx context.Context, request operations.AddFeatureStrategyRequest) (*operations.AddFeatureStrategyResponse, error) {
+func (s *Features) AddFeatureStrategy(ctx context.Context, request operations.AddFeatureStrategyRequest) (*operations.AddFeatureStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies", request, nil)
 	if err != nil {
@@ -238,36 +238,36 @@ func (s *features) AddFeatureStrategy(ctx context.Context, request operations.Ad
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFeatureStrategy401ApplicationJSON
+			var out operations.AddFeatureStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFeatureStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFeatureStrategy403ApplicationJSON
+			var out operations.AddFeatureStrategyFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFeatureStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddFeatureStrategy404ApplicationJSON
+			var out operations.AddFeatureStrategyFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddFeatureStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -278,7 +278,7 @@ func (s *features) AddFeatureStrategy(ctx context.Context, request operations.Ad
 
 // AddTag - Adds a tag to a feature.
 // Adds a tag to a feature if the feature and tag type exist in the system. The operation is idempotent, so adding an existing tag will result in a successful response.
-func (s *features) AddTag(ctx context.Context, request operations.AddTagRequest) (*operations.AddTagResponse, error) {
+func (s *Features) AddTag(ctx context.Context, request operations.AddTagRequest) (*operations.AddTagResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/features/{featureName}/tags", request, nil)
 	if err != nil {
@@ -348,48 +348,48 @@ func (s *features) AddTag(ctx context.Context, request operations.AddTagRequest)
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTag400ApplicationJSON
+			var out operations.AddTagResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTag400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTag401ApplicationJSON
+			var out operations.AddTagFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTag401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTag403ApplicationJSON
+			var out operations.AddTagFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTag403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddTag404ApplicationJSON
+			var out operations.AddTagFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddTag404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -400,7 +400,7 @@ func (s *features) AddTag(ctx context.Context, request operations.AddTagRequest)
 
 // ArchiveFeature - Archive a feature toggle
 // This endpoint archives the specified feature if the feature belongs to the specified project.
-func (s *features) ArchiveFeature(ctx context.Context, request operations.ArchiveFeatureRequest) (*operations.ArchiveFeatureResponse, error) {
+func (s *Features) ArchiveFeature(ctx context.Context, request operations.ArchiveFeatureRequest) (*operations.ArchiveFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}", request, nil)
 	if err != nil {
@@ -443,36 +443,36 @@ func (s *features) ArchiveFeature(ctx context.Context, request operations.Archiv
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeature401ApplicationJSON
+			var out operations.ArchiveFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeature403ApplicationJSON
+			var out operations.ArchiveFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeature404ApplicationJSON
+			var out operations.ArchiveFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -483,7 +483,7 @@ func (s *features) ArchiveFeature(ctx context.Context, request operations.Archiv
 
 // ArchiveFeatures - Archives a list of features
 // This endpoint archives the specified features. Any features that are already archived or that don't exist are ignored. All existing features (whether already archived or not) that are provided must belong to the specified project.
-func (s *features) ArchiveFeatures(ctx context.Context, request operations.ArchiveFeaturesRequest) (*operations.ArchiveFeaturesResponse, error) {
+func (s *Features) ArchiveFeatures(ctx context.Context, request operations.ArchiveFeaturesRequest) (*operations.ArchiveFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/archive", request, nil)
 	if err != nil {
@@ -540,48 +540,48 @@ func (s *features) ArchiveFeatures(ctx context.Context, request operations.Archi
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeatures400ApplicationJSON
+			var out operations.ArchiveFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeatures400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeatures401ApplicationJSON
+			var out operations.ArchiveFeaturesFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeatures403ApplicationJSON
+			var out operations.ArchiveFeaturesFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ArchiveFeatures415ApplicationJSON
+			var out operations.ArchiveFeaturesFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ArchiveFeatures415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -592,7 +592,7 @@ func (s *features) ArchiveFeatures(ctx context.Context, request operations.Archi
 
 // BulkToggleFeaturesEnvironmentOff - Bulk disable a list of features
 // This endpoint disables multiple feature toggles.
-func (s *features) BulkToggleFeaturesEnvironmentOff(ctx context.Context, request operations.BulkToggleFeaturesEnvironmentOffRequest) (*operations.BulkToggleFeaturesEnvironmentOffResponse, error) {
+func (s *Features) BulkToggleFeaturesEnvironmentOff(ctx context.Context, request operations.BulkToggleFeaturesEnvironmentOffRequest) (*operations.BulkToggleFeaturesEnvironmentOffResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/bulk_features/environments/{environment}/off", request, nil)
 	if err != nil {
@@ -649,72 +649,72 @@ func (s *features) BulkToggleFeaturesEnvironmentOff(ctx context.Context, request
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff400ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff401ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff403ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff404ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff413ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffFeaturesResponse413ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOff415ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOffFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOff415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -725,7 +725,7 @@ func (s *features) BulkToggleFeaturesEnvironmentOff(ctx context.Context, request
 
 // BulkToggleFeaturesEnvironmentOn - Bulk enable a list of features
 // This endpoint enables multiple feature toggles.
-func (s *features) BulkToggleFeaturesEnvironmentOn(ctx context.Context, request operations.BulkToggleFeaturesEnvironmentOnRequest) (*operations.BulkToggleFeaturesEnvironmentOnResponse, error) {
+func (s *Features) BulkToggleFeaturesEnvironmentOn(ctx context.Context, request operations.BulkToggleFeaturesEnvironmentOnRequest) (*operations.BulkToggleFeaturesEnvironmentOnResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/bulk_features/environments/{environment}/on", request, nil)
 	if err != nil {
@@ -782,72 +782,72 @@ func (s *features) BulkToggleFeaturesEnvironmentOn(ctx context.Context, request 
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn400ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn401ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn403ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn404ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn413ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnFeaturesResponse413ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.BulkToggleFeaturesEnvironmentOn415ApplicationJSON
+			var out operations.BulkToggleFeaturesEnvironmentOnFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BulkToggleFeaturesEnvironmentOn415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -858,7 +858,7 @@ func (s *features) BulkToggleFeaturesEnvironmentOn(ctx context.Context, request 
 
 // ChangeProject - Move feature to project
 // Moves the specified feature to the new project in the request schema. Requires you to have permissions to move the feature toggle in both projects. Features that are included in any active change requests can not be moved.
-func (s *features) ChangeProject(ctx context.Context, request operations.ChangeProjectRequest) (*operations.ChangeProjectResponse, error) {
+func (s *Features) ChangeProject(ctx context.Context, request operations.ChangeProjectRequest) (*operations.ChangeProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/changeProject", request, nil)
 	if err != nil {
@@ -915,60 +915,60 @@ func (s *features) ChangeProject(ctx context.Context, request operations.ChangeP
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeProject400ApplicationJSON
+			var out operations.ChangeProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeProject400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeProject401ApplicationJSON
+			var out operations.ChangeProjectFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeProject403ApplicationJSON
+			var out operations.ChangeProjectFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeProject403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeProject404ApplicationJSON
+			var out operations.ChangeProjectFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeProject404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ChangeProject415ApplicationJSON
+			var out operations.ChangeProjectFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ChangeProject415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -979,7 +979,7 @@ func (s *features) ChangeProject(ctx context.Context, request operations.ChangeP
 
 // CloneFeature - Clone a feature toggle
 // Creates a copy of the specified feature toggle. The copy can be created in any project.
-func (s *features) CloneFeature(ctx context.Context, request operations.CloneFeatureRequest) (*operations.CloneFeatureResponse, error) {
+func (s *Features) CloneFeature(ctx context.Context, request operations.CloneFeatureRequest) (*operations.CloneFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/clone", request, nil)
 	if err != nil {
@@ -1047,48 +1047,48 @@ func (s *features) CloneFeature(ctx context.Context, request operations.CloneFea
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneFeature401ApplicationJSON
+			var out operations.CloneFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneFeature403ApplicationJSON
+			var out operations.CloneFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneFeature404ApplicationJSON
+			var out operations.CloneFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneFeature415ApplicationJSON
+			var out operations.CloneFeatureFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneFeature415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1099,7 +1099,7 @@ func (s *features) CloneFeature(ctx context.Context, request operations.CloneFea
 
 // CreateFeature - Add a new feature toggle
 // Create a new feature toggle in a specified project.
-func (s *features) CreateFeature(ctx context.Context, request operations.CreateFeatureRequest) (*operations.CreateFeatureResponse, error) {
+func (s *Features) CreateFeature(ctx context.Context, request operations.CreateFeatureRequest) (*operations.CreateFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features", request, nil)
 	if err != nil {
@@ -1167,48 +1167,48 @@ func (s *features) CreateFeature(ctx context.Context, request operations.CreateF
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeature401ApplicationJSON
+			var out operations.CreateFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeature403ApplicationJSON
+			var out operations.CreateFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeature404ApplicationJSON
+			var out operations.CreateFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateFeature415ApplicationJSON
+			var out operations.CreateFeatureFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateFeature415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1219,7 +1219,7 @@ func (s *features) CreateFeature(ctx context.Context, request operations.CreateF
 
 // DeleteFeatureStrategy - Delete a strategy from a feature toggle
 // Delete a strategy configuration from a feature toggle in the specified environment.
-func (s *features) DeleteFeatureStrategy(ctx context.Context, request operations.DeleteFeatureStrategyRequest) (*operations.DeleteFeatureStrategyResponse, error) {
+func (s *Features) DeleteFeatureStrategy(ctx context.Context, request operations.DeleteFeatureStrategyRequest) (*operations.DeleteFeatureStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/{strategyId}", request, nil)
 	if err != nil {
@@ -1262,36 +1262,36 @@ func (s *features) DeleteFeatureStrategy(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatureStrategy401ApplicationJSON
+			var out operations.DeleteFeatureStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatureStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatureStrategy403ApplicationJSON
+			var out operations.DeleteFeatureStrategyFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatureStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteFeatureStrategy404ApplicationJSON
+			var out operations.DeleteFeatureStrategyFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteFeatureStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1302,7 +1302,7 @@ func (s *features) DeleteFeatureStrategy(ctx context.Context, request operations
 
 // GetAllFeatureTypes - Get all feature types
 // Retrieves all feature types that exist in this Unleash instance, along with their descriptions and lifetimes.
-func (s *features) GetAllFeatureTypes(ctx context.Context) (*operations.GetAllFeatureTypesResponse, error) {
+func (s *Features) GetAllFeatureTypes(ctx context.Context) (*operations.GetAllFeatureTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/feature-types"
 
@@ -1353,12 +1353,12 @@ func (s *features) GetAllFeatureTypes(ctx context.Context) (*operations.GetAllFe
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllFeatureTypes401ApplicationJSON
+			var out operations.GetAllFeatureTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllFeatureTypes401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1371,7 +1371,7 @@ func (s *features) GetAllFeatureTypes(ctx context.Context) (*operations.GetAllFe
 // Gets all feature toggles with their full configuration. This endpoint is **deprecated**. You should  use the project-based endpoint instead (`/api/admin/projects/<project-id>/features`).
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *features) GetAllToggles(ctx context.Context) (*operations.GetAllTogglesResponse, error) {
+func (s *Features) GetAllToggles(ctx context.Context) (*operations.GetAllTogglesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/features"
 
@@ -1422,24 +1422,24 @@ func (s *features) GetAllToggles(ctx context.Context) (*operations.GetAllToggles
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllToggles401ApplicationJSON
+			var out operations.GetAllTogglesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllToggles401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllToggles403ApplicationJSON
+			var out operations.GetAllTogglesFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllToggles403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1450,7 +1450,7 @@ func (s *features) GetAllToggles(ctx context.Context) (*operations.GetAllToggles
 
 // GetEnvironmentFeatureVariants - Get variants for a feature in an environment
 // Returns the variants for a feature in a specific environment. If the feature has no variants it will return an empty array of variants
-func (s *features) GetEnvironmentFeatureVariants(ctx context.Context, request operations.GetEnvironmentFeatureVariantsRequest) (*operations.GetEnvironmentFeatureVariantsResponse, error) {
+func (s *Features) GetEnvironmentFeatureVariants(ctx context.Context, request operations.GetEnvironmentFeatureVariantsRequest) (*operations.GetEnvironmentFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/variants", request, nil)
 	if err != nil {
@@ -1504,36 +1504,36 @@ func (s *features) GetEnvironmentFeatureVariants(ctx context.Context, request op
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironmentFeatureVariants401ApplicationJSON
+			var out operations.GetEnvironmentFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironmentFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironmentFeatureVariants403ApplicationJSON
+			var out operations.GetEnvironmentFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironmentFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironmentFeatureVariants404ApplicationJSON
+			var out operations.GetEnvironmentFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironmentFeatureVariants404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1544,7 +1544,7 @@ func (s *features) GetEnvironmentFeatureVariants(ctx context.Context, request op
 
 // GetFeature - Get a feature
 // This endpoint returns the information about the requested feature if the feature belongs to the specified project.
-func (s *features) GetFeature(ctx context.Context, request operations.GetFeatureRequest) (*operations.GetFeatureResponse, error) {
+func (s *Features) GetFeature(ctx context.Context, request operations.GetFeatureRequest) (*operations.GetFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}", request, nil)
 	if err != nil {
@@ -1598,36 +1598,36 @@ func (s *features) GetFeature(ctx context.Context, request operations.GetFeature
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeature401ApplicationJSON
+			var out operations.GetFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeature403ApplicationJSON
+			var out operations.GetFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeature404ApplicationJSON
+			var out operations.GetFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1638,7 +1638,7 @@ func (s *features) GetFeature(ctx context.Context, request operations.GetFeature
 
 // GetFeatureEnvironment - Get a feature environment
 // Information about the enablement status and strategies for a feature toggle in specified environment.
-func (s *features) GetFeatureEnvironment(ctx context.Context, request operations.GetFeatureEnvironmentRequest) (*operations.GetFeatureEnvironmentResponse, error) {
+func (s *Features) GetFeatureEnvironment(ctx context.Context, request operations.GetFeatureEnvironmentRequest) (*operations.GetFeatureEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}", request, nil)
 	if err != nil {
@@ -1692,36 +1692,36 @@ func (s *features) GetFeatureEnvironment(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureEnvironment401ApplicationJSON
+			var out operations.GetFeatureEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureEnvironment403ApplicationJSON
+			var out operations.GetFeatureEnvironmentFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureEnvironment403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureEnvironment404ApplicationJSON
+			var out operations.GetFeatureEnvironmentFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureEnvironment404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1732,7 +1732,7 @@ func (s *features) GetFeatureEnvironment(ctx context.Context, request operations
 
 // GetFeatureStrategies - Get feature toggle strategies
 // Get strategies defined for a feature toggle in the specified environment.
-func (s *features) GetFeatureStrategies(ctx context.Context, request operations.GetFeatureStrategiesRequest) (*operations.GetFeatureStrategiesResponse, error) {
+func (s *Features) GetFeatureStrategies(ctx context.Context, request operations.GetFeatureStrategiesRequest) (*operations.GetFeatureStrategiesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies", request, nil)
 	if err != nil {
@@ -1786,36 +1786,36 @@ func (s *features) GetFeatureStrategies(ctx context.Context, request operations.
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategies401ApplicationJSON
+			var out operations.GetFeatureStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategies401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategies403ApplicationJSON
+			var out operations.GetFeatureStrategiesFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategies403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategies404ApplicationJSON
+			var out operations.GetFeatureStrategiesFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategies404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1826,7 +1826,7 @@ func (s *features) GetFeatureStrategies(ctx context.Context, request operations.
 
 // GetFeatureStrategy - Get a strategy configuration
 // Get a strategy configuration for an environment in a feature toggle.
-func (s *features) GetFeatureStrategy(ctx context.Context, request operations.GetFeatureStrategyRequest) (*operations.GetFeatureStrategyResponse, error) {
+func (s *Features) GetFeatureStrategy(ctx context.Context, request operations.GetFeatureStrategyRequest) (*operations.GetFeatureStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/{strategyId}", request, nil)
 	if err != nil {
@@ -1880,36 +1880,36 @@ func (s *features) GetFeatureStrategy(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategy401ApplicationJSON
+			var out operations.GetFeatureStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategy403ApplicationJSON
+			var out operations.GetFeatureStrategyFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureStrategy404ApplicationJSON
+			var out operations.GetFeatureStrategyFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1922,7 +1922,7 @@ func (s *features) GetFeatureStrategy(ctx context.Context, request operations.Ge
 // (deprecated from 4.21) Retrieve the variants for the specified feature. From Unleash 4.21 onwards, this endpoint will attempt to choose a [production-type environment](https://docs.getunleash.io/reference/environments) as the source of truth. If more than one production environment is found, the first one will be used.
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *features) GetFeatureVariants(ctx context.Context, request operations.GetFeatureVariantsRequest) (*operations.GetFeatureVariantsResponse, error) {
+func (s *Features) GetFeatureVariants(ctx context.Context, request operations.GetFeatureVariantsRequest) (*operations.GetFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/variants", request, nil)
 	if err != nil {
@@ -1976,36 +1976,36 @@ func (s *features) GetFeatureVariants(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureVariants401ApplicationJSON
+			var out operations.GetFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureVariants403ApplicationJSON
+			var out operations.GetFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatureVariants404ApplicationJSON
+			var out operations.GetFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatureVariants404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2016,7 +2016,7 @@ func (s *features) GetFeatureVariants(ctx context.Context, request operations.Ge
 
 // GetFeatures - Get all features in a project
 // A list of all features for the specified project.
-func (s *features) GetFeatures(ctx context.Context, request operations.GetFeaturesRequest) (*operations.GetFeaturesResponse, error) {
+func (s *Features) GetFeatures(ctx context.Context, request operations.GetFeaturesRequest) (*operations.GetFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features", request, nil)
 	if err != nil {
@@ -2070,36 +2070,36 @@ func (s *features) GetFeatures(ctx context.Context, request operations.GetFeatur
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatures400ApplicationJSON
+			var out operations.GetFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatures400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatures401ApplicationJSON
+			var out operations.GetFeaturesFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetFeatures403ApplicationJSON
+			var out operations.GetFeaturesFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2110,7 +2110,7 @@ func (s *features) GetFeatures(ctx context.Context, request operations.GetFeatur
 
 // ListTags - Get all tags for a feature.
 // Retrieves all the tags for a feature name. If the feature does not exist it returns an empty list.
-func (s *features) ListTags(ctx context.Context, request operations.ListTagsRequest) (*operations.ListTagsResponse, error) {
+func (s *Features) ListTags(ctx context.Context, request operations.ListTagsRequest) (*operations.ListTagsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/features/{featureName}/tags", request, nil)
 	if err != nil {
@@ -2164,36 +2164,36 @@ func (s *features) ListTags(ctx context.Context, request operations.ListTagsRequ
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ListTags401ApplicationJSON
+			var out operations.ListTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ListTags401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ListTags403ApplicationJSON
+			var out operations.ListTagsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ListTags403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ListTags404ApplicationJSON
+			var out operations.ListTagsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ListTags404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2211,7 +2211,7 @@ func (s *features) ListTags(ctx context.Context, request operations.ListTagsRequ
 // * The sum of the weights of variants with `weightType: fix` must be strictly less than 1000 (< 1000)
 //
 // The backend will also distribute remaining weight up to 1000 after adding the variants with `weightType: fix` together amongst the variants of `weightType: variable`
-func (s *features) OverwriteEnvironmentFeatureVariants(ctx context.Context, request operations.OverwriteEnvironmentFeatureVariantsRequest) (*operations.OverwriteEnvironmentFeatureVariantsResponse, error) {
+func (s *Features) OverwriteEnvironmentFeatureVariants(ctx context.Context, request operations.OverwriteEnvironmentFeatureVariantsRequest) (*operations.OverwriteEnvironmentFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/variants", request, nil)
 	if err != nil {
@@ -2279,36 +2279,36 @@ func (s *features) OverwriteEnvironmentFeatureVariants(ctx context.Context, requ
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteEnvironmentFeatureVariants400ApplicationJSON
+			var out operations.OverwriteEnvironmentFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteEnvironmentFeatureVariants400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteEnvironmentFeatureVariants401ApplicationJSON
+			var out operations.OverwriteEnvironmentFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteEnvironmentFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteEnvironmentFeatureVariants403ApplicationJSON
+			var out operations.OverwriteEnvironmentFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteEnvironmentFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2326,7 +2326,7 @@ func (s *features) OverwriteEnvironmentFeatureVariants(ctx context.Context, requ
 // * The sum of the weights of variants with `weightType: fix` must be strictly less than 1000 (< 1000)
 //
 // The backend will also distribute remaining weight up to 1000 after adding the variants with `weightType: fix` together amongst the variants of `weightType: variable`
-func (s *features) OverwriteFeatureVariants(ctx context.Context, request operations.OverwriteFeatureVariantsRequest) (*operations.OverwriteFeatureVariantsResponse, error) {
+func (s *Features) OverwriteFeatureVariants(ctx context.Context, request operations.OverwriteFeatureVariantsRequest) (*operations.OverwriteFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/variants", request, nil)
 	if err != nil {
@@ -2394,48 +2394,48 @@ func (s *features) OverwriteFeatureVariants(ctx context.Context, request operati
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariants400ApplicationJSON
+			var out operations.OverwriteFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariants400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariants401ApplicationJSON
+			var out operations.OverwriteFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariants403ApplicationJSON
+			var out operations.OverwriteFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariants404ApplicationJSON
+			var out operations.OverwriteFeatureVariantsFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariants404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2446,7 +2446,7 @@ func (s *features) OverwriteFeatureVariants(ctx context.Context, request operati
 
 // OverwriteFeatureVariantsOnEnvironments - Create (overwrite) variants for a feature toggle in multiple environments
 // This overwrites the current variants for the feature toggle in the :featureName parameter for the :environment parameter.
-func (s *features) OverwriteFeatureVariantsOnEnvironments(ctx context.Context, request operations.OverwriteFeatureVariantsOnEnvironmentsRequest) (*operations.OverwriteFeatureVariantsOnEnvironmentsResponse, error) {
+func (s *Features) OverwriteFeatureVariantsOnEnvironments(ctx context.Context, request operations.OverwriteFeatureVariantsOnEnvironmentsRequest) (*operations.OverwriteFeatureVariantsOnEnvironmentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/variants-batch", request, nil)
 	if err != nil {
@@ -2514,36 +2514,36 @@ func (s *features) OverwriteFeatureVariantsOnEnvironments(ctx context.Context, r
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariantsOnEnvironments400ApplicationJSON
+			var out operations.OverwriteFeatureVariantsOnEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariantsOnEnvironments400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariantsOnEnvironments401ApplicationJSON
+			var out operations.OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariantsOnEnvironments401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.OverwriteFeatureVariantsOnEnvironments403ApplicationJSON
+			var out operations.OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OverwriteFeatureVariantsOnEnvironments403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2554,7 +2554,7 @@ func (s *features) OverwriteFeatureVariantsOnEnvironments(ctx context.Context, r
 
 // PatchEnvironmentsFeatureVariants - Patch a feature's variants in an environment
 // Apply a list of patches to the features environments in the specified environment. The patch objects should conform to the [JSON-patch format (RFC 6902)](https://www.rfc-editor.org/rfc/rfc6902).
-func (s *features) PatchEnvironmentsFeatureVariants(ctx context.Context, request operations.PatchEnvironmentsFeatureVariantsRequest) (*operations.PatchEnvironmentsFeatureVariantsResponse, error) {
+func (s *Features) PatchEnvironmentsFeatureVariants(ctx context.Context, request operations.PatchEnvironmentsFeatureVariantsRequest) (*operations.PatchEnvironmentsFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/variants", request, nil)
 	if err != nil {
@@ -2622,48 +2622,48 @@ func (s *features) PatchEnvironmentsFeatureVariants(ctx context.Context, request
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchEnvironmentsFeatureVariants400ApplicationJSON
+			var out operations.PatchEnvironmentsFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchEnvironmentsFeatureVariants400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchEnvironmentsFeatureVariants401ApplicationJSON
+			var out operations.PatchEnvironmentsFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchEnvironmentsFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchEnvironmentsFeatureVariants403ApplicationJSON
+			var out operations.PatchEnvironmentsFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchEnvironmentsFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchEnvironmentsFeatureVariants404ApplicationJSON
+			var out operations.PatchEnvironmentsFeatureVariantsFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchEnvironmentsFeatureVariants404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2674,7 +2674,7 @@ func (s *features) PatchEnvironmentsFeatureVariants(ctx context.Context, request
 
 // PatchFeature - Modify a feature toggle
 // Change specific properties of a feature toggle.
-func (s *features) PatchFeature(ctx context.Context, request operations.PatchFeatureRequest) (*operations.PatchFeatureResponse, error) {
+func (s *Features) PatchFeature(ctx context.Context, request operations.PatchFeatureRequest) (*operations.PatchFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}", request, nil)
 	if err != nil {
@@ -2742,48 +2742,48 @@ func (s *features) PatchFeature(ctx context.Context, request operations.PatchFea
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeature401ApplicationJSON
+			var out operations.PatchFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeature403ApplicationJSON
+			var out operations.PatchFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeature404ApplicationJSON
+			var out operations.PatchFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeature415ApplicationJSON
+			var out operations.PatchFeatureFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeature415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2794,7 +2794,7 @@ func (s *features) PatchFeature(ctx context.Context, request operations.PatchFea
 
 // PatchFeatureStrategy - Change specific properties of a strategy
 // Change specific properties of a strategy configuration in a feature toggle.
-func (s *features) PatchFeatureStrategy(ctx context.Context, request operations.PatchFeatureStrategyRequest) (*operations.PatchFeatureStrategyResponse, error) {
+func (s *Features) PatchFeatureStrategy(ctx context.Context, request operations.PatchFeatureStrategyRequest) (*operations.PatchFeatureStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/{strategyId}", request, nil)
 	if err != nil {
@@ -2862,60 +2862,60 @@ func (s *features) PatchFeatureStrategy(ctx context.Context, request operations.
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureStrategy400ApplicationJSON
+			var out operations.PatchFeatureStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureStrategy400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureStrategy401ApplicationJSON
+			var out operations.PatchFeatureStrategyFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureStrategy403ApplicationJSON
+			var out operations.PatchFeatureStrategyFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureStrategy404ApplicationJSON
+			var out operations.PatchFeatureStrategyFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureStrategy415ApplicationJSON
+			var out operations.PatchFeatureStrategyFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureStrategy415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -2928,7 +2928,7 @@ func (s *features) PatchFeatureStrategy(ctx context.Context, request operations.
 // Apply a list of patches patch to the specified feature's variants. The patch objects should conform to the [JSON-patch format (RFC 6902)](https://www.rfc-editor.org/rfc/rfc6902).
 //
 // ⚠️ **Warning**: This method is not atomic. If something fails in the middle of applying the patch, you can be left with a half-applied patch. We recommend that you instead [patch variants on a per-environment basis](/docs/reference/api/unleash/patch-environments-feature-variants.api.mdx), which **is** an atomic operation.
-func (s *features) PatchFeatureVariants(ctx context.Context, request operations.PatchFeatureVariantsRequest) (*operations.PatchFeatureVariantsResponse, error) {
+func (s *Features) PatchFeatureVariants(ctx context.Context, request operations.PatchFeatureVariantsRequest) (*operations.PatchFeatureVariantsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/variants", request, nil)
 	if err != nil {
@@ -2996,48 +2996,48 @@ func (s *features) PatchFeatureVariants(ctx context.Context, request operations.
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureVariants400ApplicationJSON
+			var out operations.PatchFeatureVariantsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureVariants400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureVariants401ApplicationJSON
+			var out operations.PatchFeatureVariantsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureVariants401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureVariants403ApplicationJSON
+			var out operations.PatchFeatureVariantsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureVariants403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PatchFeatureVariants404ApplicationJSON
+			var out operations.PatchFeatureVariantsFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PatchFeatureVariants404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3048,7 +3048,7 @@ func (s *features) PatchFeatureVariants(ctx context.Context, request operations.
 
 // RemoveFavoriteFeature - Remove feature from favorites
 // This endpoint removes the feature in the url from favorites
-func (s *features) RemoveFavoriteFeature(ctx context.Context, request operations.RemoveFavoriteFeatureRequest) (*operations.RemoveFavoriteFeatureResponse, error) {
+func (s *Features) RemoveFavoriteFeature(ctx context.Context, request operations.RemoveFavoriteFeatureRequest) (*operations.RemoveFavoriteFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/favorites", request, nil)
 	if err != nil {
@@ -3091,24 +3091,24 @@ func (s *features) RemoveFavoriteFeature(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveFavoriteFeature401ApplicationJSON
+			var out operations.RemoveFavoriteFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveFavoriteFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveFavoriteFeature404ApplicationJSON
+			var out operations.RemoveFavoriteFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveFavoriteFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3119,7 +3119,7 @@ func (s *features) RemoveFavoriteFeature(ctx context.Context, request operations
 
 // RemoveFavoriteProject - Remove project from favorites
 // This endpoint removes the project in the url from favorites
-func (s *features) RemoveFavoriteProject(ctx context.Context, request operations.RemoveFavoriteProjectRequest) (*operations.RemoveFavoriteProjectResponse, error) {
+func (s *Features) RemoveFavoriteProject(ctx context.Context, request operations.RemoveFavoriteProjectRequest) (*operations.RemoveFavoriteProjectResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/favorites", request, nil)
 	if err != nil {
@@ -3162,24 +3162,24 @@ func (s *features) RemoveFavoriteProject(ctx context.Context, request operations
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveFavoriteProject401ApplicationJSON
+			var out operations.RemoveFavoriteProjectResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveFavoriteProject401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveFavoriteProject404ApplicationJSON
+			var out operations.RemoveFavoriteProjectFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveFavoriteProject404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3190,7 +3190,7 @@ func (s *features) RemoveFavoriteProject(ctx context.Context, request operations
 
 // RemoveTag - Removes a tag from a feature.
 // Removes a tag from a feature. If the feature exists but the tag does not, it returns a successful response.
-func (s *features) RemoveTag(ctx context.Context, request operations.RemoveTagRequest) (*operations.RemoveTagResponse, error) {
+func (s *Features) RemoveTag(ctx context.Context, request operations.RemoveTagRequest) (*operations.RemoveTagResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/features/{featureName}/tags/{type}/{value}", request, nil)
 	if err != nil {
@@ -3233,36 +3233,36 @@ func (s *features) RemoveTag(ctx context.Context, request operations.RemoveTagRe
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveTag401ApplicationJSON
+			var out operations.RemoveTagResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveTag401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveTag403ApplicationJSON
+			var out operations.RemoveTagFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveTag403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveTag404ApplicationJSON
+			var out operations.RemoveTagFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveTag404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3272,7 +3272,7 @@ func (s *features) RemoveTag(ctx context.Context, request operations.RemoveTagRe
 }
 
 // SetStrategySortOrder - Set the order of strategies on the list
-func (s *features) SetStrategySortOrder(ctx context.Context, request operations.SetStrategySortOrderRequest) (*operations.SetStrategySortOrderResponse, error) {
+func (s *Features) SetStrategySortOrder(ctx context.Context, request operations.SetStrategySortOrderRequest) (*operations.SetStrategySortOrderResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/set-sort-order", request, nil)
 	if err != nil {
@@ -3329,36 +3329,36 @@ func (s *features) SetStrategySortOrder(ctx context.Context, request operations.
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetStrategySortOrder400ApplicationJSON
+			var out operations.SetStrategySortOrderResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetStrategySortOrder400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetStrategySortOrder401ApplicationJSON
+			var out operations.SetStrategySortOrderFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetStrategySortOrder401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.SetStrategySortOrder403ApplicationJSON
+			var out operations.SetStrategySortOrderFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.SetStrategySortOrder403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3369,7 +3369,7 @@ func (s *features) SetStrategySortOrder(ctx context.Context, request operations.
 
 // StaleFeatures - Mark features as stale / not stale
 // This endpoint marks the provided list of features as either [stale](https://docs.getunleash.io/reference/technical-debt#stale-and-potentially-stale-toggles) or not stale depending on the request body you send. Any provided features that don't exist are ignored.
-func (s *features) StaleFeatures(ctx context.Context, request operations.StaleFeaturesRequest) (*operations.StaleFeaturesResponse, error) {
+func (s *Features) StaleFeatures(ctx context.Context, request operations.StaleFeaturesRequest) (*operations.StaleFeaturesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/stale", request, nil)
 	if err != nil {
@@ -3426,36 +3426,36 @@ func (s *features) StaleFeatures(ctx context.Context, request operations.StaleFe
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.StaleFeatures401ApplicationJSON
+			var out operations.StaleFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.StaleFeatures401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.StaleFeatures403ApplicationJSON
+			var out operations.StaleFeaturesFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.StaleFeatures403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.StaleFeatures415ApplicationJSON
+			var out operations.StaleFeaturesFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.StaleFeatures415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3466,7 +3466,7 @@ func (s *features) StaleFeatures(ctx context.Context, request operations.StaleFe
 
 // ToggleFeatureEnvironmentOff - Disable a feature toggle
 // Disable a feature toggle in the specified environment.
-func (s *features) ToggleFeatureEnvironmentOff(ctx context.Context, request operations.ToggleFeatureEnvironmentOffRequest) (*operations.ToggleFeatureEnvironmentOffResponse, error) {
+func (s *Features) ToggleFeatureEnvironmentOff(ctx context.Context, request operations.ToggleFeatureEnvironmentOffRequest) (*operations.ToggleFeatureEnvironmentOffResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/off", request, nil)
 	if err != nil {
@@ -3520,48 +3520,48 @@ func (s *features) ToggleFeatureEnvironmentOff(ctx context.Context, request oper
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOff400ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOffResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOff400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOff401ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOffFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOff401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOff403ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOffFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOff403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOff404ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOffFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOff404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3572,7 +3572,7 @@ func (s *features) ToggleFeatureEnvironmentOff(ctx context.Context, request oper
 
 // ToggleFeatureEnvironmentOn - Enable a feature toggle
 // Enable a feature toggle in the specified environment.
-func (s *features) ToggleFeatureEnvironmentOn(ctx context.Context, request operations.ToggleFeatureEnvironmentOnRequest) (*operations.ToggleFeatureEnvironmentOnResponse, error) {
+func (s *Features) ToggleFeatureEnvironmentOn(ctx context.Context, request operations.ToggleFeatureEnvironmentOnRequest) (*operations.ToggleFeatureEnvironmentOnResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/on", request, nil)
 	if err != nil {
@@ -3626,48 +3626,48 @@ func (s *features) ToggleFeatureEnvironmentOn(ctx context.Context, request opera
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOn400ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOnResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOn400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOn401ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOnFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOn401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOn403ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOnFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOn403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleFeatureEnvironmentOn404ApplicationJSON
+			var out operations.ToggleFeatureEnvironmentOnFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleFeatureEnvironmentOn404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3678,7 +3678,7 @@ func (s *features) ToggleFeatureEnvironmentOn(ctx context.Context, request opera
 
 // UpdateFeature - Update a feature toggle
 // Updates the specified feature if the feature belongs to the specified project. Only the provided properties are updated; any feature properties left out of the request body are left untouched.
-func (s *features) UpdateFeature(ctx context.Context, request operations.UpdateFeatureRequest) (*operations.UpdateFeatureResponse, error) {
+func (s *Features) UpdateFeature(ctx context.Context, request operations.UpdateFeatureRequest) (*operations.UpdateFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}", request, nil)
 	if err != nil {
@@ -3746,48 +3746,48 @@ func (s *features) UpdateFeature(ctx context.Context, request operations.UpdateF
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeature401ApplicationJSON
+			var out operations.UpdateFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeature403ApplicationJSON
+			var out operations.UpdateFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeature403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeature404ApplicationJSON
+			var out operations.UpdateFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeature404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeature415ApplicationJSON
+			var out operations.UpdateFeatureFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeature415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3798,7 +3798,7 @@ func (s *features) UpdateFeature(ctx context.Context, request operations.UpdateF
 
 // UpdateFeatureStrategy - Update a strategy
 // Replace strategy configuration for a feature toggle in the specified environment.
-func (s *features) UpdateFeatureStrategy(ctx context.Context, request operations.UpdateFeatureStrategyRequest) (*operations.UpdateFeatureStrategyResponse, error) {
+func (s *Features) UpdateFeatureStrategy(ctx context.Context, request operations.UpdateFeatureStrategyRequest) (*operations.UpdateFeatureStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/{strategyId}", request, nil)
 	if err != nil {
@@ -3866,60 +3866,60 @@ func (s *features) UpdateFeatureStrategy(ctx context.Context, request operations
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategy400ApplicationJSON
+			var out operations.UpdateFeatureStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategy400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategy401ApplicationJSON
+			var out operations.UpdateFeatureStrategyFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategy403ApplicationJSON
+			var out operations.UpdateFeatureStrategyFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategy404ApplicationJSON
+			var out operations.UpdateFeatureStrategyFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategy415ApplicationJSON
+			var out operations.UpdateFeatureStrategyFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategy415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -3930,7 +3930,7 @@ func (s *features) UpdateFeatureStrategy(ctx context.Context, request operations
 
 // UpdateTags - Updates multiple tags for a feature.
 // Receives a list of tags to add and a list of tags to remove that are mandatory but can be empty. All tags under addedTags are first added to the feature and then all tags under removedTags are removed from the feature.
-func (s *features) UpdateTags(ctx context.Context, request operations.UpdateTagsRequest) (*operations.UpdateTagsResponse, error) {
+func (s *Features) UpdateTags(ctx context.Context, request operations.UpdateTagsRequest) (*operations.UpdateTagsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/features/{featureName}/tags", request, nil)
 	if err != nil {
@@ -4000,48 +4000,48 @@ func (s *features) UpdateTags(ctx context.Context, request operations.UpdateTags
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTags400ApplicationJSON
+			var out operations.UpdateTagsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTags400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTags401ApplicationJSON
+			var out operations.UpdateTagsFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTags401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTags403ApplicationJSON
+			var out operations.UpdateTagsFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTags403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTags404ApplicationJSON
+			var out operations.UpdateTagsFeaturesResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTags404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -4052,7 +4052,7 @@ func (s *features) UpdateTags(ctx context.Context, request operations.UpdateTags
 
 // ValidateConstraint - Validate constraint
 // Validates a constraint definition. Checks whether the context field exists and whether the applied configuration is valid. Additional properties are not allowed on data objects that you send to this endpoint.
-func (s *features) ValidateConstraint(ctx context.Context, request shared.ConstraintSchema) (*operations.ValidateConstraintResponse, error) {
+func (s *Features) ValidateConstraint(ctx context.Context, request shared.ConstraintSchema) (*operations.ValidateConstraintResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/constraints/validate"
 
@@ -4106,48 +4106,48 @@ func (s *features) ValidateConstraint(ctx context.Context, request shared.Constr
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateConstraint400ApplicationJSON
+			var out operations.ValidateConstraintResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateConstraint400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateConstraint401ApplicationJSON
+			var out operations.ValidateConstraintFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateConstraint401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateConstraint403ApplicationJSON
+			var out operations.ValidateConstraintFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateConstraint403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateConstraint415ApplicationJSON
+			var out operations.ValidateConstraintFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateConstraint415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -4158,7 +4158,7 @@ func (s *features) ValidateConstraint(ctx context.Context, request shared.Constr
 
 // ValidateFeature - Validate a feature toggle name.
 // Validates a feature toggle name: checks whether the name is URL-friendly and whether a feature with the given name already exists. Returns 200 if the feature name is compliant and unused.
-func (s *features) ValidateFeature(ctx context.Context, request shared.ValidateFeatureSchema) (*operations.ValidateFeatureResponse, error) {
+func (s *Features) ValidateFeature(ctx context.Context, request shared.ValidateFeatureSchema) (*operations.ValidateFeatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/features/validate"
 
@@ -4212,48 +4212,48 @@ func (s *features) ValidateFeature(ctx context.Context, request shared.ValidateF
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateFeature400ApplicationJSON
+			var out operations.ValidateFeatureResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateFeature400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateFeature401ApplicationJSON
+			var out operations.ValidateFeatureFeaturesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateFeature401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateFeature409ApplicationJSON
+			var out operations.ValidateFeatureFeaturesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateFeature409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateFeature415ApplicationJSON
+			var out operations.ValidateFeatureFeaturesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateFeature415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

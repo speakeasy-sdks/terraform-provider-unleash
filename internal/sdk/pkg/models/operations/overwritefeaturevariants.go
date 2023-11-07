@@ -35,8 +35,8 @@ func (o *OverwriteFeatureVariantsRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// OverwriteFeatureVariants404ApplicationJSON - The requested resource was not found.
-type OverwriteFeatureVariants404ApplicationJSON struct {
+// OverwriteFeatureVariantsFeaturesResponse404ResponseBody - The requested resource was not found.
+type OverwriteFeatureVariantsFeaturesResponse404ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -45,29 +45,29 @@ type OverwriteFeatureVariants404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariants404ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponse404ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariants404ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponse404ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariants404ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponse404ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// OverwriteFeatureVariants403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type OverwriteFeatureVariants403ApplicationJSON struct {
+// OverwriteFeatureVariantsFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type OverwriteFeatureVariantsFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -76,29 +76,29 @@ type OverwriteFeatureVariants403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariants403ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariants403ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariants403ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// OverwriteFeatureVariants401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type OverwriteFeatureVariants401ApplicationJSON struct {
+// OverwriteFeatureVariantsFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type OverwriteFeatureVariantsFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -107,29 +107,29 @@ type OverwriteFeatureVariants401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariants401ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariants401ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariants401ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// OverwriteFeatureVariants400ApplicationJSON - The request data does not match what we expect.
-type OverwriteFeatureVariants400ApplicationJSON struct {
+// OverwriteFeatureVariantsResponseBody - The request data does not match what we expect.
+type OverwriteFeatureVariantsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -138,21 +138,21 @@ type OverwriteFeatureVariants400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariants400ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariants400ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariants400ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -160,6 +160,14 @@ func (o *OverwriteFeatureVariants400ApplicationJSON) GetName() *string {
 }
 
 type OverwriteFeatureVariantsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *OverwriteFeatureVariantsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *OverwriteFeatureVariantsFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *OverwriteFeatureVariantsFeaturesResponseResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *OverwriteFeatureVariantsFeaturesResponse404ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -168,14 +176,34 @@ type OverwriteFeatureVariantsResponse struct {
 	RawResponse *http.Response
 	// featureVariantsSchema
 	FeatureVariantsSchema *shared.FeatureVariantsSchema
-	// The request data does not match what we expect.
-	OverwriteFeatureVariants400ApplicationJSONObject *OverwriteFeatureVariants400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	OverwriteFeatureVariants401ApplicationJSONObject *OverwriteFeatureVariants401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	OverwriteFeatureVariants403ApplicationJSONObject *OverwriteFeatureVariants403ApplicationJSON
-	// The requested resource was not found.
-	OverwriteFeatureVariants404ApplicationJSONObject *OverwriteFeatureVariants404ApplicationJSON
+}
+
+func (o *OverwriteFeatureVariantsResponse) GetFourHundredApplicationJSONObject() *OverwriteFeatureVariantsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *OverwriteFeatureVariantsResponse) GetFourHundredAndOneApplicationJSONObject() *OverwriteFeatureVariantsFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *OverwriteFeatureVariantsResponse) GetFourHundredAndThreeApplicationJSONObject() *OverwriteFeatureVariantsFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *OverwriteFeatureVariantsResponse) GetFourHundredAndFourApplicationJSONObject() *OverwriteFeatureVariantsFeaturesResponse404ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *OverwriteFeatureVariantsResponse) GetContentType() string {
@@ -204,32 +232,4 @@ func (o *OverwriteFeatureVariantsResponse) GetFeatureVariantsSchema() *shared.Fe
 		return nil
 	}
 	return o.FeatureVariantsSchema
-}
-
-func (o *OverwriteFeatureVariantsResponse) GetOverwriteFeatureVariants400ApplicationJSONObject() *OverwriteFeatureVariants400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariants400ApplicationJSONObject
-}
-
-func (o *OverwriteFeatureVariantsResponse) GetOverwriteFeatureVariants401ApplicationJSONObject() *OverwriteFeatureVariants401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariants401ApplicationJSONObject
-}
-
-func (o *OverwriteFeatureVariantsResponse) GetOverwriteFeatureVariants403ApplicationJSONObject() *OverwriteFeatureVariants403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariants403ApplicationJSONObject
-}
-
-func (o *OverwriteFeatureVariantsResponse) GetOverwriteFeatureVariants404ApplicationJSONObject() *OverwriteFeatureVariants404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariants404ApplicationJSONObject
 }

@@ -2,7 +2,7 @@
 
 package shared
 
-type ClientMetricsSchemaBucketToggles struct {
+type Toggles struct {
 	// How many times the toggle evaluated to false
 	No *int64 `json:"no,omitempty"`
 	// An object describing how many times each variant was returned. Variant names are used as properties, and the number of times they were exposed is the corresponding value (i.e. `{ [variantName]: number }`).
@@ -11,52 +11,52 @@ type ClientMetricsSchemaBucketToggles struct {
 	Yes *float64 `json:"yes,omitempty"`
 }
 
-func (o *ClientMetricsSchemaBucketToggles) GetNo() *int64 {
+func (o *Toggles) GetNo() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.No
 }
 
-func (o *ClientMetricsSchemaBucketToggles) GetVariants() map[string]int64 {
+func (o *Toggles) GetVariants() map[string]int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Variants
 }
 
-func (o *ClientMetricsSchemaBucketToggles) GetYes() *float64 {
+func (o *Toggles) GetYes() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Yes
 }
 
-// ClientMetricsSchemaBucket - Holds all metrics gathered over a window of time. Typically 1 hour wide
-type ClientMetricsSchemaBucket struct {
+// Bucket - Holds all metrics gathered over a window of time. Typically 1 hour wide
+type Bucket struct {
 	Start DateSchema `json:"start"`
 	Stop  DateSchema `json:"stop"`
 	// an object containing feature names with yes/no plus variant usage
-	Toggles map[string]ClientMetricsSchemaBucketToggles `json:"toggles"`
+	Toggles map[string]Toggles `json:"toggles"`
 }
 
-func (o *ClientMetricsSchemaBucket) GetStart() DateSchema {
+func (o *Bucket) GetStart() DateSchema {
 	if o == nil {
 		return DateSchema{}
 	}
 	return o.Start
 }
 
-func (o *ClientMetricsSchemaBucket) GetStop() DateSchema {
+func (o *Bucket) GetStop() DateSchema {
 	if o == nil {
 		return DateSchema{}
 	}
 	return o.Stop
 }
 
-func (o *ClientMetricsSchemaBucket) GetToggles() map[string]ClientMetricsSchemaBucketToggles {
+func (o *Bucket) GetToggles() map[string]Toggles {
 	if o == nil {
-		return map[string]ClientMetricsSchemaBucketToggles{}
+		return map[string]Toggles{}
 	}
 	return o.Toggles
 }
@@ -66,7 +66,7 @@ type ClientMetricsSchema struct {
 	// The name of the application that is evaluating toggles
 	AppName string `json:"appName"`
 	// Holds all metrics gathered over a window of time. Typically 1 hour wide
-	Bucket ClientMetricsSchemaBucket `json:"bucket"`
+	Bucket Bucket `json:"bucket"`
 	// Which environment the application is running in
 	Environment *string `json:"environment,omitempty"`
 	// A [(somewhat) unique identifier](https://docs.getunleash.io/reference/sdks/node#advanced-usage) for the application
@@ -80,9 +80,9 @@ func (o *ClientMetricsSchema) GetAppName() string {
 	return o.AppName
 }
 
-func (o *ClientMetricsSchema) GetBucket() ClientMetricsSchemaBucket {
+func (o *ClientMetricsSchema) GetBucket() Bucket {
 	if o == nil {
-		return ClientMetricsSchemaBucket{}
+		return Bucket{}
 	}
 	return o.Bucket
 }

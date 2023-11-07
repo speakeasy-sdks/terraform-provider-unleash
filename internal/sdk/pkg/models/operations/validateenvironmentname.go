@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateEnvironmentName401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateEnvironmentName401ApplicationJSON struct {
+// ValidateEnvironmentNameEnvironmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateEnvironmentNameEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidateEnvironmentName401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateEnvironmentName401ApplicationJSON) GetID() *string {
+func (o *ValidateEnvironmentNameEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateEnvironmentName401ApplicationJSON) GetMessage() *string {
+func (o *ValidateEnvironmentNameEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateEnvironmentName401ApplicationJSON) GetName() *string {
+func (o *ValidateEnvironmentNameEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateEnvironmentName400ApplicationJSON - The request data does not match what we expect.
-type ValidateEnvironmentName400ApplicationJSON struct {
+// ValidateEnvironmentNameResponseBody - The request data does not match what we expect.
+type ValidateEnvironmentNameResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,21 +47,21 @@ type ValidateEnvironmentName400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateEnvironmentName400ApplicationJSON) GetID() *string {
+func (o *ValidateEnvironmentNameResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateEnvironmentName400ApplicationJSON) GetMessage() *string {
+func (o *ValidateEnvironmentNameResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateEnvironmentName400ApplicationJSON) GetName() *string {
+func (o *ValidateEnvironmentNameResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -69,16 +69,30 @@ func (o *ValidateEnvironmentName400ApplicationJSON) GetName() *string {
 }
 
 type ValidateEnvironmentNameResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateEnvironmentNameResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateEnvironmentNameEnvironmentsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidateEnvironmentName400ApplicationJSONObject *ValidateEnvironmentName400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateEnvironmentName401ApplicationJSONObject *ValidateEnvironmentName401ApplicationJSON
+}
+
+func (o *ValidateEnvironmentNameResponse) GetFourHundredApplicationJSONObject() *ValidateEnvironmentNameResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateEnvironmentNameResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateEnvironmentNameEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }
 
 func (o *ValidateEnvironmentNameResponse) GetContentType() string {
@@ -100,18 +114,4 @@ func (o *ValidateEnvironmentNameResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidateEnvironmentNameResponse) GetValidateEnvironmentName400ApplicationJSONObject() *ValidateEnvironmentName400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateEnvironmentName400ApplicationJSONObject
-}
-
-func (o *ValidateEnvironmentNameResponse) GetValidateEnvironmentName401ApplicationJSONObject() *ValidateEnvironmentName401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateEnvironmentName401ApplicationJSONObject
 }

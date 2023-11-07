@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// strategies - Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
-type strategies struct {
+// Strategies - Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
+type Strategies struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newStrategies(sdkConfig sdkConfiguration) *strategies {
-	return &strategies{
+func newStrategies(sdkConfig sdkConfiguration) *Strategies {
+	return &Strategies{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateStrategy - Create a strategy
 // Creates a strategy type based on the supplied data.
-func (s *strategies) CreateStrategy(ctx context.Context, request shared.CreateStrategySchema) (*operations.CreateStrategyResponse, error) {
+func (s *Strategies) CreateStrategy(ctx context.Context, request shared.CreateStrategySchema) (*operations.CreateStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/strategies"
 
@@ -95,48 +95,48 @@ func (s *strategies) CreateStrategy(ctx context.Context, request shared.CreateSt
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateStrategy401ApplicationJSON
+			var out operations.CreateStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateStrategy403ApplicationJSON
+			var out operations.CreateStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateStrategy409ApplicationJSON
+			var out operations.CreateStrategyStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateStrategy409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateStrategy415ApplicationJSON
+			var out operations.CreateStrategyStrategiesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateStrategy415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -147,7 +147,7 @@ func (s *strategies) CreateStrategy(ctx context.Context, request shared.CreateSt
 
 // DeprecateStrategy - Deprecate a strategy
 // Marks the specified strategy as deprecated.
-func (s *strategies) DeprecateStrategy(ctx context.Context, request operations.DeprecateStrategyRequest) (*operations.DeprecateStrategyResponse, error) {
+func (s *Strategies) DeprecateStrategy(ctx context.Context, request operations.DeprecateStrategyRequest) (*operations.DeprecateStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/strategies/{strategyName}/deprecate", request, nil)
 	if err != nil {
@@ -190,36 +190,36 @@ func (s *strategies) DeprecateStrategy(ctx context.Context, request operations.D
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeprecateStrategy401ApplicationJSON
+			var out operations.DeprecateStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeprecateStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeprecateStrategy403ApplicationJSON
+			var out operations.DeprecateStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeprecateStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeprecateStrategy404ApplicationJSON
+			var out operations.DeprecateStrategyStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeprecateStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -230,7 +230,7 @@ func (s *strategies) DeprecateStrategy(ctx context.Context, request operations.D
 
 // GetAllStrategies - Get all strategies
 // Retrieves all strategy types ([predefined](https://docs.getunleash.io/reference/activation-strategies "predefined strategies") and [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies)) that are defined on this Unleash instance.
-func (s *strategies) GetAllStrategies(ctx context.Context) (*operations.GetAllStrategiesResponse, error) {
+func (s *Strategies) GetAllStrategies(ctx context.Context) (*operations.GetAllStrategiesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/strategies"
 
@@ -281,12 +281,12 @@ func (s *strategies) GetAllStrategies(ctx context.Context) (*operations.GetAllSt
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllStrategies401ApplicationJSON
+			var out operations.GetAllStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllStrategies401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -297,7 +297,7 @@ func (s *strategies) GetAllStrategies(ctx context.Context) (*operations.GetAllSt
 
 // GetStrategiesByContextField - Get strategies that use a context field
 // Retrieves a list of all strategies that use the specified context field. If the context field doesn't exist, returns an empty list of strategies
-func (s *strategies) GetStrategiesByContextField(ctx context.Context, request operations.GetStrategiesByContextFieldRequest) (*operations.GetStrategiesByContextFieldResponse, error) {
+func (s *Strategies) GetStrategiesByContextField(ctx context.Context, request operations.GetStrategiesByContextFieldRequest) (*operations.GetStrategiesByContextFieldResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/context/{contextField}/strategies", request, nil)
 	if err != nil {
@@ -351,12 +351,12 @@ func (s *strategies) GetStrategiesByContextField(ctx context.Context, request op
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetStrategiesByContextField401ApplicationJSON
+			var out operations.GetStrategiesByContextFieldResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetStrategiesByContextField401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -367,7 +367,7 @@ func (s *strategies) GetStrategiesByContextField(ctx context.Context, request op
 
 // GetStrategy - Get a strategy definition
 // Retrieves the definition of the strategy specified in the URL
-func (s *strategies) GetStrategy(ctx context.Context, request operations.GetStrategyRequest) (*operations.GetStrategyResponse, error) {
+func (s *Strategies) GetStrategy(ctx context.Context, request operations.GetStrategyRequest) (*operations.GetStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/strategies/{name}", request, nil)
 	if err != nil {
@@ -421,24 +421,24 @@ func (s *strategies) GetStrategy(ctx context.Context, request operations.GetStra
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetStrategy401ApplicationJSON
+			var out operations.GetStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetStrategy404ApplicationJSON
+			var out operations.GetStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -449,7 +449,7 @@ func (s *strategies) GetStrategy(ctx context.Context, request operations.GetStra
 
 // ReactivateStrategy - Reactivate a strategy
 // Marks the specified strategy as not deprecated. If the strategy wasn't already deprecated, nothing changes.
-func (s *strategies) ReactivateStrategy(ctx context.Context, request operations.ReactivateStrategyRequest) (*operations.ReactivateStrategyResponse, error) {
+func (s *Strategies) ReactivateStrategy(ctx context.Context, request operations.ReactivateStrategyRequest) (*operations.ReactivateStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/strategies/{strategyName}/reactivate", request, nil)
 	if err != nil {
@@ -492,36 +492,36 @@ func (s *strategies) ReactivateStrategy(ctx context.Context, request operations.
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReactivateStrategy401ApplicationJSON
+			var out operations.ReactivateStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReactivateStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReactivateStrategy403ApplicationJSON
+			var out operations.ReactivateStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReactivateStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReactivateStrategy404ApplicationJSON
+			var out operations.ReactivateStrategyStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReactivateStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -532,7 +532,7 @@ func (s *strategies) ReactivateStrategy(ctx context.Context, request operations.
 
 // RemoveStrategy - Delete a strategy
 // Deletes the specified strategy definition
-func (s *strategies) RemoveStrategy(ctx context.Context, request operations.RemoveStrategyRequest) (*operations.RemoveStrategyResponse, error) {
+func (s *Strategies) RemoveStrategy(ctx context.Context, request operations.RemoveStrategyRequest) (*operations.RemoveStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/strategies/{name}", request, nil)
 	if err != nil {
@@ -575,36 +575,36 @@ func (s *strategies) RemoveStrategy(ctx context.Context, request operations.Remo
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveStrategy401ApplicationJSON
+			var out operations.RemoveStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveStrategy403ApplicationJSON
+			var out operations.RemoveStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveStrategy404ApplicationJSON
+			var out operations.RemoveStrategyStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -615,7 +615,7 @@ func (s *strategies) RemoveStrategy(ctx context.Context, request operations.Remo
 
 // UpdateFeatureStrategySegments - Update strategy segments
 // Sets the segments of the strategy specified to be exactly the ones passed in the payload. Any segments that were used by the strategy before will be removed if they are not in the provided list of segments.
-func (s *strategies) UpdateFeatureStrategySegments(ctx context.Context, request shared.UpdateFeatureStrategySegmentsSchema) (*operations.UpdateFeatureStrategySegmentsResponse, error) {
+func (s *Strategies) UpdateFeatureStrategySegments(ctx context.Context, request shared.UpdateFeatureStrategySegmentsSchema) (*operations.UpdateFeatureStrategySegmentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/segments/strategies"
 
@@ -682,48 +682,48 @@ func (s *strategies) UpdateFeatureStrategySegments(ctx context.Context, request 
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategySegments400ApplicationJSON
+			var out operations.UpdateFeatureStrategySegmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategySegments400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategySegments401ApplicationJSON
+			var out operations.UpdateFeatureStrategySegmentsStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategySegments401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategySegments403ApplicationJSON
+			var out operations.UpdateFeatureStrategySegmentsStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategySegments403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateFeatureStrategySegments415ApplicationJSON
+			var out operations.UpdateFeatureStrategySegmentsStrategiesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateFeatureStrategySegments415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -734,7 +734,7 @@ func (s *strategies) UpdateFeatureStrategySegments(ctx context.Context, request 
 
 // UpdateStrategy - Update a strategy type
 // Updates the specified strategy type. Any properties not specified in the request body are left untouched.
-func (s *strategies) UpdateStrategy(ctx context.Context, request operations.UpdateStrategyRequest) (*operations.UpdateStrategyResponse, error) {
+func (s *Strategies) UpdateStrategy(ctx context.Context, request operations.UpdateStrategyRequest) (*operations.UpdateStrategyResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/strategies/{name}", request, nil)
 	if err != nil {
@@ -791,48 +791,48 @@ func (s *strategies) UpdateStrategy(ctx context.Context, request operations.Upda
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateStrategy401ApplicationJSON
+			var out operations.UpdateStrategyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateStrategy401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateStrategy403ApplicationJSON
+			var out operations.UpdateStrategyStrategiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateStrategy403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateStrategy404ApplicationJSON
+			var out operations.UpdateStrategyStrategiesResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateStrategy404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateStrategy415ApplicationJSON
+			var out operations.UpdateStrategyStrategiesResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateStrategy415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

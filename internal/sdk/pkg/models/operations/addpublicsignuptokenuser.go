@@ -27,8 +27,8 @@ func (o *AddPublicSignupTokenUserRequest) GetToken() string {
 	return o.Token
 }
 
-// AddPublicSignupTokenUser409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type AddPublicSignupTokenUser409ApplicationJSON struct {
+// AddPublicSignupTokenUserPublicSignupTokensResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type AddPublicSignupTokenUserPublicSignupTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type AddPublicSignupTokenUser409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddPublicSignupTokenUser409ApplicationJSON) GetID() *string {
+func (o *AddPublicSignupTokenUserPublicSignupTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddPublicSignupTokenUser409ApplicationJSON) GetMessage() *string {
+func (o *AddPublicSignupTokenUserPublicSignupTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddPublicSignupTokenUser409ApplicationJSON) GetName() *string {
+func (o *AddPublicSignupTokenUserPublicSignupTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddPublicSignupTokenUser400ApplicationJSON - The request data does not match what we expect.
-type AddPublicSignupTokenUser400ApplicationJSON struct {
+// AddPublicSignupTokenUserResponseBody - The request data does not match what we expect.
+type AddPublicSignupTokenUserResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,21 +68,21 @@ type AddPublicSignupTokenUser400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddPublicSignupTokenUser400ApplicationJSON) GetID() *string {
+func (o *AddPublicSignupTokenUserResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddPublicSignupTokenUser400ApplicationJSON) GetMessage() *string {
+func (o *AddPublicSignupTokenUserResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddPublicSignupTokenUser400ApplicationJSON) GetName() *string {
+func (o *AddPublicSignupTokenUserResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -90,18 +90,32 @@ func (o *AddPublicSignupTokenUser400ApplicationJSON) GetName() *string {
 }
 
 type AddPublicSignupTokenUserResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *AddPublicSignupTokenUserResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *AddPublicSignupTokenUserPublicSignupTokensResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	AddPublicSignupTokenUser400ApplicationJSONObject *AddPublicSignupTokenUser400ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	AddPublicSignupTokenUser409ApplicationJSONObject *AddPublicSignupTokenUser409ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetFourHundredApplicationJSONObject() *AddPublicSignupTokenUserResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *AddPublicSignupTokenUserResponse) GetFourHundredAndNineApplicationJSONObject() *AddPublicSignupTokenUserPublicSignupTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
 }
 
 func (o *AddPublicSignupTokenUserResponse) GetContentType() string {
@@ -123,20 +137,6 @@ func (o *AddPublicSignupTokenUserResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *AddPublicSignupTokenUserResponse) GetAddPublicSignupTokenUser400ApplicationJSONObject() *AddPublicSignupTokenUser400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddPublicSignupTokenUser400ApplicationJSONObject
-}
-
-func (o *AddPublicSignupTokenUserResponse) GetAddPublicSignupTokenUser409ApplicationJSONObject() *AddPublicSignupTokenUser409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddPublicSignupTokenUser409ApplicationJSONObject
 }
 
 func (o *AddPublicSignupTokenUserResponse) GetUserSchema() *shared.UserSchema {

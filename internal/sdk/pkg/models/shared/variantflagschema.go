@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// VariantFlagSchemaPayloadType - The type of data contained.
-type VariantFlagSchemaPayloadType string
+// VariantFlagSchemaType - The type of data contained.
+type VariantFlagSchemaType string
 
 const (
-	VariantFlagSchemaPayloadTypeString VariantFlagSchemaPayloadType = "string"
-	VariantFlagSchemaPayloadTypeJSON   VariantFlagSchemaPayloadType = "json"
-	VariantFlagSchemaPayloadTypeCsv    VariantFlagSchemaPayloadType = "csv"
+	VariantFlagSchemaTypeString VariantFlagSchemaType = "string"
+	VariantFlagSchemaTypeJSON   VariantFlagSchemaType = "json"
+	VariantFlagSchemaTypeCsv    VariantFlagSchemaType = "csv"
 )
 
-func (e VariantFlagSchemaPayloadType) ToPointer() *VariantFlagSchemaPayloadType {
+func (e VariantFlagSchemaType) ToPointer() *VariantFlagSchemaType {
 	return &e
 }
 
-func (e *VariantFlagSchemaPayloadType) UnmarshalJSON(data []byte) error {
+func (e *VariantFlagSchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,22 +31,22 @@ func (e *VariantFlagSchemaPayloadType) UnmarshalJSON(data []byte) error {
 	case "json":
 		fallthrough
 	case "csv":
-		*e = VariantFlagSchemaPayloadType(v)
+		*e = VariantFlagSchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for VariantFlagSchemaPayloadType: %v", v)
+		return fmt.Errorf("invalid value for VariantFlagSchemaType: %v", v)
 	}
 }
 
 // VariantFlagSchemaPayload - Additional data associated with this variant.
 type VariantFlagSchemaPayload struct {
 	// The type of data contained.
-	Type *VariantFlagSchemaPayloadType `json:"type,omitempty"`
+	Type *VariantFlagSchemaType `json:"type,omitempty"`
 	// The actual associated data
 	Value *string `json:"value,omitempty"`
 }
 
-func (o *VariantFlagSchemaPayload) GetType() *VariantFlagSchemaPayloadType {
+func (o *VariantFlagSchemaPayload) GetType() *VariantFlagSchemaType {
 	if o == nil {
 		return nil
 	}

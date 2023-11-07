@@ -6,28 +6,28 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// CreateGroupSchemaUsersUser - A minimal user object
-type CreateGroupSchemaUsersUser struct {
+// User - A minimal user object
+type User struct {
 	// The user id
 	ID int64 `json:"id"`
 }
 
-func (o *CreateGroupSchemaUsersUser) GetID() int64 {
+func (o *User) GetID() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.ID
 }
 
-// CreateGroupSchemaUsers - A minimal user object
-type CreateGroupSchemaUsers struct {
+// Users - A minimal user object
+type Users struct {
 	// A minimal user object
-	User CreateGroupSchemaUsersUser `json:"user"`
+	User User `json:"user"`
 }
 
-func (o *CreateGroupSchemaUsers) GetUser() CreateGroupSchemaUsersUser {
+func (o *Users) GetUser() User {
 	if o == nil {
-		return CreateGroupSchemaUsersUser{}
+		return User{}
 	}
 	return o.User
 }
@@ -44,7 +44,7 @@ type CreateGroupSchema struct {
 	// A role id that is used as the root role for all users in this group. This can be either the id of the Viewer, Editor or Admin role.
 	RootRole *float64 `json:"rootRole,omitempty"`
 	// A list of users belonging to this group
-	Users []CreateGroupSchemaUsers `json:"users,omitempty"`
+	Users []Users `json:"users,omitempty"`
 }
 
 func (c CreateGroupSchema) MarshalJSON() ([]byte, error) {
@@ -93,7 +93,7 @@ func (o *CreateGroupSchema) GetRootRole() *float64 {
 	return o.RootRole
 }
 
-func (o *CreateGroupSchema) GetUsers() []CreateGroupSchemaUsers {
+func (o *CreateGroupSchema) GetUsers() []Users {
 	if o == nil {
 		return nil
 	}

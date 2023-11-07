@@ -19,8 +19,8 @@ func (o *SearchUsersRequest) GetQ() *string {
 	return o.Q
 }
 
-// SearchUsers401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type SearchUsers401ApplicationJSON struct {
+// SearchUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type SearchUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -29,21 +29,21 @@ type SearchUsers401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *SearchUsers401ApplicationJSON) GetID() *string {
+func (o *SearchUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SearchUsers401ApplicationJSON) GetMessage() *string {
+func (o *SearchUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *SearchUsers401ApplicationJSON) GetName() *string {
+func (o *SearchUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -58,7 +58,7 @@ type SearchUsersResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	SearchUsers401ApplicationJSONObject *SearchUsers401ApplicationJSON
+	Object *SearchUsersResponseBody
 	// usersSchema
 	UsersSchema *shared.UsersSchema
 }
@@ -84,11 +84,11 @@ func (o *SearchUsersResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SearchUsersResponse) GetSearchUsers401ApplicationJSONObject() *SearchUsers401ApplicationJSON {
+func (o *SearchUsersResponse) GetObject() *SearchUsersResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.SearchUsers401ApplicationJSONObject
+	return o.Object
 }
 
 func (o *SearchUsersResponse) GetUsersSchema() *shared.UsersSchema {

@@ -35,8 +35,8 @@ func (o *OverwriteFeatureVariantsOnEnvironmentsRequest) GetPushVariantsSchema() 
 	return o.PushVariantsSchema
 }
 
-// OverwriteFeatureVariantsOnEnvironments403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type OverwriteFeatureVariantsOnEnvironments403ApplicationJSON struct {
+// OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -45,29 +45,29 @@ type OverwriteFeatureVariantsOnEnvironments403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments403ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments403ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments403ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// OverwriteFeatureVariantsOnEnvironments401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type OverwriteFeatureVariantsOnEnvironments401ApplicationJSON struct {
+// OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -76,29 +76,29 @@ type OverwriteFeatureVariantsOnEnvironments401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments401ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments401ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments401ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// OverwriteFeatureVariantsOnEnvironments400ApplicationJSON - The request data does not match what we expect.
-type OverwriteFeatureVariantsOnEnvironments400ApplicationJSON struct {
+// OverwriteFeatureVariantsOnEnvironmentsResponseBody - The request data does not match what we expect.
+type OverwriteFeatureVariantsOnEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -107,21 +107,21 @@ type OverwriteFeatureVariantsOnEnvironments400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON) GetID() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON) GetMessage() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON) GetName() *string {
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -129,6 +129,12 @@ func (o *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON) GetName() *st
 }
 
 type OverwriteFeatureVariantsOnEnvironmentsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *OverwriteFeatureVariantsOnEnvironmentsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -137,12 +143,27 @@ type OverwriteFeatureVariantsOnEnvironmentsResponse struct {
 	RawResponse *http.Response
 	// featureVariantsSchema
 	FeatureVariantsSchema *shared.FeatureVariantsSchema
-	// The request data does not match what we expect.
-	OverwriteFeatureVariantsOnEnvironments400ApplicationJSONObject *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	OverwriteFeatureVariantsOnEnvironments401ApplicationJSONObject *OverwriteFeatureVariantsOnEnvironments401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	OverwriteFeatureVariantsOnEnvironments403ApplicationJSONObject *OverwriteFeatureVariantsOnEnvironments403ApplicationJSON
+}
+
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetFourHundredApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetFourHundredAndOneApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetFourHundredAndThreeApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironmentsFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetContentType() string {
@@ -171,25 +192,4 @@ func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetFeatureVariantsSchem
 		return nil
 	}
 	return o.FeatureVariantsSchema
-}
-
-func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetOverwriteFeatureVariantsOnEnvironments400ApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironments400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariantsOnEnvironments400ApplicationJSONObject
-}
-
-func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetOverwriteFeatureVariantsOnEnvironments401ApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironments401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariantsOnEnvironments401ApplicationJSONObject
-}
-
-func (o *OverwriteFeatureVariantsOnEnvironmentsResponse) GetOverwriteFeatureVariantsOnEnvironments403ApplicationJSONObject() *OverwriteFeatureVariantsOnEnvironments403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.OverwriteFeatureVariantsOnEnvironments403ApplicationJSONObject
 }

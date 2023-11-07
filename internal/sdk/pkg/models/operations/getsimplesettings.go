@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetSimpleSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetSimpleSettings403ApplicationJSON struct {
+// GetSimpleSettingsAuthResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetSimpleSettingsAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetSimpleSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSimpleSettings403ApplicationJSON) GetID() *string {
+func (o *GetSimpleSettingsAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSimpleSettings403ApplicationJSON) GetMessage() *string {
+func (o *GetSimpleSettingsAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSimpleSettings403ApplicationJSON) GetName() *string {
+func (o *GetSimpleSettingsAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetSimpleSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetSimpleSettings401ApplicationJSON struct {
+// GetSimpleSettingsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetSimpleSettingsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetSimpleSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetSimpleSettings401ApplicationJSON) GetID() *string {
+func (o *GetSimpleSettingsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetSimpleSettings401ApplicationJSON) GetMessage() *string {
+func (o *GetSimpleSettingsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetSimpleSettings401ApplicationJSON) GetName() *string {
+func (o *GetSimpleSettingsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetSimpleSettings401ApplicationJSON) GetName() *string {
 }
 
 type GetSimpleSettingsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetSimpleSettingsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetSimpleSettingsAuthResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetSimpleSettings401ApplicationJSONObject *GetSimpleSettings401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetSimpleSettings403ApplicationJSONObject *GetSimpleSettings403ApplicationJSON
 	// passwordAuthSchema
 	PasswordAuthSchema *shared.PasswordAuthSchema
+}
+
+func (o *GetSimpleSettingsResponse) GetFourHundredAndOneApplicationJSONObject() *GetSimpleSettingsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetSimpleSettingsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetSimpleSettingsAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetSimpleSettingsResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetSimpleSettingsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetSimpleSettingsResponse) GetGetSimpleSettings401ApplicationJSONObject() *GetSimpleSettings401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSimpleSettings401ApplicationJSONObject
-}
-
-func (o *GetSimpleSettingsResponse) GetGetSimpleSettings403ApplicationJSONObject() *GetSimpleSettings403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetSimpleSettings403ApplicationJSONObject
 }
 
 func (o *GetSimpleSettingsResponse) GetPasswordAuthSchema() *shared.PasswordAuthSchema {

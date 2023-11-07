@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetOidcSettings403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetOidcSettings403ApplicationJSON struct {
+// GetOidcSettingsAuthResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetOidcSettingsAuthResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetOidcSettings403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetOidcSettings403ApplicationJSON) GetID() *string {
+func (o *GetOidcSettingsAuthResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetOidcSettings403ApplicationJSON) GetMessage() *string {
+func (o *GetOidcSettingsAuthResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetOidcSettings403ApplicationJSON) GetName() *string {
+func (o *GetOidcSettingsAuthResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetOidcSettings401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetOidcSettings401ApplicationJSON struct {
+// GetOidcSettingsAuthResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetOidcSettingsAuthResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type GetOidcSettings401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetOidcSettings401ApplicationJSON) GetID() *string {
+func (o *GetOidcSettingsAuthResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetOidcSettings401ApplicationJSON) GetMessage() *string {
+func (o *GetOidcSettingsAuthResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetOidcSettings401ApplicationJSON) GetName() *string {
+func (o *GetOidcSettingsAuthResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetOidcSettings400ApplicationJSON - The request data does not match what we expect.
-type GetOidcSettings400ApplicationJSON struct {
+// GetOidcSettingsResponseBody - The request data does not match what we expect.
+type GetOidcSettingsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type GetOidcSettings400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetOidcSettings400ApplicationJSON) GetID() *string {
+func (o *GetOidcSettingsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetOidcSettings400ApplicationJSON) GetMessage() *string {
+func (o *GetOidcSettingsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetOidcSettings400ApplicationJSON) GetName() *string {
+func (o *GetOidcSettingsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *GetOidcSettings400ApplicationJSON) GetName() *string {
 }
 
 type GetOidcSettingsResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetOidcSettingsResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetOidcSettingsAuthResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetOidcSettingsAuthResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetOidcSettings400ApplicationJSONObject *GetOidcSettings400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetOidcSettings401ApplicationJSONObject *GetOidcSettings401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetOidcSettings403ApplicationJSONObject *GetOidcSettings403ApplicationJSON
 	// oidcSettingsSchema
 	OidcSettingsSchema *shared.OidcSettingsSchema
+}
+
+func (o *GetOidcSettingsResponse) GetFourHundredApplicationJSONObject() *GetOidcSettingsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetOidcSettingsResponse) GetFourHundredAndOneApplicationJSONObject() *GetOidcSettingsAuthResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetOidcSettingsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetOidcSettingsAuthResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetOidcSettingsResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *GetOidcSettingsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetOidcSettingsResponse) GetGetOidcSettings400ApplicationJSONObject() *GetOidcSettings400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetOidcSettings400ApplicationJSONObject
-}
-
-func (o *GetOidcSettingsResponse) GetGetOidcSettings401ApplicationJSONObject() *GetOidcSettings401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetOidcSettings401ApplicationJSONObject
-}
-
-func (o *GetOidcSettingsResponse) GetGetOidcSettings403ApplicationJSONObject() *GetOidcSettings403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetOidcSettings403ApplicationJSONObject
 }
 
 func (o *GetOidcSettingsResponse) GetOidcSettingsSchema() *shared.OidcSettingsSchema {

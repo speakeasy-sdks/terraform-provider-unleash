@@ -25,8 +25,8 @@ func (o *DeleteServiceAccountTokenRequest) GetTokenID() string {
 	return o.TokenID
 }
 
-// DeleteServiceAccountToken404ApplicationJSON - The requested resource was not found.
-type DeleteServiceAccountToken404ApplicationJSON struct {
+// DeleteServiceAccountTokenServiceAccountsResponseResponseBody - The requested resource was not found.
+type DeleteServiceAccountTokenServiceAccountsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -35,29 +35,29 @@ type DeleteServiceAccountToken404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteServiceAccountToken404ApplicationJSON) GetID() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteServiceAccountToken404ApplicationJSON) GetMessage() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteServiceAccountToken404ApplicationJSON) GetName() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteServiceAccountToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeleteServiceAccountToken403ApplicationJSON struct {
+// DeleteServiceAccountTokenServiceAccountsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteServiceAccountTokenServiceAccountsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -66,29 +66,29 @@ type DeleteServiceAccountToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteServiceAccountToken403ApplicationJSON) GetID() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteServiceAccountToken403ApplicationJSON) GetMessage() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteServiceAccountToken403ApplicationJSON) GetName() *string {
+func (o *DeleteServiceAccountTokenServiceAccountsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteServiceAccountToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeleteServiceAccountToken401ApplicationJSON struct {
+// DeleteServiceAccountTokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteServiceAccountTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -97,21 +97,21 @@ type DeleteServiceAccountToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteServiceAccountToken401ApplicationJSON) GetID() *string {
+func (o *DeleteServiceAccountTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteServiceAccountToken401ApplicationJSON) GetMessage() *string {
+func (o *DeleteServiceAccountTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteServiceAccountToken401ApplicationJSON) GetName() *string {
+func (o *DeleteServiceAccountTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -119,18 +119,39 @@ func (o *DeleteServiceAccountToken401ApplicationJSON) GetName() *string {
 }
 
 type DeleteServiceAccountTokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeleteServiceAccountTokenResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeleteServiceAccountTokenServiceAccountsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *DeleteServiceAccountTokenServiceAccountsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeleteServiceAccountToken401ApplicationJSONObject *DeleteServiceAccountToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeleteServiceAccountToken403ApplicationJSONObject *DeleteServiceAccountToken403ApplicationJSON
-	// The requested resource was not found.
-	DeleteServiceAccountToken404ApplicationJSONObject *DeleteServiceAccountToken404ApplicationJSON
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetFourHundredAndOneApplicationJSONObject() *DeleteServiceAccountTokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetFourHundredAndThreeApplicationJSONObject() *DeleteServiceAccountTokenServiceAccountsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *DeleteServiceAccountTokenResponse) GetFourHundredAndFourApplicationJSONObject() *DeleteServiceAccountTokenServiceAccountsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *DeleteServiceAccountTokenResponse) GetContentType() string {
@@ -152,25 +173,4 @@ func (o *DeleteServiceAccountTokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken401ApplicationJSONObject() *DeleteServiceAccountToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteServiceAccountToken401ApplicationJSONObject
-}
-
-func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken403ApplicationJSONObject() *DeleteServiceAccountToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteServiceAccountToken403ApplicationJSONObject
-}
-
-func (o *DeleteServiceAccountTokenResponse) GetDeleteServiceAccountToken404ApplicationJSONObject() *DeleteServiceAccountToken404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteServiceAccountToken404ApplicationJSONObject
 }

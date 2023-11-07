@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetFrontendFeatures404ApplicationJSON - The requested resource was not found.
-type GetFrontendFeatures404ApplicationJSON struct {
+// GetFrontendFeaturesFrontendAPIResponseBody - The requested resource was not found.
+type GetFrontendFeaturesFrontendAPIResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetFrontendFeatures404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFrontendFeatures404ApplicationJSON) GetID() *string {
+func (o *GetFrontendFeaturesFrontendAPIResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFrontendFeatures404ApplicationJSON) GetMessage() *string {
+func (o *GetFrontendFeaturesFrontendAPIResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFrontendFeatures404ApplicationJSON) GetName() *string {
+func (o *GetFrontendFeaturesFrontendAPIResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFrontendFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetFrontendFeatures401ApplicationJSON struct {
+// GetFrontendFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFrontendFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetFrontendFeatures401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFrontendFeatures401ApplicationJSON) GetID() *string {
+func (o *GetFrontendFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFrontendFeatures401ApplicationJSON) GetMessage() *string {
+func (o *GetFrontendFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFrontendFeatures401ApplicationJSON) GetName() *string {
+func (o *GetFrontendFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,18 +70,32 @@ func (o *GetFrontendFeatures401ApplicationJSON) GetName() *string {
 }
 
 type GetFrontendFeaturesResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetFrontendFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetFrontendFeaturesFrontendAPIResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetFrontendFeatures401ApplicationJSONObject *GetFrontendFeatures401ApplicationJSON
-	// The requested resource was not found.
-	GetFrontendFeatures404ApplicationJSONObject *GetFrontendFeatures404ApplicationJSON
 	// proxyFeaturesSchema
 	ProxyFeaturesSchema *shared.ProxyFeaturesSchema
+}
+
+func (o *GetFrontendFeaturesResponse) GetFourHundredAndOneApplicationJSONObject() *GetFrontendFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetFrontendFeaturesResponse) GetFourHundredAndFourApplicationJSONObject() *GetFrontendFeaturesFrontendAPIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetFrontendFeaturesResponse) GetContentType() string {
@@ -103,20 +117,6 @@ func (o *GetFrontendFeaturesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetFrontendFeaturesResponse) GetGetFrontendFeatures401ApplicationJSONObject() *GetFrontendFeatures401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFrontendFeatures401ApplicationJSONObject
-}
-
-func (o *GetFrontendFeaturesResponse) GetGetFrontendFeatures404ApplicationJSONObject() *GetFrontendFeatures404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFrontendFeatures404ApplicationJSONObject
 }
 
 func (o *GetFrontendFeaturesResponse) GetProxyFeaturesSchema() *shared.ProxyFeaturesSchema {

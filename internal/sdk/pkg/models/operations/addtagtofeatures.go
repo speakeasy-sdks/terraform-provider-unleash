@@ -27,8 +27,8 @@ func (o *AddTagToFeaturesRequest) GetTagsBulkAddSchema() shared.TagsBulkAddSchem
 	return o.TagsBulkAddSchema
 }
 
-// AddTagToFeatures415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type AddTagToFeatures415ApplicationJSON struct {
+// AddTagToFeaturesTagsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type AddTagToFeaturesTagsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type AddTagToFeatures415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTagToFeatures415ApplicationJSON) GetID() *string {
+func (o *AddTagToFeaturesTagsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTagToFeatures415ApplicationJSON) GetMessage() *string {
+func (o *AddTagToFeaturesTagsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTagToFeatures415ApplicationJSON) GetName() *string {
+func (o *AddTagToFeaturesTagsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTagToFeatures404ApplicationJSON - The requested resource was not found.
-type AddTagToFeatures404ApplicationJSON struct {
+// AddTagToFeaturesTagsResponseResponseBody - The requested resource was not found.
+type AddTagToFeaturesTagsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type AddTagToFeatures404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTagToFeatures404ApplicationJSON) GetID() *string {
+func (o *AddTagToFeaturesTagsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTagToFeatures404ApplicationJSON) GetMessage() *string {
+func (o *AddTagToFeaturesTagsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTagToFeatures404ApplicationJSON) GetName() *string {
+func (o *AddTagToFeaturesTagsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTagToFeatures403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type AddTagToFeatures403ApplicationJSON struct {
+// AddTagToFeaturesTagsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type AddTagToFeaturesTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type AddTagToFeatures403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTagToFeatures403ApplicationJSON) GetID() *string {
+func (o *AddTagToFeaturesTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTagToFeatures403ApplicationJSON) GetMessage() *string {
+func (o *AddTagToFeaturesTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTagToFeatures403ApplicationJSON) GetName() *string {
+func (o *AddTagToFeaturesTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// AddTagToFeatures401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type AddTagToFeatures401ApplicationJSON struct {
+// AddTagToFeaturesResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type AddTagToFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,21 +130,21 @@ type AddTagToFeatures401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *AddTagToFeatures401ApplicationJSON) GetID() *string {
+func (o *AddTagToFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddTagToFeatures401ApplicationJSON) GetMessage() *string {
+func (o *AddTagToFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *AddTagToFeatures401ApplicationJSON) GetName() *string {
+func (o *AddTagToFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -152,20 +152,48 @@ func (o *AddTagToFeatures401ApplicationJSON) GetName() *string {
 }
 
 type AddTagToFeaturesResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *AddTagToFeaturesResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *AddTagToFeaturesTagsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *AddTagToFeaturesTagsResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *AddTagToFeaturesTagsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	AddTagToFeatures401ApplicationJSONObject *AddTagToFeatures401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	AddTagToFeatures403ApplicationJSONObject *AddTagToFeatures403ApplicationJSON
-	// The requested resource was not found.
-	AddTagToFeatures404ApplicationJSONObject *AddTagToFeatures404ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	AddTagToFeatures415ApplicationJSONObject *AddTagToFeatures415ApplicationJSON
+}
+
+func (o *AddTagToFeaturesResponse) GetFourHundredAndOneApplicationJSONObject() *AddTagToFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *AddTagToFeaturesResponse) GetFourHundredAndThreeApplicationJSONObject() *AddTagToFeaturesTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *AddTagToFeaturesResponse) GetFourHundredAndFourApplicationJSONObject() *AddTagToFeaturesTagsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *AddTagToFeaturesResponse) GetFourHundredAndFifteenApplicationJSONObject() *AddTagToFeaturesTagsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *AddTagToFeaturesResponse) GetContentType() string {
@@ -187,32 +215,4 @@ func (o *AddTagToFeaturesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *AddTagToFeaturesResponse) GetAddTagToFeatures401ApplicationJSONObject() *AddTagToFeatures401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTagToFeatures401ApplicationJSONObject
-}
-
-func (o *AddTagToFeaturesResponse) GetAddTagToFeatures403ApplicationJSONObject() *AddTagToFeatures403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTagToFeatures403ApplicationJSONObject
-}
-
-func (o *AddTagToFeaturesResponse) GetAddTagToFeatures404ApplicationJSONObject() *AddTagToFeatures404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTagToFeatures404ApplicationJSONObject
-}
-
-func (o *AddTagToFeaturesResponse) GetAddTagToFeatures415ApplicationJSONObject() *AddTagToFeatures415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.AddTagToFeatures415ApplicationJSONObject
 }

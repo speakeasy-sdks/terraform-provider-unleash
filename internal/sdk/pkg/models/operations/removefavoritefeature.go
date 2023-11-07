@@ -25,8 +25,8 @@ func (o *RemoveFavoriteFeatureRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// RemoveFavoriteFeature404ApplicationJSON - The requested resource was not found.
-type RemoveFavoriteFeature404ApplicationJSON struct {
+// RemoveFavoriteFeatureFeaturesResponseBody - The requested resource was not found.
+type RemoveFavoriteFeatureFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -35,29 +35,29 @@ type RemoveFavoriteFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveFavoriteFeature404ApplicationJSON) GetID() *string {
+func (o *RemoveFavoriteFeatureFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveFavoriteFeature404ApplicationJSON) GetMessage() *string {
+func (o *RemoveFavoriteFeatureFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveFavoriteFeature404ApplicationJSON) GetName() *string {
+func (o *RemoveFavoriteFeatureFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveFavoriteFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RemoveFavoriteFeature401ApplicationJSON struct {
+// RemoveFavoriteFeatureResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveFavoriteFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -66,21 +66,21 @@ type RemoveFavoriteFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveFavoriteFeature401ApplicationJSON) GetID() *string {
+func (o *RemoveFavoriteFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveFavoriteFeature401ApplicationJSON) GetMessage() *string {
+func (o *RemoveFavoriteFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveFavoriteFeature401ApplicationJSON) GetName() *string {
+func (o *RemoveFavoriteFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -88,16 +88,30 @@ func (o *RemoveFavoriteFeature401ApplicationJSON) GetName() *string {
 }
 
 type RemoveFavoriteFeatureResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RemoveFavoriteFeatureResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *RemoveFavoriteFeatureFeaturesResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RemoveFavoriteFeature401ApplicationJSONObject *RemoveFavoriteFeature401ApplicationJSON
-	// The requested resource was not found.
-	RemoveFavoriteFeature404ApplicationJSONObject *RemoveFavoriteFeature404ApplicationJSON
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *RemoveFavoriteFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *RemoveFavoriteFeatureResponse) GetFourHundredAndFourApplicationJSONObject() *RemoveFavoriteFeatureFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *RemoveFavoriteFeatureResponse) GetContentType() string {
@@ -119,18 +133,4 @@ func (o *RemoveFavoriteFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveFavoriteFeatureResponse) GetRemoveFavoriteFeature401ApplicationJSONObject() *RemoveFavoriteFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveFavoriteFeature401ApplicationJSONObject
-}
-
-func (o *RemoveFavoriteFeatureResponse) GetRemoveFavoriteFeature404ApplicationJSONObject() *RemoveFavoriteFeature404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveFavoriteFeature404ApplicationJSONObject
 }

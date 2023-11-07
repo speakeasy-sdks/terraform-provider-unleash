@@ -17,8 +17,8 @@ func (o *UpdateSegmentRequest) GetID() string {
 	return o.ID
 }
 
-// UpdateSegment415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateSegment415ApplicationJSON struct {
+// UpdateSegmentSegmentsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateSegmentSegmentsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type UpdateSegment415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSegment415ApplicationJSON) GetID() *string {
+func (o *UpdateSegmentSegmentsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSegment415ApplicationJSON) GetMessage() *string {
+func (o *UpdateSegmentSegmentsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSegment415ApplicationJSON) GetName() *string {
+func (o *UpdateSegmentSegmentsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSegment409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type UpdateSegment409ApplicationJSON struct {
+// UpdateSegmentSegmentsResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type UpdateSegmentSegmentsResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,29 +58,29 @@ type UpdateSegment409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSegment409ApplicationJSON) GetID() *string {
+func (o *UpdateSegmentSegmentsResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSegment409ApplicationJSON) GetMessage() *string {
+func (o *UpdateSegmentSegmentsResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSegment409ApplicationJSON) GetName() *string {
+func (o *UpdateSegmentSegmentsResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSegment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateSegment403ApplicationJSON struct {
+// UpdateSegmentSegmentsResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateSegmentSegmentsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -89,29 +89,29 @@ type UpdateSegment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSegment403ApplicationJSON) GetID() *string {
+func (o *UpdateSegmentSegmentsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSegment403ApplicationJSON) GetMessage() *string {
+func (o *UpdateSegmentSegmentsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSegment403ApplicationJSON) GetName() *string {
+func (o *UpdateSegmentSegmentsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSegment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateSegment401ApplicationJSON struct {
+// UpdateSegmentSegmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateSegmentSegmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -120,29 +120,29 @@ type UpdateSegment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSegment401ApplicationJSON) GetID() *string {
+func (o *UpdateSegmentSegmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSegment401ApplicationJSON) GetMessage() *string {
+func (o *UpdateSegmentSegmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSegment401ApplicationJSON) GetName() *string {
+func (o *UpdateSegmentSegmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSegment400ApplicationJSON - The request data does not match what we expect.
-type UpdateSegment400ApplicationJSON struct {
+// UpdateSegmentResponseBody - The request data does not match what we expect.
+type UpdateSegmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -151,21 +151,21 @@ type UpdateSegment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSegment400ApplicationJSON) GetID() *string {
+func (o *UpdateSegmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSegment400ApplicationJSON) GetMessage() *string {
+func (o *UpdateSegmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSegment400ApplicationJSON) GetName() *string {
+func (o *UpdateSegmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -173,22 +173,57 @@ func (o *UpdateSegment400ApplicationJSON) GetName() *string {
 }
 
 type UpdateSegmentResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdateSegmentResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateSegmentSegmentsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateSegmentSegmentsResponseResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *UpdateSegmentSegmentsResponse409ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateSegmentSegmentsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	UpdateSegment400ApplicationJSONObject *UpdateSegment400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateSegment401ApplicationJSONObject *UpdateSegment401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateSegment403ApplicationJSONObject *UpdateSegment403ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	UpdateSegment409ApplicationJSONObject *UpdateSegment409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateSegment415ApplicationJSONObject *UpdateSegment415ApplicationJSON
+}
+
+func (o *UpdateSegmentResponse) GetFourHundredApplicationJSONObject() *UpdateSegmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdateSegmentResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateSegmentSegmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateSegmentResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateSegmentSegmentsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateSegmentResponse) GetFourHundredAndNineApplicationJSONObject() *UpdateSegmentSegmentsResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *UpdateSegmentResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateSegmentSegmentsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateSegmentResponse) GetContentType() string {
@@ -210,39 +245,4 @@ func (o *UpdateSegmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateSegmentResponse) GetUpdateSegment400ApplicationJSONObject() *UpdateSegment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSegment400ApplicationJSONObject
-}
-
-func (o *UpdateSegmentResponse) GetUpdateSegment401ApplicationJSONObject() *UpdateSegment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSegment401ApplicationJSONObject
-}
-
-func (o *UpdateSegmentResponse) GetUpdateSegment403ApplicationJSONObject() *UpdateSegment403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSegment403ApplicationJSONObject
-}
-
-func (o *UpdateSegmentResponse) GetUpdateSegment409ApplicationJSONObject() *UpdateSegment409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSegment409ApplicationJSONObject
-}
-
-func (o *UpdateSegmentResponse) GetUpdateSegment415ApplicationJSONObject() *UpdateSegment415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSegment415ApplicationJSONObject
 }

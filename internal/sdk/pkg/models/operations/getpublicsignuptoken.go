@@ -18,8 +18,8 @@ func (o *GetPublicSignupTokenRequest) GetToken() string {
 	return o.Token
 }
 
-// GetPublicSignupToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetPublicSignupToken403ApplicationJSON struct {
+// GetPublicSignupTokenPublicSignupTokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetPublicSignupTokenPublicSignupTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetPublicSignupToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetPublicSignupToken403ApplicationJSON) GetID() *string {
+func (o *GetPublicSignupTokenPublicSignupTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetPublicSignupToken403ApplicationJSON) GetMessage() *string {
+func (o *GetPublicSignupTokenPublicSignupTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetPublicSignupToken403ApplicationJSON) GetName() *string {
+func (o *GetPublicSignupTokenPublicSignupTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetPublicSignupToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetPublicSignupToken401ApplicationJSON struct {
+// GetPublicSignupTokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetPublicSignupTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,21 +59,21 @@ type GetPublicSignupToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetPublicSignupToken401ApplicationJSON) GetID() *string {
+func (o *GetPublicSignupTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetPublicSignupToken401ApplicationJSON) GetMessage() *string {
+func (o *GetPublicSignupTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetPublicSignupToken401ApplicationJSON) GetName() *string {
+func (o *GetPublicSignupTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,18 +81,32 @@ func (o *GetPublicSignupToken401ApplicationJSON) GetName() *string {
 }
 
 type GetPublicSignupTokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetPublicSignupTokenResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetPublicSignupTokenPublicSignupTokensResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetPublicSignupToken401ApplicationJSONObject *GetPublicSignupToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetPublicSignupToken403ApplicationJSONObject *GetPublicSignupToken403ApplicationJSON
 	// publicSignupTokenSchema
 	PublicSignupTokenSchema *shared.PublicSignupTokenSchema
+}
+
+func (o *GetPublicSignupTokenResponse) GetFourHundredAndOneApplicationJSONObject() *GetPublicSignupTokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetPublicSignupTokenResponse) GetFourHundredAndThreeApplicationJSONObject() *GetPublicSignupTokenPublicSignupTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetPublicSignupTokenResponse) GetContentType() string {
@@ -114,20 +128,6 @@ func (o *GetPublicSignupTokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetPublicSignupTokenResponse) GetGetPublicSignupToken401ApplicationJSONObject() *GetPublicSignupToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPublicSignupToken401ApplicationJSONObject
-}
-
-func (o *GetPublicSignupTokenResponse) GetGetPublicSignupToken403ApplicationJSONObject() *GetPublicSignupToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPublicSignupToken403ApplicationJSONObject
 }
 
 func (o *GetPublicSignupTokenResponse) GetPublicSignupTokenSchema() *shared.PublicSignupTokenSchema {

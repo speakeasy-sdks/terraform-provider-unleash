@@ -18,8 +18,8 @@ func (o *GetUserRequest) GetID() string {
 	return o.ID
 }
 
-// GetUser404ApplicationJSON - The requested resource was not found.
-type GetUser404ApplicationJSON struct {
+// GetUserUsersResponseResponseBody - The requested resource was not found.
+type GetUserUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetUser404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetUser404ApplicationJSON) GetID() *string {
+func (o *GetUserUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetUser404ApplicationJSON) GetMessage() *string {
+func (o *GetUserUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetUser404ApplicationJSON) GetName() *string {
+func (o *GetUserUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetUser401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetUser401ApplicationJSON struct {
+// GetUserUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetUserUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetUser401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetUser401ApplicationJSON) GetID() *string {
+func (o *GetUserUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetUser401ApplicationJSON) GetMessage() *string {
+func (o *GetUserUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetUser401ApplicationJSON) GetName() *string {
+func (o *GetUserUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetUser400ApplicationJSON - The request data does not match what we expect.
-type GetUser400ApplicationJSON struct {
+// GetUserResponseBody - The request data does not match what we expect.
+type GetUserResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type GetUser400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetUser400ApplicationJSON) GetID() *string {
+func (o *GetUserResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetUser400ApplicationJSON) GetMessage() *string {
+func (o *GetUserResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetUser400ApplicationJSON) GetName() *string {
+func (o *GetUserResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,20 +112,41 @@ func (o *GetUser400ApplicationJSON) GetName() *string {
 }
 
 type GetUserResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *GetUserResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetUserUsersResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetUserUsersResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	GetUser400ApplicationJSONObject *GetUser400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetUser401ApplicationJSONObject *GetUser401ApplicationJSON
-	// The requested resource was not found.
-	GetUser404ApplicationJSONObject *GetUser404ApplicationJSON
 	// userSchema
 	UserSchema *shared.UserSchema
+}
+
+func (o *GetUserResponse) GetFourHundredApplicationJSONObject() *GetUserResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *GetUserResponse) GetFourHundredAndOneApplicationJSONObject() *GetUserUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetUserResponse) GetFourHundredAndFourApplicationJSONObject() *GetUserUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetUserResponse) GetContentType() string {
@@ -147,27 +168,6 @@ func (o *GetUserResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetUserResponse) GetGetUser400ApplicationJSONObject() *GetUser400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetUser400ApplicationJSONObject
-}
-
-func (o *GetUserResponse) GetGetUser401ApplicationJSONObject() *GetUser401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetUser401ApplicationJSONObject
-}
-
-func (o *GetUserResponse) GetGetUser404ApplicationJSONObject() *GetUser404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetUser404ApplicationJSONObject
 }
 
 func (o *GetUserResponse) GetUserSchema() *shared.UserSchema {

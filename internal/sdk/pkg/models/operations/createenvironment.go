@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// CreateEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateEnvironment401ApplicationJSON struct {
+// CreateEnvironmentEnvironmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateEnvironmentEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type CreateEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateEnvironment401ApplicationJSON) GetID() *string {
+func (o *CreateEnvironmentEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateEnvironment401ApplicationJSON) GetMessage() *string {
+func (o *CreateEnvironmentEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateEnvironment401ApplicationJSON) GetName() *string {
+func (o *CreateEnvironmentEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateEnvironment400ApplicationJSON - The request data does not match what we expect.
-type CreateEnvironment400ApplicationJSON struct {
+// CreateEnvironmentResponseBody - The request data does not match what we expect.
+type CreateEnvironmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type CreateEnvironment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateEnvironment400ApplicationJSON) GetID() *string {
+func (o *CreateEnvironmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateEnvironment400ApplicationJSON) GetMessage() *string {
+func (o *CreateEnvironmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateEnvironment400ApplicationJSON) GetName() *string {
+func (o *CreateEnvironmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *CreateEnvironment400ApplicationJSON) GetName() *string {
 }
 
 type CreateEnvironmentResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *CreateEnvironmentResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateEnvironmentEnvironmentsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -77,12 +81,22 @@ type CreateEnvironmentResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	CreateEnvironment400ApplicationJSONObject *CreateEnvironment400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateEnvironment401ApplicationJSONObject *CreateEnvironment401ApplicationJSON
 	// The resource was successfully created.
 	EnvironmentSchema *shared.EnvironmentSchema
+}
+
+func (o *CreateEnvironmentResponse) GetFourHundredApplicationJSONObject() *CreateEnvironmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *CreateEnvironmentResponse) GetFourHundredAndOneApplicationJSONObject() *CreateEnvironmentEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }
 
 func (o *CreateEnvironmentResponse) GetContentType() string {
@@ -111,20 +125,6 @@ func (o *CreateEnvironmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateEnvironmentResponse) GetCreateEnvironment400ApplicationJSONObject() *CreateEnvironment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateEnvironment400ApplicationJSONObject
-}
-
-func (o *CreateEnvironmentResponse) GetCreateEnvironment401ApplicationJSONObject() *CreateEnvironment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateEnvironment401ApplicationJSONObject
 }
 
 func (o *CreateEnvironmentResponse) GetEnvironmentSchema() *shared.EnvironmentSchema {

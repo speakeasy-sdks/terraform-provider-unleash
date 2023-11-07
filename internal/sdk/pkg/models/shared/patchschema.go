@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-type PatchSchemaOp string
+type Op string
 
 const (
-	PatchSchemaOpAdd     PatchSchemaOp = "add"
-	PatchSchemaOpRemove  PatchSchemaOp = "remove"
-	PatchSchemaOpReplace PatchSchemaOp = "replace"
-	PatchSchemaOpCopy    PatchSchemaOp = "copy"
-	PatchSchemaOpMove    PatchSchemaOp = "move"
+	OpAdd     Op = "add"
+	OpRemove  Op = "remove"
+	OpReplace Op = "replace"
+	OpCopy    Op = "copy"
+	OpMove    Op = "move"
 )
 
-func (e PatchSchemaOp) ToPointer() *PatchSchemaOp {
+func (e Op) ToPointer() *Op {
 	return &e
 }
 
-func (e *PatchSchemaOp) UnmarshalJSON(data []byte) error {
+func (e *Op) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -36,18 +36,18 @@ func (e *PatchSchemaOp) UnmarshalJSON(data []byte) error {
 	case "copy":
 		fallthrough
 	case "move":
-		*e = PatchSchemaOp(v)
+		*e = Op(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PatchSchemaOp: %v", v)
+		return fmt.Errorf("invalid value for Op: %v", v)
 	}
 }
 
 type PatchSchema struct {
-	From  *string       `json:"from,omitempty"`
-	Op    PatchSchemaOp `json:"op"`
-	Path  string        `json:"path"`
-	Value interface{}   `json:"value,omitempty"`
+	From  *string     `json:"from,omitempty"`
+	Op    Op          `json:"op"`
+	Path  string      `json:"path"`
+	Value interface{} `json:"value,omitempty"`
 }
 
 func (o *PatchSchema) GetFrom() *string {
@@ -57,9 +57,9 @@ func (o *PatchSchema) GetFrom() *string {
 	return o.From
 }
 
-func (o *PatchSchema) GetOp() PatchSchemaOp {
+func (o *PatchSchema) GetOp() Op {
 	if o == nil {
-		return PatchSchemaOp("")
+		return Op("")
 	}
 	return o.Op
 }

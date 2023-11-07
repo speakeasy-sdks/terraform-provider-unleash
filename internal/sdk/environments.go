@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// environments - Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
-type environments struct {
+// Environments - Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
+type Environments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEnvironments(sdkConfig sdkConfiguration) *environments {
-	return &environments{
+func newEnvironments(sdkConfig sdkConfiguration) *Environments {
+	return &Environments{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CloneEnvironment - Clones an environment
 // Given an existing environment name and a set of options, this will create a copy of that environment
-func (s *environments) CloneEnvironment(ctx context.Context, request operations.CloneEnvironmentRequest) (*operations.CloneEnvironmentResponse, error) {
+func (s *Environments) CloneEnvironment(ctx context.Context, request operations.CloneEnvironmentRequest) (*operations.CloneEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/{name}/clone", request, nil)
 	if err != nil {
@@ -71,24 +71,24 @@ func (s *environments) CloneEnvironment(ctx context.Context, request operations.
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneEnvironment400ApplicationJSON
+			var out operations.CloneEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneEnvironment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CloneEnvironment401ApplicationJSON
+			var out operations.CloneEnvironmentEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CloneEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -99,7 +99,7 @@ func (s *environments) CloneEnvironment(ctx context.Context, request operations.
 
 // CreateEnvironment - Creates a new environment
 // Uses the details provided in the payload to create a new environment
-func (s *environments) CreateEnvironment(ctx context.Context, request shared.CreateEnvironmentSchema) (*operations.CreateEnvironmentResponse, error) {
+func (s *Environments) CreateEnvironment(ctx context.Context, request shared.CreateEnvironmentSchema) (*operations.CreateEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/environments"
 
@@ -166,24 +166,24 @@ func (s *environments) CreateEnvironment(ctx context.Context, request shared.Cre
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateEnvironment400ApplicationJSON
+			var out operations.CreateEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateEnvironment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateEnvironment401ApplicationJSON
+			var out operations.CreateEnvironmentEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -194,7 +194,7 @@ func (s *environments) CreateEnvironment(ctx context.Context, request shared.Cre
 
 // GetAllEnvironments - Get all environments
 // Retrieves all environments that exist in this Unleash instance.
-func (s *environments) GetAllEnvironments(ctx context.Context) (*operations.GetAllEnvironmentsResponse, error) {
+func (s *Environments) GetAllEnvironments(ctx context.Context) (*operations.GetAllEnvironmentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/environments"
 
@@ -245,24 +245,24 @@ func (s *environments) GetAllEnvironments(ctx context.Context) (*operations.GetA
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllEnvironments401ApplicationJSON
+			var out operations.GetAllEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllEnvironments401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllEnvironments403ApplicationJSON
+			var out operations.GetAllEnvironmentsEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllEnvironments403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -273,7 +273,7 @@ func (s *environments) GetAllEnvironments(ctx context.Context) (*operations.GetA
 
 // GetEnvironment - Get the environment with `name`
 // Retrieves the environment with `name` if it exists in this Unleash instance
-func (s *environments) GetEnvironment(ctx context.Context, request operations.GetEnvironmentRequest) (*operations.GetEnvironmentResponse, error) {
+func (s *Environments) GetEnvironment(ctx context.Context, request operations.GetEnvironmentRequest) (*operations.GetEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/{name}", request, nil)
 	if err != nil {
@@ -327,36 +327,36 @@ func (s *environments) GetEnvironment(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironment401ApplicationJSON
+			var out operations.GetEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironment403ApplicationJSON
+			var out operations.GetEnvironmentEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironment403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEnvironment404ApplicationJSON
+			var out operations.GetEnvironmentEnvironmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEnvironment404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -367,7 +367,7 @@ func (s *environments) GetEnvironment(ctx context.Context, request operations.Ge
 
 // GetProjectEnvironments - Get the environments available to a project
 // Gets the environments that are available for this project. An environment is available for a project if enabled in the [project configuration](https://docs.getunleash.io/reference/environments#step-1-enable-new-environments-for-your-project)
-func (s *environments) GetProjectEnvironments(ctx context.Context, request operations.GetProjectEnvironmentsRequest) (*operations.GetProjectEnvironmentsResponse, error) {
+func (s *Environments) GetProjectEnvironments(ctx context.Context, request operations.GetProjectEnvironmentsRequest) (*operations.GetProjectEnvironmentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/project/{projectId}", request, nil)
 	if err != nil {
@@ -421,36 +421,36 @@ func (s *environments) GetProjectEnvironments(ctx context.Context, request opera
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectEnvironments401ApplicationJSON
+			var out operations.GetProjectEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectEnvironments401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectEnvironments403ApplicationJSON
+			var out operations.GetProjectEnvironmentsEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectEnvironments403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetProjectEnvironments404ApplicationJSON
+			var out operations.GetProjectEnvironmentsEnvironmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetProjectEnvironments404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -461,7 +461,7 @@ func (s *environments) GetProjectEnvironments(ctx context.Context, request opera
 
 // RemoveEnvironment - Deletes an environment by name
 // Given an existing environment by name, this endpoint will attempt to delete it
-func (s *environments) RemoveEnvironment(ctx context.Context, request operations.RemoveEnvironmentRequest) (*operations.RemoveEnvironmentResponse, error) {
+func (s *Environments) RemoveEnvironment(ctx context.Context, request operations.RemoveEnvironmentRequest) (*operations.RemoveEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/{name}", request, nil)
 	if err != nil {
@@ -504,24 +504,24 @@ func (s *environments) RemoveEnvironment(ctx context.Context, request operations
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveEnvironment400ApplicationJSON
+			var out operations.RemoveEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveEnvironment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveEnvironment401ApplicationJSON
+			var out operations.RemoveEnvironmentEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -532,7 +532,7 @@ func (s *environments) RemoveEnvironment(ctx context.Context, request operations
 
 // ToggleEnvironmentOff - Toggle the environment with `name` off
 // Removes this environment from the list of available environments for projects to use
-func (s *environments) ToggleEnvironmentOff(ctx context.Context, request operations.ToggleEnvironmentOffRequest) (*operations.ToggleEnvironmentOffResponse, error) {
+func (s *Environments) ToggleEnvironmentOff(ctx context.Context, request operations.ToggleEnvironmentOffRequest) (*operations.ToggleEnvironmentOffResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/{name}/off", request, nil)
 	if err != nil {
@@ -575,36 +575,36 @@ func (s *environments) ToggleEnvironmentOff(ctx context.Context, request operati
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOff401ApplicationJSON
+			var out operations.ToggleEnvironmentOffResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOff401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOff403ApplicationJSON
+			var out operations.ToggleEnvironmentOffEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOff403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOff404ApplicationJSON
+			var out operations.ToggleEnvironmentOffEnvironmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOff404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -615,7 +615,7 @@ func (s *environments) ToggleEnvironmentOff(ctx context.Context, request operati
 
 // ToggleEnvironmentOn - Toggle the environment with `name` on
 // Makes it possible to enable this environment for a project. An environment must first be globally enabled using this endpoint before it can be enabled for a project
-func (s *environments) ToggleEnvironmentOn(ctx context.Context, request operations.ToggleEnvironmentOnRequest) (*operations.ToggleEnvironmentOnResponse, error) {
+func (s *Environments) ToggleEnvironmentOn(ctx context.Context, request operations.ToggleEnvironmentOnRequest) (*operations.ToggleEnvironmentOnResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/{name}/on", request, nil)
 	if err != nil {
@@ -658,36 +658,36 @@ func (s *environments) ToggleEnvironmentOn(ctx context.Context, request operatio
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOn401ApplicationJSON
+			var out operations.ToggleEnvironmentOnResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOn401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOn403ApplicationJSON
+			var out operations.ToggleEnvironmentOnEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOn403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ToggleEnvironmentOn404ApplicationJSON
+			var out operations.ToggleEnvironmentOnEnvironmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ToggleEnvironmentOn404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -698,7 +698,7 @@ func (s *environments) ToggleEnvironmentOn(ctx context.Context, request operatio
 
 // UpdateEnvironment - Updates an environment by name
 // Given an environment by name updates the environment with the given payload. Note that `name`, `enabled` and `protected` cannot be changed by this API
-func (s *environments) UpdateEnvironment(ctx context.Context, request operations.UpdateEnvironmentRequest) (*operations.UpdateEnvironmentResponse, error) {
+func (s *Environments) UpdateEnvironment(ctx context.Context, request operations.UpdateEnvironmentRequest) (*operations.UpdateEnvironmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/environments/update/{name}", request, nil)
 	if err != nil {
@@ -766,24 +766,24 @@ func (s *environments) UpdateEnvironment(ctx context.Context, request operations
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateEnvironment400ApplicationJSON
+			var out operations.UpdateEnvironmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateEnvironment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateEnvironment401ApplicationJSON
+			var out operations.UpdateEnvironmentEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateEnvironment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -794,7 +794,7 @@ func (s *environments) UpdateEnvironment(ctx context.Context, request operations
 
 // UpdateSortOrder - Update environment sort orders
 // Updates sort orders for the named environments. Environments not specified are unaffected.
-func (s *environments) UpdateSortOrder(ctx context.Context, request map[string]float64) (*operations.UpdateSortOrderResponse, error) {
+func (s *Environments) UpdateSortOrder(ctx context.Context, request map[string]float64) (*operations.UpdateSortOrderResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/environments/sort-order"
 
@@ -848,36 +848,36 @@ func (s *environments) UpdateSortOrder(ctx context.Context, request map[string]f
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSortOrder401ApplicationJSON
+			var out operations.UpdateSortOrderResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSortOrder401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSortOrder403ApplicationJSON
+			var out operations.UpdateSortOrderEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSortOrder403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSortOrder404ApplicationJSON
+			var out operations.UpdateSortOrderEnvironmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSortOrder404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -888,7 +888,7 @@ func (s *environments) UpdateSortOrder(ctx context.Context, request map[string]f
 
 // ValidateEnvironmentName - Validates if an environment name exists
 // Uses the name provided in the body of the request to validate if the given name exists or not
-func (s *environments) ValidateEnvironmentName(ctx context.Context, request shared.NameSchema) (*operations.ValidateEnvironmentNameResponse, error) {
+func (s *Environments) ValidateEnvironmentName(ctx context.Context, request shared.NameSchema) (*operations.ValidateEnvironmentNameResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/environments/validate"
 
@@ -942,24 +942,24 @@ func (s *environments) ValidateEnvironmentName(ctx context.Context, request shar
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateEnvironmentName400ApplicationJSON
+			var out operations.ValidateEnvironmentNameResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateEnvironmentName400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateEnvironmentName401ApplicationJSON
+			var out operations.ValidateEnvironmentNameEnvironmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateEnvironmentName401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

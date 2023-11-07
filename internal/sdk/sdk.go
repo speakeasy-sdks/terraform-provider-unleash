@@ -62,62 +62,62 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 }
 
 type SDK struct {
-	// Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
-	APITokens *apiTokens
 	// Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
-	Addons *addons
-	// Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
-	AdminUI *adminUI
+	Addons *Addons
+	// Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+	APITokens *APITokens
 	// Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).
-	Archive *archive
+	Archive *Archive
 	// Manage logins, passwords, etc.
-	Auth *auth
-	// Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
-	Client *client
-	// Endpoints related to Unleash on the Edge.
-	Edge *edge
-	// Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
-	Environments *environments
-	// Read events from this Unleash instance.
-	Events *events
-	// Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
-	Features *features
-	// API for connecting client-side (frontend) applications to Unleash.
-	FrontendAPI *frontendAPI
-	// [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
-	ImportExport *importExport
-	// Instance admin endpoints used to manage the Unleash instance itself.
-	InstanceAdmin *instanceAdmin
-	// Enable/disable the maintenance mode of Unleash.
-	Maintenance *maintenance
+	Auth *Auth
 	// Register, read, or delete metrics recorded by Unleash.
-	Metrics *metrics
-	// Endpoints related to the operational status of this Unleash instance.
-	Operational *operational
-	// Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
-	PersonalAccessTokens *personalAccessTokens
-	// Evaluate an Unleash context against your feature toggles.
-	Playground *playground
-	// Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
-	Projects *projects
-	// Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
-	PublicSignupTokens *publicSignupTokens
-	// Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
-	Segments *segments
-	// Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
-	ServiceAccounts *serviceAccounts
-	// Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
-	Strategies *strategies
-	// Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
-	Tags *tags
-	// API for information about telemetry collection
-	Telemetry *telemetry
-	// Experimental endpoints that may change or disappear at any time.
-	Unstable *unstable
-	// Manage users and passwords.
-	Users *users
+	Metrics *Metrics
+	// Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).
+	Features *Features
 	// Create, update, and delete [context fields](https://docs.getunleash.io/reference/unleash-context) that Unleash is aware of.
-	UContext *uContext
+	UContext *UContext
+	// Create, update, delete, manage [custom strategies](https://docs.getunleash.io/reference/custom-activation-strategies).
+	Strategies *Strategies
+	// Create, update, delete, enable or disable [environments](https://docs.getunleash.io/reference/environments) for this Unleash instance.
+	Environments *Environments
+	// Read events from this Unleash instance.
+	Events *Events
+	// Experimental endpoints that may change or disappear at any time.
+	Unstable *Unstable
+	// [Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.
+	ImportExport *ImportExport
+	// Configuration for the Unleash Admin UI. These endpoints should not be relied upon and can change at any point without prior notice.
+	AdminUI *AdminUI
+	// Manage users and passwords.
+	Users *Users
+	// Instance admin endpoints used to manage the Unleash instance itself.
+	InstanceAdmin *InstanceAdmin
+	// Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
+	PublicSignupTokens *PublicSignupTokens
+	// Enable/disable the maintenance mode of Unleash.
+	Maintenance *Maintenance
+	// Evaluate an Unleash context against your feature toggles.
+	Playground *Playground
+	// Create, update, and delete [Unleash projects](https://docs.getunleash.io/reference/projects).
+	Projects *Projects
+	// Create, update, and delete [tags and tag types](https://docs.getunleash.io/reference/tags).
+	Tags *Tags
+	// Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
+	Segments *Segments
+	// Endpoints for managing [Service Accounts](https://docs.getunleash.io/reference/service-accounts), which enable programmatic access to the Unleash API.
+	ServiceAccounts *ServiceAccounts
+	// API for information about telemetry collection
+	Telemetry *Telemetry
+	// Create, update, and delete [Personal access tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys#personal-access-tokens).
+	PersonalAccessTokens *PersonalAccessTokens
+	// Endpoints for [Unleash server-side clients](https://docs.getunleash.io/reference/sdks).
+	Client *Client
+	// API for connecting client-side (frontend) applications to Unleash.
+	FrontendAPI *FrontendAPI
+	// Endpoints related to Unleash on the Edge.
+	Edge *Edge
+	// Endpoints related to the operational status of this Unleash instance.
+	Operational *Operational
 
 	sdkConfiguration sdkConfiguration
 }
@@ -194,9 +194,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "5.3.3",
-			SDKVersion:        "0.9.0",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 0.9.0 2.173.0 5.3.3 terraform",
+			SDKVersion:        "0.10.0",
+			GenVersion:        "2.181.1",
+			UserAgent:         "speakeasy-sdk/go 0.10.0 2.181.1 5.3.3 terraform",
 		},
 	}
 	for _, opt := range opts {
@@ -215,61 +215,61 @@ func New(opts ...SDKOption) *SDK {
 		}
 	}
 
-	sdk.APITokens = newAPITokens(sdk.sdkConfiguration)
-
 	sdk.Addons = newAddons(sdk.sdkConfiguration)
 
-	sdk.AdminUI = newAdminUI(sdk.sdkConfiguration)
+	sdk.APITokens = newAPITokens(sdk.sdkConfiguration)
 
 	sdk.Archive = newArchive(sdk.sdkConfiguration)
 
 	sdk.Auth = newAuth(sdk.sdkConfiguration)
 
-	sdk.Client = newClient(sdk.sdkConfiguration)
+	sdk.Metrics = newMetrics(sdk.sdkConfiguration)
 
-	sdk.Edge = newEdge(sdk.sdkConfiguration)
+	sdk.Features = newFeatures(sdk.sdkConfiguration)
+
+	sdk.UContext = newUContext(sdk.sdkConfiguration)
+
+	sdk.Strategies = newStrategies(sdk.sdkConfiguration)
 
 	sdk.Environments = newEnvironments(sdk.sdkConfiguration)
 
 	sdk.Events = newEvents(sdk.sdkConfiguration)
 
-	sdk.Features = newFeatures(sdk.sdkConfiguration)
-
-	sdk.FrontendAPI = newFrontendAPI(sdk.sdkConfiguration)
+	sdk.Unstable = newUnstable(sdk.sdkConfiguration)
 
 	sdk.ImportExport = newImportExport(sdk.sdkConfiguration)
 
+	sdk.AdminUI = newAdminUI(sdk.sdkConfiguration)
+
+	sdk.Users = newUsers(sdk.sdkConfiguration)
+
 	sdk.InstanceAdmin = newInstanceAdmin(sdk.sdkConfiguration)
 
+	sdk.PublicSignupTokens = newPublicSignupTokens(sdk.sdkConfiguration)
+
 	sdk.Maintenance = newMaintenance(sdk.sdkConfiguration)
-
-	sdk.Metrics = newMetrics(sdk.sdkConfiguration)
-
-	sdk.Operational = newOperational(sdk.sdkConfiguration)
-
-	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk.sdkConfiguration)
 
 	sdk.Playground = newPlayground(sdk.sdkConfiguration)
 
 	sdk.Projects = newProjects(sdk.sdkConfiguration)
 
-	sdk.PublicSignupTokens = newPublicSignupTokens(sdk.sdkConfiguration)
+	sdk.Tags = newTags(sdk.sdkConfiguration)
 
 	sdk.Segments = newSegments(sdk.sdkConfiguration)
 
 	sdk.ServiceAccounts = newServiceAccounts(sdk.sdkConfiguration)
 
-	sdk.Strategies = newStrategies(sdk.sdkConfiguration)
-
-	sdk.Tags = newTags(sdk.sdkConfiguration)
-
 	sdk.Telemetry = newTelemetry(sdk.sdkConfiguration)
 
-	sdk.Unstable = newUnstable(sdk.sdkConfiguration)
+	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk.sdkConfiguration)
 
-	sdk.Users = newUsers(sdk.sdkConfiguration)
+	sdk.Client = newClient(sdk.sdkConfiguration)
 
-	sdk.UContext = newUContext(sdk.sdkConfiguration)
+	sdk.FrontendAPI = newFrontendAPI(sdk.sdkConfiguration)
+
+	sdk.Edge = newEdge(sdk.sdkConfiguration)
+
+	sdk.Operational = newOperational(sdk.sdkConfiguration)
 
 	return sdk
 }

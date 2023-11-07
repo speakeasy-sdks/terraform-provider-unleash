@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// CreateStrategySchemaParametersType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
-type CreateStrategySchemaParametersType string
+// CreateStrategySchemaType - The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
+type CreateStrategySchemaType string
 
 const (
-	CreateStrategySchemaParametersTypeString     CreateStrategySchemaParametersType = "string"
-	CreateStrategySchemaParametersTypePercentage CreateStrategySchemaParametersType = "percentage"
-	CreateStrategySchemaParametersTypeList       CreateStrategySchemaParametersType = "list"
-	CreateStrategySchemaParametersTypeNumber     CreateStrategySchemaParametersType = "number"
-	CreateStrategySchemaParametersTypeBoolean    CreateStrategySchemaParametersType = "boolean"
+	CreateStrategySchemaTypeString     CreateStrategySchemaType = "string"
+	CreateStrategySchemaTypePercentage CreateStrategySchemaType = "percentage"
+	CreateStrategySchemaTypeList       CreateStrategySchemaType = "list"
+	CreateStrategySchemaTypeNumber     CreateStrategySchemaType = "number"
+	CreateStrategySchemaTypeBoolean    CreateStrategySchemaType = "boolean"
 )
 
-func (e CreateStrategySchemaParametersType) ToPointer() *CreateStrategySchemaParametersType {
+func (e CreateStrategySchemaType) ToPointer() *CreateStrategySchemaType {
 	return &e
 }
 
-func (e *CreateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
+func (e *CreateStrategySchemaType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,14 +37,14 @@ func (e *CreateStrategySchemaParametersType) UnmarshalJSON(data []byte) error {
 	case "number":
 		fallthrough
 	case "boolean":
-		*e = CreateStrategySchemaParametersType(v)
+		*e = CreateStrategySchemaType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateStrategySchemaParametersType: %v", v)
+		return fmt.Errorf("invalid value for CreateStrategySchemaType: %v", v)
 	}
 }
 
-type CreateStrategySchemaParameters struct {
+type Parameters struct {
 	// A description of this strategy parameter. Use this to indicate to the users what the parameter does.
 	Description *string `json:"description,omitempty"`
 	// The name of the parameter
@@ -52,33 +52,33 @@ type CreateStrategySchemaParameters struct {
 	// Whether this parameter must be configured when using the strategy. Defaults to `false`
 	Required *bool `json:"required,omitempty"`
 	// The [type of the parameter](https://docs.getunleash.io/reference/custom-activation-strategies#parameter-types)
-	Type CreateStrategySchemaParametersType `json:"type"`
+	Type CreateStrategySchemaType `json:"type"`
 }
 
-func (o *CreateStrategySchemaParameters) GetDescription() *string {
+func (o *Parameters) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CreateStrategySchemaParameters) GetName() string {
+func (o *Parameters) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *CreateStrategySchemaParameters) GetRequired() *bool {
+func (o *Parameters) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *CreateStrategySchemaParameters) GetType() CreateStrategySchemaParametersType {
+func (o *Parameters) GetType() CreateStrategySchemaType {
 	if o == nil {
-		return CreateStrategySchemaParametersType("")
+		return CreateStrategySchemaType("")
 	}
 	return o.Type
 }
@@ -90,7 +90,7 @@ type CreateStrategySchema struct {
 	// The name of the strategy type. Must be unique.
 	Name string `json:"name"`
 	// The parameter list lets you pass arguments to your custom activation strategy. These will be made available to your custom strategy implementation.
-	Parameters []CreateStrategySchemaParameters `json:"parameters"`
+	Parameters []Parameters `json:"parameters"`
 }
 
 func (o *CreateStrategySchema) GetDescription() *string {
@@ -107,9 +107,9 @@ func (o *CreateStrategySchema) GetName() string {
 	return o.Name
 }
 
-func (o *CreateStrategySchema) GetParameters() []CreateStrategySchemaParameters {
+func (o *CreateStrategySchema) GetParameters() []Parameters {
 	if o == nil {
-		return []CreateStrategySchemaParameters{}
+		return []Parameters{}
 	}
 	return o.Parameters
 }

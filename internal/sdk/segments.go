@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// segments - Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
-type segments struct {
+// Segments - Create, update, delete, and manage [segments](https://docs.getunleash.io/reference/segments).
+type Segments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSegments(sdkConfig sdkConfiguration) *segments {
-	return &segments{
+func newSegments(sdkConfig sdkConfiguration) *Segments {
+	return &Segments{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateSegment - Create a new segment
 // Creates a new segment using the payload provided
-func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegmentSchema) (*operations.CreateSegmentResponse, error) {
+func (s *Segments) CreateSegment(ctx context.Context, request shared.UpsertSegmentSchema) (*operations.CreateSegmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/segments"
 
@@ -95,60 +95,60 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateSegment400ApplicationJSON
+			var out operations.CreateSegmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateSegment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateSegment401ApplicationJSON
+			var out operations.CreateSegmentSegmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateSegment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateSegment403ApplicationJSON
+			var out operations.CreateSegmentSegmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateSegment403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateSegment409ApplicationJSON
+			var out operations.CreateSegmentSegmentsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateSegment409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateSegment415ApplicationJSON
+			var out operations.CreateSegmentSegmentsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateSegment415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -159,7 +159,7 @@ func (s *segments) CreateSegment(ctx context.Context, request shared.UpsertSegme
 
 // GetSegment - Get a segment
 // Retrieves a segment based on its ID.
-func (s *segments) GetSegment(ctx context.Context, request operations.GetSegmentRequest) (*operations.GetSegmentResponse, error) {
+func (s *Segments) GetSegment(ctx context.Context, request operations.GetSegmentRequest) (*operations.GetSegmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/segments/{id}", request, nil)
 	if err != nil {
@@ -213,12 +213,12 @@ func (s *segments) GetSegment(ctx context.Context, request operations.GetSegment
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSegment404ApplicationJSON
+			var out operations.GetSegmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSegment404ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -229,7 +229,7 @@ func (s *segments) GetSegment(ctx context.Context, request operations.GetSegment
 
 // GetSegments - Get all segments
 // Retrieves all segments that exist in this Unleash instance.
-func (s *segments) GetSegments(ctx context.Context) (*operations.GetSegmentsResponse, error) {
+func (s *Segments) GetSegments(ctx context.Context) (*operations.GetSegmentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/segments"
 
@@ -284,7 +284,7 @@ func (s *segments) GetSegments(ctx context.Context) (*operations.GetSegmentsResp
 
 // GetSegmentsByStrategyID - Get strategy segments
 // Retrieve all segments that are referenced by the specified strategy. Returns an empty list of segments if the strategy ID doesn't exist.
-func (s *segments) GetSegmentsByStrategyID(ctx context.Context, request operations.GetSegmentsByStrategyIDRequest) (*operations.GetSegmentsByStrategyIDResponse, error) {
+func (s *Segments) GetSegmentsByStrategyID(ctx context.Context, request operations.GetSegmentsByStrategyIDRequest) (*operations.GetSegmentsByStrategyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/segments/strategies/{strategyId}", request, nil)
 	if err != nil {
@@ -342,7 +342,7 @@ func (s *segments) GetSegmentsByStrategyID(ctx context.Context, request operatio
 
 // GetStrategiesBySegmentID - Get strategies that reference segment
 // Retrieve all strategies that reference the specified segment.
-func (s *segments) GetStrategiesBySegmentID(ctx context.Context, request operations.GetStrategiesBySegmentIDRequest) (*operations.GetStrategiesBySegmentIDResponse, error) {
+func (s *Segments) GetStrategiesBySegmentID(ctx context.Context, request operations.GetStrategiesBySegmentIDRequest) (*operations.GetStrategiesBySegmentIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/segments/{id}/strategies", request, nil)
 	if err != nil {
@@ -400,7 +400,7 @@ func (s *segments) GetStrategiesBySegmentID(ctx context.Context, request operati
 
 // RemoveSegment - Deletes a segment by id
 // Deletes a segment by its id, if not found returns a 409 error
-func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveSegmentRequest) (*operations.RemoveSegmentResponse, error) {
+func (s *Segments) RemoveSegment(ctx context.Context, request operations.RemoveSegmentRequest) (*operations.RemoveSegmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/segments/{id}", request, nil)
 	if err != nil {
@@ -443,36 +443,36 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveSegment401ApplicationJSON
+			var out operations.RemoveSegmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveSegment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveSegment403ApplicationJSON
+			var out operations.RemoveSegmentSegmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveSegment403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.RemoveSegment409ApplicationJSON
+			var out operations.RemoveSegmentSegmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.RemoveSegment409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -483,7 +483,7 @@ func (s *segments) RemoveSegment(ctx context.Context, request operations.RemoveS
 
 // UpdateSegment - Update segment by id
 // Updates the content of the segment with the provided payload. Any fields not specified will be left untouched.
-func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateSegmentRequest) (*operations.UpdateSegmentResponse, error) {
+func (s *Segments) UpdateSegment(ctx context.Context, request operations.UpdateSegmentRequest) (*operations.UpdateSegmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/segments/{id}", request, nil)
 	if err != nil {
@@ -526,60 +526,60 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSegment400ApplicationJSON
+			var out operations.UpdateSegmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSegment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSegment401ApplicationJSON
+			var out operations.UpdateSegmentSegmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSegment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSegment403ApplicationJSON
+			var out operations.UpdateSegmentSegmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSegment403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSegment409ApplicationJSON
+			var out operations.UpdateSegmentSegmentsResponse409ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSegment409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateSegment415ApplicationJSON
+			var out operations.UpdateSegmentSegmentsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateSegment415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -590,7 +590,7 @@ func (s *segments) UpdateSegment(ctx context.Context, request operations.UpdateS
 
 // ValidateSegment - Validates if a segment name exists
 // Uses the name provided in the body of the request to validate if the given name exists or not
-func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchema) (*operations.ValidateSegmentResponse, error) {
+func (s *Segments) ValidateSegment(ctx context.Context, request shared.NameSchema) (*operations.ValidateSegmentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/segments/validate"
 
@@ -644,48 +644,48 @@ func (s *segments) ValidateSegment(ctx context.Context, request shared.NameSchem
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateSegment400ApplicationJSON
+			var out operations.ValidateSegmentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateSegment400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateSegment401ApplicationJSON
+			var out operations.ValidateSegmentSegmentsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateSegment401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateSegment409ApplicationJSON
+			var out operations.ValidateSegmentSegmentsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateSegment409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidateSegment415ApplicationJSON
+			var out operations.ValidateSegmentSegmentsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidateSegment415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

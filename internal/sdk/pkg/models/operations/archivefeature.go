@@ -25,8 +25,8 @@ func (o *ArchiveFeatureRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// ArchiveFeature404ApplicationJSON - The requested resource was not found.
-type ArchiveFeature404ApplicationJSON struct {
+// ArchiveFeatureFeaturesResponseResponseBody - The requested resource was not found.
+type ArchiveFeatureFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -35,29 +35,29 @@ type ArchiveFeature404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ArchiveFeature404ApplicationJSON) GetID() *string {
+func (o *ArchiveFeatureFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ArchiveFeature404ApplicationJSON) GetMessage() *string {
+func (o *ArchiveFeatureFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ArchiveFeature404ApplicationJSON) GetName() *string {
+func (o *ArchiveFeatureFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ArchiveFeature403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ArchiveFeature403ApplicationJSON struct {
+// ArchiveFeatureFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ArchiveFeatureFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -66,29 +66,29 @@ type ArchiveFeature403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ArchiveFeature403ApplicationJSON) GetID() *string {
+func (o *ArchiveFeatureFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ArchiveFeature403ApplicationJSON) GetMessage() *string {
+func (o *ArchiveFeatureFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ArchiveFeature403ApplicationJSON) GetName() *string {
+func (o *ArchiveFeatureFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ArchiveFeature401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ArchiveFeature401ApplicationJSON struct {
+// ArchiveFeatureResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ArchiveFeatureResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -97,21 +97,21 @@ type ArchiveFeature401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ArchiveFeature401ApplicationJSON) GetID() *string {
+func (o *ArchiveFeatureResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ArchiveFeature401ApplicationJSON) GetMessage() *string {
+func (o *ArchiveFeatureResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ArchiveFeature401ApplicationJSON) GetName() *string {
+func (o *ArchiveFeatureResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -119,18 +119,39 @@ func (o *ArchiveFeature401ApplicationJSON) GetName() *string {
 }
 
 type ArchiveFeatureResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ArchiveFeatureResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ArchiveFeatureFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *ArchiveFeatureFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ArchiveFeature401ApplicationJSONObject *ArchiveFeature401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ArchiveFeature403ApplicationJSONObject *ArchiveFeature403ApplicationJSON
-	// The requested resource was not found.
-	ArchiveFeature404ApplicationJSONObject *ArchiveFeature404ApplicationJSON
+}
+
+func (o *ArchiveFeatureResponse) GetFourHundredAndOneApplicationJSONObject() *ArchiveFeatureResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ArchiveFeatureResponse) GetFourHundredAndThreeApplicationJSONObject() *ArchiveFeatureFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *ArchiveFeatureResponse) GetFourHundredAndFourApplicationJSONObject() *ArchiveFeatureFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *ArchiveFeatureResponse) GetContentType() string {
@@ -152,25 +173,4 @@ func (o *ArchiveFeatureResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ArchiveFeatureResponse) GetArchiveFeature401ApplicationJSONObject() *ArchiveFeature401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ArchiveFeature401ApplicationJSONObject
-}
-
-func (o *ArchiveFeatureResponse) GetArchiveFeature403ApplicationJSONObject() *ArchiveFeature403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ArchiveFeature403ApplicationJSONObject
-}
-
-func (o *ArchiveFeatureResponse) GetArchiveFeature404ApplicationJSONObject() *ArchiveFeature404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ArchiveFeature404ApplicationJSONObject
 }

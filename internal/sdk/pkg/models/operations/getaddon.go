@@ -18,8 +18,8 @@ func (o *GetAddonRequest) GetID() string {
 	return o.ID
 }
 
-// GetAddon401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAddon401ApplicationJSON struct {
+// GetAddonResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAddonResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,21 +28,21 @@ type GetAddon401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAddon401ApplicationJSON) GetID() *string {
+func (o *GetAddonResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAddon401ApplicationJSON) GetMessage() *string {
+func (o *GetAddonResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAddon401ApplicationJSON) GetName() *string {
+func (o *GetAddonResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -59,7 +59,7 @@ type GetAddonResponse struct {
 	// addonSchema
 	AddonSchema *shared.AddonSchema
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAddon401ApplicationJSONObject *GetAddon401ApplicationJSON
+	Object *GetAddonResponseBody
 }
 
 func (o *GetAddonResponse) GetContentType() string {
@@ -90,9 +90,9 @@ func (o *GetAddonResponse) GetAddonSchema() *shared.AddonSchema {
 	return o.AddonSchema
 }
 
-func (o *GetAddonResponse) GetGetAddon401ApplicationJSONObject() *GetAddon401ApplicationJSON {
+func (o *GetAddonResponse) GetObject() *GetAddonResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAddon401ApplicationJSONObject
+	return o.Object
 }

@@ -27,8 +27,8 @@ func (o *UpdateFeedbackRequest) GetID() string {
 	return o.ID
 }
 
-// UpdateFeedback415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateFeedback415ApplicationJSON struct {
+// UpdateFeedbackAdminUIResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateFeedbackAdminUIResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateFeedback415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeedback415ApplicationJSON) GetID() *string {
+func (o *UpdateFeedbackAdminUIResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeedback415ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeedbackAdminUIResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeedback415ApplicationJSON) GetName() *string {
+func (o *UpdateFeedbackAdminUIResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeedback401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateFeedback401ApplicationJSON struct {
+// UpdateFeedbackAdminUIResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateFeedbackAdminUIResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdateFeedback401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeedback401ApplicationJSON) GetID() *string {
+func (o *UpdateFeedbackAdminUIResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeedback401ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeedbackAdminUIResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeedback401ApplicationJSON) GetName() *string {
+func (o *UpdateFeedbackAdminUIResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateFeedback400ApplicationJSON - The request data does not match what we expect.
-type UpdateFeedback400ApplicationJSON struct {
+// UpdateFeedbackResponseBody - The request data does not match what we expect.
+type UpdateFeedbackResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type UpdateFeedback400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateFeedback400ApplicationJSON) GetID() *string {
+func (o *UpdateFeedbackResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateFeedback400ApplicationJSON) GetMessage() *string {
+func (o *UpdateFeedbackResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateFeedback400ApplicationJSON) GetName() *string {
+func (o *UpdateFeedbackResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,6 +121,12 @@ func (o *UpdateFeedback400ApplicationJSON) GetName() *string {
 }
 
 type UpdateFeedbackResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *UpdateFeedbackResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateFeedbackAdminUIResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateFeedbackAdminUIResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -129,12 +135,27 @@ type UpdateFeedbackResponse struct {
 	RawResponse *http.Response
 	// feedbackResponseSchema
 	FeedbackResponseSchema *shared.FeedbackResponseSchema
-	// The request data does not match what we expect.
-	UpdateFeedback400ApplicationJSONObject *UpdateFeedback400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateFeedback401ApplicationJSONObject *UpdateFeedback401ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateFeedback415ApplicationJSONObject *UpdateFeedback415ApplicationJSON
+}
+
+func (o *UpdateFeedbackResponse) GetFourHundredApplicationJSONObject() *UpdateFeedbackResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *UpdateFeedbackResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateFeedbackAdminUIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateFeedbackResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateFeedbackAdminUIResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateFeedbackResponse) GetContentType() string {
@@ -163,25 +184,4 @@ func (o *UpdateFeedbackResponse) GetFeedbackResponseSchema() *shared.FeedbackRes
 		return nil
 	}
 	return o.FeedbackResponseSchema
-}
-
-func (o *UpdateFeedbackResponse) GetUpdateFeedback400ApplicationJSONObject() *UpdateFeedback400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeedback400ApplicationJSONObject
-}
-
-func (o *UpdateFeedbackResponse) GetUpdateFeedback401ApplicationJSONObject() *UpdateFeedback401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeedback401ApplicationJSONObject
-}
-
-func (o *UpdateFeedbackResponse) GetUpdateFeedback415ApplicationJSONObject() *UpdateFeedback415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateFeedback415ApplicationJSONObject
 }

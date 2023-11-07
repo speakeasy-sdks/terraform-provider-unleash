@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// ExportFeatures404ApplicationJSON - The requested resource was not found.
-type ExportFeatures404ApplicationJSON struct {
+// ExportFeaturesResponseBody - The requested resource was not found.
+type ExportFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type ExportFeatures404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ExportFeatures404ApplicationJSON) GetID() *string {
+func (o *ExportFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ExportFeatures404ApplicationJSON) GetMessage() *string {
+func (o *ExportFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ExportFeatures404ApplicationJSON) GetName() *string {
+func (o *ExportFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,10 +45,10 @@ type ExportFeaturesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The requested resource was not found.
-	ExportFeatures404ApplicationJSONObject *ExportFeatures404ApplicationJSON
 	// exportResultSchema
 	ExportResultSchema *shared.ExportResultSchema
+	// The requested resource was not found.
+	Object *ExportFeaturesResponseBody
 }
 
 func (o *ExportFeaturesResponse) GetContentType() string {
@@ -72,16 +72,16 @@ func (o *ExportFeaturesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ExportFeaturesResponse) GetExportFeatures404ApplicationJSONObject() *ExportFeatures404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ExportFeatures404ApplicationJSONObject
-}
-
 func (o *ExportFeaturesResponse) GetExportResultSchema() *shared.ExportResultSchema {
 	if o == nil {
 		return nil
 	}
 	return o.ExportResultSchema
+}
+
+func (o *ExportFeaturesResponse) GetObject() *ExportFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

@@ -34,8 +34,8 @@ func (o *GetFeatureEnvironmentRequest) GetProjectID() string {
 	return o.ProjectID
 }
 
-// GetFeatureEnvironment404ApplicationJSON - The requested resource was not found.
-type GetFeatureEnvironment404ApplicationJSON struct {
+// GetFeatureEnvironmentFeaturesResponseResponseBody - The requested resource was not found.
+type GetFeatureEnvironmentFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -44,29 +44,29 @@ type GetFeatureEnvironment404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureEnvironment404ApplicationJSON) GetID() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureEnvironment404ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureEnvironment404ApplicationJSON) GetName() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureEnvironment403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetFeatureEnvironment403ApplicationJSON struct {
+// GetFeatureEnvironmentFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetFeatureEnvironmentFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -75,29 +75,29 @@ type GetFeatureEnvironment403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureEnvironment403ApplicationJSON) GetID() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureEnvironment403ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureEnvironment403ApplicationJSON) GetName() *string {
+func (o *GetFeatureEnvironmentFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetFeatureEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetFeatureEnvironment401ApplicationJSON struct {
+// GetFeatureEnvironmentResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetFeatureEnvironmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -106,21 +106,21 @@ type GetFeatureEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetFeatureEnvironment401ApplicationJSON) GetID() *string {
+func (o *GetFeatureEnvironmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetFeatureEnvironment401ApplicationJSON) GetMessage() *string {
+func (o *GetFeatureEnvironmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetFeatureEnvironment401ApplicationJSON) GetName() *string {
+func (o *GetFeatureEnvironmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -128,6 +128,12 @@ func (o *GetFeatureEnvironment401ApplicationJSON) GetName() *string {
 }
 
 type GetFeatureEnvironmentResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetFeatureEnvironmentResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetFeatureEnvironmentFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetFeatureEnvironmentFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -136,12 +142,27 @@ type GetFeatureEnvironmentResponse struct {
 	RawResponse *http.Response
 	// featureEnvironmentSchema
 	FeatureEnvironmentSchema *shared.FeatureEnvironmentSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetFeatureEnvironment401ApplicationJSONObject *GetFeatureEnvironment401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetFeatureEnvironment403ApplicationJSONObject *GetFeatureEnvironment403ApplicationJSON
-	// The requested resource was not found.
-	GetFeatureEnvironment404ApplicationJSONObject *GetFeatureEnvironment404ApplicationJSON
+}
+
+func (o *GetFeatureEnvironmentResponse) GetFourHundredAndOneApplicationJSONObject() *GetFeatureEnvironmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetFeatureEnvironmentResponse) GetFourHundredAndThreeApplicationJSONObject() *GetFeatureEnvironmentFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetFeatureEnvironmentResponse) GetFourHundredAndFourApplicationJSONObject() *GetFeatureEnvironmentFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetFeatureEnvironmentResponse) GetContentType() string {
@@ -170,25 +191,4 @@ func (o *GetFeatureEnvironmentResponse) GetFeatureEnvironmentSchema() *shared.Fe
 		return nil
 	}
 	return o.FeatureEnvironmentSchema
-}
-
-func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment401ApplicationJSONObject() *GetFeatureEnvironment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureEnvironment401ApplicationJSONObject
-}
-
-func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment403ApplicationJSONObject() *GetFeatureEnvironment403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureEnvironment403ApplicationJSONObject
-}
-
-func (o *GetFeatureEnvironmentResponse) GetGetFeatureEnvironment404ApplicationJSONObject() *GetFeatureEnvironment404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetFeatureEnvironment404ApplicationJSONObject
 }

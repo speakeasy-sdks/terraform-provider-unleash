@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// UpdateSortOrder404ApplicationJSON - The requested resource was not found.
-type UpdateSortOrder404ApplicationJSON struct {
+// UpdateSortOrderEnvironmentsResponseResponseBody - The requested resource was not found.
+type UpdateSortOrderEnvironmentsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type UpdateSortOrder404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSortOrder404ApplicationJSON) GetID() *string {
+func (o *UpdateSortOrderEnvironmentsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSortOrder404ApplicationJSON) GetMessage() *string {
+func (o *UpdateSortOrderEnvironmentsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSortOrder404ApplicationJSON) GetName() *string {
+func (o *UpdateSortOrderEnvironmentsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSortOrder403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateSortOrder403ApplicationJSON struct {
+// UpdateSortOrderEnvironmentsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateSortOrderEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type UpdateSortOrder403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSortOrder403ApplicationJSON) GetID() *string {
+func (o *UpdateSortOrderEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSortOrder403ApplicationJSON) GetMessage() *string {
+func (o *UpdateSortOrderEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSortOrder403ApplicationJSON) GetName() *string {
+func (o *UpdateSortOrderEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateSortOrder401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateSortOrder401ApplicationJSON struct {
+// UpdateSortOrderResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateSortOrderResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type UpdateSortOrder401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateSortOrder401ApplicationJSON) GetID() *string {
+func (o *UpdateSortOrderResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateSortOrder401ApplicationJSON) GetMessage() *string {
+func (o *UpdateSortOrderResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateSortOrder401ApplicationJSON) GetName() *string {
+func (o *UpdateSortOrderResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *UpdateSortOrder401ApplicationJSON) GetName() *string {
 }
 
 type UpdateSortOrderResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateSortOrderResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateSortOrderEnvironmentsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *UpdateSortOrderEnvironmentsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateSortOrder401ApplicationJSONObject *UpdateSortOrder401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateSortOrder403ApplicationJSONObject *UpdateSortOrder403ApplicationJSON
-	// The requested resource was not found.
-	UpdateSortOrder404ApplicationJSONObject *UpdateSortOrder404ApplicationJSON
+}
+
+func (o *UpdateSortOrderResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateSortOrderResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateSortOrderResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateSortOrderEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateSortOrderResponse) GetFourHundredAndFourApplicationJSONObject() *UpdateSortOrderEnvironmentsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *UpdateSortOrderResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *UpdateSortOrderResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateSortOrderResponse) GetUpdateSortOrder401ApplicationJSONObject() *UpdateSortOrder401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSortOrder401ApplicationJSONObject
-}
-
-func (o *UpdateSortOrderResponse) GetUpdateSortOrder403ApplicationJSONObject() *UpdateSortOrder403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSortOrder403ApplicationJSONObject
-}
-
-func (o *UpdateSortOrderResponse) GetUpdateSortOrder404ApplicationJSONObject() *UpdateSortOrder404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateSortOrder404ApplicationJSONObject
 }

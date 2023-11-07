@@ -33,8 +33,8 @@ func (o *RemoveTagRequest) GetValue() string {
 	return o.Value
 }
 
-// RemoveTag404ApplicationJSON - The requested resource was not found.
-type RemoveTag404ApplicationJSON struct {
+// RemoveTagFeaturesResponseResponseBody - The requested resource was not found.
+type RemoveTagFeaturesResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -43,29 +43,29 @@ type RemoveTag404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveTag404ApplicationJSON) GetID() *string {
+func (o *RemoveTagFeaturesResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveTag404ApplicationJSON) GetMessage() *string {
+func (o *RemoveTagFeaturesResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveTag404ApplicationJSON) GetName() *string {
+func (o *RemoveTagFeaturesResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveTag403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type RemoveTag403ApplicationJSON struct {
+// RemoveTagFeaturesResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type RemoveTagFeaturesResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -74,29 +74,29 @@ type RemoveTag403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveTag403ApplicationJSON) GetID() *string {
+func (o *RemoveTagFeaturesResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveTag403ApplicationJSON) GetMessage() *string {
+func (o *RemoveTagFeaturesResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveTag403ApplicationJSON) GetName() *string {
+func (o *RemoveTagFeaturesResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveTag401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RemoveTag401ApplicationJSON struct {
+// RemoveTagResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveTagResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -105,21 +105,21 @@ type RemoveTag401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveTag401ApplicationJSON) GetID() *string {
+func (o *RemoveTagResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveTag401ApplicationJSON) GetMessage() *string {
+func (o *RemoveTagResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveTag401ApplicationJSON) GetName() *string {
+func (o *RemoveTagResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -127,18 +127,39 @@ func (o *RemoveTag401ApplicationJSON) GetName() *string {
 }
 
 type RemoveTagResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RemoveTagResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *RemoveTagFeaturesResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *RemoveTagFeaturesResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RemoveTag401ApplicationJSONObject *RemoveTag401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	RemoveTag403ApplicationJSONObject *RemoveTag403ApplicationJSON
-	// The requested resource was not found.
-	RemoveTag404ApplicationJSONObject *RemoveTag404ApplicationJSON
+}
+
+func (o *RemoveTagResponse) GetFourHundredAndOneApplicationJSONObject() *RemoveTagResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *RemoveTagResponse) GetFourHundredAndThreeApplicationJSONObject() *RemoveTagFeaturesResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *RemoveTagResponse) GetFourHundredAndFourApplicationJSONObject() *RemoveTagFeaturesResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *RemoveTagResponse) GetContentType() string {
@@ -160,25 +181,4 @@ func (o *RemoveTagResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveTagResponse) GetRemoveTag401ApplicationJSONObject() *RemoveTag401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveTag401ApplicationJSONObject
-}
-
-func (o *RemoveTagResponse) GetRemoveTag403ApplicationJSONObject() *RemoveTag403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveTag403ApplicationJSONObject
-}
-
-func (o *RemoveTagResponse) GetRemoveTag404ApplicationJSONObject() *RemoveTag404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveTag404ApplicationJSONObject
 }

@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateUserPassword415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateUserPassword415ApplicationJSON struct {
+// ValidateUserPasswordUsersResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateUserPasswordUsersResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidateUserPassword415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateUserPassword415ApplicationJSON) GetID() *string {
+func (o *ValidateUserPasswordUsersResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateUserPassword415ApplicationJSON) GetMessage() *string {
+func (o *ValidateUserPasswordUsersResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateUserPassword415ApplicationJSON) GetName() *string {
+func (o *ValidateUserPasswordUsersResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateUserPassword401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateUserPassword401ApplicationJSON struct {
+// ValidateUserPasswordUsersResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateUserPasswordUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ValidateUserPassword401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateUserPassword401ApplicationJSON) GetID() *string {
+func (o *ValidateUserPasswordUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateUserPassword401ApplicationJSON) GetMessage() *string {
+func (o *ValidateUserPasswordUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateUserPassword401ApplicationJSON) GetName() *string {
+func (o *ValidateUserPasswordUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateUserPassword400ApplicationJSON - The request data does not match what we expect.
-type ValidateUserPassword400ApplicationJSON struct {
+// ValidateUserPasswordResponseBody - The request data does not match what we expect.
+type ValidateUserPasswordResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type ValidateUserPassword400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateUserPassword400ApplicationJSON) GetID() *string {
+func (o *ValidateUserPasswordResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateUserPassword400ApplicationJSON) GetMessage() *string {
+func (o *ValidateUserPasswordResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateUserPassword400ApplicationJSON) GetName() *string {
+func (o *ValidateUserPasswordResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *ValidateUserPassword400ApplicationJSON) GetName() *string {
 }
 
 type ValidateUserPasswordResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateUserPasswordResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateUserPasswordUsersResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateUserPasswordUsersResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidateUserPassword400ApplicationJSONObject *ValidateUserPassword400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateUserPassword401ApplicationJSONObject *ValidateUserPassword401ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateUserPassword415ApplicationJSONObject *ValidateUserPassword415ApplicationJSON
+}
+
+func (o *ValidateUserPasswordResponse) GetFourHundredApplicationJSONObject() *ValidateUserPasswordResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateUserPasswordResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateUserPasswordUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateUserPasswordResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateUserPasswordUsersResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateUserPasswordResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *ValidateUserPasswordResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidateUserPasswordResponse) GetValidateUserPassword400ApplicationJSONObject() *ValidateUserPassword400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateUserPassword400ApplicationJSONObject
-}
-
-func (o *ValidateUserPasswordResponse) GetValidateUserPassword401ApplicationJSONObject() *ValidateUserPassword401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateUserPassword401ApplicationJSONObject
-}
-
-func (o *ValidateUserPasswordResponse) GetValidateUserPassword415ApplicationJSONObject() *ValidateUserPassword415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateUserPassword415ApplicationJSONObject
 }

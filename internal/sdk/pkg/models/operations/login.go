@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// Login401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type Login401ApplicationJSON struct {
+// LoginResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type LoginResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,21 +17,21 @@ type Login401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *Login401ApplicationJSON) GetID() *string {
+func (o *LoginResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Login401ApplicationJSON) GetMessage() *string {
+func (o *LoginResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *Login401ApplicationJSON) GetName() *string {
+func (o *LoginResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ type LoginResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	Login401ApplicationJSONObject *Login401ApplicationJSON
+	Object *LoginResponseBody
 	// userSchema
 	UserSchema *shared.UserSchema
 }
@@ -72,11 +72,11 @@ func (o *LoginResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *LoginResponse) GetLogin401ApplicationJSONObject() *Login401ApplicationJSON {
+func (o *LoginResponse) GetObject() *LoginResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Login401ApplicationJSONObject
+	return o.Object
 }
 
 func (o *LoginResponse) GetUserSchema() *shared.UserSchema {

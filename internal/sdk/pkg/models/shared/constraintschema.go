@@ -8,32 +8,32 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// ConstraintSchemaOperator - The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
-type ConstraintSchemaOperator string
+// Operator - The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
+type Operator string
 
 const (
-	ConstraintSchemaOperatorNotIn         ConstraintSchemaOperator = "NOT_IN"
-	ConstraintSchemaOperatorIn            ConstraintSchemaOperator = "IN"
-	ConstraintSchemaOperatorStrEndsWith   ConstraintSchemaOperator = "STR_ENDS_WITH"
-	ConstraintSchemaOperatorStrStartsWith ConstraintSchemaOperator = "STR_STARTS_WITH"
-	ConstraintSchemaOperatorStrContains   ConstraintSchemaOperator = "STR_CONTAINS"
-	ConstraintSchemaOperatorNumEq         ConstraintSchemaOperator = "NUM_EQ"
-	ConstraintSchemaOperatorNumGt         ConstraintSchemaOperator = "NUM_GT"
-	ConstraintSchemaOperatorNumGte        ConstraintSchemaOperator = "NUM_GTE"
-	ConstraintSchemaOperatorNumLt         ConstraintSchemaOperator = "NUM_LT"
-	ConstraintSchemaOperatorNumLte        ConstraintSchemaOperator = "NUM_LTE"
-	ConstraintSchemaOperatorDateAfter     ConstraintSchemaOperator = "DATE_AFTER"
-	ConstraintSchemaOperatorDateBefore    ConstraintSchemaOperator = "DATE_BEFORE"
-	ConstraintSchemaOperatorSemverEq      ConstraintSchemaOperator = "SEMVER_EQ"
-	ConstraintSchemaOperatorSemverGt      ConstraintSchemaOperator = "SEMVER_GT"
-	ConstraintSchemaOperatorSemverLt      ConstraintSchemaOperator = "SEMVER_LT"
+	OperatorNotIn         Operator = "NOT_IN"
+	OperatorIn            Operator = "IN"
+	OperatorStrEndsWith   Operator = "STR_ENDS_WITH"
+	OperatorStrStartsWith Operator = "STR_STARTS_WITH"
+	OperatorStrContains   Operator = "STR_CONTAINS"
+	OperatorNumEq         Operator = "NUM_EQ"
+	OperatorNumGt         Operator = "NUM_GT"
+	OperatorNumGte        Operator = "NUM_GTE"
+	OperatorNumLt         Operator = "NUM_LT"
+	OperatorNumLte        Operator = "NUM_LTE"
+	OperatorDateAfter     Operator = "DATE_AFTER"
+	OperatorDateBefore    Operator = "DATE_BEFORE"
+	OperatorSemverEq      Operator = "SEMVER_EQ"
+	OperatorSemverGt      Operator = "SEMVER_GT"
+	OperatorSemverLt      Operator = "SEMVER_LT"
 )
 
-func (e ConstraintSchemaOperator) ToPointer() *ConstraintSchemaOperator {
+func (e Operator) ToPointer() *Operator {
 	return &e
 }
 
-func (e *ConstraintSchemaOperator) UnmarshalJSON(data []byte) error {
+func (e *Operator) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -68,10 +68,10 @@ func (e *ConstraintSchemaOperator) UnmarshalJSON(data []byte) error {
 	case "SEMVER_GT":
 		fallthrough
 	case "SEMVER_LT":
-		*e = ConstraintSchemaOperator(v)
+		*e = Operator(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ConstraintSchemaOperator: %v", v)
+		return fmt.Errorf("invalid value for Operator: %v", v)
 	}
 }
 
@@ -84,7 +84,7 @@ type ConstraintSchema struct {
 	// Whether the result should be negated or not. If `true`, will turn a `true` result into a `false` result and vice versa.
 	Inverted *bool `default:"false" json:"inverted"`
 	// The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/reference/strategy-constraints#strategy-constraint-operators).
-	Operator ConstraintSchemaOperator `json:"operator"`
+	Operator Operator `json:"operator"`
 	// The context value that should be used for constraint evaluation. Use this property instead of `values` for properties that only accept single values.
 	Value *string `json:"value,omitempty"`
 	// The context values that should be used for constraint evaluation. Use this property instead of `value` for properties that accept multiple values.
@@ -123,9 +123,9 @@ func (o *ConstraintSchema) GetInverted() *bool {
 	return o.Inverted
 }
 
-func (o *ConstraintSchema) GetOperator() ConstraintSchemaOperator {
+func (o *ConstraintSchema) GetOperator() Operator {
 	if o == nil {
-		return ConstraintSchemaOperator("")
+		return Operator("")
 	}
 	return o.Operator
 }

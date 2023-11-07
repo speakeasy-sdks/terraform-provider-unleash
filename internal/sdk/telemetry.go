@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// telemetry - API for information about telemetry collection
-type telemetry struct {
+// Telemetry - API for information about telemetry collection
+type Telemetry struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTelemetry(sdkConfig sdkConfiguration) *telemetry {
-	return &telemetry{
+func newTelemetry(sdkConfig sdkConfiguration) *Telemetry {
+	return &Telemetry{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetTelemetrySettings - Get telemetry settings
 // Provides the configured settings for [telemetry information collection](https://docs.getunleash.io/topics/data-collection)
-func (s *telemetry) GetTelemetrySettings(ctx context.Context) (*operations.GetTelemetrySettingsResponse, error) {
+func (s *Telemetry) GetTelemetrySettings(ctx context.Context) (*operations.GetTelemetrySettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/telemetry/settings"
 

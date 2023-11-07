@@ -18,8 +18,8 @@ func (o *GetRawFeatureMetricsRequest) GetName() string {
 	return o.Name
 }
 
-// GetRawFeatureMetrics404ApplicationJSON - The requested resource was not found.
-type GetRawFeatureMetrics404ApplicationJSON struct {
+// GetRawFeatureMetricsMetricsResponseResponseBody - The requested resource was not found.
+type GetRawFeatureMetricsMetricsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -28,29 +28,29 @@ type GetRawFeatureMetrics404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetRawFeatureMetrics404ApplicationJSON) GetID() *string {
+func (o *GetRawFeatureMetricsMetricsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetRawFeatureMetrics404ApplicationJSON) GetMessage() *string {
+func (o *GetRawFeatureMetricsMetricsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetRawFeatureMetrics404ApplicationJSON) GetName() *string {
+func (o *GetRawFeatureMetricsMetricsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetRawFeatureMetrics403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetRawFeatureMetrics403ApplicationJSON struct {
+// GetRawFeatureMetricsMetricsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetRawFeatureMetricsMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -59,29 +59,29 @@ type GetRawFeatureMetrics403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetRawFeatureMetrics403ApplicationJSON) GetID() *string {
+func (o *GetRawFeatureMetricsMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetRawFeatureMetrics403ApplicationJSON) GetMessage() *string {
+func (o *GetRawFeatureMetricsMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetRawFeatureMetrics403ApplicationJSON) GetName() *string {
+func (o *GetRawFeatureMetricsMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetRawFeatureMetrics401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetRawFeatureMetrics401ApplicationJSON struct {
+// GetRawFeatureMetricsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetRawFeatureMetricsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -90,21 +90,21 @@ type GetRawFeatureMetrics401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetRawFeatureMetrics401ApplicationJSON) GetID() *string {
+func (o *GetRawFeatureMetricsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetRawFeatureMetrics401ApplicationJSON) GetMessage() *string {
+func (o *GetRawFeatureMetricsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetRawFeatureMetrics401ApplicationJSON) GetName() *string {
+func (o *GetRawFeatureMetricsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -112,6 +112,12 @@ func (o *GetRawFeatureMetrics401ApplicationJSON) GetName() *string {
 }
 
 type GetRawFeatureMetricsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetRawFeatureMetricsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetRawFeatureMetricsMetricsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetRawFeatureMetricsMetricsResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -120,12 +126,27 @@ type GetRawFeatureMetricsResponse struct {
 	RawResponse *http.Response
 	// featureMetricsSchema
 	FeatureMetricsSchema *shared.FeatureMetricsSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetRawFeatureMetrics401ApplicationJSONObject *GetRawFeatureMetrics401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetRawFeatureMetrics403ApplicationJSONObject *GetRawFeatureMetrics403ApplicationJSON
-	// The requested resource was not found.
-	GetRawFeatureMetrics404ApplicationJSONObject *GetRawFeatureMetrics404ApplicationJSON
+}
+
+func (o *GetRawFeatureMetricsResponse) GetFourHundredAndOneApplicationJSONObject() *GetRawFeatureMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetRawFeatureMetricsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetRawFeatureMetricsMetricsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetRawFeatureMetricsResponse) GetFourHundredAndFourApplicationJSONObject() *GetRawFeatureMetricsMetricsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetRawFeatureMetricsResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *GetRawFeatureMetricsResponse) GetFeatureMetricsSchema() *shared.Feature
 		return nil
 	}
 	return o.FeatureMetricsSchema
-}
-
-func (o *GetRawFeatureMetricsResponse) GetGetRawFeatureMetrics401ApplicationJSONObject() *GetRawFeatureMetrics401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetRawFeatureMetrics401ApplicationJSONObject
-}
-
-func (o *GetRawFeatureMetricsResponse) GetGetRawFeatureMetrics403ApplicationJSONObject() *GetRawFeatureMetrics403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetRawFeatureMetrics403ApplicationJSONObject
-}
-
-func (o *GetRawFeatureMetricsResponse) GetGetRawFeatureMetrics404ApplicationJSONObject() *GetRawFeatureMetrics404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetRawFeatureMetrics404ApplicationJSONObject
 }

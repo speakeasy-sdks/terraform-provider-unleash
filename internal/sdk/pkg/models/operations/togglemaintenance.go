@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ToggleMaintenance403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type ToggleMaintenance403ApplicationJSON struct {
+// ToggleMaintenanceMaintenanceResponseResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type ToggleMaintenanceMaintenanceResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ToggleMaintenance403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleMaintenance403ApplicationJSON) GetID() *string {
+func (o *ToggleMaintenanceMaintenanceResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleMaintenance403ApplicationJSON) GetMessage() *string {
+func (o *ToggleMaintenanceMaintenanceResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleMaintenance403ApplicationJSON) GetName() *string {
+func (o *ToggleMaintenanceMaintenanceResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleMaintenance401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ToggleMaintenance401ApplicationJSON struct {
+// ToggleMaintenanceMaintenanceResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ToggleMaintenanceMaintenanceResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ToggleMaintenance401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleMaintenance401ApplicationJSON) GetID() *string {
+func (o *ToggleMaintenanceMaintenanceResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleMaintenance401ApplicationJSON) GetMessage() *string {
+func (o *ToggleMaintenanceMaintenanceResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleMaintenance401ApplicationJSON) GetName() *string {
+func (o *ToggleMaintenanceMaintenanceResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ToggleMaintenance400ApplicationJSON - The request data does not match what we expect.
-type ToggleMaintenance400ApplicationJSON struct {
+// ToggleMaintenanceResponseBody - The request data does not match what we expect.
+type ToggleMaintenanceResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,21 +78,21 @@ type ToggleMaintenance400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ToggleMaintenance400ApplicationJSON) GetID() *string {
+func (o *ToggleMaintenanceResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ToggleMaintenance400ApplicationJSON) GetMessage() *string {
+func (o *ToggleMaintenanceResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ToggleMaintenance400ApplicationJSON) GetName() *string {
+func (o *ToggleMaintenanceResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -100,18 +100,39 @@ func (o *ToggleMaintenance400ApplicationJSON) GetName() *string {
 }
 
 type ToggleMaintenanceResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ToggleMaintenanceResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ToggleMaintenanceMaintenanceResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *ToggleMaintenanceMaintenanceResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ToggleMaintenance400ApplicationJSONObject *ToggleMaintenance400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ToggleMaintenance401ApplicationJSONObject *ToggleMaintenance401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	ToggleMaintenance403ApplicationJSONObject *ToggleMaintenance403ApplicationJSON
+}
+
+func (o *ToggleMaintenanceResponse) GetFourHundredApplicationJSONObject() *ToggleMaintenanceResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ToggleMaintenanceResponse) GetFourHundredAndOneApplicationJSONObject() *ToggleMaintenanceMaintenanceResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ToggleMaintenanceResponse) GetFourHundredAndThreeApplicationJSONObject() *ToggleMaintenanceMaintenanceResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *ToggleMaintenanceResponse) GetContentType() string {
@@ -133,25 +154,4 @@ func (o *ToggleMaintenanceResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ToggleMaintenanceResponse) GetToggleMaintenance400ApplicationJSONObject() *ToggleMaintenance400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleMaintenance400ApplicationJSONObject
-}
-
-func (o *ToggleMaintenanceResponse) GetToggleMaintenance401ApplicationJSONObject() *ToggleMaintenance401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleMaintenance401ApplicationJSONObject
-}
-
-func (o *ToggleMaintenanceResponse) GetToggleMaintenance403ApplicationJSONObject() *ToggleMaintenance403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ToggleMaintenance403ApplicationJSONObject
 }

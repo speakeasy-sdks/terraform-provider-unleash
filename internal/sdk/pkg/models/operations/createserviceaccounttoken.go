@@ -27,8 +27,8 @@ func (o *CreateServiceAccountTokenRequest) GetPatSchema() shared.PatSchema {
 	return o.PatSchema
 }
 
-// CreateServiceAccountToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type CreateServiceAccountToken415ApplicationJSON struct {
+// CreateServiceAccountTokenServiceAccountsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type CreateServiceAccountTokenServiceAccountsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type CreateServiceAccountToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateServiceAccountToken415ApplicationJSON) GetID() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateServiceAccountToken415ApplicationJSON) GetMessage() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateServiceAccountToken415ApplicationJSON) GetName() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateServiceAccountToken409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type CreateServiceAccountToken409ApplicationJSON struct {
+// CreateServiceAccountTokenServiceAccountsResponse409ResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type CreateServiceAccountTokenServiceAccountsResponse409ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type CreateServiceAccountToken409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateServiceAccountToken409ApplicationJSON) GetID() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse409ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateServiceAccountToken409ApplicationJSON) GetMessage() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse409ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateServiceAccountToken409ApplicationJSON) GetName() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponse409ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateServiceAccountToken404ApplicationJSON - The requested resource was not found.
-type CreateServiceAccountToken404ApplicationJSON struct {
+// CreateServiceAccountTokenServiceAccountsResponseResponseBody - The requested resource was not found.
+type CreateServiceAccountTokenServiceAccountsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,29 +99,29 @@ type CreateServiceAccountToken404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateServiceAccountToken404ApplicationJSON) GetID() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateServiceAccountToken404ApplicationJSON) GetMessage() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateServiceAccountToken404ApplicationJSON) GetName() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateServiceAccountToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type CreateServiceAccountToken403ApplicationJSON struct {
+// CreateServiceAccountTokenServiceAccountsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type CreateServiceAccountTokenServiceAccountsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -130,29 +130,29 @@ type CreateServiceAccountToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateServiceAccountToken403ApplicationJSON) GetID() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateServiceAccountToken403ApplicationJSON) GetMessage() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateServiceAccountToken403ApplicationJSON) GetName() *string {
+func (o *CreateServiceAccountTokenServiceAccountsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// CreateServiceAccountToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type CreateServiceAccountToken401ApplicationJSON struct {
+// CreateServiceAccountTokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type CreateServiceAccountTokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -161,21 +161,21 @@ type CreateServiceAccountToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *CreateServiceAccountToken401ApplicationJSON) GetID() *string {
+func (o *CreateServiceAccountTokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreateServiceAccountToken401ApplicationJSON) GetMessage() *string {
+func (o *CreateServiceAccountTokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CreateServiceAccountToken401ApplicationJSON) GetName() *string {
+func (o *CreateServiceAccountTokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -183,6 +183,16 @@ func (o *CreateServiceAccountToken401ApplicationJSON) GetName() *string {
 }
 
 type CreateServiceAccountTokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *CreateServiceAccountTokenResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *CreateServiceAccountTokenServiceAccountsResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *CreateServiceAccountTokenServiceAccountsResponseResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *CreateServiceAccountTokenServiceAccountsResponse409ResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *CreateServiceAccountTokenServiceAccountsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	Headers     map[string][]string
@@ -190,18 +200,43 @@ type CreateServiceAccountTokenResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	CreateServiceAccountToken401ApplicationJSONObject *CreateServiceAccountToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	CreateServiceAccountToken403ApplicationJSONObject *CreateServiceAccountToken403ApplicationJSON
-	// The requested resource was not found.
-	CreateServiceAccountToken404ApplicationJSONObject *CreateServiceAccountToken404ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	CreateServiceAccountToken409ApplicationJSONObject *CreateServiceAccountToken409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	CreateServiceAccountToken415ApplicationJSONObject *CreateServiceAccountToken415ApplicationJSON
 	// The resource was successfully created.
 	PatSchema *shared.PatSchema
+}
+
+func (o *CreateServiceAccountTokenResponse) GetFourHundredAndOneApplicationJSONObject() *CreateServiceAccountTokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *CreateServiceAccountTokenResponse) GetFourHundredAndThreeApplicationJSONObject() *CreateServiceAccountTokenServiceAccountsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *CreateServiceAccountTokenResponse) GetFourHundredAndFourApplicationJSONObject() *CreateServiceAccountTokenServiceAccountsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
+}
+
+func (o *CreateServiceAccountTokenResponse) GetFourHundredAndNineApplicationJSONObject() *CreateServiceAccountTokenServiceAccountsResponse409ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *CreateServiceAccountTokenResponse) GetFourHundredAndFifteenApplicationJSONObject() *CreateServiceAccountTokenServiceAccountsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *CreateServiceAccountTokenResponse) GetContentType() string {
@@ -230,41 +265,6 @@ func (o *CreateServiceAccountTokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateServiceAccountTokenResponse) GetCreateServiceAccountToken401ApplicationJSONObject() *CreateServiceAccountToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateServiceAccountToken401ApplicationJSONObject
-}
-
-func (o *CreateServiceAccountTokenResponse) GetCreateServiceAccountToken403ApplicationJSONObject() *CreateServiceAccountToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateServiceAccountToken403ApplicationJSONObject
-}
-
-func (o *CreateServiceAccountTokenResponse) GetCreateServiceAccountToken404ApplicationJSONObject() *CreateServiceAccountToken404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateServiceAccountToken404ApplicationJSONObject
-}
-
-func (o *CreateServiceAccountTokenResponse) GetCreateServiceAccountToken409ApplicationJSONObject() *CreateServiceAccountToken409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateServiceAccountToken409ApplicationJSONObject
-}
-
-func (o *CreateServiceAccountTokenResponse) GetCreateServiceAccountToken415ApplicationJSONObject() *CreateServiceAccountToken415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateServiceAccountToken415ApplicationJSONObject
 }
 
 func (o *CreateServiceAccountTokenResponse) GetPatSchema() *shared.PatSchema {

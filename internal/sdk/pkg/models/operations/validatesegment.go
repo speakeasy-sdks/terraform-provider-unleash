@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// ValidateSegment415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type ValidateSegment415ApplicationJSON struct {
+// ValidateSegmentSegmentsResponse415ResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type ValidateSegmentSegmentsResponse415ResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -16,29 +16,29 @@ type ValidateSegment415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateSegment415ApplicationJSON) GetID() *string {
+func (o *ValidateSegmentSegmentsResponse415ResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateSegment415ApplicationJSON) GetMessage() *string {
+func (o *ValidateSegmentSegmentsResponse415ResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateSegment415ApplicationJSON) GetName() *string {
+func (o *ValidateSegmentSegmentsResponse415ResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateSegment409ApplicationJSON - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-type ValidateSegment409ApplicationJSON struct {
+// ValidateSegmentSegmentsResponseResponseBody - The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+type ValidateSegmentSegmentsResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -47,29 +47,29 @@ type ValidateSegment409ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateSegment409ApplicationJSON) GetID() *string {
+func (o *ValidateSegmentSegmentsResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateSegment409ApplicationJSON) GetMessage() *string {
+func (o *ValidateSegmentSegmentsResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateSegment409ApplicationJSON) GetName() *string {
+func (o *ValidateSegmentSegmentsResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateSegment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type ValidateSegment401ApplicationJSON struct {
+// ValidateSegmentSegmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type ValidateSegmentSegmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -78,29 +78,29 @@ type ValidateSegment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateSegment401ApplicationJSON) GetID() *string {
+func (o *ValidateSegmentSegmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateSegment401ApplicationJSON) GetMessage() *string {
+func (o *ValidateSegmentSegmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateSegment401ApplicationJSON) GetName() *string {
+func (o *ValidateSegmentSegmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ValidateSegment400ApplicationJSON - The request data does not match what we expect.
-type ValidateSegment400ApplicationJSON struct {
+// ValidateSegmentResponseBody - The request data does not match what we expect.
+type ValidateSegmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -109,21 +109,21 @@ type ValidateSegment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ValidateSegment400ApplicationJSON) GetID() *string {
+func (o *ValidateSegmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ValidateSegment400ApplicationJSON) GetMessage() *string {
+func (o *ValidateSegmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *ValidateSegment400ApplicationJSON) GetName() *string {
+func (o *ValidateSegmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -131,20 +131,48 @@ func (o *ValidateSegment400ApplicationJSON) GetName() *string {
 }
 
 type ValidateSegmentResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *ValidateSegmentResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *ValidateSegmentSegmentsResponseBody
+	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
+	FourHundredAndNineApplicationJSONObject *ValidateSegmentSegmentsResponseResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *ValidateSegmentSegmentsResponse415ResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	ValidateSegment400ApplicationJSONObject *ValidateSegment400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	ValidateSegment401ApplicationJSONObject *ValidateSegment401ApplicationJSON
-	// The provided resource can not be created or updated because it would conflict with the current state of the resource or with an already existing resource, respectively.
-	ValidateSegment409ApplicationJSONObject *ValidateSegment409ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	ValidateSegment415ApplicationJSONObject *ValidateSegment415ApplicationJSON
+}
+
+func (o *ValidateSegmentResponse) GetFourHundredApplicationJSONObject() *ValidateSegmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *ValidateSegmentResponse) GetFourHundredAndOneApplicationJSONObject() *ValidateSegmentSegmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *ValidateSegmentResponse) GetFourHundredAndNineApplicationJSONObject() *ValidateSegmentSegmentsResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndNineApplicationJSONObject
+}
+
+func (o *ValidateSegmentResponse) GetFourHundredAndFifteenApplicationJSONObject() *ValidateSegmentSegmentsResponse415ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *ValidateSegmentResponse) GetContentType() string {
@@ -166,32 +194,4 @@ func (o *ValidateSegmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *ValidateSegmentResponse) GetValidateSegment400ApplicationJSONObject() *ValidateSegment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateSegment400ApplicationJSONObject
-}
-
-func (o *ValidateSegmentResponse) GetValidateSegment401ApplicationJSONObject() *ValidateSegment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateSegment401ApplicationJSONObject
-}
-
-func (o *ValidateSegmentResponse) GetValidateSegment409ApplicationJSONObject() *ValidateSegment409ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateSegment409ApplicationJSONObject
-}
-
-func (o *ValidateSegmentResponse) GetValidateSegment415ApplicationJSONObject() *ValidateSegment415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateSegment415ApplicationJSONObject
 }

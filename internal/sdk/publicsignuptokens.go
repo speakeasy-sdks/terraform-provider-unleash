@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// publicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
-type publicSignupTokens struct {
+// PublicSignupTokens - Create, update, and delete [Unleash Public Signup tokens](https://docs.getunleash.io/reference/public-signup-tokens).
+type PublicSignupTokens struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPublicSignupTokens(sdkConfig sdkConfiguration) *publicSignupTokens {
-	return &publicSignupTokens{
+func newPublicSignupTokens(sdkConfig sdkConfiguration) *PublicSignupTokens {
+	return &PublicSignupTokens{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // AddPublicSignupTokenUser - Add a user via a signup token
 // Create a user with the viewer root role and link them to the provided signup token
-func (s *publicSignupTokens) AddPublicSignupTokenUser(ctx context.Context, request operations.AddPublicSignupTokenUserRequest) (*operations.AddPublicSignupTokenUserResponse, error) {
+func (s *PublicSignupTokens) AddPublicSignupTokenUser(ctx context.Context, request operations.AddPublicSignupTokenUserRequest) (*operations.AddPublicSignupTokenUserResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/invite/{token}/signup", request, nil)
 	if err != nil {
@@ -96,24 +96,24 @@ func (s *publicSignupTokens) AddPublicSignupTokenUser(ctx context.Context, reque
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddPublicSignupTokenUser400ApplicationJSON
+			var out operations.AddPublicSignupTokenUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddPublicSignupTokenUser400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddPublicSignupTokenUser409ApplicationJSON
+			var out operations.AddPublicSignupTokenUserPublicSignupTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddPublicSignupTokenUser409ApplicationJSONObject = &out
+			res.FourHundredAndNineApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -124,7 +124,7 @@ func (s *publicSignupTokens) AddPublicSignupTokenUser(ctx context.Context, reque
 
 // CreatePublicSignupToken - Create a public signup token
 // Lets administrators create a invite link to share with colleagues.  People that join using the public invite are assigned the `Viewer` role
-func (s *publicSignupTokens) CreatePublicSignupToken(ctx context.Context, request shared.PublicSignupTokenCreateSchema) (*operations.CreatePublicSignupTokenResponse, error) {
+func (s *PublicSignupTokens) CreatePublicSignupToken(ctx context.Context, request shared.PublicSignupTokenCreateSchema) (*operations.CreatePublicSignupTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/invite-link/tokens"
 
@@ -191,36 +191,36 @@ func (s *publicSignupTokens) CreatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePublicSignupToken400ApplicationJSON
+			var out operations.CreatePublicSignupTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePublicSignupToken400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePublicSignupToken401ApplicationJSON
+			var out operations.CreatePublicSignupTokenPublicSignupTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePublicSignupToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreatePublicSignupToken403ApplicationJSON
+			var out operations.CreatePublicSignupTokenPublicSignupTokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreatePublicSignupToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -230,7 +230,7 @@ func (s *publicSignupTokens) CreatePublicSignupToken(ctx context.Context, reques
 }
 
 // GetAllPublicSignupTokens - Retrieve all existing public signup tokens
-func (s *publicSignupTokens) GetAllPublicSignupTokens(ctx context.Context) (*operations.GetAllPublicSignupTokensResponse, error) {
+func (s *PublicSignupTokens) GetAllPublicSignupTokens(ctx context.Context) (*operations.GetAllPublicSignupTokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/invite-link/tokens"
 
@@ -285,7 +285,7 @@ func (s *publicSignupTokens) GetAllPublicSignupTokens(ctx context.Context) (*ope
 
 // GetPublicSignupToken - Retrieve a token
 // Get information about a specific token. The `:token` part of the URL should be the token's secret.
-func (s *publicSignupTokens) GetPublicSignupToken(ctx context.Context, request operations.GetPublicSignupTokenRequest) (*operations.GetPublicSignupTokenResponse, error) {
+func (s *PublicSignupTokens) GetPublicSignupToken(ctx context.Context, request operations.GetPublicSignupTokenRequest) (*operations.GetPublicSignupTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/invite-link/tokens/{token}", request, nil)
 	if err != nil {
@@ -339,24 +339,24 @@ func (s *publicSignupTokens) GetPublicSignupToken(ctx context.Context, request o
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPublicSignupToken401ApplicationJSON
+			var out operations.GetPublicSignupTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPublicSignupToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPublicSignupToken403ApplicationJSON
+			var out operations.GetPublicSignupTokenPublicSignupTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPublicSignupToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -367,7 +367,7 @@ func (s *publicSignupTokens) GetPublicSignupToken(ctx context.Context, request o
 
 // UpdatePublicSignupToken - Update a public signup token
 // Update information about a specific token. The `:token` part of the URL should be the token's secret.
-func (s *publicSignupTokens) UpdatePublicSignupToken(ctx context.Context, request operations.UpdatePublicSignupTokenRequest) (*operations.UpdatePublicSignupTokenResponse, error) {
+func (s *PublicSignupTokens) UpdatePublicSignupToken(ctx context.Context, request operations.UpdatePublicSignupTokenRequest) (*operations.UpdatePublicSignupTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/invite-link/tokens/{token}", request, nil)
 	if err != nil {
@@ -435,36 +435,36 @@ func (s *publicSignupTokens) UpdatePublicSignupToken(ctx context.Context, reques
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdatePublicSignupToken400ApplicationJSON
+			var out operations.UpdatePublicSignupTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdatePublicSignupToken400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdatePublicSignupToken401ApplicationJSON
+			var out operations.UpdatePublicSignupTokenPublicSignupTokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdatePublicSignupToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdatePublicSignupToken403ApplicationJSON
+			var out operations.UpdatePublicSignupTokenPublicSignupTokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdatePublicSignupToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -474,7 +474,7 @@ func (s *publicSignupTokens) UpdatePublicSignupToken(ctx context.Context, reques
 }
 
 // ValidatePublicSignupToken - Check whether a public sign-up token exists, has not expired and is enabled
-func (s *publicSignupTokens) ValidatePublicSignupToken(ctx context.Context, request operations.ValidatePublicSignupTokenRequest) (*operations.ValidatePublicSignupTokenResponse, error) {
+func (s *PublicSignupTokens) ValidatePublicSignupToken(ctx context.Context, request operations.ValidatePublicSignupTokenRequest) (*operations.ValidatePublicSignupTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/invite/{token}/validate", request, nil)
 	if err != nil {
@@ -517,12 +517,12 @@ func (s *publicSignupTokens) ValidatePublicSignupToken(ctx context.Context, requ
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ValidatePublicSignupToken400ApplicationJSON
+			var out operations.ValidatePublicSignupTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ValidatePublicSignupToken400ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

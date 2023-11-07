@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// addons - Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
-type addons struct {
+// Addons - Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).
+type Addons struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAddons(sdkConfig sdkConfiguration) *addons {
-	return &addons{
+func newAddons(sdkConfig sdkConfiguration) *Addons {
+	return &Addons{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateAddon - Create a new addon
 // Create an addon instance. The addon must use one of the providers available on this Unleash instance.
-func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpdateSchema) (*operations.CreateAddonResponse, error) {
+func (s *Addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpdateSchema) (*operations.CreateAddonResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/addons"
 
@@ -93,60 +93,60 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAddon400ApplicationJSON
+			var out operations.CreateAddonResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAddon400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAddon401ApplicationJSON
+			var out operations.CreateAddonAddonsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAddon401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAddon403ApplicationJSON
+			var out operations.CreateAddonAddonsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAddon403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAddon413ApplicationJSON
+			var out operations.CreateAddonAddonsResponse413ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAddon413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAddon415ApplicationJSON
+			var out operations.CreateAddonAddonsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAddon415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -157,7 +157,7 @@ func (s *addons) CreateAddon(ctx context.Context, request shared.AddonCreateUpda
 
 // DeleteAddon - Delete an addon
 // Delete the addon specified by the ID in the request path.
-func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddonRequest) (*operations.DeleteAddonResponse, error) {
+func (s *Addons) DeleteAddon(ctx context.Context, request operations.DeleteAddonRequest) (*operations.DeleteAddonResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/addons/{id}", request, nil)
 	if err != nil {
@@ -200,36 +200,36 @@ func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddon
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteAddon401ApplicationJSON
+			var out operations.DeleteAddonResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteAddon401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteAddon403ApplicationJSON
+			var out operations.DeleteAddonAddonsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteAddon403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteAddon404ApplicationJSON
+			var out operations.DeleteAddonAddonsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteAddon404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -240,7 +240,7 @@ func (s *addons) DeleteAddon(ctx context.Context, request operations.DeleteAddon
 
 // GetAddon - Get a specific addon
 // Retrieve information about the addon whose ID matches the ID in the request URL.
-func (s *addons) GetAddon(ctx context.Context, request operations.GetAddonRequest) (*operations.GetAddonResponse, error) {
+func (s *Addons) GetAddon(ctx context.Context, request operations.GetAddonRequest) (*operations.GetAddonResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/addons/{id}", request, nil)
 	if err != nil {
@@ -294,12 +294,12 @@ func (s *addons) GetAddon(ctx context.Context, request operations.GetAddonReques
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAddon401ApplicationJSON
+			var out operations.GetAddonResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAddon401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -310,7 +310,7 @@ func (s *addons) GetAddon(ctx context.Context, request operations.GetAddonReques
 
 // GetAddons - Get all addons and providers
 // Retrieve all addons and providers that are defined on this Unleash instance.
-func (s *addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, error) {
+func (s *Addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/addons"
 
@@ -361,12 +361,12 @@ func (s *addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, 
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAddons401ApplicationJSON
+			var out operations.GetAddonsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAddons401ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -379,7 +379,7 @@ func (s *addons) GetAddons(ctx context.Context) (*operations.GetAddonsResponse, 
 // Update the addon with a specific ID. Any fields in the update object will be updated. Properties that are not included in the update object will not be affected. To empty a property, pass `null` as that property's value.
 //
 // Note: passing `null` as a value for the description property will set it to an empty string.
-func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddonRequest) (*operations.UpdateAddonResponse, error) {
+func (s *Addons) UpdateAddon(ctx context.Context, request operations.UpdateAddonRequest) (*operations.UpdateAddonResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/addons/{id}", request, nil)
 	if err != nil {
@@ -447,72 +447,72 @@ func (s *addons) UpdateAddon(ctx context.Context, request operations.UpdateAddon
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon400ApplicationJSON
+			var out operations.UpdateAddonResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon400ApplicationJSONObject = &out
+			res.FourHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon401ApplicationJSON
+			var out operations.UpdateAddonAddonsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon403ApplicationJSON
+			var out operations.UpdateAddonAddonsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon404ApplicationJSON
+			var out operations.UpdateAddonAddonsResponse404ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon404ApplicationJSONObject = &out
+			res.FourHundredAndFourApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 413:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon413ApplicationJSON
+			var out operations.UpdateAddonAddonsResponse413ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon413ApplicationJSONObject = &out
+			res.FourHundredAndThirteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAddon415ApplicationJSON
+			var out operations.UpdateAddonAddonsResponse415ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAddon415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

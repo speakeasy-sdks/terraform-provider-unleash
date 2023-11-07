@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAdminCount403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetAdminCount403ApplicationJSON struct {
+// GetAdminCountUsersResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetAdminCountUsersResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetAdminCount403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAdminCount403ApplicationJSON) GetID() *string {
+func (o *GetAdminCountUsersResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAdminCount403ApplicationJSON) GetMessage() *string {
+func (o *GetAdminCountUsersResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAdminCount403ApplicationJSON) GetName() *string {
+func (o *GetAdminCountUsersResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetAdminCount401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAdminCount401ApplicationJSON struct {
+// GetAdminCountResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAdminCountResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetAdminCount401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAdminCount401ApplicationJSON) GetID() *string {
+func (o *GetAdminCountResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAdminCount401ApplicationJSON) GetMessage() *string {
+func (o *GetAdminCountResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAdminCount401ApplicationJSON) GetName() *string {
+func (o *GetAdminCountResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *GetAdminCount401ApplicationJSON) GetName() *string {
 }
 
 type GetAdminCountResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetAdminCountResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetAdminCountUsersResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -78,10 +82,20 @@ type GetAdminCountResponse struct {
 	RawResponse *http.Response
 	// adminCountSchema
 	AdminCountSchema *shared.AdminCountSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAdminCount401ApplicationJSONObject *GetAdminCount401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetAdminCount403ApplicationJSONObject *GetAdminCount403ApplicationJSON
+}
+
+func (o *GetAdminCountResponse) GetFourHundredAndOneApplicationJSONObject() *GetAdminCountResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetAdminCountResponse) GetFourHundredAndThreeApplicationJSONObject() *GetAdminCountUsersResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetAdminCountResponse) GetContentType() string {
@@ -110,18 +124,4 @@ func (o *GetAdminCountResponse) GetAdminCountSchema() *shared.AdminCountSchema {
 		return nil
 	}
 	return o.AdminCountSchema
-}
-
-func (o *GetAdminCountResponse) GetGetAdminCount401ApplicationJSONObject() *GetAdminCount401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAdminCount401ApplicationJSONObject
-}
-
-func (o *GetAdminCountResponse) GetGetAdminCount403ApplicationJSONObject() *GetAdminCount403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAdminCount403ApplicationJSONObject
 }

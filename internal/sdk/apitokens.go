@@ -15,20 +15,20 @@ import (
 	"terraform/internal/sdk/pkg/utils"
 )
 
-// apiTokens - Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
-type apiTokens struct {
+// APITokens - Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).
+type APITokens struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAPITokens(sdkConfig sdkConfiguration) *apiTokens {
-	return &apiTokens{
+func newAPITokens(sdkConfig sdkConfiguration) *APITokens {
+	return &APITokens{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateAPIToken - Create API token
 // Create an API token of a specific type: one of client, admin, frontend.
-func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPITokenSchema) (*operations.CreateAPITokenResponse, error) {
+func (s *APITokens) CreateAPIToken(ctx context.Context, request shared.CreateAPITokenSchema) (*operations.CreateAPITokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/api-tokens"
 
@@ -95,36 +95,36 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAPIToken401ApplicationJSON
+			var out operations.CreateAPITokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAPIToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAPIToken403ApplicationJSON
+			var out operations.CreateAPITokenAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAPIToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateAPIToken415ApplicationJSON
+			var out operations.CreateAPITokenAPITokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateAPIToken415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -135,7 +135,7 @@ func (s *apiTokens) CreateAPIToken(ctx context.Context, request shared.CreateAPI
 
 // DeleteAPIToken - Delete API token
 // Deletes an existing API token. The `token` path parameter is the token's `secret`. If the token does not exist, this endpoint returns a 200 OK, but does nothing.
-func (s *apiTokens) DeleteAPIToken(ctx context.Context, request operations.DeleteAPITokenRequest) (*operations.DeleteAPITokenResponse, error) {
+func (s *APITokens) DeleteAPIToken(ctx context.Context, request operations.DeleteAPITokenRequest) (*operations.DeleteAPITokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/api-tokens/{token}", request, nil)
 	if err != nil {
@@ -178,24 +178,24 @@ func (s *apiTokens) DeleteAPIToken(ctx context.Context, request operations.Delet
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteAPIToken401ApplicationJSON
+			var out operations.DeleteAPITokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteAPIToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.DeleteAPIToken403ApplicationJSON
+			var out operations.DeleteAPITokenAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeleteAPIToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -206,7 +206,7 @@ func (s *apiTokens) DeleteAPIToken(ctx context.Context, request operations.Delet
 
 // GetAllAPITokens - Get API tokens
 // Retrieves all API tokens that exist in the Unleash instance.
-func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPITokensResponse, error) {
+func (s *APITokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPITokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/admin/api-tokens"
 
@@ -257,24 +257,24 @@ func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPIT
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllAPITokens401ApplicationJSON
+			var out operations.GetAllAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllAPITokens401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllAPITokens403ApplicationJSON
+			var out operations.GetAllAPITokensAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllAPITokens403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -285,7 +285,7 @@ func (s *apiTokens) GetAllAPITokens(ctx context.Context) (*operations.GetAllAPIT
 
 // UpdateAPIToken - Update API token
 // Updates an existing API token with a new expiry date. The `token` path parameter is the token's `secret`. If the token does not exist, this endpoint returns a 200 OK, but does nothing.
-func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.UpdateAPITokenRequest) (*operations.UpdateAPITokenResponse, error) {
+func (s *APITokens) UpdateAPIToken(ctx context.Context, request operations.UpdateAPITokenRequest) (*operations.UpdateAPITokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/admin/api-tokens/{token}", request, nil)
 	if err != nil {
@@ -342,36 +342,36 @@ func (s *apiTokens) UpdateAPIToken(ctx context.Context, request operations.Updat
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAPIToken401ApplicationJSON
+			var out operations.UpdateAPITokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAPIToken401ApplicationJSONObject = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAPIToken403ApplicationJSON
+			var out operations.UpdateAPITokenAPITokensResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAPIToken403ApplicationJSONObject = &out
+			res.FourHundredAndThreeApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 415:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateAPIToken415ApplicationJSON
+			var out operations.UpdateAPITokenAPITokensResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAPIToken415ApplicationJSONObject = &out
+			res.FourHundredAndFifteenApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

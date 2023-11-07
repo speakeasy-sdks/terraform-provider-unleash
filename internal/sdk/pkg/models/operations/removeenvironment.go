@@ -17,8 +17,8 @@ func (o *RemoveEnvironmentRequest) GetName() string {
 	return o.Name
 }
 
-// RemoveEnvironment401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type RemoveEnvironment401ApplicationJSON struct {
+// RemoveEnvironmentEnvironmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type RemoveEnvironmentEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type RemoveEnvironment401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveEnvironment401ApplicationJSON) GetID() *string {
+func (o *RemoveEnvironmentEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveEnvironment401ApplicationJSON) GetMessage() *string {
+func (o *RemoveEnvironmentEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveEnvironment401ApplicationJSON) GetName() *string {
+func (o *RemoveEnvironmentEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// RemoveEnvironment400ApplicationJSON - The request data does not match what we expect.
-type RemoveEnvironment400ApplicationJSON struct {
+// RemoveEnvironmentResponseBody - The request data does not match what we expect.
+type RemoveEnvironmentResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,21 +58,21 @@ type RemoveEnvironment400ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *RemoveEnvironment400ApplicationJSON) GetID() *string {
+func (o *RemoveEnvironmentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *RemoveEnvironment400ApplicationJSON) GetMessage() *string {
+func (o *RemoveEnvironmentResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *RemoveEnvironment400ApplicationJSON) GetName() *string {
+func (o *RemoveEnvironmentResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -80,16 +80,30 @@ func (o *RemoveEnvironment400ApplicationJSON) GetName() *string {
 }
 
 type RemoveEnvironmentResponse struct {
+	// The request data does not match what we expect.
+	FourHundredApplicationJSONObject *RemoveEnvironmentResponseBody
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *RemoveEnvironmentEnvironmentsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The request data does not match what we expect.
-	RemoveEnvironment400ApplicationJSONObject *RemoveEnvironment400ApplicationJSON
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	RemoveEnvironment401ApplicationJSONObject *RemoveEnvironment401ApplicationJSON
+}
+
+func (o *RemoveEnvironmentResponse) GetFourHundredApplicationJSONObject() *RemoveEnvironmentResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
+}
+
+func (o *RemoveEnvironmentResponse) GetFourHundredAndOneApplicationJSONObject() *RemoveEnvironmentEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }
 
 func (o *RemoveEnvironmentResponse) GetContentType() string {
@@ -111,18 +125,4 @@ func (o *RemoveEnvironmentResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveEnvironmentResponse) GetRemoveEnvironment400ApplicationJSONObject() *RemoveEnvironment400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveEnvironment400ApplicationJSONObject
-}
-
-func (o *RemoveEnvironmentResponse) GetRemoveEnvironment401ApplicationJSONObject() *RemoveEnvironment401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.RemoveEnvironment401ApplicationJSONObject
 }

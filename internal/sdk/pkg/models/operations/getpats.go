@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetPats404ApplicationJSON - The requested resource was not found.
-type GetPats404ApplicationJSON struct {
+// GetPatsPersonalAccessTokensResponseResponseBody - The requested resource was not found.
+type GetPatsPersonalAccessTokensResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetPats404ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetPats404ApplicationJSON) GetID() *string {
+func (o *GetPatsPersonalAccessTokensResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetPats404ApplicationJSON) GetMessage() *string {
+func (o *GetPatsPersonalAccessTokensResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetPats404ApplicationJSON) GetName() *string {
+func (o *GetPatsPersonalAccessTokensResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetPats403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetPats403ApplicationJSON struct {
+// GetPatsPersonalAccessTokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetPatsPersonalAccessTokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,29 +48,29 @@ type GetPats403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetPats403ApplicationJSON) GetID() *string {
+func (o *GetPatsPersonalAccessTokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetPats403ApplicationJSON) GetMessage() *string {
+func (o *GetPatsPersonalAccessTokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetPats403ApplicationJSON) GetName() *string {
+func (o *GetPatsPersonalAccessTokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetPats401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetPats401ApplicationJSON struct {
+// GetPatsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetPatsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -79,21 +79,21 @@ type GetPats401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetPats401ApplicationJSON) GetID() *string {
+func (o *GetPatsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetPats401ApplicationJSON) GetMessage() *string {
+func (o *GetPatsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetPats401ApplicationJSON) GetName() *string {
+func (o *GetPatsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -101,20 +101,41 @@ func (o *GetPats401ApplicationJSON) GetName() *string {
 }
 
 type GetPatsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetPatsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetPatsPersonalAccessTokensResponseBody
+	// The requested resource was not found.
+	FourHundredAndFourApplicationJSONObject *GetPatsPersonalAccessTokensResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetPats401ApplicationJSONObject *GetPats401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetPats403ApplicationJSONObject *GetPats403ApplicationJSON
-	// The requested resource was not found.
-	GetPats404ApplicationJSONObject *GetPats404ApplicationJSON
 	// patsSchema
 	PatsSchema *shared.PatsSchema
+}
+
+func (o *GetPatsResponse) GetFourHundredAndOneApplicationJSONObject() *GetPatsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetPatsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetPatsPersonalAccessTokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *GetPatsResponse) GetFourHundredAndFourApplicationJSONObject() *GetPatsPersonalAccessTokensResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFourApplicationJSONObject
 }
 
 func (o *GetPatsResponse) GetContentType() string {
@@ -136,27 +157,6 @@ func (o *GetPatsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetPatsResponse) GetGetPats401ApplicationJSONObject() *GetPats401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPats401ApplicationJSONObject
-}
-
-func (o *GetPatsResponse) GetGetPats403ApplicationJSONObject() *GetPats403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPats403ApplicationJSONObject
-}
-
-func (o *GetPatsResponse) GetGetPats404ApplicationJSONObject() *GetPats404ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetPats404ApplicationJSONObject
 }
 
 func (o *GetPatsResponse) GetPatsSchema() *shared.PatsSchema {

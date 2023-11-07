@@ -7,8 +7,8 @@ import (
 	"terraform/internal/sdk/pkg/models/shared"
 )
 
-// GetAllEnvironments403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type GetAllEnvironments403ApplicationJSON struct {
+// GetAllEnvironmentsEnvironmentsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type GetAllEnvironmentsEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -17,29 +17,29 @@ type GetAllEnvironments403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllEnvironments403ApplicationJSON) GetID() *string {
+func (o *GetAllEnvironmentsEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllEnvironments403ApplicationJSON) GetMessage() *string {
+func (o *GetAllEnvironmentsEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllEnvironments403ApplicationJSON) GetName() *string {
+func (o *GetAllEnvironmentsEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// GetAllEnvironments401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type GetAllEnvironments401ApplicationJSON struct {
+// GetAllEnvironmentsResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type GetAllEnvironmentsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -48,21 +48,21 @@ type GetAllEnvironments401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *GetAllEnvironments401ApplicationJSON) GetID() *string {
+func (o *GetAllEnvironmentsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetAllEnvironments401ApplicationJSON) GetMessage() *string {
+func (o *GetAllEnvironmentsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *GetAllEnvironments401ApplicationJSON) GetName() *string {
+func (o *GetAllEnvironmentsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,6 +70,10 @@ func (o *GetAllEnvironments401ApplicationJSON) GetName() *string {
 }
 
 type GetAllEnvironmentsResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *GetAllEnvironmentsResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *GetAllEnvironmentsEnvironmentsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -78,10 +82,20 @@ type GetAllEnvironmentsResponse struct {
 	RawResponse *http.Response
 	// environmentsSchema
 	EnvironmentsSchema *shared.EnvironmentsSchema
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	GetAllEnvironments401ApplicationJSONObject *GetAllEnvironments401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	GetAllEnvironments403ApplicationJSONObject *GetAllEnvironments403ApplicationJSON
+}
+
+func (o *GetAllEnvironmentsResponse) GetFourHundredAndOneApplicationJSONObject() *GetAllEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *GetAllEnvironmentsResponse) GetFourHundredAndThreeApplicationJSONObject() *GetAllEnvironmentsEnvironmentsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *GetAllEnvironmentsResponse) GetContentType() string {
@@ -110,18 +124,4 @@ func (o *GetAllEnvironmentsResponse) GetEnvironmentsSchema() *shared.Environment
 		return nil
 	}
 	return o.EnvironmentsSchema
-}
-
-func (o *GetAllEnvironmentsResponse) GetGetAllEnvironments401ApplicationJSONObject() *GetAllEnvironments401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllEnvironments401ApplicationJSONObject
-}
-
-func (o *GetAllEnvironmentsResponse) GetGetAllEnvironments403ApplicationJSONObject() *GetAllEnvironments403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.GetAllEnvironments403ApplicationJSONObject
 }

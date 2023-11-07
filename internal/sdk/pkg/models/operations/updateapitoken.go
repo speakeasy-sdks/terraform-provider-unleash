@@ -27,8 +27,8 @@ func (o *UpdateAPITokenRequest) GetUpdateAPITokenSchema() shared.UpdateAPITokenS
 	return o.UpdateAPITokenSchema
 }
 
-// UpdateAPIToken415ApplicationJSON - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-type UpdateAPIToken415ApplicationJSON struct {
+// UpdateAPITokenAPITokensResponseResponseBody - The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+type UpdateAPITokenAPITokensResponseResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -37,29 +37,29 @@ type UpdateAPIToken415ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateAPIToken415ApplicationJSON) GetID() *string {
+func (o *UpdateAPITokenAPITokensResponseResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateAPIToken415ApplicationJSON) GetMessage() *string {
+func (o *UpdateAPITokenAPITokensResponseResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateAPIToken415ApplicationJSON) GetName() *string {
+func (o *UpdateAPITokenAPITokensResponseResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateAPIToken403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type UpdateAPIToken403ApplicationJSON struct {
+// UpdateAPITokenAPITokensResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type UpdateAPITokenAPITokensResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -68,29 +68,29 @@ type UpdateAPIToken403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateAPIToken403ApplicationJSON) GetID() *string {
+func (o *UpdateAPITokenAPITokensResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateAPIToken403ApplicationJSON) GetMessage() *string {
+func (o *UpdateAPITokenAPITokensResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateAPIToken403ApplicationJSON) GetName() *string {
+func (o *UpdateAPITokenAPITokensResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// UpdateAPIToken401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type UpdateAPIToken401ApplicationJSON struct {
+// UpdateAPITokenResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type UpdateAPITokenResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -99,21 +99,21 @@ type UpdateAPIToken401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *UpdateAPIToken401ApplicationJSON) GetID() *string {
+func (o *UpdateAPITokenResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateAPIToken401ApplicationJSON) GetMessage() *string {
+func (o *UpdateAPITokenResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *UpdateAPIToken401ApplicationJSON) GetName() *string {
+func (o *UpdateAPITokenResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -121,18 +121,39 @@ func (o *UpdateAPIToken401ApplicationJSON) GetName() *string {
 }
 
 type UpdateAPITokenResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *UpdateAPITokenResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *UpdateAPITokenAPITokensResponseBody
+	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
+	FourHundredAndFifteenApplicationJSONObject *UpdateAPITokenAPITokensResponseResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	UpdateAPIToken401ApplicationJSONObject *UpdateAPIToken401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	UpdateAPIToken403ApplicationJSONObject *UpdateAPIToken403ApplicationJSON
-	// The operation does not support request payloads of the provided type. Please ensure that you're using one of the listed payload types and that you have specified the right content type in the "content-type" header.
-	UpdateAPIToken415ApplicationJSONObject *UpdateAPIToken415ApplicationJSON
+}
+
+func (o *UpdateAPITokenResponse) GetFourHundredAndOneApplicationJSONObject() *UpdateAPITokenResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *UpdateAPITokenResponse) GetFourHundredAndThreeApplicationJSONObject() *UpdateAPITokenAPITokensResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
+}
+
+func (o *UpdateAPITokenResponse) GetFourHundredAndFifteenApplicationJSONObject() *UpdateAPITokenAPITokensResponseResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndFifteenApplicationJSONObject
 }
 
 func (o *UpdateAPITokenResponse) GetContentType() string {
@@ -154,25 +175,4 @@ func (o *UpdateAPITokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *UpdateAPITokenResponse) GetUpdateAPIToken401ApplicationJSONObject() *UpdateAPIToken401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateAPIToken401ApplicationJSONObject
-}
-
-func (o *UpdateAPITokenResponse) GetUpdateAPIToken403ApplicationJSONObject() *UpdateAPIToken403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateAPIToken403ApplicationJSONObject
-}
-
-func (o *UpdateAPITokenResponse) GetUpdateAPIToken415ApplicationJSONObject() *UpdateAPIToken415ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateAPIToken415ApplicationJSONObject
 }

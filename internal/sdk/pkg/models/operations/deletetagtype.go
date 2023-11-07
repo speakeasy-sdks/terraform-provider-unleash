@@ -17,8 +17,8 @@ func (o *DeleteTagTypeRequest) GetName() string {
 	return o.Name
 }
 
-// DeleteTagType403ApplicationJSON - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-type DeleteTagType403ApplicationJSON struct {
+// DeleteTagTypeTagsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+type DeleteTagTypeTagsResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -27,29 +27,29 @@ type DeleteTagType403ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteTagType403ApplicationJSON) GetID() *string {
+func (o *DeleteTagTypeTagsResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteTagType403ApplicationJSON) GetMessage() *string {
+func (o *DeleteTagTypeTagsResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteTagType403ApplicationJSON) GetName() *string {
+func (o *DeleteTagTypeTagsResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// DeleteTagType401ApplicationJSON - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-type DeleteTagType401ApplicationJSON struct {
+// DeleteTagTypeResponseBody - Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+type DeleteTagTypeResponseBody struct {
 	// The ID of the error instance
 	ID *string `json:"id,omitempty"`
 	// A description of what went wrong.
@@ -58,21 +58,21 @@ type DeleteTagType401ApplicationJSON struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *DeleteTagType401ApplicationJSON) GetID() *string {
+func (o *DeleteTagTypeResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *DeleteTagType401ApplicationJSON) GetMessage() *string {
+func (o *DeleteTagTypeResponseBody) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *DeleteTagType401ApplicationJSON) GetName() *string {
+func (o *DeleteTagTypeResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -80,16 +80,30 @@ func (o *DeleteTagType401ApplicationJSON) GetName() *string {
 }
 
 type DeleteTagTypeResponse struct {
+	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
+	FourHundredAndOneApplicationJSONObject *DeleteTagTypeResponseBody
+	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
+	FourHundredAndThreeApplicationJSONObject *DeleteTagTypeTagsResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Authorization information is missing or invalid. Provide a valid API token as the `authorization` header, e.g. `authorization:*.*.my-admin-token`.
-	DeleteTagType401ApplicationJSONObject *DeleteTagType401ApplicationJSON
-	// The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation
-	DeleteTagType403ApplicationJSONObject *DeleteTagType403ApplicationJSON
+}
+
+func (o *DeleteTagTypeResponse) GetFourHundredAndOneApplicationJSONObject() *DeleteTagTypeResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
+}
+
+func (o *DeleteTagTypeResponse) GetFourHundredAndThreeApplicationJSONObject() *DeleteTagTypeTagsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndThreeApplicationJSONObject
 }
 
 func (o *DeleteTagTypeResponse) GetContentType() string {
@@ -111,18 +125,4 @@ func (o *DeleteTagTypeResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeleteTagTypeResponse) GetDeleteTagType401ApplicationJSONObject() *DeleteTagType401ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteTagType401ApplicationJSONObject
-}
-
-func (o *DeleteTagTypeResponse) GetDeleteTagType403ApplicationJSONObject() *DeleteTagType403ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.DeleteTagType403ApplicationJSONObject
 }
