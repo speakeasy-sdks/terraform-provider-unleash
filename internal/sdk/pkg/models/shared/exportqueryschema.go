@@ -4,7 +4,7 @@ package shared
 
 import (
 	"errors"
-	"terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
 // ExportQuerySchema2 - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.

@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
 // TokenStringListSchema - A list of unleash tokens to validate against known tokens

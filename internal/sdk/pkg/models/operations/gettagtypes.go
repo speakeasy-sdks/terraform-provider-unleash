@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/models/shared"
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 // GetTagTypesTagsResponseBody - The provided user credentials are valid, but the user does not have the necessary permissions to perform this operation

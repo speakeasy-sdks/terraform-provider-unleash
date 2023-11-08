@@ -1,4 +1,4 @@
-module terraform
+module github.com/speakeasy/terraform-provider-terraform
 
 go 1.18
 

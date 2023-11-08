@@ -4,7 +4,7 @@ package shared
 
 import (
 	"errors"
-	"terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 	"time"
 )
 

@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/models/shared"
 	"net/http"
-	"terraform/internal/sdk/pkg/models/shared"
 )
 
 // ExportFeaturesResponseBody - The requested resource was not found.
