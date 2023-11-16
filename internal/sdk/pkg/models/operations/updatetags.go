@@ -208,7 +208,7 @@ func (o *UpdateTagsResponse) GetContentType() string {
 
 func (o *UpdateTagsResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

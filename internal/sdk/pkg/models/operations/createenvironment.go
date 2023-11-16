@@ -108,7 +108,7 @@ func (o *CreateEnvironmentResponse) GetContentType() string {
 
 func (o *CreateEnvironmentResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

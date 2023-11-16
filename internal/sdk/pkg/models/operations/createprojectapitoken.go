@@ -168,7 +168,7 @@ func (o *CreateProjectAPITokenResponse) GetContentType() string {
 
 func (o *CreateProjectAPITokenResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

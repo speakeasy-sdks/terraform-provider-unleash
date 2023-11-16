@@ -148,7 +148,7 @@ func (o *CreatePublicSignupTokenResponse) GetContentType() string {
 
 func (o *CreatePublicSignupTokenResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

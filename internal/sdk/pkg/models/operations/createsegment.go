@@ -228,7 +228,7 @@ func (o *CreateSegmentResponse) GetContentType() string {
 
 func (o *CreateSegmentResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

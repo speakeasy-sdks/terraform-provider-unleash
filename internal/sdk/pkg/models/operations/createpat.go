@@ -148,7 +148,7 @@ func (o *CreatePatResponse) GetContentType() string {
 
 func (o *CreatePatResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

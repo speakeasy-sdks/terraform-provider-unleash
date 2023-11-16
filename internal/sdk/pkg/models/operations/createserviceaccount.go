@@ -228,7 +228,7 @@ func (o *CreateServiceAccountResponse) GetContentType() string {
 
 func (o *CreateServiceAccountResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }

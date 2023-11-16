@@ -188,7 +188,7 @@ func (o *UpdateFeatureStrategySegmentsResponse) GetContentType() string {
 
 func (o *UpdateFeatureStrategySegmentsResponse) GetHeaders() map[string][]string {
 	if o == nil {
-		return nil
+		return map[string][]string{}
 	}
 	return o.Headers
 }
