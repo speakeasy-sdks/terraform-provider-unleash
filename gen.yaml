@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 53f4b3c3dc4caa25535473fc575c44b1
   docVersion: 5.3.3
-  speakeasyVersion: 1.120.3
-  generationVersion: 2.192.1
+  speakeasyVersion: 1.121.1
+  generationVersion: 2.194.1
 generation:
   comments: {}
   sdkClassName: SDK
@@ -14,13 +14,13 @@ features:
   terraform:
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.1
-    core: 3.4.5
+    core: 3.5.0
     deprecations: 2.81.1
     globalSecurity: 2.81.1
-    globalServerURLs: 2.82.0
+    globalServerURLs: 2.82.1
     unions: 2.81.5
 terraform:
-  version: 0.12.3
+  version: 0.13.0
   author: speakeasy
   imports:
     option: openapi
