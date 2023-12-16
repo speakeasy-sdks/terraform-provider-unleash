@@ -41,6 +41,7 @@ const (
 	ProjectsTypeTwo        ProjectsType = "2"
 )
 
+// Projects - A list of projects to check for toggles in.
 type Projects struct {
 	ArrayOfstr []string
 	Two        *Two

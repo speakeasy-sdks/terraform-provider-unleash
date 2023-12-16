@@ -7,7 +7,6 @@ import (
 	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
-// ExportQuerySchema2 - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
 type ExportQuerySchema2 struct {
 	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// Whether to return a downloadable file
@@ -57,7 +56,6 @@ func (o *ExportQuerySchema2) GetTag() string {
 	return o.Tag
 }
 
-// ExportQuerySchema1 - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
 type ExportQuerySchema1 struct {
 	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
 	// Whether to return a downloadable file
@@ -114,6 +112,7 @@ const (
 	ExportQuerySchemaTypeExportQuerySchema2 ExportQuerySchemaType = "exportQuerySchema_2"
 )
 
+// ExportQuerySchema - Available query parameters for  the [deprecated export/import](https://docs.getunleash.io/reference/deploy/import-export) functionality.
 type ExportQuerySchema struct {
 	ExportQuerySchema1 *ExportQuerySchema1
 	ExportQuerySchema2 *ExportQuerySchema2

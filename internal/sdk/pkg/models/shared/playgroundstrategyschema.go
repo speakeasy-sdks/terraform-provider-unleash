@@ -134,7 +134,6 @@ func (o *PlaygroundStrategySchemaVariant) GetPayload() *PlaygroundStrategySchema
 	return o.Payload
 }
 
-// PlaygroundStrategySchema2 - The strategy's evaluation result. If the strategy is a custom strategy that Unleash can't evaluate, `evaluationStatus` will be `unknown`. Otherwise, it will be `true` or `false`
 type PlaygroundStrategySchema2 struct {
 	// Whether this strategy evaluates to true or not.
 	Enabled bool `json:"enabled"`
@@ -177,7 +176,6 @@ func (o *PlaygroundStrategySchema2) GetVariants() []VariantSchema {
 	return o.Variants
 }
 
-// PlaygroundStrategySchemaSchemas2 - Whether this strategy resolves to `false` or if it might resolve to `true`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be `true`, but if you have failing constraints or segments, it _can_ determine that your strategy would be `false`.
 type PlaygroundStrategySchemaSchemas2 string
 
 const (
@@ -209,6 +207,7 @@ const (
 	EnabledTypePlaygroundStrategySchemaSchemas2 EnabledType = "playgroundStrategySchema_Schemas_2"
 )
 
+// Enabled - Whether this strategy resolves to `false` or if it might resolve to `true`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be `true`, but if you have failing constraints or segments, it _can_ determine that your strategy would be `false`.
 type Enabled struct {
 	Boolean                          *bool
 	PlaygroundStrategySchemaSchemas2 *PlaygroundStrategySchemaSchemas2
@@ -290,22 +289,21 @@ func (e *EvaluationStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// One - The strategy's evaluation result. If the strategy is a custom strategy that Unleash can't evaluate, `evaluationStatus` will be `unknown`. Otherwise, it will be `true` or `false`
-type One struct {
+type PlaygroundStrategySchema1 struct {
 	// Whether this strategy resolves to `false` or if it might resolve to `true`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be `true`, but if you have failing constraints or segments, it _can_ determine that your strategy would be `false`.
 	Enabled Enabled `json:"enabled"`
 	// Signals that this strategy could not be evaluated. This is most likely because you're using a custom strategy that Unleash doesn't know about.
 	EvaluationStatus EvaluationStatus `json:"evaluationStatus"`
 }
 
-func (o *One) GetEnabled() Enabled {
+func (o *PlaygroundStrategySchema1) GetEnabled() Enabled {
 	if o == nil {
 		return Enabled{}
 	}
 	return o.Enabled
 }
 
-func (o *One) GetEvaluationStatus() EvaluationStatus {
+func (o *PlaygroundStrategySchema1) GetEvaluationStatus() EvaluationStatus {
 	if o == nil {
 		return EvaluationStatus("")
 	}
@@ -315,23 +313,24 @@ func (o *One) GetEvaluationStatus() EvaluationStatus {
 type ResultUnionType string
 
 const (
-	ResultUnionTypeOne                       ResultUnionType = "1"
+	ResultUnionTypePlaygroundStrategySchema1 ResultUnionType = "playgroundStrategySchema_1"
 	ResultUnionTypePlaygroundStrategySchema2 ResultUnionType = "playgroundStrategySchema_2"
 )
 
+// Result - The strategy's evaluation result. If the strategy is a custom strategy that Unleash can't evaluate, `evaluationStatus` will be `unknown`. Otherwise, it will be `true` or `false`
 type Result struct {
-	One                       *One
+	PlaygroundStrategySchema1 *PlaygroundStrategySchema1
 	PlaygroundStrategySchema2 *PlaygroundStrategySchema2
 
 	Type ResultUnionType
 }
 
-func CreateResultOne(one One) Result {
-	typ := ResultUnionTypeOne
+func CreateResultPlaygroundStrategySchema1(playgroundStrategySchema1 PlaygroundStrategySchema1) Result {
+	typ := ResultUnionTypePlaygroundStrategySchema1
 
 	return Result{
-		One:  &one,
-		Type: typ,
+		PlaygroundStrategySchema1: &playgroundStrategySchema1,
+		Type:                      typ,
 	}
 }
 
@@ -346,10 +345,10 @@ func CreateResultPlaygroundStrategySchema2(playgroundStrategySchema2 PlaygroundS
 
 func (u *Result) UnmarshalJSON(data []byte) error {
 
-	one := new(One)
-	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
-		u.One = one
-		u.Type = ResultUnionTypeOne
+	playgroundStrategySchema1 := new(PlaygroundStrategySchema1)
+	if err := utils.UnmarshalJSON(data, &playgroundStrategySchema1, "", true, true); err == nil {
+		u.PlaygroundStrategySchema1 = playgroundStrategySchema1
+		u.Type = ResultUnionTypePlaygroundStrategySchema1
 		return nil
 	}
 
@@ -364,8 +363,8 @@ func (u *Result) UnmarshalJSON(data []byte) error {
 }
 
 func (u Result) MarshalJSON() ([]byte, error) {
-	if u.One != nil {
-		return utils.MarshalJSON(u.One, "", true)
+	if u.PlaygroundStrategySchema1 != nil {
+		return utils.MarshalJSON(u.PlaygroundStrategySchema1, "", true)
 	}
 
 	if u.PlaygroundStrategySchema2 != nil {

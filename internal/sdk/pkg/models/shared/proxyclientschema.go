@@ -15,6 +15,7 @@ const (
 	ProxyClientSchemaStartedTypeNumber   ProxyClientSchemaStartedType = "number"
 )
 
+// ProxyClientSchemaStarted - When this client started. Should be reported as ISO8601 time.
 type ProxyClientSchemaStarted struct {
 	DateTime *time.Time
 	Number   *float64

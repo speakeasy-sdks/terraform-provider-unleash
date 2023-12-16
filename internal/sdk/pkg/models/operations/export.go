@@ -19,6 +19,7 @@ const (
 	DownloadTypeNumber  DownloadType = "number"
 )
 
+// Download - Whether exported data should be downloaded as a file.
 type Download struct {
 	Boolean *bool
 	Str     *string
@@ -104,6 +105,7 @@ const (
 	EnvironmentsTypeNumber  EnvironmentsType = "number"
 )
 
+// Environments - Whether environments should be included in the exported data.
 type Environments struct {
 	Boolean *bool
 	Str     *string
@@ -189,6 +191,7 @@ const (
 	FeatureTogglesTypeNumber  FeatureTogglesType = "number"
 )
 
+// FeatureToggles - Whether feature toggles should be included in the exported data.
 type FeatureToggles struct {
 	Boolean *bool
 	Str     *string
@@ -302,6 +305,7 @@ const (
 	ProjectsTypeNumber  ProjectsType = "number"
 )
 
+// Projects - Whether projects should be included in the exported data.
 type Projects struct {
 	Boolean *bool
 	Str     *string
@@ -387,6 +391,7 @@ const (
 	StrategiesTypeNumber  StrategiesType = "number"
 )
 
+// Strategies - Whether strategies should be included in the exported data.
 type Strategies struct {
 	Boolean *bool
 	Str     *string
@@ -472,6 +477,7 @@ const (
 	TagsTypeNumber  TagsType = "number"
 )
 
+// Tags - Whether tag types, tags, and feature_tags should be included in the exported data.
 type Tags struct {
 	Boolean *bool
 	Str     *string

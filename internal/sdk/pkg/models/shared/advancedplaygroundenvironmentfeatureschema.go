@@ -9,12 +9,6 @@ import (
 	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
-// AdvancedPlaygroundEnvironmentFeatureSchema2 - The cumulative results of all the feature's strategies. Can be `true`,
-//
-//	`false`, or `unknown`.
-//	This property will only be `unknown`
-//	if one or more of the strategies can't be fully evaluated and the rest of the strategies
-//	all resolve to `false`.
 type AdvancedPlaygroundEnvironmentFeatureSchema2 string
 
 const (
@@ -46,6 +40,12 @@ const (
 	AdvancedPlaygroundEnvironmentFeatureSchemaResultTypeAdvancedPlaygroundEnvironmentFeatureSchema2 AdvancedPlaygroundEnvironmentFeatureSchemaResultType = "advancedPlaygroundEnvironmentFeatureSchema_2"
 )
 
+// AdvancedPlaygroundEnvironmentFeatureSchemaResult - The cumulative results of all the feature's strategies. Can be `true`,
+//
+//	`false`, or `unknown`.
+//	This property will only be `unknown`
+//	if one or more of the strategies can't be fully evaluated and the rest of the strategies
+//	all resolve to `false`.
 type AdvancedPlaygroundEnvironmentFeatureSchemaResult struct {
 	Boolean                                     *bool
 	AdvancedPlaygroundEnvironmentFeatureSchema2 *AdvancedPlaygroundEnvironmentFeatureSchema2

@@ -9,7 +9,6 @@ import (
 	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
-// UpdateUserSchema2 - The role to assign to the user. Can be either the role's ID or its unique name.
 type UpdateUserSchema2 string
 
 const (
@@ -53,6 +52,7 @@ const (
 	UpdateUserSchemaRootRoleTypeUpdateUserSchema2 UpdateUserSchemaRootRoleType = "updateUserSchema_2"
 )
 
+// UpdateUserSchemaRootRole - The role to assign to the user. Can be either the role's ID or its unique name.
 type UpdateUserSchemaRootRole struct {
 	Integer           *int64
 	UpdateUserSchema2 *UpdateUserSchema2

@@ -15,6 +15,7 @@ const (
 	StartedTypeNumber   StartedType = "number"
 )
 
+// Started - Either an RFC-3339 timestamp or a unix timestamp in seconds
 type Started struct {
 	DateTime *time.Time
 	Number   *float64

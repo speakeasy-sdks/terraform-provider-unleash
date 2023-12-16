@@ -10,7 +10,6 @@ import (
 	"time"
 )
 
-// CreateUserResponseSchema2 - Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.
 type CreateUserResponseSchema2 string
 
 const (
@@ -54,6 +53,7 @@ const (
 	RootRoleTypeCreateUserResponseSchema2 RootRoleType = "createUserResponseSchema_2"
 )
 
+// RootRole - Which [root role](https://docs.getunleash.io/reference/rbac#standard-roles) this user is assigned. Usually a numeric role ID, but can be a string when returning newly created user with an explicit string role.
 type RootRole struct {
 	Integer                   *int64
 	CreateUserResponseSchema2 *CreateUserResponseSchema2

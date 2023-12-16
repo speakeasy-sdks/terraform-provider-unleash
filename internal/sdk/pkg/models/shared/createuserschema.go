@@ -9,7 +9,6 @@ import (
 	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 )
 
-// CreateUserSchema2 - The role to assign to the user. Can be either the role's ID or its unique name.
 type CreateUserSchema2 string
 
 const (
@@ -53,6 +52,7 @@ const (
 	CreateUserSchemaRootRoleTypeCreateUserSchema2 CreateUserSchemaRootRoleType = "createUserSchema_2"
 )
 
+// CreateUserSchemaRootRole - The role to assign to the user. Can be either the role's ID or its unique name.
 type CreateUserSchemaRootRole struct {
 	Integer           *int64
 	CreateUserSchema2 *CreateUserSchema2

@@ -41,6 +41,7 @@ const (
 	PlaygroundRequestSchemaProjectsTypePlaygroundRequestSchema2 PlaygroundRequestSchemaProjectsType = "playgroundRequestSchema_2"
 )
 
+// PlaygroundRequestSchemaProjects - A list of projects to check for toggles in.
 type PlaygroundRequestSchemaProjects struct {
 	ArrayOfstr               []string
 	PlaygroundRequestSchema2 *PlaygroundRequestSchema2
