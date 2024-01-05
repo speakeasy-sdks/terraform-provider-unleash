@@ -1,26 +1,10 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 53f4b3c3dc4caa25535473fc575c44b1
-  docVersion: 5.3.3
-  speakeasyVersion: 1.126.4
-  generationVersion: 2.214.10
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: SDK
-  repoURL: https://github.com/speakeasy-sdks/terraform-provider-unleash.git
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
-features:
-  terraform:
-    additionalProperties: 0.1.2
-    constsAndDefaults: 0.1.2
-    core: 3.6.3
-    deprecations: 2.81.1
-    globalSecurity: 2.81.2
-    globalServerURLs: 2.82.1
-    unions: 2.81.7
 terraform:
   version: 0.14.0
   author: speakeasy
@@ -35,5 +19,3 @@ terraform:
   inputModelSuffix: input
   outputModelSuffix: output
   packageName: terraform
-  published: true
-  repoSubDirectory: .
