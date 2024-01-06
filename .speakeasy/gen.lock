@@ -4,9 +4,9 @@ management:
   docChecksum: 53f4b3c3dc4caa25535473fc575c44b1
   docVersion: 5.3.3
   speakeasyVersion: internal
-  generationVersion: 2.225.2
-  releaseVersion: 0.14.0
-  configChecksum: e4d065afca500ac017d04732e966dd23
+  generationVersion: 2.228.1
+  releaseVersion: 0.15.0
+  configChecksum: b532da76fc3409f47eebb16f816e7787
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-unleash.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   terraform:
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.2
-    core: 3.7.0
+    core: 3.8.0
     deprecations: 2.81.1
     globalSecurity: 2.81.2
     globalServerURLs: 2.82.1
